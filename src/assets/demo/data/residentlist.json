@@ -1,0 +1,69 @@
+{
+    "data": [
+        {
+            "ResidentId": "OMR45345",
+            "name": "Bamboo Watch",
+            "admDate":"16-11-2022",
+            "status":"Admitted"
+        },
+        {
+            "ResidentId": "FLH453454",
+            "name": "James Butt",
+            "admDate":"26-11-2022",
+            "status":"Discharge"
+        },
+        {
+            "ResidentId": "OMR54353",
+            "name": "Josephine Darakjy",
+            "admDate":"13-11-2022",
+            "status":"Admitted"
+        }
+        ,
+        {
+            "ResidentId": "FLH543535",
+            "name": "Benton, John B Jr",
+            "admDate":"31-11-2022",
+            "status":"Discharge"
+        }
+        ,
+        {
+            "ResidentId": "OMR56443",
+            "name": "Chanay, Jeffrey A Esq",
+            "admDate":"21-11-2022",
+            "status":"Admitted"
+        }
+        ,
+        {
+            "ResidentId": "FLH445345",
+            "name": "Lenna Paprocki",
+            "admDate":"21-11-2022",
+            "status":"Admitted"
+        }
+        ,
+        {
+            "ResidentId": "FLH453326",
+            "name": "Amy Elsner",
+            "admDate":"21-11-2022",
+            "status":"Discharge"
+        }
+        ,
+        {
+            "ResidentId": "OMR34333",
+            "name": "Art Venere",
+            "admDate":"21-11-2022",
+            "status":"Admitted"
+        },
+        {
+            "ResidentId": "OMR34367",
+            "name": "Venere",
+            "admDate":"21-11-2022",
+            "status":"Admitted"
+        },
+        {
+            "ResidentId": "OMR34363",
+            "name": "Elsner",
+            "admDate":"21-11-2022",
+            "status":"Admitted"
+        }
+    ]
+}

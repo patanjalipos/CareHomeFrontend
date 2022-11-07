@@ -1,0 +1,24 @@
+<div class="card">
+    <h5>Resident List</h5>
+    <p-table [value]="residents" [paginator]="true" [rows]="9" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Resident ID</th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="price">Addmission Date <p-sortIcon field="price"></p-sortIcon></th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resident>
+            <tr>
+                <!-- <td style="width: 15%; min-width: 5rem;">
+                    <img src="assets/demo/images/resident/{{resident.image}}" class="shadow-4" alt="{{resident.name}}" width="50">
+                </td> -->
+                <td style="width: 35%; min-width: 7rem;">{{resident.ResidentId}}</td>
+                <td style="width: 35%; min-width: 7rem;">{{resident.name}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.admDate}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.status}}</td>
+            </tr> 
+        </ng-template>
+    </p-table>
+</div>
