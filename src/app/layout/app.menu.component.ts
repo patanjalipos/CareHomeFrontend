@@ -165,9 +165,9 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Care Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
-                    { label: 'Resident List', icon: 'pi pi-fw pi-home', routerLink: ['/residentlist'] },
-
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/uicare'] },
+                    { label: 'Resident List', icon: 'pi pi-fw pi-home', routerLink: ['/uicare/residentlist'] },
+                    { label: 'Daily Assessment', icon: 'pi pi-fw pi-home', routerLink: ['/uicare/dailyassessment'] },
                     {
                         label: 'Reports', icon: '',
                         items: [
