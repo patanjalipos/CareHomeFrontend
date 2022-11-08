@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConstantsService } from 'src/app/demo/service/constants.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styles: [`
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styles: [`
         :host ::ng-deep .pi-eye,
         :host ::ng-deep .pi-eye-slash {
             transform:scale(1.6);
@@ -18,32 +18,30 @@ import { ConstantsService } from 'src/app/demo/service/constants.service';
     `]
 })
 export class LoginComponent {
-    //@BlockUI() blockUI: NgBlockUI;
-    valCheck: string[] = ['remember'];
-    password!: string;
-    UserName!:string;
-    Password!:string;
-    invalidLogin:Boolean=false;
+  @BlockUI() blockUI: NgBlockUI;
+  valCheck: string[] = ['remember'];
+  UserName: string;
+  Password: string;
+  invalidLogin: Boolean = false;
 
-    constructor(
-        public layoutService: LayoutService,
-        public _AuthServices:AuthServiceService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private _ConstantService:ConstantsService
-        ) {
-            
-         }
-    ngOnInit(): void {
-    }
-    ValidateLogin()
-{
-    //this.blockUI.start("Please Wait....");
+  constructor(
+    public layoutService: LayoutService,
+    public _AuthServices: AuthServiceService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _ConstantService: ConstantsService
+  ) {
+
+  }
+  ngOnInit(): void {
+  }
+
+  ValidateLogin() {
+    this.blockUI.start("Please Wait....");
     this._AuthServices.Login(this.UserName, this.Password)
-      .subscribe
-      (
-        data => {
-          //this.blockUI.stop();
+      .subscribe({
+        next: (data) => {
+          this.blockUI.stop();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -69,10 +67,11 @@ export class LoginComponent {
             alert("Invalid user");
           }
         },
-        error => {
-          //this.blockUI.stop();
-          alert(error.message);
+        error: (e) => {
+          this.blockUI.stop();
+          alert(e.message);
         }
+      }
       );
-}
+  }
 }
