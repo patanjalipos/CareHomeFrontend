@@ -9,9 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ResidentProfileComponent implements OnInit {
   ProfileImage:string=null;
   objPatient:any=<any>{};
-  TabTitle:string=null;
-  TabId:string=null;
-  ResidentId:string=null;
+  title:string=null;
+  seq:string=null;
+  rId:string=null;
 
   constructor(private route: ActivatedRoute) { 
     this.objPatient.FullName="Sean Sweeney";
@@ -25,9 +25,9 @@ export class ResidentProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => 
     {
-      this.TabTitle = params['TabTitle'];
-      this.TabId = params['TabId'];
-      this.ResidentId=params['ResidentId'];
+      this.title = params['title'];
+      this.seq = params['seq'];
+      this.rId=params['rId'];
     });
   }
 }

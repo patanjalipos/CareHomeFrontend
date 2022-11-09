@@ -3,6 +3,7 @@ import { Table } from 'primeng/table';
 import { DataView } from 'primeng/dataview';
 import { ResidentList } from 'src/app/demo/classes/ResidentList';
 import { CareService } from 'src/app/demo/service/CareServices';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-residentlist',
@@ -15,7 +16,7 @@ export class ResidentlistComponent implements OnInit {
   viewMode: boolean = true;
   residentId: string = "";
   activeClass: string = "";
-  constructor(private careService: CareService) { }
+  constructor(private careService: CareService,private router: Router,) { }
 
   ngOnInit(): void {
     this.careService.getResidentList().then(data => this.residents = data);
@@ -34,5 +35,9 @@ export class ResidentlistComponent implements OnInit {
   }
   residentClick(id) {
     this.residentId = id;
+  }
+  LoadResidentInfo(title,seq)
+  {
+    this.router.navigateByUrl("/uicare/residentprofile?title="+title+"&seq="+seq+"&rId="+this.residentId);
   }
 }
