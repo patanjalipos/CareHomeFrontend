@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CareService } from 'src/app/demo/service/CareServices';
 
 @Component({
   selector: 'app-resident-profile',
@@ -13,13 +14,13 @@ export class ResidentProfileComponent implements OnInit {
   seq:string=null;
   rId:string=null;
 
-  constructor(private route: ActivatedRoute) { 
-    this.objPatient.FullName="Sean Sweeney";
-    this.objPatient.DateOfBirth="15-06-1956";
-    this.objPatient.RefNumber="49472974294924";
-    this.objPatient.ContactNumber="07557768852";
-    this.objPatient.BllodGroup="B+";
-    this.objPatient.Address="United Kingdom";
+  constructor(private careService: CareService, private route: ActivatedRoute) { 
+    // this.objPatient.FullName="Sean Sweeney";
+    // this.objPatient.DateOfBirth="15-06-1956";
+    // this.objPatient.RefNumber="49472974294924";
+    // this.objPatient.ContactNumber="07557768852";
+    // this.objPatient.BllodGroup="B+";
+    // this.objPatient.Address="United Kingdom";
   }
 
   ngOnInit(): void {
@@ -29,5 +30,9 @@ export class ResidentProfileComponent implements OnInit {
       this.seq = params['seq'];
       this.rId=params['rId'];
     });
+    if(this.rId!=null && this.rId!="")
+    {
+      this.careService.getResidentList().then(data => this.objPatient = data.find(f=>f.ResidentId==this.rId));
+    }
   }
 }
