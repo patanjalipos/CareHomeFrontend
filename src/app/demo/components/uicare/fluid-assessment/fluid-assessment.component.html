@@ -1,0 +1,40 @@
+<p-accordion>
+    <p-accordionTab header="Fluid Intake">
+       
+    </p-accordionTab>
+    <p-accordionTab header="Fluid O/P">
+        Content 2
+    </p-accordionTab>
+    <p-accordionTab header="History">
+        Content 3    
+    </p-accordionTab>
+    <p-accordionTab header="Chart">
+        Content 4    
+    </p-accordionTab>
+    <p-accordionTab header="Daily Intake Target">
+        <div class="grid p-fluid mt-3">
+            <div class="field col-12 md:col-4">
+                <label class="bold">Recent Daily Intake:</label>
+                {{DailyIntakeObj.TargetIntake}} ml
+            </div>
+            <div class="field col-12 md:col-4">
+                <label class="bold">Recent Daily Intake Time:</label>
+                {{DailyIntakeObj.TargetTime}}
+            </div>
+            <div class="field col-12 md:col-4">
+                <label class="bold">Last Updated By:</label>
+                {{DailyIntakeObj.UpdatedBy}}
+            </div>
+            <div class="field col-12 md:col-4">
+                <label class="bold">Last Updated Time:</label>
+                {{DailyIntakeObj.UpdatedTime}}
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <p-inputNumber inputId="inputDailyIntakeTarget" [(ngModel)]="DailyIntakeObj.IntakeDailyTarget"></p-inputNumber>
+                    <label for="inputDailyIntakeTarget">Daily Intake Target</label>
+                </span>
+            </div>
+        </div>
+    </p-accordionTab>
+</p-accordion>

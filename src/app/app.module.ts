@@ -21,7 +21,7 @@ import { BlockUIModule } from 'ng-block-ui';
     imports: [
         AppRoutingModule,
         AppLayoutModule,
-        BlockUIModule.forRoot()
+        BlockUIModule.forRoot(),
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

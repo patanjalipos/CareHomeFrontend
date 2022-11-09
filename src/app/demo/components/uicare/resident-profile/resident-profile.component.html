@@ -1,0 +1,33 @@
+<div class="card">
+    <h5>Resident Profile</h5>
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+           <label class="bold">Name:</label>
+           {{objPatient.FullName}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">DOB:</label>
+           {{objPatient.DateOfBirth}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Reference Number:</label>
+            {{objPatient.RefNumber}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Contact Number:</label>
+            {{objPatient.ContactNumber}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Blood Group:</label>
+            {{objPatient.BllodGroup}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Address:</label>
+            {{objPatient.Address}}
+        </div>
+    </div>
+</div>
+<div class="card">
+    <h5>{{TabTitle}}</h5>
+    <app-fluid-assessment *ngIf="TabId=='1'"></app-fluid-assessment>
+</div>
