@@ -1,67 +1,72 @@
 {
     "data": [
         {
+            "image":"amyelsner.png",
             "ResidentId": "OMR45345",
-            "name": "Bamboo Watch",
+            "name": "Amyelsner",
             "admDate":"16-11-2022",
             "status":"Admitted"
         },
         {
+            "image":"annafali.png",
             "ResidentId": "FLH453454",
-            "name": "James Butt",
+            "name": "Annafali",
             "admDate":"26-11-2022",
             "status":"Discharge"
         },
         {
+            "image":"asiyajavayant.png",
             "ResidentId": "OMR54353",
-            "name": "Josephine Darakjy",
+            "name": "Asiyajavayant",
             "admDate":"13-11-2022",
             "status":"Admitted"
-        }
-        ,
+        },
         {
+            "image":"bernardodominic.png",
             "ResidentId": "FLH543535",
-            "name": "Benton, John B Jr",
+            "name": "Bernardodominic",
             "admDate":"31-11-2022",
             "status":"Discharge"
-        }
-        ,
+        },
         {
+            "image":"elwinsharvill.png",
             "ResidentId": "OMR56443",
-            "name": "Chanay, Jeffrey A Esq",
+            "name": "Elwinsharvill",
             "admDate":"21-11-2022",
             "status":"Admitted"
-        }
-        ,
+        },
         {
+            "image":"ionibowcher.png",
             "ResidentId": "FLH445345",
-            "name": "Lenna Paprocki",
+            "name": "Ionibowcher",
             "admDate":"21-11-2022",
             "status":"Admitted"
-        }
-        ,
+        },
         {
+            "image":"ivanmagalhaes.png",
             "ResidentId": "FLH453326",
-            "name": "Amy Elsner",
+            "name": "Ivanmagalhaes",
             "admDate":"21-11-2022",
             "status":"Discharge"
-        }
-        ,
+        },
         {
+            "image":"onyamalimba.png",
             "ResidentId": "OMR34333",
-            "name": "Art Venere",
+            "name": "Onyamalimba",
             "admDate":"21-11-2022",
             "status":"Admitted"
         },
         {
+            "image":"stephenshaw.png",
             "ResidentId": "OMR34367",
-            "name": "Venere",
+            "name": "Stephenshaw",
             "admDate":"21-11-2022",
             "status":"Admitted"
         },
         {
+            "image":"xuxuefeng.png",
             "ResidentId": "OMR34363",
-            "name": "Elsner",
+            "name": "Xuxuefeng",
             "admDate":"21-11-2022",
             "status":"Admitted"
         }
