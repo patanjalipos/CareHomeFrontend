@@ -55,3 +55,58 @@
         </ng-template>
     </p-table>
 </div>
+<p-dialog [(visible)]="DailyReportDialog" [style]="{width: '1000px',height: '600px'}" header="Daily Report Details" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-fluid">
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-2 md:mb-3 bold">Date and Time of Capture:</label>
+                <div class="field col-12 md:col-4">
+                        <p-calendar [(ngModel)]="DailyReportObj.CaptureDate"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
+                </div>
+                <label class="col-12 mb-2 md:col-2 md:mb-3  bold ">Category:</label>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label">
+                        <p-dropdown inputId="dropdownCategory" [autoDisplayFirst]="false" [options]="lstReportCatg" [(ngModel)]="DailyReportObj.Category" optionLabel="CategoryName" optionValue="CategoryName"></p-dropdown>
+                    </span>
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-2 md:mb-4 bold">Daily Report:</label>
+                <div class="field col-12 md:col-10">
+                    <textarea id="txtDailyReport" [(ngModel)]="DailyReportObj.DailyReport" rows="4" cols="105"></textarea>
+                    <!-- <input pInputTextarea id="txtDailyReport" rows="8" [(ngModel)]="DailyReportObj.DailyReport" /> -->
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-2 md:mb-4 bold">Mode:</label>
+                <div class="field col-12 md:col-4">
+                    <input pInputText id="txtMode" [(ngModel)]="DailyReportObj.Mood"  type="text" />
+                </div>
+                <label class="col-12 mb-2 md:col-2 md:mb-4 bold">Handover:</label>
+                <div class="field col-12 md:col-4">
+                    <p-dropdown inputId="dropdownHandOver" [autoDisplayFirst]="false" [options]="lstHandover" [(ngModel)]="DailyReportObj.Handover" optionLabel="HandoverName" optionValue="HandoverName"></p-dropdown>
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-2 md:mb-3 bold">Start Time:</label>
+                <div class="field col-12 md:col-4">
+                        <p-calendar [(ngModel)]="DailyReportObj.StartTime"  [showTime]="true" [showSeconds]="true" inputId="timeonly"></p-calendar>
+                </div>
+                <label class="col-12 mb-2 md:col-2 md:mb-3 bold">End Time:</label>
+                <div class="field col-12 md:col-4">
+                        <p-calendar [(ngModel)]="DailyReportObj.EndTime"  [showTime]="true" [showSeconds]="true" inputId="timeonly"></p-calendar>
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-2 md:mb-3 bold">Created By:</label>
+                <div class="field col-12 md:col-4">
+                    <input pInputText id="txtCreatedBy" [(ngModel)]="DailyReportObj.CreatedBy"  type="text" />
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveDailyReport()"></button>
+    </ng-template>
+</p-dialog>
