@@ -11,3 +11,12 @@ $gutter: 1rem; //for primeflex grid system
 /* Demos */
 @import "assets/demo/styles/flags/flags.css";
 @import "assets/demo/styles/badges.scss";
+
+
+.bold{font-weight: bold;}
+.surface-red-border {
+    border-color: red !important;
+}
+.imgborder{
+    border-width: 1px !important; border-color: red !important; border-style: solid !important; 
+}
