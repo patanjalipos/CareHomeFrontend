@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { FluidAssessmentRoutingModule } from './fluid-assessment-routing.module';
 import { FluidAssessmentComponent } from './fluid-assessment.component';
@@ -15,6 +15,8 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { ChartModule } from 'primeng/chart';
 
 
 @NgModule({
@@ -36,7 +38,12 @@ import { InputTextModule } from 'primeng/inputtext';
 		MultiSelectModule,
 		InputTextareaModule,
 		InputTextModule,
+    TableModule,
+    ChartModule
   ],
-  exports:[FluidAssessmentComponent]
+  exports:[FluidAssessmentComponent],
+  providers: [
+    DatePipe,
+  ]
 })
 export class FluidAssessmentModule { }
