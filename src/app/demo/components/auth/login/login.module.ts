@@ -9,6 +9,7 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
+    declarations: [LoginComponent],
     imports: [
         CommonModule,
         LoginRoutingModule,
@@ -17,7 +18,6 @@ import { InputTextModule } from 'primeng/inputtext';
         InputTextModule,
         FormsModule,
         PasswordModule
-    ],
-    declarations: [LoginComponent]
-})
+    ]
+  })
 export class LoginModule { }

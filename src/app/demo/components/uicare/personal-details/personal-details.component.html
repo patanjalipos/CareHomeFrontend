@@ -1,0 +1,325 @@
+<p-tabView>
+    <p-tabPanel header="Final wishes">
+        <ng-container *ngTemplateOutlet="tabFinalWishes"></ng-container>
+    </p-tabPanel>
+    <p-tabPanel header="DNACPR">
+        <ng-container *ngTemplateOutlet="tabDNACPR"></ng-container>
+    </p-tabPanel>
+    <p-tabPanel header="Care Passport">
+        Care Passport
+    </p-tabPanel>
+    <p-tabPanel header="Daily Assessment">
+        Daily Assessment
+    </p-tabPanel>
+    <p-tabPanel header="Daily Report">
+        <app-daily-report></app-daily-report>
+    </p-tabPanel>  
+    <p-tabPanel header="TODO List">
+        TODO List
+    </p-tabPanel>  
+</p-tabView>
+<ng-template #tabFinalWishes>
+    <div class="p-fluid">
+        <div class="field grid">
+            <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0">Do you have strong prefrence which funeral director is engaged?</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="name1" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">I would want to be <br/>Burial</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                <div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rd" value="Buried" [(ngModel)]="valRadio1" id="rd1"></p-radioButton>
+						<label for="rd1">Buried</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rd" value="Cremated" [(ngModel)]="valRadio1"
+									   id="rd2"></p-radioButton>
+						<label for="rd2">Cremated</label>
+					</div>
+				</div>
+            </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0">Have you arranged for burial plot?</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                <div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdNo" value="Yes" [(ngModel)]="valRadio2" id="rd3"></p-radioButton>
+						<label for="rd3">Yes</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdNo" value="No" [(ngModel)]="valRadio2"
+									   id="rd4"></p-radioButton>
+						<label for="rd4">No</label>
+					</div>
+				</div>
+            </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0">Where would you like to be buried, please give details</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="name2" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">I would want to be <br/>Burial</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                <div class="col-12 md:col-8">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdModern" value="Traditional(wood)" [(ngModel)]="valRadio3" id="rd5"></p-radioButton>
+						<label for="rd5">Traditional(wood)</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdModern" value="Modern" [(ngModel)]="valRadio3"
+									   id="rd6"></p-radioButton>
+						<label for="rd6">Modern</label>
+					</div>
+				</div>
+            </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">I would like to be my body to rest at</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="name3" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">Would you prefer your body to be embalmed</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                <div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdNo" value="Yes" [(ngModel)]="valRadio5" id="rd7"></p-radioButton>
+						<label for="rd7">Yes</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdNo" value="No" [(ngModel)]="valRadio5"
+									   id="rd8"></p-radioButton>
+						<label for="rd8">No</label>
+					</div>
+				</div>
+            </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">I would like to be my body to be dressed in</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="name4" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">Do you have a preference about any route is to take to the serve</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                <div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdNo" value="Yes" [(ngModel)]="valRadio4" id="rd9"></p-radioButton>
+						<label for="rd9">Yes</label>
+					</div>
+				</div>
+				<div class="col-12 md:col-4">
+					<div class="field-radiobutton">
+						<p-radioButton name="rdNo" value="No" [(ngModel)]="valRadio4"
+									   id="rd10"></p-radioButton>
+						<label for="rd10">No</label>
+					</div>
+				</div>
+            </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-8 md:mb-0">I would like my funeral to be conducted by: </label>
+            
+        </div>
+        <div class="field grid">
+            <label htmlFor="name5" class="col-12 mb-2 md:col-8 md:mb-0">Name</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="name5" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name6" class="col-12 mb-2 md:col-8 md:mb-0">Telephone Number</label>
+            <div class="col-12 md:col-4">
+                <input pInputText id="name6" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-8 md:mb-0">I would like the following at my funeral: </label>
+            
+        </div>
+        <div class="field grid">
+             <div class="col-12 md:col-6">
+                <textarea rows="3" cols="30" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #tabDNACPR>
+    <div class="p-fluid">
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Summary of communication with service User(or Welfare Attorney). If this decision has not been discussed with the Service User or Welfare Attorney state the reason why:  </label>
+            
+        </div>
+        <div class="field grid">
+             <div class="col-12 md:col-6">
+                <textarea rows="3" cols="30" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Summary of communication with service User's relatives or friends:  </label>
+            
+        </div>
+        <div class="field grid">
+             <div class="col-12 md:col-6">
+                <textarea rows="3" cols="30" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Names of members of multidiscipilnary team contributing to this decision:  </label>
+            
+        </div>
+        <div class="field grid">
+             <div class="col-12 md:col-6">
+                <textarea rows="3" cols="30" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Healthcare professional recording this DNACPR decision:  </label>
+            
+        </div>
+        <div class="field grid">
+            <label htmlFor="txtDNACPR1" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
+            <div class="col-12 md:col-3">
+                <input pInputText id="txtDNACPR1" type="text" />
+            </div>
+            <label htmlFor="txtDNACPR2" class="col-12 mb-2 md:col-2 md:mb-0">Position</label>
+            <div class="col-12 md:col-2">
+                <input pInputText id="txtDNACPR2" type="text" />
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="col-12 mb-2 md:col-2 md:mb-0">Date</label>
+            <div class="col-12 md:col-3">
+                <p-calendar [(ngModel)]="date1" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
+            </div>
+            <label class="col-12 mb-2 md:col-2 md:mb-0">Time</label>
+            <div class="col-12 md:col-2">
+                <p-calendar [(ngModel)]="time1" [timeOnly]="true" hourFormat="12" inputId="timeonly"></p-calendar>
+            </div>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Review and endorsement by most senior health professional:  </label>
+            
+        </div>
+        <div class="field grid">
+            <label htmlFor="txtDNACPR3" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
+            <div class="col-12 md:col-2">
+                <input pInputText id="txtDNACPR3" type="text" />
+            </div>
+            <label class="col-12 mb-2 md:col-2 md:mb-0">Date</label>
+            <div class="col-12 md:col-3">
+                <p-calendar [(ngModel)]="date2" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
+            </div>            
+        </div>
+        <div class="field grid">
+            <label class="col-12 mb-2 md:col-2 md:mb-0">DNACPR document</label>
+            <div class="col-12 md:col-10">
+                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"  accept="image/*"
+                    >
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+                
+            </div>                  
+        </div>
+        <div class="field grid">
+            <label class="col-12 mb-2 md:col-2 md:mb-0">Living Power of Attorney</label>
+            <div class="col-12 md:col-10">
+                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"  accept="image/*"
+                    >
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+                
+            </div> 
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Review  </label>            
+        </div>
+        <div class="field grid">
+            <label class="col-12 mb-2 md:col-2 md:mb-0">Review Date</label>
+            <div class="col-12 md:col-3">
+                <p-calendar [(ngModel)]="ReviewDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
+            </div>            
+        </div>
+        <div class="field grid">
+            <label class="col-12 mb-2 md:col-2 md:mb-0">Next Review Date</label>
+            <div class="col-12 md:col-3">
+                <p-calendar [(ngModel)]="NextReviewDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
+            </div>            
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-4 md:mb-0">Last Updated By: debbleharrison</label>
+            <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+            <label class="bold col-12 mb-2 md:col-3 md:mb-0">Last Updated On: 17-12-2020</label>
+            <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+            <label class="col-12 mb-2 md:col-3 md:mb-0">
+          		<button class="p-button-secondary mr-2"pButton pRipple type="button" label="Edit"></button>
+                <button  pButton pRipple type="button" label="Save" (click)="AddDNACPR()"></button>
+			
+            </label>
+        </div>
+        <div class="field grid">
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">History</label>
+            
+        </div>
+        <p-table #dt1 [value]="tblDNACPRHistory" responsiveLayout="scroll">
+            
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Reviewed Date</th>
+                    <th>Next Review Date</th>
+                    <th>Updated By</th>
+                    <th>Updated Date</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>{{item.ReviewDate  |date: "dd-MM-yyyy"}}</td>
+                    <td>{{item.NextReviewDate |date:  "dd-MM-yyyy"}}</td>
+                    <td>{{item.UpdatedBy}}</td>
+                    <td>{{item.UpdatedDate  |date:  "dd-MM-yyyy"}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="LoadDNACPRById(item.DNACPRId)"></button>
+                               
+                        </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</ng-template>
+<p-toast></p-toast>
