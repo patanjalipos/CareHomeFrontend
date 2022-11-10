@@ -1,0 +1,57 @@
+<div class="card">
+    <p-table *ngIf="lstDailyReport?.length>0" #dt1 [value]="lstDailyReport" [paginator]="true" [rows]="9"
+        responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <div class="my-2">
+                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNewReport()"></button>
+                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                    (click)="clear(dt1)"></button>
+                </div>
+                
+                <span class="p-input-icon-left mb-2">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)"
+                        placeholder="Search Keyword" class="w-full" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Capture Date</th>
+                <th>Category</th>
+                <th>Daily Report</th>
+                <th>Mood</th>
+                <th>Handover</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Created By</th>
+                <th>Created Date</th>
+                <th>Modified By</th>
+                <th>Modified Date</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-resident>
+            <tr>
+                <td style="width: 35%; min-width: 7rem;">{{resident.CaptureDate | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td style="width: 35%; min-width: 7rem;">{{resident.Category}}</td>
+                <td style="width: 35%; min-width: 7rem;">{{resident.DailyReport}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.Mood}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.Handover}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.StartTime | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.EndTime | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.CreatedBy}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.CreatedDate | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.UpdatedBy}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{resident.UpdatedDate | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td style="width: 35%; min-width: 8rem;">
+                    <div class="flex">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct('')"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct('')"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
