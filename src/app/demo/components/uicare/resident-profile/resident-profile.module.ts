@@ -15,6 +15,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.module';
+import { PersonalDetailsModule } from '../personal-details/personal-details.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.modu
   imports: [
     CommonModule,
     ResidentProfileRoutingModule,
+    PersonalDetailsModule,
     FluidAssessmentModule,
     FormsModule,
     AutoCompleteModule,

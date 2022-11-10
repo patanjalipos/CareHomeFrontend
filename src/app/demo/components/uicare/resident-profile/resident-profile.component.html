@@ -1,25 +1,25 @@
 <div class="card">
     <h5>Resident Profile</h5>
-    <div class="grid p-fluid mt-3">
+    <div class="grid p-fluid mt-1">
         <div class="field col-12 md:col-4">
            <label class="bold">Name:</label>
-           {{objPatient.FullName}}
+           {{objPatient.name}}
         </div>
         <div class="field col-12 md:col-4">
             <label class="bold">DOB:</label>
-           {{objPatient.DateOfBirth}}
+           {{objPatient.DOB}}
         </div>
         <div class="field col-12 md:col-4">
-            <label class="bold">Reference Number:</label>
-            {{objPatient.RefNumber}}
+            <label class="bold">Date of Addmission:</label>
+            {{objPatient.admDate}}
         </div>
         <div class="field col-12 md:col-4">
-            <label class="bold">Contact Number:</label>
-            {{objPatient.ContactNumber}}
+            <label class="bold">Contact No.:</label>
+            {{objPatient.ContactNo}}
         </div>
         <div class="field col-12 md:col-4">
             <label class="bold">Blood Group:</label>
-            {{objPatient.BllodGroup}}
+            {{objPatient.BloodGroup}}
         </div>
         <div class="field col-12 md:col-4">
             <label class="bold">Address:</label>
@@ -29,5 +29,6 @@
 </div>
 <div class="card">
     <h5>{{title}}</h5>
+    <app-personal-details *ngIf="seq=='1'"></app-personal-details>
     <app-fluid-assessment *ngIf="seq=='3'"></app-fluid-assessment>
 </div>
