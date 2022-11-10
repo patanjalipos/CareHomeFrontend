@@ -1,0 +1,118 @@
+<div class="p-fluid">
+    <div class="field grid">
+        <label class="col-12 mb-2 md:col-2 md:mb-0">Date of Assessment</label>
+        <div class="col-12 md:col-3">
+            <p-calendar [(ngModel)]="date1" dateFormat="dd-mm-yy" [showIcon]="true" inputId="icon"></p-calendar>
+        </div>
+    </div>
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-6">
+            <div class="field">
+                <label>Assessment</label>
+                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+            <div class="field">
+                <label>Settling For Bed</label>
+                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+            <div class="field">
+                <label>Assisstance At Morning</label>
+                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="col-12 md:col-6">
+            <div class="field">
+                <label>Goal/Outcome(s)</label>
+                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+            <div class="field">
+                <label>Assisstance At Night</label>
+                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+            </div> <div class="field">
+                <label>Other</label>
+                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="field grid">
+        <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">Has Sean Sweeney been involved in planning this care?</label>
+        <div class="col-12 md:col-4">
+            <div class="grid formgrid">
+            <div class="col-12 md:col-4">
+                <div class="field-radiobutton">
+                    <p-radioButton name="rdNo" value="Yes" [(ngModel)]="valRadio1" id="rd7"></p-radioButton>
+                    <label for="rd7">Yes</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <div class="field-radiobutton">
+                    <p-radioButton name="rdNo" value="No" [(ngModel)]="valRadio1"
+                                   id="rd8"></p-radioButton>
+                    <label for="rd8">No</label>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="field grid">
+        <label class="col-12 mb-2 md:col-2 md:mb-0">Next Review Date</label>
+        <div class="col-12 md:col-3">
+            <p-calendar [(ngModel)]="date1" dateFormat="dd-mm-yy" [showIcon]="true" inputId="icon"></p-calendar>
+        </div>
+    </div>
+    <div class="field grid">
+        <label class="col-6 mb-2 md:col-12 md:mb-0">Further information</label>
+    </div>
+    <div class="field grid">
+         <div class="col-6 md:col-6">
+            <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+        </div>
+    </div>
+    <div class="field grid">
+        <!-- <label class="bold col-12 mb-2 md:col-4 md:mb-0">Last Updated By: debbleharrison</label>
+        <label class="col-12 mb-2 md:col-1 md:mb-0"></label>
+        <label class="bold col-12 mb-2 md:col-3 md:mb-0">Last Updated On: 17-12-2020</label>
+        <label class="col-12 mb-2 md:col-1 md:mb-0"></label> -->
+        <label class="flex col-12 mb-2 md:col-3 md:mb-0">
+              <button class="p-button-secondary mr-2"pButton pRipple type="button" label="Cancel"></button>
+            <button  pButton pRipple type="button" label="Save" (click)="AddDailyAssess()"></button>
+        
+        </label>
+    </div>
+
+
+    <div class="field grid">
+        <label class="bold col-12 mb-2 md:col-12 md:mb-0">History</label>
+        
+    </div>
+    <p-table #dt1 [value]="tblAssessmentHistory" responsiveLayout="scroll">
+        
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date of Assessment</th>
+                <th>Next Review Date</th>
+                <th>Assessment</th>
+                <th>Goal/Outcomes(s)</th>
+                <th>involved</th>
+                <th>Updated By</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{item.AssessmentDate  |date: "dd-MM-yyyy"}}</td>
+                <td>{{item.NextReviewDate |date:  "dd-MM-yyyy"}}</td>
+                <td>{{item.Assessment}}</td>
+                <td>{{item.Outcomes}}</td>
+                <td>{{item.Involved}}</td>
+                <td>{{item.UpdatedDate  |date:  "dd-MM-yyyy"}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="LoadAssessById(item.DNACPRId)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
