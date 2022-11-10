@@ -1,0 +1,37 @@
+{
+    "data": 
+    [
+        {
+            "CaptureDate":"10-11-2022 07:00 AM",
+            "FluidType": "Tea",
+            "ContainerName": "Cup",
+            "FluidQty":150,
+            "UpdatedBy":"Jhon Thomas",
+            "UpdatedDate":"10-11-2022 07:00 AM"
+        },
+        {
+            "CaptureDate":"10-11-2022 09:00 AM",
+            "FluidType": "Milk",
+            "ContainerName": "Glass",
+            "FluidQty":100,
+            "UpdatedBy":"Jhon Thomas",
+            "UpdatedDate":"10-11-2022 09:00 AM"
+        },
+        {
+            "CaptureDate":"09-11-2022 07:00 AM",
+            "FluidType": "Juice",
+            "ContainerName": "Glass",
+            "FluidQty":75,
+            "UpdatedBy":"Jhon Thomas",
+            "UpdatedDate":"09-11-2022 07:00 AM"
+        },
+        {
+            "CaptureDate":"09-11-2022 06:00 AM",
+            "FluidType": "Water",
+            "ContainerName": "Glass",
+            "FluidQty":100,
+            "UpdatedBy":"Jhon Thomas",
+            "UpdatedDate":"09-11-2022 06:00 AM"
+        }
+    ]
+}
