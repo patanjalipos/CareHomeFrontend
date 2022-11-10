@@ -5,7 +5,7 @@
                 <label class="bold">Date and Time of Capture:</label>
                 <p-calendar [(ngModel)]="DailyNewFluidIntake.CaptureTime"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-4 mt-6">
                 <label class="bold">Daily Intake Target:</label>
                 {{DailyIntakeObj.TargetIntake}} ml
             </div>
@@ -62,23 +62,23 @@
     </p-accordionTab>
     <p-accordionTab header="Fluid O/P">
         <div class="grid p-fluid mt-3">
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-3">
                 <label class="bold">Date and Time of Capture:</label>
                 <p-calendar [(ngModel)]="DailyNewFluidOutput.CaptureTime"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
             </div>
-            <div class="field col-12 md:col-3 mr-3">
+            <div class="field col-12 md:col-3 mt-5">
                 <span class="p-float-label">
                     <p-dropdown inputId="dropdownFluidTypeOut" [autoDisplayFirst]="false" [options]="lstFluidOutType" [(ngModel)]="DailyNewFluidOutput.FluidType" optionLabel="FluidType" optionValue="FluidType"></p-dropdown>
                     <label for="dropdown" class="bold">Fluid Type</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-3 mr-3">
+            <div class="field col-12 md:col-3 mt-5">
                 <span class="p-float-label">
                     <p-inputNumber inputId="inputDailyOutputFluid"  [min]="0" [(ngModel)]="DailyNewFluidOutput.FluidOutQty"></p-inputNumber>
                     <label class="bold" for="inputDailyOutputFluid">Daily Fluid Output Qty in ml</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-3 mr-3">
+            <div class="field col-12 md:col-3  mt-5">
                 <span class="p-float-label">
                     <input type="text" id="inputtextOut" pInputText [(ngModel)]="DailyNewFluidOutput.UpdatedBy">
                     <label for="inputtextOut" class="bold">Updated By</label>
@@ -150,13 +150,12 @@
                 <label class="bold">Last Updated By:</label>
                 {{DailyIntakeObj.UpdatedBy}}
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-4  mt-6">
                 <label class="bold">Last Updated Time:</label>
                 {{DailyIntakeObj.UpdatedTime}}
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-4  mt-5">
                 <span class="p-float-label">
-                    <label class="bold"></label>
                     <p-inputNumber inputId="inputDailyIntakeTarget" [(ngModel)]="DailyIntakeObj.IntakeDailyTarget"></p-inputNumber>
                     <label class="bold" for="inputDailyIntakeTarget">Daily Intake Target in ml</label>
                 </span>
