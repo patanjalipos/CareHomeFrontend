@@ -1,3 +1,4 @@
+import { DailyAssessmentModule } from './../daily-assessment/daily-assessment.module';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -37,7 +38,8 @@ import { DailyReportModule } from '../daily-report/daily-report.module';
     CalendarModule,
     FileUploadModule,
     ToastModule,
-    DailyReportModule
+    DailyReportModule,
+    DailyAssessmentModule
   ],
   exports:[PersonalDetailsComponent]
 })
