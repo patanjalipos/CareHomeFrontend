@@ -4,6 +4,7 @@ import { DataView } from 'primeng/dataview';
 import { ResidentList } from 'src/app/demo/classes/ResidentList';
 import { CareService } from 'src/app/demo/service/CareServices';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-residentlist',
@@ -16,6 +17,9 @@ export class ResidentlistComponent implements OnInit {
   viewMode: boolean = true;
   residentId: string = "";
   activeClass: string = "";
+  items: MenuItem[];
+  filteritems: any[];
+
   constructor(private careService: CareService,private router: Router,) { }
 
   ngOnInit(): void {
@@ -39,5 +43,48 @@ export class ResidentlistComponent implements OnInit {
   LoadResidentInfo(title,seq)
   {
     this.router.navigateByUrl("/uicare/residentprofile?title="+title+"&seq="+seq+"&rId="+this.residentId);
+  }
+  toggleMenu(menu, event, ResidentId) {
+    this.items = [];
+    this.filteritems = [];
+    
+    this.items = [
+      ...this.items,
+      {
+        label: 'Personal Details',
+        icon: 'pi pi-calendar-plus',
+        command: () => {
+           this.residentId=ResidentId;
+           this.LoadResidentInfo('Personal Details','1');
+        }
+      },
+    ];
+
+    this.items = [
+      ...this.items,
+      {
+        label: 'Body Map',
+        icon: 'pi pi-calendar-plus',
+        command: () => {
+           this.residentId=ResidentId;
+           this.LoadResidentInfo('Body Map','2');
+        }
+      },
+    ];
+
+    this.items = [
+      ...this.items,
+      {
+        label: 'Fluid Assessment',
+        icon: 'pi pi-calendar-plus',
+        command: () => 
+        {
+          this.residentId=ResidentId;
+          this.LoadResidentInfo('Fluid Assessment','3');
+        }
+      },
+    ];
+
+    menu.toggle(event);
   }
 }

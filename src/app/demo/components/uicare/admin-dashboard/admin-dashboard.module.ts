@@ -9,7 +9,7 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
   declarations: [AdminDashboardComponent],
   imports: [
     CommonModule,
-    AdminDashboardRoutingModule
+    AdminDashboardRoutingModule,
   ]
 })
 export class AdminDashboardModule { }
