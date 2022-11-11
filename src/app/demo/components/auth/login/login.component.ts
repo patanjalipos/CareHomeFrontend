@@ -34,41 +34,42 @@ export class LoginComponent {
 
 
     ValidateLogin() {
-        this.blockUI.start("Please Wait....");
-        this._AuthServices.Login(this.UserName, this.Password)
-            .subscribe({
-                next: (data) => {
-                    this.blockUI.stop();
-                    if (data.actionResult.success == true) {
-                        var tdata = JSON.parse(data.actionResult.result);
-                        tdata = tdata ? tdata : [];
-                        sessionStorage.clear();
-                        localStorage.clear();
+        this.router.navigateByUrl("/uicare/residentlist");
+        // this.blockUI.start("Please Wait....");
+        // this._AuthServices.Login(this.UserName, this.Password)
+        //     .subscribe({
+        //         next: (data) => {
+        //             this.blockUI.stop();
+        //             if (data.actionResult.success == true) {
+        //                 var tdata = JSON.parse(data.actionResult.result);
+        //                 tdata = tdata ? tdata : [];
+        //                 sessionStorage.clear();
+        //                 localStorage.clear();
 
-                        localStorage.setItem('token', data.actionResult.authenticationToken);
-                        localStorage.setItem('userTypeId', data.actionResult.userTypeId);
-                        localStorage.setItem('userId', data.actionResult.userId);
-                        localStorage.setItem('ClinicId', tdata.ClinicId);
-                        localStorage.setItem('ClinicType', tdata.ClinicType);
-                        localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
-                        localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
-                        localStorage.setItem('Gender', tdata.Gender);
-                        localStorage.setItem('ProfileImage', tdata.ProfileImage);
-                        localStorage.setItem('IsSpecialAccess', tdata.IsSpecialAccess);
-                        //this._dymservice.loadMenu();
-                        this.router.navigateByUrl("/");
-                        this._ConstantService.IsLocal = true;
-                    }
-                    else {
-                        this.invalidLogin = true;
-                        alert("Invalid user");
-                    }
-                },
-                error: (e) => {
-                    this.blockUI.stop();
-                    alert(e.message);
-                }
-            }
-            );
+        //                 localStorage.setItem('token', data.actionResult.authenticationToken);
+        //                 localStorage.setItem('userTypeId', data.actionResult.userTypeId);
+        //                 localStorage.setItem('userId', data.actionResult.userId);
+        //                 localStorage.setItem('ClinicId', tdata.ClinicId);
+        //                 localStorage.setItem('ClinicType', tdata.ClinicType);
+        //                 localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
+        //                 localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
+        //                 localStorage.setItem('Gender', tdata.Gender);
+        //                 localStorage.setItem('ProfileImage', tdata.ProfileImage);
+        //                 localStorage.setItem('IsSpecialAccess', tdata.IsSpecialAccess);
+        //                 //this._dymservice.loadMenu();
+        //                 this.router.navigateByUrl("/");
+        //                 this._ConstantService.IsLocal = true;
+        //             }
+        //             else {
+        //                 this.invalidLogin = true;
+        //                 alert("Invalid user");
+        //             }
+        //         },
+        //         error: (e) => {
+        //             this.blockUI.stop();
+        //             alert(e.message);
+        //         }
+        //     }
+        //     );
     }
 }

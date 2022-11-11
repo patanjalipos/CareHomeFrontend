@@ -166,24 +166,24 @@ export class AppMenuComponent implements OnInit {
                 label: 'Care Home',
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/uicare'] },
-                    { label: 'Resident List', icon: 'pi pi-fw pi-home', routerLink: ['/uicare/residentlist'] },
-                    {
-                        label: 'Reports', icon: '',
-                        items: [
-                            {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' ,routerLink: ['/uikit/formlayout']},
-                                ]
-                            },
-                            {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }
-                                ]
-                            },
-                        ]
-                    },
+                    { label: 'Resident List', icon: 'pi pi-fw pi-heart', routerLink: ['/uicare/residentlist'] },
+                    // {
+                    //     label: 'Reports', icon: '',
+                    //     items: [
+                    //         {
+                    //             label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
+                    //             items: [
+                    //                 { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' ,routerLink: ['/uikit/formlayout']},
+                    //             ]
+                    //         },
+                    //         {
+                    //             label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
+                    //             items: [
+                    //                 { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }
+                    //             ]
+                    //         },
+                    //     ]
+                    // },
                 ]
             },
         ]
