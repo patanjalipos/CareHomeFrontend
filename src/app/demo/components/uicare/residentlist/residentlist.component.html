@@ -31,13 +31,14 @@
 								</div>
 								<span [class]="'product-badge status-' + product.status">{{product.inventoryStatus}}</span>
 							</div> -->
-							<div class="flex flex-column align-items-center text-center mb-1">
-								<img [src]="'assets/demo/images/avatar/' + product.image" [alt]="product.name" 
-									class="w-6 shadow-2 my-1 mx-0" />
-								<div class="text-2xl font-bold">{{product.name}}</div>
-								<div class="mb-2">({{product.status}})</div>
-								<div><p-button icon="pi pi-shopping-cart" (onClick)="residentClick(product.ResidentId)"></p-button></div>
-							</div>
+							<a style="cursor:pointer" (click)="residentClick(product.ResidentId)">
+								<div class="flex flex-column align-items-center text-center mb-1">
+									<img [src]="'assets/demo/images/avatar/' + product.image" [alt]="product.name" style="height:150px !important;width:170px !important;" class="w-6 shadow-2 my-1 mx-0" />
+									<div class="text-2xl font-bold">{{product.name}}</div>
+									<div class="mb-2">({{product.status}})</div>
+									<!-- <div><p-button icon="pi pi-shopping-cart" (onClick)="residentClick(product.ResidentId)"></p-button></div> -->
+								</div>
+							</a>
 							<!-- <div class="flex align-items-center justify-content-between">
 								<span class="text-2xl font-semibold">${{product.price}}</span>
 								<p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>

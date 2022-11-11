@@ -21,6 +21,7 @@ export class FluidAssessmentComponent implements OnInit {
   DailyNewFluidOutput:any=<any>{};
   barData: any;
   barOptions: any;
+  rangeDates:any[]=[];
 
   constructor(
     private datePipe: DatePipe,
@@ -42,7 +43,10 @@ export class FluidAssessmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.careService.getFluidHistoryDetails().then(data => this.lstFluidDetails = data);
-    this.initCharts();
+    this.initCharts('01','08');
+    this.rangeDates.push(new Date('2022-11-01'));
+    this.rangeDates.push(new Date('2022-11-08'));
+    
   }
   SaveTargetIntake()
   {
@@ -135,26 +139,34 @@ export class FluidAssessmentComponent implements OnInit {
     this.DailyNewFluidOutput.FluidType=null;
     alert("Output Details Saved Successfully");
   }
-  initCharts() {
+  initCharts(DateFrom,DateUpto) {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
     
+    var labelsArray:any[]=['01', '02', '03', '04', '05', '06', '07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+    var labelsNew:any[]=[];
+    for(let i=parseInt(DateFrom)-1;i<=parseInt(DateUpto)-1;i++)
+    {
+      labelsNew.push(labelsArray[i]);
+    }
     this.barData = {
-        labels: ['01', '02', '03', '04', '05', '06', '07','08','09','10'],
+
+        //labels: ['01', '02', '03', '04', '05', '06', '07','08','09','10'],
+        labels:labelsNew,
         datasets: [
             {
                 label: 'Target',
                 backgroundColor: documentStyle.getPropertyValue('--primary-500'),
                 borderColor: documentStyle.getPropertyValue('--primary-500'),
-                data: [1500, 1500, 1500, 1500, 1600, 1600, 1600,1700,1700,1700]
+                data: [1500, 1500, 1500, 1500, 1600, 1600, 1600,1700,1700,1700,1600,1600,1700,1800,1800,1800,1700,1400,1200,1300,1500,1600,1700,1800,1900,1900,1800,1800,1800,1900,1900,1900]
             },
             {
                 label: 'Actual',
                 backgroundColor: documentStyle.getPropertyValue('--primary-200'),
                 borderColor: documentStyle.getPropertyValue('--primary-200'),
-                data: [1200, 1300, 1400, 1200, 1500, 1300, 1400,1400,1500,1600]
+                data: [1200, 1300, 1400, 1200, 1500, 1300, 1400,1400,1500,1600,1200, 1300, 1400, 1200, 1500, 1300, 1400,1400,1500,1600,1200, 1300, 1400, 1200, 1500, 1300, 1400,1400,1500,1600]
             }
         ]
     };
@@ -190,8 +202,16 @@ export class FluidAssessmentComponent implements OnInit {
                 }
             },
         }
-    };
-
-    
+    };  
+}
+ShowDetails()
+{
+  var abc=this.rangeDates;
+  if(this.rangeDates?.length>1)
+  {
+    var DateFrom:string=this.datePipe.transform(this.rangeDates[0],"dd").toString();
+    var DateUpto:string=this.datePipe.transform(this.rangeDates[1],"dd").toString();
+    this.initCharts(DateFrom,DateUpto);
+  }
 }
 }
