@@ -132,6 +132,14 @@
     </p-accordionTab>
     <p-accordionTab header="Chart">
         <div class="card">
+            <div class="grid p-fluid mt-3">
+                <div class="field col-12 md:col-3">
+                    <label class="bold">Date Range:</label>
+                </div>
+                <div class="field col-12 md:col-9">
+                    <p-calendar [(ngModel)]="rangeDates" (onSelect)="ShowDetails()" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+                </div>
+            </div>
             <h5 style="text-align:center ;">Date Wise Target vs Actual Fluid Intake</h5>
             <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
         </div>
@@ -139,8 +147,12 @@
     <p-accordionTab header="Daily Intake Target">
         <div class="grid p-fluid mt-3">
             <div class="field col-12 md:col-4">
-                <label class="bold">Recent Daily Intake:</label>
+                <label class="bold">Target Intake:</label>
                 {{DailyIntakeObj.TargetIntake}} ml
+            </div>
+            <div class="field col-12 md:col-4">
+                <label class="bold">Recent Daily Intake:</label>
+                1200 ml
             </div>
             <div class="field col-12 md:col-4">
                 <label class="bold">Recent Daily Intake Time:</label>
@@ -150,11 +162,11 @@
                 <label class="bold">Last Updated By:</label>
                 {{DailyIntakeObj.UpdatedBy}}
             </div>
-            <div class="field col-12 md:col-4  mt-6">
+            <div class="field col-12 md:col-4">
                 <label class="bold">Last Updated Time:</label>
                 {{DailyIntakeObj.UpdatedTime}}
             </div>
-            <div class="field col-12 md:col-4  mt-5">
+            <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <p-inputNumber inputId="inputDailyIntakeTarget" [(ngModel)]="DailyIntakeObj.IntakeDailyTarget"></p-inputNumber>
                     <label class="bold" for="inputDailyIntakeTarget">Daily Intake Target in ml</label>
@@ -165,7 +177,7 @@
                 <p-calendar [(ngModel)]="DailyIntakeObj.StartTime" [timeOnly]="true"  inputId="timeonly"></p-calendar>
                 <!-- <p-calendar [(ngModel)]="DailyIntakeObj.StartTime"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar> -->
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-4 mt-4">
                 <button pButton label="Submit" (click)="SaveTargetIntake()"></button>
             </div>
         </div>

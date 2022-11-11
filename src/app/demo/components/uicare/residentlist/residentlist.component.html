@@ -31,13 +31,14 @@
 								</div>
 								<span [class]="'product-badge status-' + product.status">{{product.inventoryStatus}}</span>
 							</div> -->
-							<div class="flex flex-column align-items-center text-center mb-1">
-								<img [src]="'assets/demo/images/avatar/' + product.image" [alt]="product.name" 
-									class="w-6 shadow-2 my-1 mx-0" />
-								<div class="text-2xl font-bold">{{product.name}}</div>
-								<div class="mb-2">({{product.status}})</div>
-								<div><p-button icon="pi pi-shopping-cart" (onClick)="residentClick(product.ResidentId)"></p-button></div>
-							</div>
+							<a style="cursor:pointer" (click)="residentClick(product.ResidentId)">
+								<div class="flex flex-column align-items-center text-center mb-1">
+									<img [src]="'assets/demo/images/avatar/' + product.image" [alt]="product.name" style="height:150px !important;width:170px !important;" class="w-6 shadow-2 my-1 mx-0" />
+									<div class="text-2xl font-bold">{{product.name}}</div>
+									<div class="mb-2">({{product.status}})</div>
+									<!-- <div><p-button icon="pi pi-shopping-cart" (onClick)="residentClick(product.ResidentId)"></p-button></div> -->
+								</div>
+							</a>
 							<!-- <div class="flex align-items-center justify-content-between">
 								<span class="text-2xl font-semibold">${{product.price}}</span>
 								<p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
@@ -63,26 +64,37 @@
 						<th>Resident ID</th>
 						<th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
 						</th>
+						<th>Profile Image</th>
 						<th pSortableColumn="price">Addmission Date <p-sortIcon field="price"></p-sortIcon>
 						</th>
 						<th>Status</th>
+						<th>Action</th>
 					</tr>
 				</ng-template>
 				<ng-template pTemplate="body" let-resident>
 					<tr>
 						<td style="width: 35%; min-width: 7rem;">{{resident.ResidentId}}</td>
 						<td style="width: 35%; min-width: 7rem;">{{resident.name}}</td>
+						<td>
+							<img [src]="'assets/demo/images/avatar/' + resident.image" style="height:140px;width:160px">
+						</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.admDate}}</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.status}}</td>
+						<td>
+							<a style="cursor:pointer;" matTooltip="Action" (click)="toggleMenu(menu, $event, resident.ResidentId)">
+								<label class="bold" style="cursor:pointer;text-align: center;">....</label>
+							</a>
+							<p-menu #menu [popup]="true" appendTo="body" [model]="items"
+                                        [style]="{width: '180px'}"></p-menu>
+						</td>
 					</tr>
 				</ng-template>
 			</p-table>
 
-			<div *ngIf="residentId!=''" class="flex flex-wrap gap-2 mt-5">
+			<div *ngIf="residentId!='' && viewMode" class="flex flex-wrap gap-2 mt-5">
 				<button pButton pRipple type="button" label="Personal Details" (click)="LoadResidentInfo('Personal Details','1')"></button>
 				<button pButton pRipple type="button" label="Body Map" (click)="LoadResidentInfo('Body Map','2')"></button>
-				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>
-								
+				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>		
 			</div>
 		</div>
 	</div>	
