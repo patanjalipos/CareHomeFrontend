@@ -1,3 +1,4 @@
+import { BodyMapModule } from './../body-map/body-map.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -26,6 +27,7 @@ import { PersonalDetailsModule } from '../personal-details/personal-details.modu
     ResidentProfileRoutingModule,
     PersonalDetailsModule,
     FluidAssessmentModule,
+    BodyMapModule,
     FormsModule,
     AutoCompleteModule,
 		CalendarModule,

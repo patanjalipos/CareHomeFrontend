@@ -1,5 +1,8 @@
 <div class="card">
     <h5>Resident Profile</h5>
+    <div class="field col-12 md:col-4">
+        <img [src]="'assets/demo/images/avatar/' + objPatient.image" [alt]="objPatient.name" class="w-6 shadow-2 my-1 mx-0" />
+    </div>
     <div class="grid p-fluid mt-1">
         <div class="field col-12 md:col-4">
            <label class="bold">Name:</label>
@@ -30,5 +33,6 @@
 <div class="card">
     <h5>{{title}}</h5>
     <app-personal-details *ngIf="seq=='1'"></app-personal-details>
+    <app-body-map *ngIf="seq=='2'"></app-body-map>
     <app-fluid-assessment *ngIf="seq=='3'"></app-fluid-assessment>
 </div>
