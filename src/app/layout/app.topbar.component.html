@@ -1,6 +1,6 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
+        <div class="logo-head"><img src="assets/Images/logo.png"></div>
         <span>CARE HOME</span>
     </a>
 
@@ -27,3 +27,9 @@
         </button>
     </div>
 </div>
+
+<style>
+    .layout-topbar-logo span {
+        font-weight: 600;
+    }
+</style>
