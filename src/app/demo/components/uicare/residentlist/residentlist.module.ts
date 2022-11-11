@@ -8,6 +8,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from 'primeng/button';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DataViewModule } from 'primeng/dataview';
+import { MenuModule } from 'primeng/menu';
 @NgModule({
 declarations: [ResidentlistComponent],
 imports: [
@@ -18,6 +19,7 @@ imports: [
     InputTextModule,
     ButtonModule,
     ToggleButtonModule,
-    DataViewModule
+    DataViewModule,
+    MenuModule
   ]})
 export class ResidentlistModule { }
