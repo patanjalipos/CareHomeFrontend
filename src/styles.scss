@@ -18,5 +18,11 @@ $gutter: 1rem; //for primeflex grid system
     border-color: red !important;
 }
 .imgborder{
-    border-width: 1px !important; border-color: red !important; border-style: solid !important; 
+    border-width: 1px !important; border-color: red !important; border-style: solid !important;
+}
+
+.login-bg{
+    background: url(../src/assets/Images/login-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
