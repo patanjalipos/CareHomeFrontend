@@ -9,7 +9,7 @@
         Care Passport
     </p-tabPanel>
     <p-tabPanel header="Daily Assessment">
-        Daily Assessment
+        <app-daily-assessment></app-daily-assessment>
     </p-tabPanel>
     <p-tabPanel header="Daily Report">
         <app-daily-report></app-daily-report>
@@ -30,20 +30,19 @@
             <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">I would want to be <br/>Burial</label>
             <div class="col-12 md:col-4">
                 <div class="grid formgrid">
-                <div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="rd" value="Buried" [(ngModel)]="valRadio1" id="rd1"></p-radioButton>
-						<label for="rd1">Buried</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="rd" value="Cremated" [(ngModel)]="valRadio1"
-									   id="rd2"></p-radioButton>
-						<label for="rd2">Cremated</label>
-					</div>
-				</div>
-            </div>
+                    <div class="col-12 md:col-4">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rd" value="Buried" [(ngModel)]="valRadio1" id="rd1"></p-radioButton>
+                            <label for="rd1">Buried</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rd" value="Cremated" [(ngModel)]="valRadio1" id="rd2"></p-radioButton>
+                            <label for="rd2">Cremated</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="field grid">
