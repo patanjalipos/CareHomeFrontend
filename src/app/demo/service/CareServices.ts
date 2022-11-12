@@ -2,6 +2,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
+import { DietList } from "../classes/Dietlist";
 import { FluidIntakeDetails } from "../classes/FluidIntakeDetails";
 import { ResidentList } from "../classes/ResidentList";
 
@@ -23,6 +24,13 @@ export class CareService {
         return this.http.get<any>('assets/demo/data/fluidintakedetails.json')
             .toPromise()
             .then(res => res.data as FluidIntakeDetails[])
+            .then(data => data);
+    }
+
+    getDietList() {
+        return this.http.get<any>('assets/demo/data/diet.json')
+            .toPromise()
+            .then(res => res.data as DietList[])
             .then(data => data);
     }
 }

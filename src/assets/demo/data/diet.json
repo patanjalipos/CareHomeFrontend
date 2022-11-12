@@ -1,0 +1,54 @@
+{
+    "data": [
+        {
+            "id":1,
+            "name":"Amla, Papita, Strawberry,Jamun, Ananas, Sehtut",
+            "checkaccess": false
+        },
+        {
+            "id":2,
+            "name":"Ananas Ka Ras, Warm Water",
+            "checkaccess": false
+        },
+        {
+            "id":3,
+            "name":"Anar Ke Dane Chuskar Sirf Ras Peena,Saunf, Jeera Dhaniye Ka Pani, Nariyal Pani,Ubla Hua Gajar Aur Chukundar",
+            "checkaccess": false
+        },
+        {
+            "id":4,
+            "name":"Ankurit Ahar",
+            "checkaccess": false
+        },
+        {
+            "id":5,
+            "name":"Badam, Kaju, Akhrot, Kadhu Ke Beej, Soya Milk, Soya Paneer Le",
+            "checkaccess": false
+        },
+        {
+            "id":6,
+            "name":"Badam,Bina Malai Ka Doodh, Takra, Arjun Ki Chal Se Sidha Doodh",
+            "checkaccess": false
+        },
+        {
+            "id":7,
+            "name":"Bakri Ka Doodh",
+            "checkaccess": false
+        },
+        {
+            "id":8,
+            "name":"Bel Murabba, Amle Ka Murabba, Gulkand",
+            "checkaccess": false
+        },
+        {
+            "id":8,
+            "name":"Butter Milk / Chhach+Isabgol Milake Khaye",
+            "checkaccess": false
+        },
+        {
+            "id":9,
+            "name":"Chokar Samet Ate Ki Roti, Ubli Hari Sabjiyan, Bheege Hue Meve (Badam, Akhrot), Alasi, Kaddu, Tarbooj, Kharbooj, Kakdi Ke Beej, Vibhinn Prakar Ke Beans Avam Legumes Jaise Kabali Chana, Masoor, Matar, Rajma, Kidney Beans, Urad (Black Beans)",
+            "checkaccess": false
+        }
+    ]
+}

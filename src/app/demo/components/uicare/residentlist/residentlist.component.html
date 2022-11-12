@@ -47,7 +47,7 @@
 					</div>
 				</ng-template>
 			</p-dataView>
-			<p-table *ngIf="!viewMode" #dt1 [value]="residents" [paginator]="true" [rows]="9" responsiveLayout="scroll" class="center-table">
+			<p-table *ngIf="!viewMode" #dt1 [globalFilterFields]="['name']" [value]="residents" [paginator]="true" [rows]="9" responsiveLayout="scroll">
 				<ng-template pTemplate="caption">
 					<div class="flex justify-content-between flex-column sm:flex-row">
 						<button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -97,6 +97,7 @@
 				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>		
 				<button pButton pRipple type="button" label="Task Planner" (click)="LoadResidentInfo('Task Planner','4')"></button>	
 				<button pButton pRipple type="button" label="Pain Assessment" (click)="LoadResidentInfo('Pain Assessment','5')"></button>	
+				<button pButton pRipple type="button" label="Diet Planner" (click)="LoadResidentInfo('Diet Planner','6')"></button>		
 			</div>
 		</div>
 	</div>
