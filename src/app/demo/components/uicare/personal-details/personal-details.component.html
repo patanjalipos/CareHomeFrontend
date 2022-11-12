@@ -13,10 +13,10 @@
     </p-tabPanel>
     <p-tabPanel header="Daily Report">
         <app-daily-report></app-daily-report>
-    </p-tabPanel>  
+    </p-tabPanel>
     <p-tabPanel header="TODO List">
         TODO List
-    </p-tabPanel>  
+    </p-tabPanel>
 </p-tabView>
 <ng-template #tabFinalWishes>
     <div class="p-fluid">
@@ -145,7 +145,7 @@
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-8 md:mb-0">I would like my funeral to be conducted by: </label>
-            
+
         </div>
         <div class="field grid">
             <label htmlFor="name5" class="col-12 mb-2 md:col-8 md:mb-0">Name</label>
@@ -161,7 +161,7 @@
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-8 md:mb-0">I would like the following at my funeral: </label>
-            
+
         </div>
         <div class="field grid">
              <div class="col-12 md:col-6">
@@ -174,7 +174,7 @@
     <div class="p-fluid">
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-12 md:mb-0">Summary of communication with service User(or Welfare Attorney). If this decision has not been discussed with the Service User or Welfare Attorney state the reason why:  </label>
-            
+
         </div>
         <div class="field grid">
              <div class="col-12 md:col-6">
@@ -183,7 +183,7 @@
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-12 md:mb-0">Summary of communication with service User's relatives or friends:  </label>
-            
+
         </div>
         <div class="field grid">
              <div class="col-12 md:col-6">
@@ -192,7 +192,7 @@
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-12 md:mb-0">Names of members of multidiscipilnary team contributing to this decision:  </label>
-            
+
         </div>
         <div class="field grid">
              <div class="col-12 md:col-6">
@@ -201,7 +201,7 @@
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-12 md:mb-0">Healthcare professional recording this DNACPR decision:  </label>
-            
+
         </div>
         <div class="field grid">
             <label htmlFor="txtDNACPR1" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
@@ -225,7 +225,7 @@
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-12 md:mb-0">Review and endorsement by most senior health professional:  </label>
-            
+
         </div>
         <div class="field grid">
             <label htmlFor="txtDNACPR3" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
@@ -235,7 +235,7 @@
             <label class="col-12 mb-2 md:col-2 md:mb-0">Date</label>
             <div class="col-12 md:col-3">
                 <p-calendar [(ngModel)]="date2" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
-            </div>            
+            </div>
         </div>
         <div class="field grid">
             <label class="col-12 mb-2 md:col-2 md:mb-0">DNACPR document</label>
@@ -248,8 +248,8 @@
                         </ul>
                     </ng-template>
                 </p-fileUpload>
-                
-            </div>                  
+
+            </div>
         </div>
         <div class="field grid">
             <label class="col-12 mb-2 md:col-2 md:mb-0">Living Power of Attorney</label>
@@ -262,23 +262,23 @@
                         </ul>
                     </ng-template>
                 </p-fileUpload>
-                
-            </div> 
+
+            </div>
         </div>
         <div class="field grid">
-            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Review  </label>            
+            <label class="bold col-12 mb-2 md:col-12 md:mb-0">Review  </label>
         </div>
         <div class="field grid">
             <label class="col-12 mb-2 md:col-2 md:mb-0">Review Date</label>
             <div class="col-12 md:col-3">
                 <p-calendar [(ngModel)]="ReviewDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
-            </div>            
+            </div>
         </div>
         <div class="field grid">
             <label class="col-12 mb-2 md:col-2 md:mb-0">Next Review Date</label>
             <div class="col-12 md:col-3">
                 <p-calendar [(ngModel)]="NextReviewDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
-            </div>            
+            </div>
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-4 md:mb-0">Last Updated By: debbleharrison</label>
@@ -288,15 +288,15 @@
             <label class="col-12 mb-2 md:col-3 md:mb-0">
           		<button class="p-button-secondary mr-2"pButton pRipple type="button" label="Edit"></button>
                 <button  pButton pRipple type="button" label="Save" (click)="AddDNACPR()"></button>
-			
+
             </label>
         </div>
         <div class="field grid">
             <label class="bold col-12 mb-2 md:col-12 md:mb-0">History</label>
-            
+
         </div>
         <p-table #dt1 [value]="tblDNACPRHistory" responsiveLayout="scroll">
-            
+
             <ng-template pTemplate="header">
                 <tr>
                     <th>Reviewed Date</th>
@@ -314,7 +314,7 @@
                     <td>{{item.UpdatedDate  |date:  "dd-MM-yyyy"}}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="LoadDNACPRById(item.DNACPRId)"></button>
-                               
+
                         </td>
                 </tr>
             </ng-template>
