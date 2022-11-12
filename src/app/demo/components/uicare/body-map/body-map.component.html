@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table #dt2 [value]="[{}]" styleClass="p-datatable-striped" [rowHover]="true" [scrollable]="true"
+    <p-table #dt2 [value]="[{}]" styleClass="p-datatable-striped Body-Map" [rowHover]="true" [scrollable]="true"
         scrollHeight="250px" responsiveLayout="scroll">
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
@@ -77,7 +77,7 @@
     </p-table>
 
     <p-table *ngIf="lstBodyMap?.length>0" #dt1 [value]="lstBodyMap" [paginator]="true" [rows]="9"
-        responsiveLayout="scroll" [globalFilterFields]="['BloodGlucose','BloodPressure','BodyTemprature','Pulse','RespiratoryRate','Saturation','FBS','PPBS','RBS']">
+        responsiveLayout="scroll" class="ll" [globalFilterFields]="['BloodGlucose','BloodPressure','BodyTemprature','Pulse','RespiratoryRate','Saturation','FBS','PPBS','RBS']">
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-column sm:flex-row">
                 <div class="my-2">
@@ -133,3 +133,4 @@
         </ng-template>
     </p-table>
 </div>
+

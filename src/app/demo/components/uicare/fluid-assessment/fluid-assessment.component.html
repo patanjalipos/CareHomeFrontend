@@ -10,7 +10,7 @@
                 {{DailyIntakeObj.TargetIntake}} ml
             </div>
         </div>
-        <div class="grid p-fluid mt-3">
+        <div class="grid image-tiles p-fluid mt-3">
             <div class="field col-12 md:col-2 mr-2 mt-5">
                 <img src="./assets/Images/WaterGlass.png" style="height:120px;width: 120px;cursor: pointer;" matTooltip="Water"
                 (click)="SelectFluid('Water',200)"
@@ -61,7 +61,7 @@
         </div>
     </p-accordionTab>
     <p-accordionTab header="Fluid O/P">
-        <div class="grid p-fluid mt-3">
+        <div class="grid p-fluid mt-1 Fluid-space">
             <div class="field col-12 md:col-3">
                 <label class="bold">Date and Time of Capture:</label>
                 <p-calendar [(ngModel)]="DailyNewFluidOutput.CaptureTime"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
@@ -84,7 +84,7 @@
                     <label for="inputtextOut" class="bold">Updated By</label>
                 </span>
             </div>
-            
+
             <div class="field col-12 md:col-3 mr-3">
                 <button pButton label="Save" (click)="SaveFluidOutput()"></button>
             </div>
@@ -183,3 +183,9 @@
         </div>
     </p-accordionTab>
 </p-accordion>
+
+<style>
+    .Fluid-space .field.col-12.md\:col-3 {
+    padding: 0 1rem;
+}
+</style>
