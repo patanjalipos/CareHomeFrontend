@@ -17,6 +17,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { DailyReportModule } from '../daily-report/daily-report.module';
+import { CarePassportModule } from '../care-passport/care-passport.module';
 @NgModule({
   providers: [
     DatePipe,
@@ -39,7 +40,8 @@ import { DailyReportModule } from '../daily-report/daily-report.module';
     FileUploadModule,
     ToastModule,
     DailyReportModule,
-    DailyAssessmentModule
+    DailyAssessmentModule,
+    CarePassportModule
   ],
   exports:[PersonalDetailsComponent]
 })
