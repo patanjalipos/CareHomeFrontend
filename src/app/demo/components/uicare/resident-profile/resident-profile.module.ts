@@ -19,6 +19,7 @@ import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.modu
 import { PersonalDetailsModule } from '../personal-details/personal-details.module';
 import { TodoListModule } from '../todo-list/todo-list.module';
 import { PainAssessmentModule } from '../pain-assessment/pain-assessment.module';
+import { DietPlannerModule } from '../diet-planner/diet-planner.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PainAssessmentModule } from '../pain-assessment/pain-assessment.module'
     ResidentProfileRoutingModule,
     PersonalDetailsModule,
     FluidAssessmentModule,
+    DietPlannerModule,
     BodyMapModule,
     FormsModule,
     AutoCompleteModule,
