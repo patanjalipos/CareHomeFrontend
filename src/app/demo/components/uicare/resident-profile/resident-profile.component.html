@@ -31,6 +31,18 @@
             <label class="bold">Address:</label>
             {{objPatient.Address}}
         </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Likes:</label>
+            {{objPatient.ContactNo}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Dislikes:</label>
+            {{objPatient.BloodGroup}}
+        </div>
+        <div class="field col-12 md:col-4">
+            <label class="bold">Drug Allergies:</label>
+            {{objPatient.Address}}
+        </div>
         </div>
     </div>
 
@@ -47,18 +59,18 @@
 <style>
     .Profile-left {
     display: inline-block;
-    width: 18%;
+    width: 10%;
 }
 .Profile-right {
     display: inline-block;
-    width: 82%;
+    width: 90%;
 }
 .Profile-cvr {
     display: flex;
 }
 .Profile-left{
     display: inline-block;
-    width: 18%;
+    width: 10%;
 }
 .field {
     margin-bottom: 1rem;
@@ -75,5 +87,9 @@
     padding: 10px;
     box-shadow: none !important;
     margin: 0 !important;
+}
+.Profile-right .md\:col-4 {
+    padding-top: 1px;
+    padding-bottom: 22px;
 }
 </style>

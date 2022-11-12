@@ -63,4 +63,38 @@ $gutter: 1rem; //for primeflex grid system
 .pic {
     border: 1px solid #d3d3d3;
     border-radius: 2px;
+    height: 99px;
+    align-items: center;
+    display: flex;
+}
+.img-radis img {
+    border-radius: 10px;
+}
+img.table-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.Daily-Target .md\:col-4 {
+    padding: 0 24px;
+}
+
+.center-table .p-datatable-tbody > tr > td {
+    text-align: center;
+}
+
+.center-table .p-datatable-thead  > tr > th {
+    text-align: center;
+}
+.field > label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+label.bold.lable-space {
+    padding: 10px 0 0;
+}
+.image-tiles img.custom-ico {
+    width: 100%;
+    height: 160px;
 }
