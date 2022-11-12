@@ -85,6 +85,32 @@ export class ResidentlistComponent implements OnInit {
       },
     ];
 
+    this.items = [
+      ...this.items,
+      {
+        label: 'Task Planner',
+        icon: 'pi pi-calendar-plus',
+        command: () => 
+        {
+          this.residentId=ResidentId;
+          this.LoadResidentInfo('Task Planner','4');
+        }
+      },
+    ];
+
+    this.items = [
+      ...this.items,
+      {
+        label: 'Pain Assessment',
+        icon: 'pi pi-calendar-plus',
+        command: () => 
+        {
+          this.residentId=ResidentId;
+          this.LoadResidentInfo('Pain Assessment','5');
+        }
+      },
+    ];
+
     menu.toggle(event);
   }
 }
