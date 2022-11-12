@@ -33,11 +33,16 @@ export class TodoListComponent implements OnInit {
       "CreatedBy":this.ToDoListObj.CreatedBy,
       }
     this.toDoList.push(jsonObject);
+   this.clear();
   }
-  editProduct(cc){
-
+  editProduct(name){
+    this.ToDoListObj=this.toDoList.find(f=>f.TaskName==name);
   }
-  deleteProduct(cc){
-
+  deleteProduct(name){
+    this.toDoList=this.toDoList.filter(f=>f.TaskName!=name);
+  }
+  clear()
+  {
+    this.ToDoListObj = <ToDoListDetails>{};
   }
 }
