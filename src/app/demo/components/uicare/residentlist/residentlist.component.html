@@ -5,7 +5,7 @@
 				<div class="flex  md:col-11">
 					<h5>Resident List</h5>
 				</div>
-				<div class="flex md:col-1" style="margin-top: -8px !important;">			
+				<div class="flex md:col-1" style="margin-top: -8px !important;">
 					<p-toggleButton [onIcon]="'pi pi-th-large'" [offIcon]="'pi pi-table'" [(ngModel)]="viewMode">
 					</p-toggleButton>
 				</div>
@@ -21,7 +21,7 @@
 					</div>
 				</ng-template>
 				<ng-template let-product pTemplate="gridItem">
-					<div class="col-12 md:col-4">
+					<div class="col-12 md:col-3 img-radis">
 						<div class="card m-6 border-1 surface-border"  [ngClass]="{'surface-red-border': residentId==product.ResidentId}"
 						>
 							<!-- <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
@@ -76,7 +76,7 @@
 						<td style="width: 35%; min-width: 7rem;">{{resident.ResidentId}}</td>
 						<td style="width: 35%; min-width: 7rem;">{{resident.name}}</td>
 						<td>
-							<img [src]="'assets/demo/images/avatar/' + resident.image" style="height:140px;width:160px">
+							<img [src]="'assets/demo/images/avatar/' + resident.image" class="table-image">
 						</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.admDate}}</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.status}}</td>
@@ -94,9 +94,25 @@
 			<div *ngIf="residentId!='' && viewMode" class="flex flex-wrap gap-2 mt-5">
 				<button pButton pRipple type="button" label="Personal Details" (click)="LoadResidentInfo('Personal Details','1')"></button>
 				<button pButton pRipple type="button" label="Body Map" (click)="LoadResidentInfo('Body Map','2')"></button>
-				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>	
-				<button pButton pRipple type="button" label="Diet Planner" (click)="LoadResidentInfo('Diet Planner','4')"></button>		
+				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>		
+				<button pButton pRipple type="button" label="Task Planner" (click)="LoadResidentInfo('Task Planner','4')"></button>	
+				<button pButton pRipple type="button" label="Pain Assessment" (click)="LoadResidentInfo('Pain Assessment','5')"></button>	
+				<button pButton pRipple type="button" label="Diet Planner" (click)="LoadResidentInfo('Diet Planner','6')"></button>		
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
+
+
+<style>
+    .m-6 {
+    margin: 1rem !important;
+}
+.p-dataview .p-dataview-header {
+    background: #f8f9fa;
+    color: #343a40;
+    border: 1px solid #dee2e6 !important;
+    padding: 1rem 1rem;
+    font-weight: 700;
+}
+</style>

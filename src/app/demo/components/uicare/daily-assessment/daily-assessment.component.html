@@ -38,16 +38,16 @@
 
 
     <div class="field grid">
-        <label htmlFor="name2" class="bold col-12 mb-2 md:col-8 md:mb-0">Has Sean Sweeney been involved in planning this care?</label>
-        <div class="col-12 md:col-4">
+        <label htmlFor="name2" class="bold col-12 mb-2 md:col-6 md:mb-0">Has Sean Sweeney been involved in planning this care?</label>
+        <div class="col-12 md:col-6">
             <div class="grid formgrid">
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
                     <p-radioButton name="rdNo" value="Yes" [(ngModel)]="valRadio1" id="rd7"></p-radioButton>
                     <label for="rd7">Yes</label>
                 </div>
             </div>
-            <div class="col-12 md:col-4">
+            <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
                     <p-radioButton name="rdNo" value="No" [(ngModel)]="valRadio1"
                                    id="rd8"></p-radioButton>
@@ -77,19 +77,19 @@
         <label class="bold col-12 mb-2 md:col-3 md:mb-0">Last Updated On: 17-12-2020</label>
         <label class="col-12 mb-2 md:col-1 md:mb-0"></label> -->
         <label class="flex col-12 mb-2 md:col-3 md:mb-0">
-              <button class="p-button-secondary mr-2"pButton pRipple type="button" label="Cancel"></button>
+            <button class="p-button-secondary mr-2"pButton pRipple type="button" label="Cancel"></button>
             <button  pButton pRipple type="button" label="Save" (click)="AddDailyAssess()"></button>
-        
+
         </label>
     </div>
 
 
     <div class="field grid">
         <label class="bold col-12 mb-2 md:col-12 md:mb-0">History</label>
-        
+
     </div>
     <p-table #dt1 [value]="tblAssessmentHistory" responsiveLayout="scroll">
-        
+
         <ng-template pTemplate="header">
             <tr>
                 <th>Date of Assessment</th>
