@@ -21,7 +21,7 @@
 					</div>
 				</ng-template>
 				<ng-template let-product pTemplate="gridItem">
-					<div class="col-12 md:col-3">
+					<div class="col-12 md:col-3 img-radis">
 						<div class="card m-6 border-1 surface-border"  [ngClass]="{'surface-red-border': residentId==product.ResidentId}"
 						>
 							<!-- <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
@@ -47,7 +47,7 @@
 					</div>
 				</ng-template>
 			</p-dataView>
-			<p-table *ngIf="!viewMode" #dt1 [value]="residents" [paginator]="true" [rows]="9" responsiveLayout="scroll">
+			<p-table *ngIf="!viewMode" #dt1 [value]="residents" [paginator]="true" [rows]="9" responsiveLayout="scroll" class="center-table">
 				<ng-template pTemplate="caption">
 					<div class="flex justify-content-between flex-column sm:flex-row">
 						<button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -76,7 +76,7 @@
 						<td style="width: 35%; min-width: 7rem;">{{resident.ResidentId}}</td>
 						<td style="width: 35%; min-width: 7rem;">{{resident.name}}</td>
 						<td>
-							<img [src]="'assets/demo/images/avatar/' + resident.image" style="height:140px;width:160px">
+							<img [src]="'assets/demo/images/avatar/' + resident.image" class="table-image">
 						</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.admDate}}</td>
 						<td style="width: 35%; min-width: 8rem;">{{resident.status}}</td>

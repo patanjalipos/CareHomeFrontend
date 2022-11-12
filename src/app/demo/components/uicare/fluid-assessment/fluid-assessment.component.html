@@ -1,6 +1,6 @@
 <p-accordion>
     <p-accordionTab header="Fluid Intake">
-        <div class="grid p-fluid mt-3">
+        <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <label class="bold">Date and Time of Capture:</label>
                 <p-calendar [(ngModel)]="DailyNewFluidIntake.CaptureTime"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
@@ -10,39 +10,39 @@
                 {{DailyIntakeObj.TargetIntake}} ml
             </div>
         </div>
-        <div class="grid image-tiles p-fluid mt-3">
+        <div class="grid image-tiles p-fluid">
             <div class="field col-12 md:col-2 mr-2 mt-5">
-                <img src="./assets/Images/WaterGlass.png" style="height:120px;width: 120px;cursor: pointer;" matTooltip="Water"
+                <img src="./assets/Images/WaterGlass.png" style="cursor: pointer;" matTooltip="Water"
                 (click)="SelectFluid('Water',200)"
                 class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Water'}">
                 <label class="bold">Maximum : 200ml</label>
             </div>
             <div class="field col-12 md:col-2 mr-2">
-                <img src="./assets/Images/JuiceGlass.png" style="height:150px;width: 150px;cursor: pointer;" matTooltip="Juice"
+                <img src="./assets/Images/JuiceGlass.png" style="cursor: pointer;" matTooltip="Juice"
                 (click)="SelectFluid('Juice',200)"
                 class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Juice'}">
                 <label class="bold">Maximum : 200ml</label>
             </div>
             <div class="field col-12 md:col-2 mr-2" >
-                <img src="./assets/Images/Milk_glass.png" style="height:150px;width: 150px;cursor: pointer;" matTooltip="Milk"
+                <img src="./assets/Images/Milk_glass.png" style="cursor: pointer;" matTooltip="Milk"
                 (click)="SelectFluid('Milk',150)"
                 class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Milk'}">
                 <label class="bold">Maximum : 150ml</label>
             </div>
             <div class="field col-12 md:col-2 mr-2" >
-                <img src="./assets/Images/TeaCup.png" style="height:150px;width: 150px;cursor: pointer;" matTooltip="Tea"
+                <img src="./assets/Images/TeaCup.png" style="cursor: pointer;" matTooltip="Tea"
                 (click)="SelectFluid('Tea',150)"
                 class="custom-ico "   [ngClass]="{'imgborder': SelectedFluid=='Tea'}">
                 <label class="bold">Maximum : 150ml</label>
             </div>
             <div class="field col-12 md:col-2 mr-2">
-                <img src="./assets/Images/CofeeMug.png" style="height:150px;width: 150px;cursor: pointer;" matTooltip="Cofee"
+                <img src="./assets/Images/CofeeMug.png" style="cursor: pointer;" matTooltip="Cofee"
                 (click)="SelectFluid('Cofee',200)"
                 class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Cofee'}">
                 <label class="bold">Maximum : 200ml</label>
             </div>
         </div>
-        <div class="grid p-fluid mt-3">
+        <div class="grid p-fluid mt-2">
             <div class="field col-12 md:col-3 mr-3">
                 <span class="p-float-label">
                     <p-inputNumber inputId="inputDailyIntakeFluid" [max]="MaxFluidQty" [min]="0" [(ngModel)]="DailyNewFluidIntake.FluidIntakeQty"></p-inputNumber>
@@ -132,20 +132,20 @@
     </p-accordionTab>
     <p-accordionTab header="Chart">
         <div class="card">
-            <div class="grid p-fluid mt-3">
-                <div class="field col-12 md:col-3">
-                    <label class="bold">Date Range:</label>
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-2">
+                    <label class="bold lable-space">Date Range:</label>
                 </div>
-                <div class="field col-12 md:col-9">
+                <div class="field col-12 md:col-4">
                     <p-calendar [(ngModel)]="rangeDates" (onSelect)="ShowDetails()" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
                 </div>
             </div>
-            <h5 style="text-align:center ;">Date Wise Target vs Actual Fluid Intake</h5>
+            <h5 style="text-align:center;" class="mt-0" >Date Wise Target vs Actual Fluid Intake</h5>
             <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
         </div>
     </p-accordionTab>
     <p-accordionTab header="Daily Intake Target">
-        <div class="grid p-fluid mt-3">
+        <div class="grid p-fluid mt-3 Daily-Target">
             <div class="field col-12 md:col-4">
                 <label class="bold">Target Intake:</label>
                 {{DailyIntakeObj.TargetIntake}} ml
