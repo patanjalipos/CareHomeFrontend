@@ -25,7 +25,7 @@ export class BodyMapComponent implements OnInit {
       "Weight":"75",
       "Height":"172",
       "BMI":"26.4",
-      "CaptureBy":"Vinay Singh"
+      "CaptureBy":"Admin"
       },
       {
         "CaptureDate":new Date("2022-11-07 10:11"),
@@ -61,7 +61,7 @@ export class BodyMapComponent implements OnInit {
   CalculateBMI(){
     var squareofheight = (Number(this.BodyMapObj.Height) / 100 * Number(this.BodyMapObj.Height) / 100);
     var BMI = Number(this.BodyMapObj.Weight) / squareofheight;
-    this.BodyMapObj.BMI = BMI.toString();
+    this.BodyMapObj.BMI = BMI.toFixed(2);
   }
   saveBodyMapDetails()
   {
@@ -81,6 +81,6 @@ export class BodyMapComponent implements OnInit {
 
         this.BodyMapObj=<BodyMapDetails>{};
         this.BodyMapDialog=false;
-        alert("Daily Report Saved Successfully");
+        alert("Daily Body Map Details Saved Successfully");
   }
 }
