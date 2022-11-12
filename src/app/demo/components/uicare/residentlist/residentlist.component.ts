@@ -84,6 +84,18 @@ export class ResidentlistComponent implements OnInit {
         }
       },
     ];
+    this.items = [
+      ...this.items,
+      {
+        label: 'Diet Planner',
+        icon: 'pi pi-calendar-plus',
+        command: () => 
+        {
+          this.residentId=ResidentId;
+          this.LoadResidentInfo('Diet Planner','4');
+        }
+      },
+    ]
 
     menu.toggle(event);
   }

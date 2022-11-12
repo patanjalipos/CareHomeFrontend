@@ -17,6 +17,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.module';
 import { PersonalDetailsModule } from '../personal-details/personal-details.module';
+import { DietPlannerModule } from '../diet-planner/diet-planner.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PersonalDetailsModule } from '../personal-details/personal-details.modu
     ResidentProfileRoutingModule,
     PersonalDetailsModule,
     FluidAssessmentModule,
+    DietPlannerModule,
     BodyMapModule,
     FormsModule,
     AutoCompleteModule,
