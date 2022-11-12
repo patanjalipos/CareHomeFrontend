@@ -1,14 +1,34 @@
 <div class="cart">
     <div class="p-fluid">
         <div class="field grid">
-            <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold"><h3>This is me My Care Passport</h3></label>
+            <h5 class="passport">This is me My Care Passport</h5>
         </div>
         <div class="field grid">
             <h5>It should be kept with me and brought with me into any care setting, including hospital.</h5>
         </div>
         <div class="field grid">
-            <div class="col-12 md:col-3">
+            <div class="col-12 md:col-2">
                 <img style="height:140px !important;width:160px !important;" [src]="'assets/demo/images/avatar/' + objPatient.image" [alt]="objPatient.name" class="w-6 shadow-2 my-1 mx-0">
+            </div>
+            <div class="col-12 md:col-9">
+                <div class="field grid">
+                    <div class="col-12 md:col-4">
+                        <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold">My name is: </label>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <input type="text" id="namepassport" pInputText [(ngModel)]="CarePassportObj.name">
+                    </div>
+                </div>
+                <div class="field grid">
+                    <div class="col-12 md:col-4">
+                        <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold">I like to be known as: </label>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <input type="text" id="NickNamepassport" pInputText [(ngModel)]="CarePassportObj.NickName">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-5">
                 <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"  accept="image/*"
                     >
                     <ng-template pTemplate="content">
@@ -17,24 +37,6 @@
                         </ul>
                     </ng-template>
                 </p-fileUpload>
-            </div>
-            <div class="col-12 md:col-9">
-                <div class="field grid">
-                    <div class="col-12 md:col-4">
-                        <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold">My name is: </label>
-                    </div>
-                    <div class="col-12 md:col-8">
-                        <input type="text" id="namepassport" pInputText [(ngModel)]="CarePassportObj.name">
-                    </div>
-                </div>
-                <div class="field grid">
-                    <div class="col-12 md:col-4">
-                        <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold">I like to be known as: </label>
-                    </div>
-                    <div class="col-12 md:col-8">
-                        <input type="text" id="NickNamepassport" pInputText [(ngModel)]="CarePassportObj.NickName">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
