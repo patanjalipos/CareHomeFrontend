@@ -1,7 +1,7 @@
 <div class="cart">
     <div class="p-fluid">
         <div class="field grid">
-            <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold"><h3>This is me My Care Passport</h3></label>
+            <h3>This is me My Care Passport</h3>
         </div>
         <div class="field grid">
             <h5>It should be kept with me and brought with me into any care setting, including hospital.</h5>
@@ -9,32 +9,141 @@
         <div class="field grid">
             <div class="col-12 md:col-3">
                 <img style="height:140px !important;width:160px !important;" [src]="'assets/demo/images/avatar/' + objPatient.image" [alt]="objPatient.name" class="w-6 shadow-2 my-1 mx-0">
-                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"  accept="image/*"
-                    >
-                    <ng-template pTemplate="content">
-                        <ul *ngIf="uploadedFiles.length">
-                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                        </ul>
-                    </ng-template>
-                </p-fileUpload>
             </div>
             <div class="col-12 md:col-9">
                 <div class="field grid">
-                    <div class="col-12 md:col-4">
-                        <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold">My name is: </label>
-                    </div>
+                    <label htmlFor="name1" class="col-12 mb-2 md:col-4 md:mb-0 bold">My name is: </label>
                     <div class="col-12 md:col-8">
                         <input type="text" id="namepassport" pInputText [(ngModel)]="CarePassportObj.name">
                     </div>
                 </div>
                 <div class="field grid">
-                    <div class="col-12 md:col-4">
-                        <label htmlFor="name1" class="col-12 mb-2 md:col-8 md:mb-0 bold">I like to be known as: </label>
-                    </div>
+                    <label htmlFor="name1" class="col-12 mb-2 md:col-4 md:mb-0 bold">I like to be known as: </label>
                     <div class="col-12 md:col-8">
                         <input type="text" id="NickNamepassport" pInputText [(ngModel)]="CarePassportObj.NickName">
                     </div>
                 </div>
+                <div class="field grid">
+                    <label htmlFor="name1" class="col-12 mb-2 md:col-4 md:mb-0 bold">Upload Profile Image: </label>
+                    <div class="col-12 md:col-8">
+                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="field grid">
+            <label htmlFor="name1" class="col-12 mb-2 md:col-12 md:mb-0 bold" style="background-color:blue;color:white;font-size: 20px;text-align: center;">Please return my passport to me when I go home. </label>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name1" class="col-12 mb-2 md:col-12 md:mb-0">
+                <p><b>This is essential reading for all staff working with me. It gives important information about
+                me.</b> This passport should be kept visible and used when you talk to me or think about me.</p> </label>
+        </div>
+        <div class="field grid">
+            <div class="col-12 md:col-4">
+                <img src="assets/Images/ThingsPassport1.png" style="height: 182px !important;width: 170px !important;">
+            </div>
+            <div class="col-12 md:col-4">
+                <img src="assets/Images/ThingsPassport2.png" style="height: 182px !important;width: 170px !important;">
+            </div>
+            <div class="col-12 md:col-4">
+                <img src="assets/Images/ThingsPassport3.png" style="height: 182px !important;width: 170px !important;">
+            </div>
+        </div>
+        <hr>
+        <div class="field grid">
+            <div class="col-12 md:col-9">
+                <div class="field grid">
+                    <div class="col-12 md:col-12">
+                        <div class="field grid">
+                            <div class="col-12 md:col-12">
+                                <h2>More basic information about me</h2>
+                            </div>
+                            <div class="col-12 md:col-12">
+                                <h5>This passport needs to be updated if my needs change.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-3">
+                <img src="assets/Images/HelpSymbol.png" style="height: 85px !important;width: 87px !important;">
+            </div>
+        </div>
+        <div class="field grid">
+            <div class="col-12 md:col-5">
+                <label class="bold"><h5 style="color:blue;">Where I Currently Live :</h5></label>
+                <br><label>For example - supported living or my family home.</label>
+            </div>
+            <div class="col-12 md:col-7">
+                <input type="text" id="CuLivepassport" pInputText [(ngModel)]="CarePassportObj.CurrentlyLive">
+            </div>
+        </div>
+        <div class="field grid">
+            <div class="col-12 md:col-5">
+                <label class="bold"><h5 style="color:blue;">Hours of support I get each day :</h5></label>
+            </div>
+            <div class="col-12 md:col-7">
+                <input type="text" id="HrsSupportpassport" pInputText [(ngModel)]="CarePassportObj.HoursofSupport">
+            </div>
+        </div>
+        <div class="field grid">
+            <div class="col-12 md:col-5">
+                <label class="bold"><h5 style="color:blue;">Who to contact for more information about me :</h5></label>
+                <br>Please say name, role and contact phone number.
+            </div>
+            <div class="col-12 md:col-7">
+                <textarea rows="3" cols="30" id="Contactpassport" [(ngModel)]="CarePassportObj.FamiliContactDetails"  placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="field grid">
+            <div class="col-12 md:col-5">
+                <label class="bold"><h5 style="color:blue;">Other key professionals involved in my care :</h5></label>
+                <br>Please say name, role and contact phone number.
+            </div>
+            <div class="col-12 md:col-7">
+                <textarea rows="3" cols="30" id="KeyProfessionalspassport" [(ngModel)]="CarePassportObj.KeyProfessionals"  placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+        <div class="field grid">
+            <div class="col-12 md:col-4">
+                <label class="bold"><h5 style="color:blue;">This passport was filled in by:</h5></label>
+            </div>
+            <div class="col-12 md:col-3">
+                <input type="text" id="HrsSupportpassport" pInputText [(ngModel)]="CarePassportObj.FilledBy">
+            </div>
+            <div class="col-12 md:col-2">
+                <label class="bold"><h5 style="color:blue;">Date:</h5></label>
+            </div>
+            <div class="col-12 md:col-3">
+                <p-calendar [(ngModel)]="CarePassportObj.FilledDate"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
+            </div>
+        </div>
+        <hr>
+        <div class="field grid">
+            <div class="col-12 md:col-9">
+                <div class="field grid">
+                    <div class="col-12 md:col-12">
+                        <div class="field grid">
+                            <div class="col-12 md:col-12">
+                                <h2>Things you must know about me</h2>
+                            </div>
+                            <div class="col-12 md:col-12">
+                                <h5>1.Adverse drug reactions, allergies or intolerances.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-3">
+                <img src="assets/Images/HelpSymbol.png" style="height: 85px !important;width: 87px !important;">
             </div>
         </div>
     </div>
