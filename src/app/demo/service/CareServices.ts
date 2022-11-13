@@ -33,4 +33,21 @@ export class CareService {
             .then(res => res.data as DietList[])
             .then(data => data);
     }
+    GetParmasVal(paramsstr)
+    {
+      let ParamsArray:any[]=[];
+      if(paramsstr!=null && paramsstr!=undefined)
+      {
+        var result=decodeURIComponent(paramsstr);
+        var NewCellData = result.split('&');
+        if(NewCellData?.length>0)
+        {
+          NewCellData.map(e=>
+            {
+              ParamsArray.push({"FieldStr":e.split('=')[0],"FieldVal":e.split('=')[1]});
+            });
+        }
+      }
+      return ParamsArray;
+    }
 }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -10,7 +10,10 @@ import { MessageService } from 'primeng/api';
     MessageService
   ],
 })
-export class PersonalDetailsComponent implements OnInit {
+export class PersonalDetailsComponent implements OnChanges {
+  @Input() tabid:string=null;
+
+  activeIndex:number=0;
   valRadio1: string = "Buried";
   valRadio2: string = "No";
   valRadio3: string = "Traditional(wood)";
@@ -26,6 +29,14 @@ export class PersonalDetailsComponent implements OnInit {
   constructor(private datePipe: DatePipe,private messageService: MessageService) { }
 
   ngOnInit(): void {
+    
+  }
+  ngOnChanges(changes: SimpleChanges): void 
+  {
+    if(this.tabid!=null && this.tabid!=undefined)
+    {
+        this.activeIndex=parseInt(this.tabid)-1;
+    }
   }
 
   onUpload(event) {
