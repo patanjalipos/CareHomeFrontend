@@ -56,7 +56,10 @@ $gutter: 1rem; //for primeflex grid system
     margin-right: 1.5rem !important;
 }
  .Body-Map .p-datatable-table tbody td {
-    padding: 10px !important;
+    padding: 10px 6px !important;
+}
+.Body-Map .p-datatable-table thead th {
+    padding: 2px 6px !important;
 }
  .Body-Map .p-datatable-table {
     border-top: 1px solid #dee2e6;
@@ -107,10 +110,55 @@ h5.passport {
     margin: 0;
 }
 
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.center-tdth .p-datatable .p-datatable-thead > tr > th{
+    text-align: center;
+}
+.center-tdth .p-datatable .p-datatable-tbody > tr > td{
+    text-align: center;
+}
+h4.heading-care {
+    font-weight: 600;
+    font-size: 17px;
+    color: #2e2e2e;
+}
+h6.text-hd {
+    font-size: 15px;
+}
+h5.label-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0 4px;
+}
+
 .form-control {
     border: 1px solid #cecece;
   }
-  
+
   .form-control:focus {
     border: 1px solid #ca9701;
   }
+
