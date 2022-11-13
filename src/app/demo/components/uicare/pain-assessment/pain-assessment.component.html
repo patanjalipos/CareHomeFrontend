@@ -83,19 +83,19 @@
                             </span>
                         </td>
                         <td colspan="1" *ngIf="dt.Rating==0 || dt.Rating==1 ">
-                            <img src="assets/Images/images/smile.png" alt="" style="width:40px;" />
+                            <img src="assets/Images/smile.png" alt="" style="width:40px;" />
                         </td>
                         <td colspan="1" *ngIf="dt.Rating==2 ||dt.Rating==3">
-                            <img src="assets/Images/images/mild-pain.png" alt="" style="width:40px;" />
+                            <img src="assets/Images/mild-pain.png" alt="" style="width:40px;" />
                         </td>
                         <td colspan="1" *ngIf="dt.Rating==4 ||dt.Rating==5 ">
-                            <img src="assets/Images/images/sad.png" alt="" style="width:40px;" />
+                            <img src="assets/Images/sad.png" alt="" style="width:40px;" />
                         </td>
                         <td colspan="1" *ngIf="dt.Rating==6 ||dt.Rating==7 || dt.Rating==8">
-                            <img src="assets/Images/images/sever-pain.png" alt="" style="width:40px;" />
+                            <img src="assets/Images/sever-pain.png" alt="" style="width:40px;" />
                         </td>
                         <td colspan="1" *ngIf="dt.Rating==9 ||dt.Rating==10">
-                            <img src="assets/Images/images/crying.png" alt="" style="width:40px;" />
+                            <img src="assets/Images/crying.png" alt="" style="width:40px;" />
                         </td>
                         <td colspan="1" *ngIf="dt.Rating != null">
                             <i (click)="deletePainData(dt.PrescriptionPainDetailsId)" matTooltip="Delete"
