@@ -33,15 +33,15 @@
         </div>
         <div class="field col-12 md:col-4">
             <label class="bold">Likes:</label>
-            {{objPatient.ContactNo}}
+            {{objPatient.Likes}}
         </div>
         <div class="field col-12 md:col-4">
             <label class="bold">Dislikes:</label>
-            {{objPatient.BloodGroup}}
+            {{objPatient.Dislikes}}
         </div>
         <div class="field col-12 md:col-4">
             <label class="bold">Drug Allergies:</label>
-            {{objPatient.Address}}
+            {{objPatient.DrugAllergies}}
         </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
 </div>
 <div class="card">
     <h5>{{title}}</h5>
-    <app-personal-details *ngIf="seq=='1'"></app-personal-details>
+    <app-personal-details [tabid]="tabid" *ngIf="seq=='1'"></app-personal-details>
     <app-body-map *ngIf="seq=='2'"></app-body-map>
     <app-fluid-assessment *ngIf="seq=='3'"></app-fluid-assessment>
     <app-todo-list *ngIf="seq=='4'"> </app-todo-list>

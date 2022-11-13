@@ -47,19 +47,19 @@ export class PainAssessmentComponent implements OnInit {
       // },
       {
         'PrescriptionPainDetailsId':  1002, //ObjectID().toString(),
-        'CaptureDate': new Date("2022-11-11"),
+        'CaptureDate': new Date("2022-11-10"),
         'Rating': 1,
         'IsFromserver': true
       },
       {
         'PrescriptionPainDetailsId':  1003, //ObjectID().toString(),
-        'CaptureDate': new Date("2022-11-12"),
+        'CaptureDate': new Date("2022-11-11"),
         'Rating': 8,
         'IsFromserver': true
       },
       {
         'PrescriptionPainDetailsId':  1004, //ObjectID().toString(),
-        'CaptureDate': new Date("2022-11-13"),
+        'CaptureDate': new Date("2022-11-12"),
         'Rating': 10,
         'IsFromserver': true
       },
