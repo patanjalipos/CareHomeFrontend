@@ -13,6 +13,7 @@ export class ResidentProfileComponent implements OnInit {
   title:string=null;
   seq:string=null;
   rId:string=null;
+  WholeString:string=null;
 
   constructor(private careService: CareService, private route: ActivatedRoute) { 
     // this.objPatient.FullName="Sean Sweeney";
@@ -30,6 +31,18 @@ export class ResidentProfileComponent implements OnInit {
       this.seq = params['seq'];
       this.rId=params['rId'];
     });
+
+    this.route.queryParams.subscribe(params => {
+      var ParamsArray=this.careService.GetParmasVal(params['0']);
+      if(ParamsArray?.length>0)
+      {
+        //console.log('ParamsArray',ParamsArray);
+        this.title = ParamsArray.find(e=>e.FieldStr=='title')?.FieldVal;
+        this.seq = ParamsArray.find(e=>e.FieldStr=='seq')?.FieldVal;
+        this.rId = ParamsArray.find(e=>e.FieldStr=='rId')?.FieldVal;
+      }      
+    });
+
     if(this.rId!=null && this.rId!="")
     {
       this.careService.getResidentList().then(data => this.objPatient = data.find(f=>f.ResidentId==this.rId));
