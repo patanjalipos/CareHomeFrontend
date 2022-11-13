@@ -34,7 +34,7 @@ export class LoginComponent {
 
 
     ValidateLogin() {
-        this.router.navigateByUrl("/uicare/residentlist");
+        this.router.navigateByUrl("/uicare");
         // this.blockUI.start("Please Wait....");
         // this._AuthServices.Login(this.UserName, this.Password)
         //     .subscribe({
