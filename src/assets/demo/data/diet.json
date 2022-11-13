@@ -2,52 +2,52 @@
     "data": [
         {
             "id":1,
-            "name":"Amla, Papita, Strawberry,Jamun, Ananas, Sehtut",
+            "name":"Beans, toast, mushrooms, tomatoes, potatoes, bacon, black pudding",
             "checkaccess": false
         },
         {
             "id":2,
-            "name":"Ananas Ka Ras, Warm Water",
+            "name":"Garlic Bread, Cheese Plate, Nachos",
             "checkaccess": false
         },
         {
             "id":3,
-            "name":"Anar Ke Dane Chuskar Sirf Ras Peena,Saunf, Jeera Dhaniye Ka Pani, Nariyal Pani,Ubla Hua Gajar Aur Chukundar",
+            "name":"Tossed Salad, Caesar Salad, Soup",
             "checkaccess": false
         },
         {
             "id":4,
-            "name":"Ankurit Ahar",
+            "name":"Grilled Sandwich, Veggie Burger, Steak Sandwich",
             "checkaccess": false
         },
         {
             "id":5,
-            "name":"Badam, Kaju, Akhrot, Kadhu Ke Beej, Soya Milk, Soya Paneer Le",
+            "name":"Spaghetti, Pepperoni Pizza, Fettucini",
             "checkaccess": false
         },
         {
             "id":6,
-            "name":"Badam,Bina Malai Ka Doodh, Takra, Arjun Ki Chal Se Sidha Doodh",
+            "name":"French Fries, Rice, Grilled Veggies",
             "checkaccess": false
         },
         {
             "id":7,
-            "name":"Bakri Ka Doodh",
+            "name":"Apple Pie, Mocha Cheesecake, Banana Split",
             "checkaccess": false
         },
         {
             "id":8,
-            "name":"Bel Murabba, Amle Ka Murabba, Gulkand",
+            "name":"Chips, Battered Shrimp, Smoked Salmon",
             "checkaccess": false
         },
         {
             "id":8,
-            "name":"Butter Milk / Chhach+Isabgol Milake Khaye",
+            "name":"Cofee/Tea/Juice",
             "checkaccess": false
         },
         {
             "id":9,
-            "name":"Chokar Samet Ate Ki Roti, Ubli Hari Sabjiyan, Bheege Hue Meve (Badam, Akhrot), Alasi, Kaddu, Tarbooj, Kharbooj, Kakdi Ke Beej, Vibhinn Prakar Ke Beans Avam Legumes Jaise Kabali Chana, Masoor, Matar, Rajma, Kidney Beans, Urad (Black Beans)",
+            "name":"Chunky Vegetable Soup",
             "checkaccess": false
         }
     ]

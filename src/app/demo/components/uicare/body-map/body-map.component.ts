@@ -15,7 +15,7 @@ export class BodyMapComponent implements OnInit {
   BodyMapDialog: boolean;
   constructor() {
     this.lstBodyMap.push({
-      "CaptureDate":new Date("2022-11-07 10:11"),
+      "CaptureDate":new Date("2022-11-12 10:11"),
       "BloodGlucose":"99",
       "BloodPressure":"120/80",
       "BodyTemprature":"98.7",
@@ -25,10 +25,10 @@ export class BodyMapComponent implements OnInit {
       "Weight":"75",
       "Height":"172",
       "BMI":"26.4",
-      "CaptureBy":"Admin"
+      "CaptureBy":"Doctor"
       },
       {
-        "CaptureDate":new Date("2022-11-07 10:11"),
+        "CaptureDate":new Date("2022-11-13 10:11"),
         "BloodGlucose":"99",
         "BloodPressure":"140/100",
         "BodyTemprature":"101.2",
@@ -38,7 +38,7 @@ export class BodyMapComponent implements OnInit {
         "Weight":"60",
         "Height":"165",
         "BMI":"22",
-        "CaptureBy":"Kartik"
+        "CaptureBy":"Doctor"
       });
    }
 

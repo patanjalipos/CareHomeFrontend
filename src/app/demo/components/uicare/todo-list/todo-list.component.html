@@ -1,10 +1,4 @@
 <div class="p-fluid">
-    <!-- <div class="field grid">
-        <label class="col-12 mb-2 md:col-2 md:mb-0">Task Name</label>
-        <div class="col-12 md:col-3">
-            <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.TaskName"/>
-        </div>
-    </div> -->
     <div class="grid p-fluid">
         <div class="col-12 md:col-4">
             <div class="field">
@@ -23,7 +17,7 @@
         <div class="col-12 md:col-4">
             <div class="field">
                 <label>Due Date</label>
-                <p-calendar [(ngModel)]="ToDoListObj.DueDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
+                <p-calendar [minDate]="today" [(ngModel)]="ToDoListObj.DueDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
             </div>
         </div>
         <div class="col-12 md:col-4">
@@ -35,7 +29,7 @@
         <div class="col-12 md:col-4">
             <div class="field">
                 <label>Status</label>
-                <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.Status"/>
+                <p-dropdown  [options]="status" [(ngModel)]="ToDoListObj.Status" optionLabel="status" optionValue="status" [disabled]="mode=='Save'?true:false"></p-dropdown>
             </div>
         </div>
     </div>

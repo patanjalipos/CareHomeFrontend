@@ -9,10 +9,12 @@ import { ToDoListDetails } from 'src/app/demo/classes/ToDoList';
 export class TodoListComponent implements OnInit {
   date1: Date;
   time1: Date;
+  today:Date =  new Date();
   mode:string="Save";
   submitted: boolean = false;
   toDoList: ToDoListDetails[] = [];
   ToDoListObj: ToDoListDetails = <ToDoListDetails>{};
+  status: any[] = [];
   constructor() {
     this.toDoList.push({
       'id':'1001',
@@ -27,11 +29,23 @@ export class TodoListComponent implements OnInit {
         'id':'1002',
         "TaskName": "Walk",
         "Description": "Evening Time",
+        "DueDate": new Date("2022-11-17 5:45"),
+        "Time": new Date("2022-11-17 5:45"),
+        "Status": "Initiated",
+        "CreatedBy": "Admin",
+      },
+      {
+        'id':'1003',
+        "TaskName": "Meditation",
+        "Description": "Meditation practice",
         "DueDate": new Date("2022-11-18 5:45"),
         "Time": new Date("2022-11-18 5:45"),
-        "Status": "Progress",
+        "Status": "Initiated",
         "CreatedBy": "Admin",
-      });
+      },
+      );
+
+      this.status.push({"status":"Initiated"},{"status":"Completed"});
   }
 
   ngOnInit(): void {
@@ -42,12 +56,14 @@ export class TodoListComponent implements OnInit {
       this.update();
     }
     else{
+      this.ToDoListObj.id = this.createId();
       var jsonObject = {
+        "id":this.ToDoListObj.id,
         "TaskName": this.ToDoListObj.TaskName,
         "Description": this.ToDoListObj.Description,
         "DueDate": this.ToDoListObj.DueDate,
         "Time": this.ToDoListObj.Time,
-        "Status": "Progress",
+        "Status": this.ToDoListObj.Status,
         "CreatedBy": this.ToDoListObj.CreatedBy,
       }
       this.toDoList.push(jsonObject);
@@ -64,7 +80,7 @@ export class TodoListComponent implements OnInit {
     return index;
   }
   update() {
-    this.submitted = true;
+    this.mode="Save";
     if (this.ToDoListObj.TaskName?.trim()) {
       if (this.ToDoListObj.id) {
         // @ts-ignore
