@@ -37,23 +37,50 @@ export class PainAssessmentComponent implements OnInit {
       return '#2AE02A';
     },
   };
-  constructor(private cdRef: ChangeDetectorRef,) {}
+  constructor(private cdRef: ChangeDetectorRef,) {
+    this.lstPrescriptionTemplatePainAssesmentdata.push(
+      // {
+      //   'PrescriptionPainDetailsId':  1001, //ObjectID().toString(),
+      //   'CaptureDate': new Date("2022-11-10"),
+      //   'Rating': 1,
+      //   'IsFromserver': true
+      // },
+      {
+        'PrescriptionPainDetailsId':  1002, //ObjectID().toString(),
+        'CaptureDate': new Date("2022-11-11"),
+        'Rating': 1,
+        'IsFromserver': true
+      },
+      {
+        'PrescriptionPainDetailsId':  1003, //ObjectID().toString(),
+        'CaptureDate': new Date("2022-11-12"),
+        'Rating': 8,
+        'IsFromserver': true
+      },
+      {
+        'PrescriptionPainDetailsId':  1004, //ObjectID().toString(),
+        'CaptureDate': new Date("2022-11-13"),
+        'Rating': 10,
+        'IsFromserver': true
+      },
+    );
+  }
 
   ngOnInit(): void {
   }
   AddPainData() {
 
-    var ObjectID = 4;   //require("bson-objectid");
+    var ObjectID = 1008;   //require("bson-objectid");
     var jsonObject = {
       'PrescriptionPainDetailsId':  ObjectID.toString(), //ObjectID().toString(),
       'CaptureDate': new Date(),
       'Rating': this.PrescriptionTemplatePainAssesmentdata.Rating,
       'IsFromserver': false
     };
-
+   // this.lstPrescriptionTemplatePainAssesmentdata.push(json);
     this.lstPrescriptionTemplatePainAssesmentdata = this.lstPrescriptionTemplatePainAssesmentdata.filter(x => x.IsFromserver == true);
 
-    this.lstPrescriptionTemplatePainAssesmentdata.unshift(jsonObject);
+    this.lstPrescriptionTemplatePainAssesmentdata.push(jsonObject);
 
     this.cdRef.detectChanges();
   }
