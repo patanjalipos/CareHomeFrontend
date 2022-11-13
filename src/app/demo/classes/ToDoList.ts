@@ -1,9 +1,11 @@
 export interface ToDoListDetails
 {
+    id?: string;
     TaskName:string;
     Description:string;
     DueDate:Date;
-    Time:Date,
+    Time:Date;
+    Status:string;
     CreatedBy:string;
 }
 export class PrescriptionTemplatePainAssesmentdata {

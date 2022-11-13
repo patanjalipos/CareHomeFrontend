@@ -9,35 +9,101 @@ import { ToDoListDetails } from 'src/app/demo/classes/ToDoList';
 export class TodoListComponent implements OnInit {
   date1: Date;
   time1: Date;
-  toDoList:ToDoListDetails[]=[];
+  mode:string="Save";
+  submitted: boolean = false;
+  toDoList: ToDoListDetails[] = [];
   ToDoListObj: ToDoListDetails = <ToDoListDetails>{};
   constructor() {
     this.toDoList.push({
-      "TaskName":"Yog",
-      "Description":"Daily Morning",
-      "DueDate":new Date("2022-11-07 10:11"),
-      "Time":new Date("2022-11-07 10:11"),
-      "CreatedBy":"Admin",
+      'id':'1001',
+      "TaskName": "Yog",
+      "Description": "Morning Time",
+      "DueDate": new Date("2022-11-07 10:11"),
+      "Time": new Date("2022-11-07 10:11"),
+      "Status": "Completed",
+      "CreatedBy": "Admin",
+    },
+      {
+        'id':'1002',
+        "TaskName": "Walk",
+        "Description": "Evening Time",
+        "DueDate": new Date("2022-11-18 5:45"),
+        "Time": new Date("2022-11-18 5:45"),
+        "Status": "Progress",
+        "CreatedBy": "Admin",
       });
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  saveTaskDetails(){
-    var jsonObject = {
-      "TaskName":this.ToDoListObj.TaskName,
-      "Description":this.ToDoListObj.Description,
-      "DueDate":this.ToDoListObj.DueDate,
-      "Time":this.ToDoListObj.Time,
-      "CreatedBy":this.ToDoListObj.CreatedBy,
+  saveTaskDetails() {
+    if(this.ToDoListObj.id!=undefined){
+      this.update();
+    }
+    else{
+      var jsonObject = {
+        "TaskName": this.ToDoListObj.TaskName,
+        "Description": this.ToDoListObj.Description,
+        "DueDate": this.ToDoListObj.DueDate,
+        "Time": this.ToDoListObj.Time,
+        "Status": "Progress",
+        "CreatedBy": this.ToDoListObj.CreatedBy,
       }
-    this.toDoList.push(jsonObject);
+      this.toDoList.push(jsonObject);
+    }
   }
-  editProduct(cc){
-
+  findIndexById(id: string): number {
+    let index = -1;
+    for (let i = 0; i < this.toDoList.length; i++) {
+      if (this.toDoList[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    return index;
   }
-  deleteProduct(cc){
-
+  update() {
+    this.submitted = true;
+    if (this.ToDoListObj.TaskName?.trim()) {
+      if (this.ToDoListObj.id) {
+        // @ts-ignore
+        //this.ToDoListObj.inventoryStatus = this.ToDoListObj.inventoryStatus.value ? this.ToDoListObj.inventoryStatus.value : this.product.inventoryStatus;
+        this.toDoList[this.findIndexById(this.ToDoListObj.id)] = this.ToDoListObj;
+        //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+      } else {
+        this.ToDoListObj.id = this.createId();
+        // @ts-ignore
+        //this.ToDoListObj.inventoryStatus = this.ToDoListObj.inventoryStatus ? this.ToDoListObj.inventoryStatus.value : 'INSTOCK';
+        this.toDoList.push(this.ToDoListObj);
+        //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+      }
+      this.toDoList = [...this.toDoList];
+      //this.productDialog = false;
+      this.ToDoListObj = <ToDoListDetails>{};
+    }
   }
+  createId(): string {
+    let id = '';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+  cancelTask() {
+    this.ToDoListObj = <ToDoListDetails>{};
+    this.mode="Save";
+  }
+  editProduct(task: ToDoListDetails) {
+    this.mode = 'Update';
+    this.ToDoListObj = { ...task };
+    // this.productDialog = true;
+  }
+  deleteProduct(id) {
+    this.toDoList=this.toDoList.filter(f=>f.id!=id);
+    this.ToDoListObj = <ToDoListDetails>{};
+    //this.ToDoListObj = { ...task };
+  }
+  
 }
