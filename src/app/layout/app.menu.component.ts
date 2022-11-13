@@ -165,25 +165,34 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Care Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/uicare'] },
-                    { label: 'Resident List', icon: 'pi pi-fw pi-home', routerLink: ['/uicare/residentlist'] },
+                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare'] },
+                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/uicare/residentlist'] },
                     {
-                        label: 'Reports', icon: '',
+                        label: 'Personal Details', icon: 'fa-solid fa-user',
                         items: [
                             {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' ,routerLink: ['/uikit/formlayout']},
-                                ]
+                                label: 'Care Passport', icon: 'fa-solid fa-address-card',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=1')]
                             },
                             {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }
-                                ]
+                                label: 'Final Wishes', icon: 'fa-solid fa-cross',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=2')]
                             },
+                            {
+                                label: 'DNACPR', icon: 'fa-solid fa-heart-pulse',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=3')]
+                            },
+                            {
+                                label: 'Daily Assesment', icon: 'fa-regular fa-pen-to-square',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=4')]
+                            },
+                            {
+                                label: 'Daily Report', icon: 'fa-solid fa-chart-simple',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=5')]
+                            }
                         ]
                     },
+                    { label: 'Body Map', icon: 'fa-sharp fa-solid fa-file-waveform', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Body Map&seq=2&rId=OMR45345')] },
+                    { label: 'Fluid Assesment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assesment&seq=3&rId=OMR45345')] },
+                    { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Task Planner&seq=4&rId=OMR45345')] },
+                    { label: 'Pain Assesment', icon: 'fa-solid fa-notes-medical', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Pain Assesment&seq=5&rId=OMR45345')] },
+                    { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
+                    
                 ]
             },
         ]

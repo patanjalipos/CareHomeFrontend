@@ -1,0 +1,83 @@
+<div class="p-fluid">
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Task Name</label>
+                <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.TaskName"/>
+            </div>
+        </div>
+        <div class="col-12 md:col-8">
+            <div class="field">
+                <label>Discription</label>
+                <textarea [(ngModel)]="ToDoListObj.Description" rows="1" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Due Date</label>
+                <p-calendar [minDate]="today" [(ngModel)]="ToDoListObj.DueDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Time</label>
+                <p-calendar [(ngModel)]="ToDoListObj.Time" [timeOnly]="true" hourFormat="12" dateFormat="mm:ss" inputId="timeonly"></p-calendar>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Status</label>
+                <p-dropdown  [options]="status" [(ngModel)]="ToDoListObj.Status" optionLabel="status" optionValue="status" [disabled]="mode=='Save'?true:false"></p-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Created By</label>
+                <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.CreatedBy"/>
+            </div>
+        </div>
+    </div>
+    <div class="field grid">
+        <label class="flex col-12 mb-2 md:col-3 md:mb-0">
+            <button class="p-button-secondary mr-2"pButton pRipple type="button" label="Cancel" (click)="cancelTask()"></button>
+            <button  pButton pRipple type="button" [label]=mode (click)="saveTaskDetails()"></button>
+        </label>
+    </div>
+    <hr>
+    <div class="field grid">
+        <label class="bold col-12 mb-2 md:col-12 md:mb-0">To Do List</label>
+    </div>
+    <p-table *ngIf="toDoList?.length>0" #dt1 [value]="toDoList"  responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Created By</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-task>
+            <tr>
+                <td>{{task.TaskName}}</td>
+                <td>{{task.Description}}</td>
+                <td>{{task.DueDate |date:  "dd-MM-yyyy"}}</td>
+                <td>{{task.Time |date:"hh-mm"}}</td>
+                <td>{{task.Status}}</td>
+                <td>{{task.CreatedBy}}</td>
+                <td>
+                    <div class="flex">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(task)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(task.id)"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,3 +1,4 @@
+import { BodyMapModule } from './../body-map/body-map.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,6 +17,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.module';
 import { PersonalDetailsModule } from '../personal-details/personal-details.module';
+import { TodoListModule } from '../todo-list/todo-list.module';
+import { PainAssessmentModule } from '../pain-assessment/pain-assessment.module';
+import { DietPlannerModule } from '../diet-planner/diet-planner.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,8 @@ import { PersonalDetailsModule } from '../personal-details/personal-details.modu
     ResidentProfileRoutingModule,
     PersonalDetailsModule,
     FluidAssessmentModule,
+    DietPlannerModule,
+    BodyMapModule,
     FormsModule,
     AutoCompleteModule,
 		CalendarModule,
@@ -37,7 +43,8 @@ import { PersonalDetailsModule } from '../personal-details/personal-details.modu
 		MultiSelectModule,
 		InputTextareaModule,
 		InputTextModule,
-    
+    TodoListModule,
+    PainAssessmentModule
   ]
 })
 export class ResidentProfileModule { }

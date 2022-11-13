@@ -1,3 +1,4 @@
+import { DailyAssessmentModule } from './../daily-assessment/daily-assessment.module';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { DailyReportModule } from '../daily-report/daily-report.module';
+import { CarePassportModule } from '../care-passport/care-passport.module';
 @NgModule({
   providers: [
     DatePipe,
@@ -37,7 +39,9 @@ import { DailyReportModule } from '../daily-report/daily-report.module';
     CalendarModule,
     FileUploadModule,
     ToastModule,
-    DailyReportModule
+    DailyReportModule,
+    DailyAssessmentModule,
+    CarePassportModule
   ],
   exports:[PersonalDetailsComponent]
 })
