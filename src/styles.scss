@@ -107,6 +107,7 @@ h5.passport {
     margin: 0;
 }
 
+
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
@@ -149,3 +150,12 @@ h5.label-name {
     font-weight: 600;
     margin: 10px 0 4px;
 }
+
+.form-control {
+    border: 1px solid #cecece;
+  }
+
+  .form-control:focus {
+    border: 1px solid #ca9701;
+  }
+

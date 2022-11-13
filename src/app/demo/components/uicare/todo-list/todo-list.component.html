@@ -1,60 +1,56 @@
 <div class="p-fluid">
-    <div class="field grid">
+    <!-- <div class="field grid">
         <label class="col-12 mb-2 md:col-2 md:mb-0">Task Name</label>
         <div class="col-12 md:col-3">
             <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.TaskName"/>
         </div>
+    </div> -->
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Task Name</label>
+                <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.TaskName"/>
+            </div>
+        </div>
+        <div class="col-12 md:col-8">
+            <div class="field">
+                <label>Discription</label>
+                <textarea [(ngModel)]="ToDoListObj.Description" rows="1" cols="20" placeholder="" pInputTextarea></textarea>
+            </div>
+        </div>
     </div>
     <div class="grid p-fluid">
-        <div class="col-12 md:col-6">
+        <div class="col-12 md:col-4">
             <div class="field">
-                <label>Description</label>
-                <textarea [(ngModel)]="ToDoListObj.Description" rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+                <label>Due Date</label>
+                <p-calendar [(ngModel)]="ToDoListObj.DueDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
             </div>
-            <!-- <div class="field">
-                <label>Settling For Bed</label>
-                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
-            </div>
-            <div class="field">
-                <label>Assisstance At Morning</label>
-                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
-            </div> -->
         </div>
-        <!-- <div class="col-12 md:col-6">
+        <div class="col-12 md:col-4">
             <div class="field">
-                <label>Goal/Outcome(s)</label>
-                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
+                <label>Time</label>
+                <p-calendar [(ngModel)]="ToDoListObj.Time" [timeOnly]="true" hourFormat="12" dateFormat="mm:ss" inputId="timeonly"></p-calendar>
             </div>
-            <div class="field">
-                <label>Assisstance At Night</label>
-                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
-            </div> <div class="field">
-                <label>Other</label>
-                <textarea rows="2" cols="20" placeholder="" pInputTextarea></textarea>
-            </div>
-        </div> -->
-    </div>
-
-    <div class="field grid">
-        <label class="col-12 mb-2 md:col-2 md:mb-0">Due Date</label>
-        <div class="col-12 md:col-3">
-            <p-calendar [(ngModel)]="ToDoListObj.DueDate" dateFormat="dd-mm-yy"  [showIcon]="true" inputId="icon"></p-calendar>
         </div>
-        <label class="col-12 mb-2 md:col-2 md:mb-0">Time</label>
-        <div class="col-12 md:col-2">
-            <p-calendar [(ngModel)]="ToDoListObj.Time" [timeOnly]="true" hourFormat="12" dateFormat="mm:ss" inputId="timeonly"></p-calendar>
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Status</label>
+                <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.Status"/>
+            </div>
         </div>
     </div>
-    <div class="field grid">
-        <label class="col-12 mb-2 md:col-2 md:mb-0">Created By</label>
-        <div class="col-12 md:col-3">
-            <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.CreatedBy"/>
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="field">
+                <label>Created By</label>
+                <input pInputText id="name6" type="text" [(ngModel)]="ToDoListObj.CreatedBy"/>
+            </div>
         </div>
     </div>
     <div class="field grid">
         <label class="flex col-12 mb-2 md:col-3 md:mb-0">
-            <button class="p-button-secondary mr-2"pButton pRipple type="button" label="Cancel"></button>
-            <button  pButton pRipple type="button" label="Save" (click)="saveTaskDetails()"></button>
+            <button class="p-button-secondary mr-2"pButton pRipple type="button" label="Cancel" (click)="cancelTask()"></button>
+            <button  pButton pRipple type="button" [label]=mode (click)="saveTaskDetails()"></button>
         </label>
     </div>
     <hr>
@@ -68,19 +64,24 @@
                 <th>Description</th>
                 <th>Due Date</th>
                 <th>Time</th>
+                <th>Status</th>
                 <th>Created By</th>
                 <th>Action</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-item>
+        <ng-template pTemplate="body" let-task>
             <tr>
-                <td>{{item.TaskName}}</td>
-                <td>{{item.Description}}</td>
-                <td>{{item.DueDate |date:  "dd-MM-yyyy"}}</td>
-                <td>{{item.Time |date:"hh-mm"}}</td>
-                <td>{{item.CreatedBy}}</td>
+                <td>{{task.TaskName}}</td>
+                <td>{{task.Description}}</td>
+                <td>{{task.DueDate |date:  "dd-MM-yyyy"}}</td>
+                <td>{{task.Time |date:"hh-mm"}}</td>
+                <td>{{task.Status}}</td>
+                <td>{{task.CreatedBy}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                    <div class="flex">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(task)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(task.id)"></button>
+                    </div>
                 </td>
             </tr>
         </ng-template>
