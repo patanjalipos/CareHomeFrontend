@@ -1,0 +1,108 @@
+<!-- <div class="row text-center m-0 mb-3">
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <button class="btn btn-new-primary" (click)="decrement()" [disabled]="prevBtnDisabled">
+                                Previous
+                            </button>
+                            <button class="btn btn-outline-secondary" (click)="today()">Today</button>
+                            <button class="btn btn-new-primary" (click)="increment()" [disabled]="nextBtnDisabled">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en': weekStartsOn }}</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <div class="btn btn-new-primary" (click)="changeView('month')"
+                                [class.active]="view === 'month'">
+                                Month
+                            </div>
+                            <div class="btn btn-new-primary" (click)="changeView('week')" [class.active]="view === 'week'">
+                                Week
+                            </div>
+                            <div class="btn btn-new-primary" (click)="changeView('day')" [class.active]="view === 'day'">
+                                Day
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+<div class="row m-0 mb-10">
+    <div class="col-md-12">
+        <div [ngSwitch]="view">
+            <!-- <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+                                [cellTemplate]="customCellTemplate" (beforeViewRender)="beforeMonthViewRender($event)">
+                            </mwl-calendar-month-view>
+                            <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+                                [hourSegments]="2" [dayStartHour]="4" [dayEndHour]="22"
+                                (beforeViewRender)="beforeWeekOrDayViewRender($event)" [weekStartsOn]="weekStartsOn"
+                                (hourSegmentClicked)="hourSegmentClicked($event)">
+                            </mwl-calendar-week-view> -->
+            <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [dayStartHour]="8"
+                [dayEndHour]="20" (hourSegmentClicked)="hourSegmentClicked($event)">
+            </mwl-calendar-day-view>
+        </div>
+    </div>
+</div>
+<p-dialog [(visible)]="showModalDiet" [modal]="true" [style]="{width: '70vw'}" [maximizable]="true"
+    [closeOnEscape]="false" [closable]="false" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+        <h5>Diet List</h5>
+    </ng-template>
+    <div>
+        <div class="p-fluid">
+            <div class="field grid">
+                <div class="col-12 md:col-6">
+                    <b>Start Time:</b> {{timeFrom |
+                    date:"dd-MM-yyyy HH:mm a"}}
+                </div>
+                <div class="col-12 md:col-6"><b>End Time:</b> {{timeUpto |
+                    date:"dd-MM-yyyy HH:mm a" }}
+                </div>
+            </div>
+        </div>
+        <p-table #dt1 [value]="lstDietMainList"[rowHover]="true" [globalFilterFields]="['name']" 
+            [scrollable]="true" scrollHeight="200px" responsiveLayout="scroll">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex">
+                    <span class="p-input-icon-left p-ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input  pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)"
+                            placeholder="Search..." />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="2">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>            
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>                  
+                    <th>Action</th>
+                </tr>
+            </ng-template>           
+            <ng-template pTemplate="body" let-item let-i="rowIndex" let-expanded="expanded">
+                <tr [ngStyle]="{'background-color':item.checkaccess===false? '#ffffff' : '#ededed'}">                    
+                    <td>
+                        {{item.name}}
+                    </td>
+                    <td>                       
+                        <input type="checkbox" id="{{ 'chk' + i }}" [(ngModel)]="item.checkaccess" /></td>
+                </tr>
+            </ng-template>
+        </p-table>
+        
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" (click)="AddDietPlanner()">Save
+        </button>
+        <button pButton pRipple  type="button" class="p-button-secondary" (click)="hide()">
+            Close
+        </button>
+    </ng-template>
+</p-dialog>

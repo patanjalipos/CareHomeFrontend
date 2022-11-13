@@ -1,0 +1,54 @@
+{
+    "data": [
+        {
+            "id":1,
+            "name":"Beans, toast, mushrooms, tomatoes, potatoes, bacon, black pudding",
+            "checkaccess": false
+        },
+        {
+            "id":2,
+            "name":"Garlic Bread, Cheese Plate, Nachos",
+            "checkaccess": false
+        },
+        {
+            "id":3,
+            "name":"Tossed Salad, Caesar Salad, Soup",
+            "checkaccess": false
+        },
+        {
+            "id":4,
+            "name":"Grilled Sandwich, Veggie Burger, Steak Sandwich",
+            "checkaccess": false
+        },
+        {
+            "id":5,
+            "name":"Spaghetti, Pepperoni Pizza, Fettucini",
+            "checkaccess": false
+        },
+        {
+            "id":6,
+            "name":"French Fries, Rice, Grilled Veggies",
+            "checkaccess": false
+        },
+        {
+            "id":7,
+            "name":"Apple Pie, Mocha Cheesecake, Banana Split",
+            "checkaccess": false
+        },
+        {
+            "id":8,
+            "name":"Chips, Battered Shrimp, Smoked Salmon",
+            "checkaccess": false
+        },
+        {
+            "id":8,
+            "name":"Cofee/Tea/Juice",
+            "checkaccess": false
+        },
+        {
+            "id":9,
+            "name":"Chunky Vegetable Soup",
+            "checkaccess": false
+        }
+    ]
+}
