@@ -1,10 +1,10 @@
 <div class="cart">
     <div class="p-fluid">
         <div class="field grid">
-            <h3>My Care Passport</h3>
+            <h4 class="heading-care">My Care Passport</h4>
         </div>
         <div class="field grid">
-            <h5>It should be kept with me and brought with me into any care requirement, including hospital.</h5>
+            <h6 class="text-hd">It should be kept with me and brought with me into any care requirement, including hospital.</h6>
         </div>
         <div class="field grid">
             <div class="col-12 md:col-3">
@@ -61,20 +61,21 @@
                     <div class="col-12 md:col-12">
                         <div class="field grid">
                             <div class="col-12 md:col-12">
-                                <h2>Basic Information</h2>
+                                <h4 class="heading-care">Basic Information</h4>
                             </div>
                             <div class="col-12 md:col-12">
-                                <h5>This passport needs to be updated if my needs change.</h5>
+                                <h6 class="text-hd">This passport needs to be updated if my needs change.</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-           
+
         </div>
         <div class="field grid">
             <div class="col-12 md:col-5">
-                <label class="bold"><h5>Where I Currently Live :</h5></label>
+                <label class="bold">
+                    <h5 class="label-name">Where I Currently Live :</h5></label>
                 <br><label>For example - supported living or my family home.</label>
             </div>
             <div class="col-12 md:col-7">
@@ -83,7 +84,7 @@
         </div>
         <div class="field grid">
             <div class="col-12 md:col-5">
-                <label class="bold"><h5>Hours of support I get each day :</h5></label>
+                <label class="bold"><h5 class="label-name">Hours of support I get each day :</h5></label>
             </div>
             <div class="col-12 md:col-7">
                 <input type="text" id="HrsSupportpassport" pInputText [(ngModel)]="CarePassportObj.HoursofSupport">
@@ -91,7 +92,7 @@
         </div>
         <div class="field grid">
             <div class="col-12 md:col-5">
-                <label class="bold"><h5>Who to contact for more information about me :</h5></label>
+                <label class="bold"><h5 class="label-name">Who to contact for more information about me :</h5></label>
                 <br>Please say name, role and contact phone number.
             </div>
             <div class="col-12 md:col-7">
@@ -100,7 +101,7 @@
         </div>
         <div class="field grid">
             <div class="col-12 md:col-5">
-                <label class="bold"><h5>Other key professionals involved in my care :</h5></label>
+                <label class="bold"><h5 class="label-name">Other key professionals involved in my care :</h5></label>
                 <br>Please say name, role and contact phone number.
             </div>
             <div class="col-12 md:col-7">
@@ -109,13 +110,13 @@
         </div>
         <div class="field grid">
             <div class="col-12 md:col-4">
-                <label class="bold"><h5>This passport was filled in by:</h5></label>
+                <label class="bold"><h5 class="label-name">This passport was filled in by:</h5></label>
             </div>
             <div class="col-12 md:col-3">
                 <input type="text" id="HrsSupportpassport" pInputText [(ngModel)]="CarePassportObj.FilledBy">
             </div>
             <div class="col-12 md:col-2">
-                <label class="bold"><h5>Date:</h5></label>
+                <label class="bold"><h5 class="label-name">Date:</h5></label>
             </div>
             <div class="col-12 md:col-3">
                 <p-calendar [(ngModel)]="CarePassportObj.FilledDate"  [showTime]="true" [showSeconds]="true" inputId="time"></p-calendar>
