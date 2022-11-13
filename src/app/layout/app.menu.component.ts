@@ -171,19 +171,19 @@ export class AppMenuComponent implements OnInit {
                         label: 'Personal Details', icon: 'fa-solid fa-user',
                         items: [
                             {
-                                label: 'Care Passport', icon: 'fa-solid fa-address-card',routerLink: ['/uikit/formlayout']
+                                label: 'Care Passport', icon: 'fa-solid fa-address-card',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=1')]
                             },
                             {
-                                label: 'Final Wishes', icon: 'fa-solid fa-cross',routerLink: ['/uikit/formlayout']
+                                label: 'Final Wishes', icon: 'fa-solid fa-cross',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=2')]
                             },
                             {
-                                label: 'DNACPR', icon: 'fa-solid fa-heart-pulse',routerLink: ['/uikit/formlayout']
+                                label: 'DNACPR', icon: 'fa-solid fa-heart-pulse',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=3')]
                             },
                             {
-                                label: 'Daily Assesment', icon: 'fa-regular fa-pen-to-square',routerLink: ['/uikit/formlayout']
+                                label: 'Daily Assesment', icon: 'fa-regular fa-pen-to-square',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=4')]
                             },
                             {
-                                label: 'Daily Report', icon: 'fa-solid fa-chart-simple',routerLink: ['/uikit/formlayout']
+                                label: 'Daily Report', icon: 'fa-solid fa-chart-simple',routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Personal Details&seq=1&rId=OMR45345&tabid=5')]
                             }
                         ]
                     },
