@@ -11,8 +11,14 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+    pieData: any;
+    pieOptions: any;
 
-  items!: MenuItem[];
+    barData: any;
+    barData2: any;
+    barOptions: any;
+
+    items!: MenuItem[];
 
     products!: Product[];
 
@@ -93,6 +99,102 @@ export class AdminDashboardComponent implements OnInit {
                         drawBorder: false
                     }
                 }
+            }
+        };
+
+        this.pieData = {
+            labels: ['Madhumeha', 'Hypothyroidism', 'HTN', 'Constipation', 'Type-2 Diabetes Mellitus'],
+            datasets: [
+                {
+                    data: [540, 325, 702,450,312],
+                    backgroundColor: [
+                        documentStyle.getPropertyValue('--indigo-500'),
+                        documentStyle.getPropertyValue('--purple-500'),
+                        documentStyle.getPropertyValue('--teal-500'),
+                        documentStyle.getPropertyValue('--green-500'),
+                        documentStyle.getPropertyValue('--blue-500')
+                    ],
+                    hoverBackgroundColor: [
+                        documentStyle.getPropertyValue('--indigo-400'),
+                        documentStyle.getPropertyValue('--purple-400'),
+                        documentStyle.getPropertyValue('--teal-400'),
+                        documentStyle.getPropertyValue('--green-400'),
+                        documentStyle.getPropertyValue('--blue-400')
+                    ]
+                }]
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        usePointStyle: true,
+                        color: textColor
+                    }
+                }
+            }
+        };
+
+        this.barData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Revenue',
+                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--primary-500'),
+                    data: [103200, 744336, 354336, 284336, 324336, 304336, 294336, 254336,484336,444336,434336,344336]
+                }
+            ]
+        };
+
+        this.barData2 = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Male',
+                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--primary-500'),
+                    data: [650, 712, 782, 815, 656, 712, 455, 745, 824, 689, 666, 476]
+                },
+                {
+                    label: 'Female',
+                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
+                    borderColor: documentStyle.getPropertyValue('--primary-200'),
+                    data: [550, 642, 692, 735, 556, 652, 635, 545, 624, 589, 566, 496]
+                }
+            ]
+        };
+
+        this.barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: textColor
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: textColorSecondary,
+                        font: {
+                            weight: 500
+                        }
+                    },
+                    grid: {
+                        display: false,
+                        drawBorder: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: textColorSecondary
+                    },
+                    grid: {
+                        color: surfaceBorder,
+                        drawBorder: false
+                    }
+                },
             }
         };
     }
