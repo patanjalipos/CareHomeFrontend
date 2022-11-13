@@ -12,6 +12,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { RippleModule } from 'primeng/ripple';
     CalendarModule,
     ButtonModule,
     RippleModule,
+    DropdownModule
   ],
   exports:[TodoListComponent]
 })
