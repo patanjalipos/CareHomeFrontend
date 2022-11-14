@@ -156,7 +156,8 @@ export class AdminDashboardComponent implements OnInit {
                     label: 'Revenue',
                     backgroundColor: documentStyle.getPropertyValue('--bar-color'),
                     borderColor: documentStyle.getPropertyValue('--bar-color'),
-                    data: [103200, 744336, 354336, 284336, 324336, 304336, 294336, 254336, 484336, 444336, 434336, 344336]
+                    data: [103200, 744336, 354336, 284336, 324336, 304336, 294336, 254336, 484336, 444336, 434336, 344336],
+                    barThickness: 8,
                 }
             ]
         };
@@ -168,13 +169,15 @@ export class AdminDashboardComponent implements OnInit {
                     label: 'Male',
                     backgroundColor: documentStyle.getPropertyValue('--Gender-color'),
                     borderColor: documentStyle.getPropertyValue('--Gender-color'),
-                    data: [650, 712, 782, 815, 656, 712, 455, 745, 824, 689, 666, 476]
+                    data: [650, 712, 782, 815, 656, 712, 455, 745, 824, 689, 666, 476],
+                    barThickness: 8,
                 },
                 {
                     label: 'Female',
                     backgroundColor: documentStyle.getPropertyValue('--primary-200'),
                     borderColor: documentStyle.getPropertyValue('--primary-200'),
-                    data: [550, 642, 692, 735, 556, 652, 635, 545, 624, 589, 566, 496]
+                    data: [550, 642, 692, 735, 556, 652, 635, 545, 624, 589, 566, 496],
+                    barThickness: 8,
                 }
             ]
         };
