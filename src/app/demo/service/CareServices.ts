@@ -1,11 +1,11 @@
 
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom, map} from 'rxjs';
 import { DietList } from "../classes/Dietlist";
+import { FallRiskAssessmentList } from "../classes/FallRiskAssessmentList";
 import { FluidIntakeDetails } from "../classes/FluidIntakeDetails";
 import { ResidentList } from "../classes/ResidentList";
-
 @Injectable()
 export class CareService {
 
@@ -50,4 +50,10 @@ export class CareService {
       }
       return ParamsArray;
     }
+    
+  getFallRiskAssessmentList() {
+
+    return this.http.get<any>('assets/demo/data/falriskassessmentList.json').pipe(
+      map(response => response.data as FallRiskAssessmentList[]))
+  }
 }

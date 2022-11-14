@@ -24,6 +24,7 @@ export class ResidentlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.careService.getResidentList().then(data => this.residents = data);
+    console.log('this.residents', this.residents);
     this.viewMode = true;
   }
   
@@ -119,6 +120,30 @@ export class ResidentlistComponent implements OnInit {
         {
           this.residentId=ResidentId;
           this.LoadResidentInfo('Pain Assessment','5');
+        }
+      },
+    ];
+    this.items = [
+      ...this.items,
+      {
+        label: 'Diet Planner',
+        icon: 'pi pi-calendar-plus',
+        command: () => 
+        {
+          this.residentId=ResidentId;
+          this.LoadResidentInfo('Diet Planner','6');
+        }
+      },
+    ];
+    this.items = [
+      ...this.items,
+      {
+        label: 'Fall Risk Assessment',
+        icon: 'pi pi-calendar-plus',
+        command: () => 
+        {
+          this.residentId=ResidentId;
+          this.LoadResidentInfo('Fall Risk Assessment','7');
         }
       },
     ];

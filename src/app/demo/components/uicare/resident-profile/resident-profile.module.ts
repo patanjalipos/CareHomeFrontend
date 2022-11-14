@@ -20,6 +20,7 @@ import { PersonalDetailsModule } from '../personal-details/personal-details.modu
 import { TodoListModule } from '../todo-list/todo-list.module';
 import { PainAssessmentModule } from '../pain-assessment/pain-assessment.module';
 import { DietPlannerModule } from '../diet-planner/diet-planner.module';
+import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-assessment.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DietPlannerModule } from '../diet-planner/diet-planner.module';
     PersonalDetailsModule,
     FluidAssessmentModule,
     DietPlannerModule,
+    FallRiskAssessmentModule,
     BodyMapModule,
     FormsModule,
     AutoCompleteModule,
