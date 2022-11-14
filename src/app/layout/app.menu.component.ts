@@ -192,6 +192,8 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Task Planner&seq=4&rId=OMR45345')] },
                     { label: 'Pain Assessment', icon: 'fa-solid fa-notes-medical', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Pain Assessment&seq=5&rId=OMR45345')] },
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
+                    { label: 'Fall Risk Assessment', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fall Risk Assessment&seq=7&rId=OMR45345')] },
+                    { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },
                     
                 ]
             },
