@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card map-body">
     <p-table #dt2 [value]="[{}]" styleClass="p-datatable-striped" [rowHover]="true" [scrollable]="true"
         scrollHeight="250px" responsiveLayout="scroll">
         <!-- <ng-template pTemplate="colgroup" let-columns>
@@ -18,17 +18,17 @@
         </ng-template> -->
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:182px;">Blood Glucose</th>
-                <th style="width:182px;">Blood Pressure (BP)</th>
-                <th style="width:182px;">Temperature</th>
-                <th style="width:182px;">Pulse</th>
-                <th style="width:182px;">Respiration</th>
-                <th style="width:182px;">Saturation</th>
-                <th style="width:182px;">Weight</th>
-                <th style="width:182px;">Height</th>
-                <th style="width:182px;">BMI</th>
-                <th style="width:182px;">Capture By</th>
-                <th style="width:182px;">Action</th>
+                <th>Blood Glucose</th>
+                <th>Blood Pressure (BP)</th>
+                <th>Temperature</th>
+                <th>Pulse</th>
+                <th>Respiration</th>
+                <th>Saturation</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>BMI</th>
+                <th>Capture By</th>
+                <th>Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
@@ -64,7 +64,7 @@
                 <input pInputText type="text" name="txt_height" autocomplete="off" onpaste="return false" maxlength="6"
                     [(ngModel)]="BodyMapObj.Height" placeholder="Height (cms.)" [value]="" class="form-control" (change)="CalculateBMI()">
             </td>
-            
+
             <td>
                 <input pInputText type="text" name="txt_BMI" autocomplete="off" onpaste="return false" maxlength="6"
                     [(ngModel)]="BodyMapObj.BMI" placeholder="BMI" [value]="" class="form-control" disabled="disabled">

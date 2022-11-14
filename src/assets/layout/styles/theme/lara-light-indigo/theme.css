@@ -43,6 +43,13 @@
   --focus-ring: 0 0 0 0.2rem #C7D2FE;
   --maskbg: rgba(0, 0, 0, 0.4);
   color-scheme: light;
+  --slice-one:#b5b2e1;
+  --slice-two:#9790d4;
+  --slice-three:#746cc1;
+  --slice-four:#59548e;
+  --slice-five:#373366;
+  --bar-color:#9790d4;
+  --Gender-color:#746cc1;
 }
 
 * {
