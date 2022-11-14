@@ -6,9 +6,9 @@ import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss']
+    selector: 'app-admin-dashboard',
+    templateUrl: './admin-dashboard.component.html',
+    styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
     pieData: any;
@@ -101,25 +101,39 @@ export class AdminDashboardComponent implements OnInit {
                 }
             }
         };
-
         this.pieData = {
-            labels: ['Madhumeha', 'Hypothyroidism', 'HTN', 'Constipation', 'Type-2 Diabetes Mellitus'],
+            labels: ['Diabetes', 'Hypothyroidism', 'Arthritis', 'Heart Disease',
+                'Asthma'],
             datasets: [
                 {
-                    data: [540, 325, 702,450,312],
+                    data: [540, 325, 702, 450, 312],
+                    // backgroundColor: [
+                    //     documentStyle.getPropertyValue('--indigo-500'),
+                    //     documentStyle.getPropertyValue('--purple-500'),
+                    //     documentStyle.getPropertyValue('--teal-500'),
+                    //     documentStyle.getPropertyValue('--green-500'),
+                    //     documentStyle.getPropertyValue('--blue-500')
+                    // ],
+                    // hoverBackgroundColor: [
+                    //     documentStyle.getPropertyValue('--indigo-400'),
+                    //     documentStyle.getPropertyValue('--purple-400'),
+                    //     documentStyle.getPropertyValue('--teal-400'),
+                    //     documentStyle.getPropertyValue('--green-400'),
+                    //     documentStyle.getPropertyValue('--blue-400')
+                    // ],
                     backgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-500'),
-                        documentStyle.getPropertyValue('--purple-500'),
-                        documentStyle.getPropertyValue('--teal-500'),
-                        documentStyle.getPropertyValue('--green-500'),
-                        documentStyle.getPropertyValue('--blue-500')
+                        documentStyle.getPropertyValue('--slice-one'),
+                        documentStyle.getPropertyValue('--slice-two'),
+                        documentStyle.getPropertyValue('--slice-three'),
+                        documentStyle.getPropertyValue('--slice-four'),
+                        documentStyle.getPropertyValue('--slice-five')
                     ],
                     hoverBackgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-400'),
-                        documentStyle.getPropertyValue('--purple-400'),
-                        documentStyle.getPropertyValue('--teal-400'),
-                        documentStyle.getPropertyValue('--green-400'),
-                        documentStyle.getPropertyValue('--blue-400')
+                        documentStyle.getPropertyValue('--slice-one'),
+                        documentStyle.getPropertyValue('--slice-two'),
+                        documentStyle.getPropertyValue('--slice-three'),
+                        documentStyle.getPropertyValue('--slice-four'),
+                        documentStyle.getPropertyValue('--slice-five')
                     ]
                 }]
         };
@@ -140,9 +154,10 @@ export class AdminDashboardComponent implements OnInit {
             datasets: [
                 {
                     label: 'Revenue',
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
-                    data: [103200, 744336, 354336, 284336, 324336, 304336, 294336, 254336,484336,444336,434336,344336]
+                    backgroundColor: documentStyle.getPropertyValue('--bar-color'),
+                    borderColor: documentStyle.getPropertyValue('--bar-color'),
+                    data: [103200, 744336, 354336, 284336, 324336, 304336, 294336, 254336, 484336, 444336, 434336, 344336],
+                    barThickness: 8,
                 }
             ]
         };
@@ -152,15 +167,17 @@ export class AdminDashboardComponent implements OnInit {
             datasets: [
                 {
                     label: 'Male',
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
-                    data: [650, 712, 782, 815, 656, 712, 455, 745, 824, 689, 666, 476]
+                    backgroundColor: documentStyle.getPropertyValue('--Gender-color'),
+                    borderColor: documentStyle.getPropertyValue('--Gender-color'),
+                    data: [650, 712, 782, 815, 656, 712, 455, 745, 824, 689, 666, 476],
+                    barThickness: 8,
                 },
                 {
                     label: 'Female',
                     backgroundColor: documentStyle.getPropertyValue('--primary-200'),
                     borderColor: documentStyle.getPropertyValue('--primary-200'),
-                    data: [550, 642, 692, 735, 556, 652, 635, 545, 624, 589, 566, 496]
+                    data: [550, 642, 692, 735, 556, 652, 635, 545, 624, 589, 566, 496],
+                    barThickness: 8,
                 }
             ]
         };

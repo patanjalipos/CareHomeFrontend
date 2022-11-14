@@ -10,7 +10,7 @@
             "Address":"41-43, United Kingdom", 
             "admDate":"16-11-2022",
             "status":"Admitted",
-            "Likes" : "Fry ups, Toast, Choclates",
+            "Likes" : "Fry ups, Toast, Chocolates",
             "Dislikes" : "None",
             "DrugAllergies" : "Paracetamol"
         },
@@ -38,7 +38,7 @@
             "Address":"41-44, United Kingdom",
             "admDate":"13-11-2022",
             "status":"Admitted",
-            "Likes" : "Beans, Sprouts, Soup, Dark Choclate",
+            "Likes" : "Beans, Sprouts, Soup, Dark Chocolate",
             "Dislikes" : "Refind Flour Recipes",
             "DrugAllergies" : "Aspirin"
         },
@@ -66,7 +66,7 @@
             "Address":"41-46, United Kingdom",
             "admDate":"21-11-2022",
             "status":"Admitted",
-            "Likes" : "Fry ups, Toast, Beans, Choclates",
+            "Likes" : "Fry ups, Toast, Beans, Chocolates",
             "Dislikes" : "None",
             "DrugAllergies" : "None"
         },

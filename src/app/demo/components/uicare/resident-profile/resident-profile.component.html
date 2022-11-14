@@ -1,5 +1,7 @@
 <div class="card">
-    <h5>Resident Profile</h5>
+    <div class="backbutton-cvr">
+        <h5>Resident Profile <span class="backbutton"><button type="button" (click)="BacktoResidentList()" class="btn">Back</button></span> </h5>
+    </div>
     <div class="Profile-cvr">
         <div class="Profile-left">
             <div class="pic">
@@ -56,6 +58,7 @@
     <app-todo-list *ngIf="seq=='4'"> </app-todo-list>
     <app-pain-assessment *ngIf="seq=='5'"></app-pain-assessment>
     <app-diet-planner *ngIf="seq=='6'"></app-diet-planner>
+    <app-fall-risk-assessment *ngIf="seq=='7'"></app-fall-risk-assessment>
 </div>
 
 
