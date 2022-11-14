@@ -27,27 +27,27 @@ export class DailyReportComponent implements OnInit {
     this.lstDailyReport.push({
       "CaptureDate":new Date("2022-11-07 10:11"),
       "Category":"General",
-      "DailyReport":"Sean had a settled night",
-      "Mood":"",
+      "DailyReport":"Resident had settled night",
+      "Mood":"Happy",
       "Handover":"No",
       "StartTime":null,
       "EndTime":null,
-      "CreatedBy":"Jhon Thomas",
+      "CreatedBy":"John Thomas",
       "CreatedDate":new Date("2022-11-07 10:11"),
-      "UpdatedBy":"Jhon Thomas",
+      "UpdatedBy":"John Thomas",
       "UpdatedDate":new Date("2022-11-07 10:11")
       },
       {
         "CaptureDate":new Date("2022-11-08 10:11"),
         "Category":"General",
-        "DailyReport":"Sean had a settled night",
-        "Mood":"",
+        "DailyReport":"Resident had settled night",
+        "Mood":"Contented",
         "Handover":"No",
         "StartTime":null,
         "EndTime":null,
-        "CreatedBy":"Jhon Thomas",
+        "CreatedBy":"John Thomas",
         "CreatedDate":new Date("2022-11-08 10:11"),
-        "UpdatedBy":"Jhon Thomas",
+        "UpdatedBy":"John Thomas",
         "UpdatedDate":new Date("2022-11-08 10:11")
         });
   }
