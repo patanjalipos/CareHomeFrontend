@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="grid image-tiles p-fluid">
-            <div class="field col-12 md:col-2 mr-2 mt-5">
+            <div class="field col-12 md:col-2 mr-2">
                 <img src="./assets/Images/WaterGlass.png" style="cursor: pointer;" matTooltip="Water"
                 (click)="SelectFluid('Water',200)"
                 class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Water'}">
@@ -36,9 +36,9 @@
                 <label class="bold">Maximum : 150ml</label>
             </div>
             <div class="field col-12 md:col-2 mr-2">
-                <img src="./assets/Images/CofeeMug.png" style="cursor: pointer;" matTooltip="Cofee"
-                (click)="SelectFluid('Cofee',200)"
-                class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Cofee'}">
+                <img src="./assets/Images/CofeeMug.png" style="cursor: pointer;" matTooltip="Coffee"
+                (click)="SelectFluid('Coffee',200)"
+                class="custom-ico " [ngClass]="{'imgborder': SelectedFluid=='Coffee'}">
                 <label class="bold">Maximum : 200ml</label>
             </div>
         </div>

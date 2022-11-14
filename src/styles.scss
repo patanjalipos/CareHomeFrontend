@@ -163,3 +163,12 @@ h5.label-name {
     border: 1px solid #ca9701;
   }
 
+.map-body .p-datatable-table .p-datatable-thead tr th {
+    border-top: 1px solid #d3d3d3 !important;
+    width: 150px !important;
+}
+.map-body .p-datatable-table .p-datatable-tbody  td .p-inputtext {
+    width: 150px !important;
+    margin: 6px 1px;
+}
+

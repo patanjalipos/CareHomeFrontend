@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CareService } from 'src/app/demo/service/CareServices';
 
 @Component({
@@ -15,7 +15,7 @@ export class ResidentProfileComponent implements OnInit {
   rId:string=null;
   tabid:string=null;
 
-  constructor(private careService: CareService, private route: ActivatedRoute) { 
+  constructor(private careService: CareService, private route: ActivatedRoute,private router: Router) { 
     
   }
 
@@ -44,5 +44,9 @@ export class ResidentProfileComponent implements OnInit {
     {
       this.careService.getResidentList().then(data => this.objPatient = data.find(f=>f.ResidentId==this.rId));
     }
+  }
+  BacktoResidentList()
+  {
+    this.router.navigateByUrl('/uicare/residentlist');
   }
 }
