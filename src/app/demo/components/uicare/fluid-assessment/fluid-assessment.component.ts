@@ -29,7 +29,7 @@ export class FluidAssessmentComponent implements OnInit {
   ) { 
     this.DailyIntakeObj.TargetIntake=1500;
     this.DailyIntakeObj.TargetTime='08:00';
-    this.DailyIntakeObj.UpdatedBy="Jhon Thomas";
+    this.DailyIntakeObj.UpdatedBy="John Thomas";
     this.DailyIntakeObj.UpdatedTime="09-11-2022 15:17";
 
     this.lstFluidType.push({"FluidType":"Tea/Coffee"});
@@ -95,6 +95,37 @@ export class FluidAssessmentComponent implements OnInit {
         alert("Please Enter Updated By");
         return;
       }
+
+      var ContainerName=null;
+      if(this.SelectedFluid=="Water")
+      {
+        ContainerName="Glass"
+      }
+      else if(this.SelectedFluid=="Juice")
+      {
+        ContainerName="Glass"
+      }
+      else if(this.SelectedFluid=="Milk")
+      {
+        ContainerName="Glass"
+      }
+      else if(this.SelectedFluid=="Tea")
+      {
+        ContainerName="Cup"
+      }
+      else if(this.SelectedFluid=="Coffee")
+      {
+        ContainerName="Mug"
+      }
+
+      this.lstFluidDetails.push({
+        "CaptureDate":this.datePipe.transform(this.DailyNewFluidIntake.CaptureTime,"dd-MM-yyyy HH:mm"),
+        "FluidType":this.SelectedFluid,
+        "ContainerName":ContainerName,
+        "FluidQty":this.DailyNewFluidIntake.FluidIntakeQty,
+        "UpdatedBy":this.DailyNewFluidIntake.UpdatedBy,
+        "UpdatedDate":this.datePipe.transform(new Date(),"dd-MM-yyyy HH:mm")
+      });
 
       this.DailyNewFluidIntake.CaptureTime=null;
       this.MaxFluidQty=0;
