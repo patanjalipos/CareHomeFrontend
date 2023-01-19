@@ -25,6 +25,15 @@ export class CarePassportComponent implements OnInit {
         this.rId=params['rId'];
       });
 
+      this.route.queryParams.subscribe(params => 
+        {
+          var ParamsArray=this.careService.GetParmasVal(params['0']);
+          if(ParamsArray?.length>0)
+          {
+            this.rId = ParamsArray.find(e=>e.FieldStr=='rId')?.FieldVal;
+          }      
+        });
+
       if(this.rId!=null && this.rId!="")
       {
         this.careService.getResidentList().then(data => this.objPatient = data.find(f=>f.ResidentId==this.rId));
