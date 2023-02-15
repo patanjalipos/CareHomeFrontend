@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MenuChangeEvent } from '../demo/api/menuchangeevent';
+import { MenuChangeEvent } from '../ui/api/menuchangeevent';
 
 @Injectable({
     providedIn: 'root'

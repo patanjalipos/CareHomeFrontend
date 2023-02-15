@@ -1,0 +1,119 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<div class="flex card-container">
+				<div class="flex  md:col-11">
+					<h5>Resident List</h5>
+				</div>
+				<div class="flex md:col-1" style="margin-top: -8px !important;">
+					<p-toggleButton [onIcon]="'pi pi-th-large'" [offIcon]="'pi pi-table'" [(ngModel)]="viewMode">
+					</p-toggleButton>
+				</div>
+			</div>
+			<p-dataView *ngIf="viewMode" #dv [value]="residents" [paginator]="true" [rows]="10" filterBy="name"
+				layout="grid">
+				<ng-template pTemplate="header">
+					<div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+						<span class="p-input-icon-left">
+							<i class="pi pi-search"></i>
+							<input type="search" pInputText placeholder="Search by Name" (input)="onFilter(dv, $event)">
+						</span>
+					</div>
+				</ng-template>
+				<ng-template let-product pTemplate="gridItem">
+					<div class="col-12 md:col-3 img-radis">
+						<div class="card m-6 border-1 surface-border"  [ngClass]="{'surface-red-border': residentId==product.ResidentId}"
+						>
+							<!-- <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+								<div class="flex align-items-center">
+									<i class="pi pi-tag mr-2"></i>
+									<span class="font-semibold">{{product.category}}</span>
+								</div>
+								<span [class]="'product-badge status-' + product.status">{{product.inventoryStatus}}</span>
+							</div> -->
+							<a style="cursor:pointer" (click)="residentClick(product.ResidentId)">
+								<div class="flex flex-column align-items-center text-center mb-1">
+									<img [src]="'assets/ui/images/avatar/' + product.image" [alt]="product.name" style="height:150px !important;width:170px !important;" class="w-6 shadow-2 my-1 mx-0" />
+									<div class="text-2xl font-bold">{{product.name}}</div>
+									<div class="mb-2">({{product.status}})</div>
+									<!-- <div><p-button icon="pi pi-shopping-cart" (onClick)="residentClick(product.ResidentId)"></p-button></div> -->
+								</div>
+							</a>
+							<!-- <div class="flex align-items-center justify-content-between">
+								<span class="text-2xl font-semibold">${{product.price}}</span>
+								<p-button icon="pi pi-shopping-cart" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></p-button>
+							</div> -->
+						</div>
+					</div>
+				</ng-template>
+			</p-dataView>
+			<p-table *ngIf="!viewMode" #dt1 [globalFilterFields]="['name']" [value]="residents" [paginator]="true" [rows]="10" responsiveLayout="scroll" class="center-tdth">
+				<ng-template pTemplate="caption">
+					<div class="flex justify-content-between flex-column sm:flex-row">
+						<button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
+							(click)="clear(dt1)"></button>
+						<span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)"
+								placeholder="Search Keyword" class="w-full" />
+						</span>
+					</div>
+				</ng-template>
+				<ng-template pTemplate="header">
+					<tr>
+						<th>Resident ID</th>
+						<th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
+						</th>
+						<th>Profile Image</th>
+						<th pSortableColumn="price">Addmission Date <p-sortIcon field="price"></p-sortIcon>
+						</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-resident>
+					<tr>
+						<td style="width: 35%; min-width: 7rem;">{{resident.ResidentId}}</td>
+						<td style="width: 35%; min-width: 7rem;">{{resident.name}}</td>
+						<td>
+							<img [src]="'assets/ui/images/avatar/' + resident.image" class="table-image">
+						</td>
+						<td style="width: 35%; min-width: 8rem;">{{resident.admDate}}</td>
+						<td style="width: 35%; min-width: 8rem;">{{resident.status}}</td>
+						<td>
+							<a style="cursor:pointer;" matTooltip="Action" (click)="toggleMenu(menu, $event, resident.ResidentId)">
+								<label class="bold" style="cursor:pointer;text-align: center;">....</label>
+							</a>
+							<p-menu #menu [popup]="true" appendTo="body" [model]="items"
+                                        [style]="{width: '180px'}"></p-menu>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>
+
+			<div *ngIf="residentId!='' && viewMode" class="flex flex-wrap gap-2 mt-5">
+				<button pButton pRipple type="button" label="Personal Details" (click)="LoadResidentInfo('Personal Details','1')"></button>
+				<button pButton pRipple type="button" label="Body Map" (click)="LoadResidentInfo('Body Map','2')"></button>
+				<button pButton pRipple type="button" label="Fluid Assessment" (click)="LoadResidentInfo('Fluid Assessment','3')"></button>
+				<button pButton pRipple type="button" label="Task Planner" (click)="LoadResidentInfo('Task Planner','4')"></button>
+				<button pButton pRipple type="button" label="Pain Assessment" (click)="LoadResidentInfo('Pain Assessment','5')"></button>
+				<button pButton pRipple type="button" label="Diet Planner" (click)="LoadResidentInfo('Diet Planner','6')"></button>
+				<button pButton pRipple type="button" label="Fall Risk Assessment" (click)="LoadResidentInfo('Fall Risk Assessment','7')"></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+    .m-6 {
+    margin: 1rem !important;
+}
+.p-dataview .p-dataview-header {
+    background: #f8f9fa;
+    color: #343a40;
+    border: 1px solid #dee2e6 !important;
+    padding: 1rem 1rem;
+    font-weight: 700;
+}
+</style>
