@@ -1,3 +1,5 @@
+<div class="row">
+    <div class="col-md-4">
 <div class="card">
     <div class="backbutton-cvr">
         <h5>Resident Profile <span class="backbutton"><button type="button" (click)="BacktoResidentList()" class="btn">Back</button></span> </h5>
@@ -50,6 +52,9 @@
 
 
 </div>
+</div>
+
+<div class="col-md-8">
 <div class="card">
     <h5>{{title}}</h5>
     <app-personal-details [tabid]="tabid" *ngIf="seq=='1'"></app-personal-details>
@@ -60,43 +65,7 @@
     <app-diet-planner *ngIf="seq=='6'"></app-diet-planner>
     <app-fall-risk-assessment *ngIf="seq=='7'"></app-fall-risk-assessment>
 </div>
+</div>
+</div>
 
-
-<style>
-    .Profile-left {
-    display: inline-block;
-    width: 10%;
-}
-.Profile-right {
-    display: inline-block;
-    width: 90%;
-}
-.Profile-cvr {
-    display: flex;
-}
-.Profile-left{
-    display: inline-block;
-    width: 10%;
-}
-.field {
-    margin-bottom: 1rem;
-    display: inline-block;
-}
-.pic[_ngcontent-kal-c127] {
-    border: 1px solid #d3d3d3;
-    height: 125px;
-    display: flex;
-    align-items: center;
-}
-.pic img.w-6.shadow-2.my-1.mx-0 {
-    width: 100% !important;
-    padding: 10px;
-    box-shadow: none !important;
-    margin: 0 !important;
-}
-.Profile-right .md\:col-4 {
-    padding-top: 1px;
-    padding-bottom: 22px;
-}
-</style>
     
