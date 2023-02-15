@@ -57,7 +57,7 @@ export class LoginComponent {
                         localStorage.setItem('ProfileImage', tdata.ProfileImage);
                         localStorage.setItem('IsSpecialAccess', tdata.IsSpecialAccess);
                         //this._dymservice.loadMenu();
-                        this.router.navigateByUrl("/");
+                        this.router.navigateByUrl("/uicare");
                         this._ConstantService.IsLocal = true;
                     }
                     else {
