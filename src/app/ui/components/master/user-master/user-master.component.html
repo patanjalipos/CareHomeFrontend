@@ -1,0 +1,71 @@
+<div *ngIf="mode==null">
+    <div class="card">
+        <p-table #dt [value]="lstUserMaster" styleClass="p-datatable-striped" [rowHover]="true"
+            [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']"
+            [scrollable]="true" scrollHeight="calc(100vh - 180px)" (onFilter)="onFilter($event, dt)">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <span class="p-ml-left">
+                        <button pButton title="Add New User" label="Add New" class="p-button-outlined mr-2"
+                            icon="pi pi-plus" (click)="AddUserDetails()"></button>
+                        <span class="total-txt">{{lstUserMaster?.length>0?'Total Records:
+                        '+filteredValuesLength:''}} </span>
+                    </span>
+                    <span class="p-ml-auto">
+                        <span>
+                            <button *ngIf="lstUserMaster?.length>0" pButton title="Export Data" label=" "
+                                class="p-button-outlined mr-2" icon="pi pi-download"
+                                (click)="exportToItemExcel();"></button>
+                        </span>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                                placeholder="Search..." />
+                        </span>
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="ClinicCode">Home Code <p-sortIcon field="HomeCode"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="ClinicName">Home Name <p-sortIcon field="HomeName"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="UserTypeName">User Type <p-sortIcon field="UserTypeName"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="LoginId">Login Id <p-sortIcon field="LoginId"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="FullName">Name <p-sortIcon field="FullName"></p-sortIcon>
+                    </th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-col let-i="rowIndex">
+                <tr>
+                    <td>{{col.HomeCode}}</td>
+                    <td>{{col.HomeName}}</td>
+                    <td>{{col.UserTypeName}}</td>
+                    <td>{{col.LoginId}}</td>
+                    <td>{{col.FullName}}</td>
+                    <td>{{col.Status==1?'Active':'Inactive'}}</td>
+                    <!-- <td>{{col.DepartmentName}}</td>
+                        <td>{{col.DesignationName}}</td> -->
+                    <td>
+                        <a matTooltip="View/Edit"
+                            (click)="LoadUserDetails(col.UserId);LoadMenuItem(col.UserTypeId,col.UserId)">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
