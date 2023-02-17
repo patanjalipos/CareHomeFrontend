@@ -34,6 +34,10 @@ export class UserMasterComponent implements OnInit {
   lstHomeMaster: any[]=[];
   lstUserType: any[]=[];
   public RegistrationMainModel: any = <any>{};
+  selectedHome:any[]=[];
+  lstFacilityResident:any[]=[];
+  lstResidentfacility:any[]=[];
+  ShowResidentFacilityModel:Boolean=false;
 
   constructor(
     private _ConstServices: ConstantsService,
@@ -69,9 +73,7 @@ export class UserMasterComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    if (UserTypes.SuperAdmin === localStorage.getItem('userTypeId')) {
-      this.LoadHomeMaster();
-    }
+    this.LoadHomeMaster();
     this.LoadUserList();
     this.LoadUserTypeList();
     this.yesterday.setFullYear(this.yesterday.getFullYear() - 130);
@@ -110,6 +112,10 @@ export class UserMasterComponent implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstUserType = tdata;
+            if(this.lstUserType?.length>0)
+            {
+              this.lstUserType=this.lstUserType.filter(f=>f.UserTypeId!=='6075474600f6f4c43c5d54a1');
+            }
           }
           else {
             this.lstUserType = [];
@@ -235,4 +241,37 @@ export class UserMasterComponent implements OnInit {
       event.preventDefault();
     }
   }
+  SetFacility()
+  {
+      if(this.selectedHome?.length>0)
+      {
+        this.selectedHome.map(e=>
+          {
+              if(this.lstFacilityResident.filter(f=>f.HomeId==e)?.length==0)
+              {
+                this.lstFacilityResident.push({"FacilityName":this.lstHomeMaster.find(f=>f.HomeId==e).HomeName,"HomeId":e,"EnableFacility":false,"AutoAssignResident":false,"ResidentList":[]});
+              }
+          });
+
+          this.lstFacilityResident.map(e=>
+            {
+              if(this.selectedHome.filter(f=>f==e.HomeId)?.length==0)
+              {
+                if(this.lstFacilityResident?.length==1)
+                this.lstFacilityResident=[];
+                else
+                this.lstFacilityResident=this.lstFacilityResident.filter(f=>f.HomeId!==e.HomeId);
+              }
+            });
+      }
+      else
+      {
+        this.lstFacilityResident=[];
+      }
+  }
+  ShowResidentDetails(HomeId)
+  {
+      this.ShowResidentFacilityModel=true;
+  }
+  
 }
