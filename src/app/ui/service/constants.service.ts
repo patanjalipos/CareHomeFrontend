@@ -28,3 +28,10 @@ export enum UserTypes {
   Finance="6331db25d3c986311dff200c",
   Billing="6396f00addc59e9aac93b137"
 }
+
+export enum CustomDateFormat {
+  DEF_DATE = "dd-MM-yyyy",
+  DEF_DATE_TIME = "dd-MM-yyyy HH:mm",
+  DEF_DATE_TIME_AMPM = "dd-MM-yyyy HH:mm a" ,
+  CalendarFormat="dd-mm-yy" 
+}

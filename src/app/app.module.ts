@@ -13,6 +13,7 @@ import { IconService } from './ui/service/icon.service';
 import { NodeService } from './ui/service/node.service';
 import { PhotoService } from './ui/service/photo.service';
 import { BlockUIModule } from 'ng-block-ui';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { BlockUIModule } from 'ng-block-ui';
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService,CareService
+        PhotoService, ProductService,CareService,
+        MessageService, 
     ],
     bootstrap: [AppComponent]
 })

@@ -14,10 +14,10 @@ import { AccordionModule } from 'primeng/accordion';
 import { TreeModule } from 'primeng/tree';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ButtonModule } from 'primeng/button';
-import { RippleModule } from 'primeng/ripple';
 import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TreeTableModule } from 'primeng/treetable';
+import { InputTextarea, InputTextareaModule } from 'primeng/inputtextarea';
 
 
 @NgModule({
@@ -34,12 +34,12 @@ import { TreeTableModule } from 'primeng/treetable';
     DropdownModule,
     CheckboxModule,
     InputTextModule,
+    InputTextareaModule,
     InputNumberModule,
     AccordionModule,
     TreeModule,
     OverlayPanelModule,
-    ButtonModule,
-    RippleModule,
+    ButtonModule,   
     CalendarModule,
     MultiSelectModule,
     TreeTableModule,
