@@ -11,8 +11,6 @@ export class ConstantsService {
   public readonly BaseUriUser: string = 'http://localhost:34435/';
   public readonly BaseUriAdmin: string = 'http://localhost:36099/';
   public readonly BaseUriHome: string = 'http://localhost:18157/';
-
-  
 }
 
 export enum UserTypes {
@@ -29,4 +27,11 @@ export enum UserTypes {
   AdminDeo = "62678ac614091e1beade98e6",
   Finance="6331db25d3c986311dff200c",
   Billing="6396f00addc59e9aac93b137"
+}
+
+export enum CustomDateFormat {
+  DEF_DATE = "dd-MM-yyyy",
+  DEF_DATE_TIME = "dd-MM-yyyy HH:mm",
+  DEF_DATE_TIME_AMPM = "dd-MM-yyyy HH:mm a" ,
+  CalendarFormat="dd-mm-yy" 
 }

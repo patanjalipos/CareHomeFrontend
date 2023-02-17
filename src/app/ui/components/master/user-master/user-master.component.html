@@ -34,16 +34,11 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th pSortableColumn="ClinicCode">Home Code <p-sortIcon field="HomeCode"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="ClinicName">Home Name <p-sortIcon field="HomeName"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="UserTypeName">User Type <p-sortIcon field="UserTypeName"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="LoginId">Login Id <p-sortIcon field="LoginId"></p-sortIcon>
-                    </th>
-                    <th pSortableColumn="FullName">Name <p-sortIcon field="FullName"></p-sortIcon>
-                    </th>
+                    <th>Home Code</th>
+                    <th>Home Name</th>
+                    <th>User Type</th>
+                    <th>Login Id</th>
+                    <th>Name</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -55,12 +50,10 @@
                     <td>{{col.UserTypeName}}</td>
                     <td>{{col.LoginId}}</td>
                     <td>{{col.FullName}}</td>
-                    <td>{{col.Status==1?'Active':'Inactive'}}</td>
-                    <!-- <td>{{col.DepartmentName}}</td>
-                        <td>{{col.DesignationName}}</td> -->
+                    <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
                     <td>
                         <a matTooltip="View/Edit"
-                            (click)="LoadUserDetails(col.UserId);LoadMenuItem(col.UserTypeId,col.UserId)">
+                            (click)="LoadUserDetails(col.UserId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -69,3 +62,244 @@
         </p-table>
     </div>
 </div>
+<div class="card" *ngIf="mode!=null">
+    <form #myForm="ngForm">
+        <p-accordion [multiple]="true" activeIndex="0,1">
+            <p-accordionTab header="User access">
+                <div class="row">
+                    <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.SuperAdmin">
+                        <label class="form-label">Home<span class="danger">*</span></label>
+                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                            [(ngModel)]="RegistrationMainModel.HomeId" optionLabel="HomeName"
+                            optionValue="HomeId" [filter]="true" placeholder="--select--"
+                            [style]="{width: '100%'}" #homeref="ngModel">
+                        </p-dropdown>
+                        <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
+                            class="alert alert-danger">
+                            <div *ngIf="homeref.errors?.['required']">Home is required.</div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-3">
+                        <label class="form-label">First Name<span class="danger">*</span></label>
+                        <input pInputText type="text" required class="form-control" name="txtFName"
+                        [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
+                        (keypress)="keyPress1($event)">                                
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" pInputText class="form-control" name="txtMiddleName"
+                            [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
+                            (keypress)="keyPress1($event)">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" pInputText class="form-control" name="txtLname"
+                            [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
+                            (keypress)="keyPress1($event)">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Preferred Name</label>
+                        <input pInputText type="text" class="form-control" name="txtFHName"
+                            [(ngModel)]="RegistrationMainModel.PreferredName"
+                            placeholder="">
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <label class="form-label">Blood Group</label>
+                        <p-dropdown name="ddlBloodGrp" [options]="stlstbloodgrp"
+                            [(ngModel)]="RegistrationMainModel.BloodGroup" optionLabel="name" optionValue="code"
+                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Gender<span class="danger">*</span> </label>
+                        <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
+                            [(ngModel)]="RegistrationMainModel.Gender" optionLabel="name" optionValue="code"
+                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
+                            #genderref="ngModel">
+                        </p-dropdown>
+                        <div *ngIf="genderref.errors &&(genderref.touched || genderref.dirty)"
+                            class="alert alert-danger">
+                            <div *ngIf="genderref.errors?.['required']">Gender is required.</div>
+                        </div>
+                    </div>                                     -->
+                    <div class="col-md-3">
+                        <label class="form-label">Login Id</label>
+                        <input type="text" pInputText disabled="disabled" class="form-control"
+                            placeholder="Login Id" name="txtLoginId"
+                            [(ngModel)]="RegistrationMainModel.LoginId">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Password</label>
+                        <input type="text" pInputText disabled="disabled" class="form-control"
+                            placeholder="Password" name="txtPassword"
+                            [(ngModel)]="RegistrationMainModel.Password">
+                    </div>                    
+                    <div class="col-md-3">
+                        <label class="form-label">Status <span class="danger">*</span></label>
+                        <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
+                            [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
+                            [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
+                        </p-dropdown>
+                    </div>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab header="User details">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">Date Of Birth</label>
+                        <p-calendar [maxDate]="todayDate"
+                            [(ngModel)]="RegistrationMainModel.DateOfBirth"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel" class="iconcal"></p-calendar> 
+                    </div>    
+                    <div class="col-md-3">
+                        <label class="form-label">Title</label>
+                        <p-dropdown [required]="true" name="ddlTitle" [options]="stlsttitle"
+                            [(ngModel)]="RegistrationMainModel.Title" optionLabel="name" optionValue="code"
+                            [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
+                           >
+                        </p-dropdown>                        
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Designation</label>
+                        <input type="text" pInputText name="txtDesignation" class="form-control"
+                            [(ngModel)]="RegistrationMainModel.Designation" (keypress)="keyPress1($event)" />              
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Date employment commenced</label>
+                        <p-calendar [maxDate]="todayDate"
+                            [(ngModel)]="RegistrationMainModel.EmploymentDate"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" #empdateref="ngModel" class="iconcal"></p-calendar>
+                    </div> 
+                </div>
+            </p-accordionTab> 
+            <p-accordionTab header="Role">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">User Type<span class="danger">*</span></label>
+                        <p-dropdown [required]="true"
+                            name="ddlUserType" [options]="lstUserType"
+                            [(ngModel)]="RegistrationMainModel.UserTypeId" optionLabel="UserTypeName"
+                            optionValue="UserTypeId" [filter]="true" placeholder="--select--"
+                            [style]="{width: '100%'}" #usertyperef="ngModel">
+                        </p-dropdown>
+                        <div *ngIf="usertyperef.errors &&(usertyperef.touched || usertyperef.dirty)"
+                            class="alert alert-danger">
+                            <div *ngIf="usertyperef.errors?.['required']">User type is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab> 
+            <p-accordionTab header="Contact details">
+                <div class="row">                    
+                    <div class="col-md-3">
+                        <label class="form-label">Contact address</label>
+                        <input type="text" pInputText id='txtAddress' class="form-control" name="txtAddress"
+                            [(ngModel)]="RegistrationMainModel.Address" (keypress)="keyPress1($event)" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Location</label>
+                        <input type="text" pInputText class="form-control" placeholder=""
+                            name="Location" [(ngModel)]="RegistrationMainModel.Location">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Phone (area - local)</label>
+                        <input type="text" pInputText class="form-control" placeholder=""
+                            name="Phone" [(ngModel)]="RegistrationMainModel.Phone">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Fax (area - local)</label>
+                        <input type="text" pInputText class="form-control" placeholder=""
+                            name="Fax" [(ngModel)]="RegistrationMainModel.Fax">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Pager (area - local)</label>
+                        <input type="text" pInputText class="form-control" placeholder="" name="Pager"
+                            [(ngModel)]="RegistrationMainModel.Pager" (keypress)="keyPress($event)">                        
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Mobile phone </label>
+                        <input type="text" pInputText class="form-control" name="txtContactNumber"
+                            [(ngModel)]="RegistrationMainModel.ContactNumber" (keypress)="keyPress($event)"
+                            placeholder="" pattern="[0-9]{10}$" minlength="10" maxlength="10"
+                            #mobileref="ngModel">
+                        <div *ngIf="mobileref.errors &&(mobileref.touched || mobileref.dirty)"
+                            class="alert alert-danger">
+                            <div *ngIf="mobileref.errors?.['pattern']">Please, Enter 10 digit Mobile
+                                Number.
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="col-md-3">
+                        <label class="form-label">Email address 1</label>
+                        <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
+                            [(ngModel)]="RegistrationMainModel.Email1"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref1="ngModel">
+                        <div *ngIf="emailref1.errors &&(emailref1.touched || emailref1.dirty)"
+                            class="alert alert-danger">
+                            <div [hidden]="!emailref1.errors?.['pattern']">
+                                Invalid pattern
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <label class="form-label">Email address 2</label>
+                        <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
+                            [(ngModel)]="RegistrationMainModel.Email2"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref2="ngModel">
+                        <div *ngIf="emailref2.errors &&(emailref2.touched || emailref2.dirty)"
+                            class="alert alert-danger">
+                            <div [hidden]="!emailref2.errors?.['pattern']">
+                                Invalid pattern
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <label class="form-label">Comments</label>
+                        <textarea rows="3" cols="30"  name="comments" [(ngModel)]="RegistrationMainModel.Comments"  placeholder="" pInputTextarea></textarea>
+                        
+                    </div>
+                </div>                
+            </p-accordionTab>            
+            
+            <p-accordionTab header="Emergency contact">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" pInputText class="form-control"
+                            placeholder="" name="txtEmergencyContactName"
+                            [(ngModel)]="RegistrationMainModel.EmergencyContactName">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" pInputText class="form-control"
+                            placeholder="" name="txtEmergencyContactAddress"
+                            [(ngModel)]="RegistrationMainModel.EmergencyContactAddress">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Telephone</label>
+                        <input type="text" pInputText class="form-control"
+                            placeholder="" name="txtEmergencyContactTelephone"
+                            [(ngModel)]="RegistrationMainModel.EmergencyContactTelephone">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Mobile</label>
+                        <input type="text" pInputText class="form-control"
+                            placeholder="" name="txtEmergencyContactMobile"
+                            [(ngModel)]="RegistrationMainModel.EmergencyContactMobile">
+                    </div>
+                </div>
+            </p-accordionTab>           
+        </p-accordion>                
+            <div class="flex flex-wrap gap-2">
+                <button pButton type="button" label="Submit" (click)="Submit()"
+                    [disabled]="!myForm.form.valid"></button>
+                <button pButton type="button" label="Close" class="p-button-secondary"
+                    (click)="CloseModal()"></button>
+            </div>                
+    </form>
+</div>   
+<p-toast position="left-bottom"></p-toast>
