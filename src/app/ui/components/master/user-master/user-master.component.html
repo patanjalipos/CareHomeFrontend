@@ -52,7 +52,7 @@
                     <td>{{col.FullName}}</td>
                     <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
                     <td>
-                        <a matTooltip="View/Edit"
+                        <a matTooltip="View/Edit" style="cursor: pointer;"
                             (click)="LoadUserDetails(col.UserId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -65,19 +65,23 @@
 <div class="card" *ngIf="mode!=null">
     <form #myForm="ngForm">
         <p-accordion [multiple]="true" activeIndex="0,1">
-            <p-accordionTab header="User access">
+            <p-accordionTab header="Personal Details">
                 <div class="row">
-                    <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.SuperAdmin">
+                    <div class="col-md-3">
                         <label class="form-label">Home<span class="danger">*</span></label>
-                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                        <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
+                            [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeId"
+                            placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
+                        </p-multiSelect>
+                        <!-- <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
                             [(ngModel)]="RegistrationMainModel.HomeId" optionLabel="HomeName"
                             optionValue="HomeId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
-                        </p-dropdown>
-                        <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
+                        </p-dropdown> -->
+                        <!-- <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
                             class="alert alert-danger">
                             <div *ngIf="homeref.errors?.['required']">Home is required.</div>
-                        </div>
+                        </div> -->
                     </div>
                     
                     
@@ -191,8 +195,60 @@
                             <div *ngIf="usertyperef.errors?.['required']">User type is required.</div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Region</label>
+                        <input type="text" pInputText class="form-control"
+                        placeholder="Region" name="txtRegion"
+                        [(ngModel)]="RegistrationMainModel.Region">
+                    </div>
                 </div>
             </p-accordionTab> 
+            <p-accordionTab header="Facility and resident assignments">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p-table #dt67 [value]="lstFacilityResident" responsiveLayout="scroll" styleClass="p-datatable-striped"
+                            [rowHover]="true" [scrollable]="true" scrollHeight="250px">
+                            <ng-template pTemplate="emptymessage" let-columns>
+                                <tr>
+                                    <td [attr.colspan]="4">
+                                        No records found
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Facility Name</th>
+                                    <th>Enable Facility</th>
+                                    <th>Resident Auto-Assign</th>
+                                    <th>Assign to individual residents</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-col let-i="rowIndex">
+                                <tr>
+                                    <td>{{col.FacilityName}}</td>
+                                    <td>
+                                        <p-checkbox                                                    
+                                        name="ChkItemCheckEnableFacility_{{i}}"
+                                        [(ngModel)]="col.EnableFacility" [binary]="true"
+                                        inputId="binary"></p-checkbox>
+                                    </td>
+                                    <td>
+                                        <p-checkbox                                                    
+                                        name="ChkItemCheckEnableAutoAssignResident_{{i}}"
+                                        [(ngModel)]="col.AutoAssignResident" [binary]="true"
+                                        inputId="binary"></p-checkbox>
+                                    </td>
+                                    <td>
+                                        <p-button *ngIf="col.EnableFacility==true" class="print-prew" (click)="$event.stopPropagation();ShowResidentDetails(col.HomeId)">
+                                            Assign Residents</p-button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                
+                </div>
+            </p-accordionTab>
             <p-accordionTab header="Contact details">
                 <div class="row">                    
                     <div class="col-md-3">
@@ -302,4 +358,51 @@
             </div>                
     </form>
 </div>   
+<p-dialog id="ShowResidentFacilityModel"  [(visible)]="ShowResidentFacilityModel" [modal]="true"
+    [style]="{width: '70vw'}" [maximizable]="true" [closeOnEscape]="true" [closable]="true" [draggable]="false"
+    [resizable]="true">
+    <ng-template pTemplate="header">
+        <h3>Resident List Facility</h3>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div class="row">
+            <div class="col-md-12">
+                <p-table #dt67 [value]="lstResidentfacility" responsiveLayout="scroll" styleClass="p-datatable-striped"
+                    [rowHover]="true" [scrollable]="true" scrollHeight="250px">
+                    <ng-template pTemplate="emptymessage" let-columns>
+                        <tr>
+                            <td [attr.colspan]="4">
+                                No records found
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Check</th>
+                            <th>Resident Name</th>
+                            <th>Facility Name</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-col let-i="rowIndex">
+                        <tr>
+                            <td>
+                                <p-checkbox                                                    
+                                [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="col.Checked" [binary]="true"
+                                inputId="binary" (onChange)="CheckUncheckResidentFacility($event,col.UserId)"></p-checkbox>
+                            </td>
+                            <td>
+                               {{col.FullName}}
+                            </td>
+                            <td>
+                               {{col.HomeName}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </ng-template>
+
+</p-dialog>
 <p-toast position="left-bottom"></p-toast>
