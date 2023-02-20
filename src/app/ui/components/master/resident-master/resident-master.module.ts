@@ -18,7 +18,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import {FileUploadModule} from 'primeng/fileupload';
 @NgModule({
   declarations: [
     ResidentMasterComponent
@@ -41,6 +41,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CalendarModule,
     MultiSelectModule,
     TreeTableModule,
+    FileUploadModule,
   ]
 })
 export class ResidentMasterModule { }
