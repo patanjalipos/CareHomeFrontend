@@ -173,7 +173,7 @@ export class UserMasterComponent implements OnInit {
   {
     this.lstFacilityResident=[];
     this.RegistrationMainModel=<any>{};
-    
+
     this.blockUI.start("Please Wait.....");
     this._MasterServices.GetUserMasterById(userId)
       .subscribe
@@ -311,7 +311,7 @@ export class UserMasterComponent implements OnInit {
     this.slectedHomeId=HomeId;
     this.lstResidentfacility=[];
     this.blockUI.start("Please Wait.....");
-    this._MasterServices.GetResidentMasterByHomeId(HomeId,this.RegistrationMainModel.UserId)
+    this._MasterServices.GetResidentMaster(HomeId,true)
       .subscribe
       ({
         next:(data) => {
