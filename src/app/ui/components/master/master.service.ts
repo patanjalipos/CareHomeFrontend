@@ -149,6 +149,18 @@ LoadItemCatgMasterForAccess(): Observable<any> {
     var data = "";
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetUserItemCatgAccessMaster", { "headers": reqHeader, "params": params });
 }
+GetResidentMasterByHomeId(HomeId,UserId): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params=params.append('HomeId',HomeId);
+    params=params.append('UserId',UserId);
+    var data = "";
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentMasterByHomeId", { "headers": reqHeader, "params": params });
+}
 
 
 //#endregion

@@ -38,6 +38,7 @@ export class UserMasterComponent implements OnInit {
   lstFacilityResident:any[]=[];
   lstResidentfacility:any[]=[];
   ShowResidentFacilityModel:Boolean=false;
+  slectedHomeId:string=null;
 
   constructor(
     private _ConstServices: ConstantsService,
@@ -170,6 +171,9 @@ export class UserMasterComponent implements OnInit {
   }
   LoadUserDetails(userId)
   {
+    this.lstFacilityResident=[];
+    this.RegistrationMainModel=<any>{};
+    
     this.blockUI.start("Please Wait.....");
     this._MasterServices.GetUserMasterById(userId)
       .subscribe
@@ -183,11 +187,21 @@ export class UserMasterComponent implements OnInit {
             this.RegistrationMainModel = tdata;
             if(this.RegistrationMainModel?.DateOfBirth!=null && this.RegistrationMainModel?.DateOfBirth!=undefined)
             {
-            var newDate=new Date(this.RegistrationMainModel.DateOfBirth);           
-            this.RegistrationMainModel.DateOfBirth=newDate;
+              var newDate=new Date(this.RegistrationMainModel.DateOfBirth);           
+              this.RegistrationMainModel.DateOfBirth=newDate;
             }
             this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth);           
-            this.mode = "update";            
+            this.mode = "update";    
+            
+            if(data.actionResult.result2!=null)
+            {
+              var tdata1 = JSON.parse(data.actionResult.result2);
+              tdata1 = tdata1 ? tdata1 : [];
+              if(tdata1?.length>0)
+                this.lstFacilityResident=tdata1;
+              else
+                this.lstFacilityResident=[];
+            }
           }
 
         },
@@ -199,7 +213,30 @@ export class UserMasterComponent implements OnInit {
   }
   Submit()
   {
+    this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.AddUpdateUserMaster(this.RegistrationMainModel)
+      .subscribe
+      ({
+        next:(data) => {
+          this.blockUI.stop();
+          if (data.actionResult.success == true) 
+          {
+            this.mode=null;
+            this.LoadUserList();
+            this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });  
+          }
+          else
+          {
+            this.messageService.add({ severity: 'warn', summary: 'Warning Message', detail: data.actionResult.errMsg });  
+          }
 
+        },
+        error: (e) => {
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.Message });
+        },
+      });
   }
   
   CloseModal() {
@@ -243,9 +280,9 @@ export class UserMasterComponent implements OnInit {
   }
   SetFacility()
   {
-      if(this.selectedHome?.length>0)
+      if(this.RegistrationMainModel.Homes?.length>0)
       {
-        this.selectedHome.map(e=>
+        this.RegistrationMainModel.Homes.map(e=>
           {
               if(this.lstFacilityResident.filter(f=>f.HomeId==e)?.length==0)
               {
@@ -255,7 +292,7 @@ export class UserMasterComponent implements OnInit {
 
           this.lstFacilityResident.map(e=>
             {
-              if(this.selectedHome.filter(f=>f==e.HomeId)?.length==0)
+              if(this.RegistrationMainModel.Homes.filter(f=>f==e.HomeId)?.length==0)
               {
                 if(this.lstFacilityResident?.length==1)
                 this.lstFacilityResident=[];
@@ -271,7 +308,55 @@ export class UserMasterComponent implements OnInit {
   }
   ShowResidentDetails(HomeId)
   {
-      this.ShowResidentFacilityModel=true;
+    this.slectedHomeId=HomeId;
+    this.lstResidentfacility=[];
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.GetResidentMasterByHomeId(HomeId,this.RegistrationMainModel.UserId)
+      .subscribe
+      ({
+        next:(data) => {
+          this.blockUI.stop();
+          if (data.actionResult.success == true) 
+          {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : [];
+            this.lstResidentfacility = tdata;
+
+            if(this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0]?.ResidentList?.length>0)
+            {
+              for(let a=0;a<this.lstResidentfacility?.length;a++)
+              {
+                if(this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0]?.ResidentList.filter(f=>f.ResidentId==this.lstResidentfacility[a].UserId)?.length>0)
+                {
+                  this.lstResidentfacility[a].Checked=true;
+                }
+              }
+            }
+            this.ShowResidentFacilityModel=true;
+          }
+          else
+          {
+            this.ShowResidentFacilityModel=false;
+          }
+
+        },
+        error: (e) => {
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.Message });
+        },
+      });
+      
+  }
+  CheckUncheckResidentFacility(event,UserId)
+  {
+      if(event.checked==true)
+      {
+        this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0].ResidentList.push({"ResidentId":UserId});
+      }
+      else
+      {
+        this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0].ResidentList=this.lstFacilityResident?.filter(f=>f.HomeId==this.slectedHomeId)[0]?.ResidentList?.filter(w=>w.ResidentId!=UserId);
+      }
   }
   
 }

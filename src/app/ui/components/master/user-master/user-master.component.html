@@ -52,7 +52,7 @@
                     <td>{{col.FullName}}</td>
                     <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
                     <td>
-                        <a matTooltip="View/Edit"
+                        <a matTooltip="View/Edit" style="cursor: pointer;"
                             (click)="LoadUserDetails(col.UserId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
@@ -70,7 +70,7 @@
                     <div class="col-md-3">
                         <label class="form-label">Home<span class="danger">*</span></label>
                         <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
-                            [(ngModel)]="selectedHome" optionLabel="HomeName" optionValue="HomeId"
+                            [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeId"
                             placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
                         </p-multiSelect>
                         <!-- <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
@@ -387,9 +387,9 @@
                         <tr>
                             <td>
                                 <p-checkbox                                                    
-                                name="ChkFacilityResident_{{i}}"
+                                [ngModelOptions]="{standalone: true}"
                                 [(ngModel)]="col.Checked" [binary]="true"
-                                inputId="binary"></p-checkbox>
+                                inputId="binary" (onChange)="CheckUncheckResidentFacility($event,col.UserId)"></p-checkbox>
                             </td>
                             <td>
                                {{col.FullName}}
