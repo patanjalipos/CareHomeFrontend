@@ -8,6 +8,8 @@ export class ConstantsService {
   constructor() { }
   public IsLocal: boolean = false;
   public IsShowNavBar: boolean = true;
+  public ActiveMenuName: string = "";
+  
   public readonly BaseUriUser: string = 'http://localhost:34435/';
   public readonly BaseUriAdmin: string = 'http://localhost:36099/';
   public readonly BaseUriHome: string = 'http://localhost:18157/';
