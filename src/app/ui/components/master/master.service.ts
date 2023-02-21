@@ -227,16 +227,13 @@ GetResidentMasterById(id: string): Observable<any> {
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentMasterById", { "headers": reqHeader, "params": params });
 }
 
-AddUpdateResidentMaster(obj: any): Observable<any> {
+AddUpdateResidentMaster(obj: FormData): Observable<any> {
     let reqHeader = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    params = params.append('loginId', localStorage.getItem('userId'));
-    var data = JSON.stringify(obj).toString();
-
-
+    var data = obj;//JSON.stringify(obj).toString();
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddUpdateResidentMaster", data, { "headers": reqHeader, "params": params });
 }   
 

@@ -10,6 +10,7 @@ export class ConstantsService {
   public IsShowNavBar: boolean = true;
   public ActiveMenuName: string = "";
   
+  public readonly BaseURIFileServer: string = "http://localhost:8080/";
   public readonly BaseUriUser: string = 'http://localhost:34435/';
   public readonly BaseUriAdmin: string = 'http://localhost:36099/';
   public readonly BaseUriHome: string = 'http://localhost:18157/';
