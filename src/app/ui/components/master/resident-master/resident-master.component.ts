@@ -31,7 +31,8 @@ export class ResidentMasterComponent implements OnInit {
   stlstgender: any[];
   stlstmaritalstatus: any[];
   stlststatus: any[]=[];
-  
+  SelectedFile:any[]=[];
+  profileSrc = null;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -59,6 +60,7 @@ export class ResidentMasterComponent implements OnInit {
       { name: 'Active', code: 1 },
       { name: 'Inactive', code: 0 }
     ];
+    this.profileSrc = this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
    }
 
   ngOnInit(): void {
@@ -139,6 +141,7 @@ export class ResidentMasterComponent implements OnInit {
   AddResident()
   {
     this.mode = "add";
+    this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
     this.ResidentMaster.Status = 1;   
     if (UserTypes.SuperAdmin !== localStorage.getItem('userTypeId')) {
@@ -147,6 +150,7 @@ export class ResidentMasterComponent implements OnInit {
   }
   LoadResidentDetails(id)
   {
+    this.SelectedFile = [];
     this.blockUI.start("Please Wait.....");
     this._MasterServices.GetResidentMasterById(id)
       .subscribe
@@ -158,6 +162,10 @@ export class ResidentMasterComponent implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
+            if(this.ResidentMaster?.DateOfBirth!=null && this.ResidentMaster?.DateOfBirth!=undefined)
+            {
+              this.ResidentMaster.DateOfBirth = new Date(this.ResidentMaster.DateOfBirth);
+            }
             this.mode = "update";            
           }
 
@@ -168,10 +176,33 @@ export class ResidentMasterComponent implements OnInit {
         },
       });
   }
+  fileUploader(event) {
+    this.SelectedFile = [];
+    for (let file of event.files) {
+      this.SelectedFile.push(file);
+    }
+}
+fileUploaderReset()
+{
+  this.SelectedFile = [];
+}
+RemoveProfileImage(){
+  this.ResidentMaster.ProfileImage=null;
+  this.SelectedFile = [];
+}
   Submit()
   {
+    this.ResidentMaster.CreatedBy = localStorage.getItem('userId');  
+    this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(this.ResidentMaster));
+    if(this.SelectedFile?.length > 0){
+      for (let file of this.SelectedFile) {
+        formData.append('files[]', file);
+      }
+    }
     this.blockUI.start("Please Wait.....");
-      this._MasterServices.AddUpdateResidentMaster(this.ResidentMaster)
+      this._MasterServices.AddUpdateResidentMaster(formData)
         .subscribe
         ({
           next:(data) => {

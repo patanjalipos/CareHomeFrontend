@@ -45,7 +45,7 @@
                         <!-- <td><img [src]="'assets/ui/images/avatar/' + dt.image" class="table-image"></td> -->
                         <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                          <td>
-                            <a matTooltip="View/Edit" (click)="LoadResidentDetails(dt.MenuItemId)">
+                            <a matTooltip="View/Edit" (click)="LoadResidentDetails(dt.ResidentMasterId)">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                         </td> 
@@ -100,9 +100,17 @@
                             [(ngModel)]="ResidentMaster.PreferredName"
                             placeholder="">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6" *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
                         <label class="form-label">Resident Photo</label>
-                        <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" [maxFileSize]="1000000" chooseLabel="Browse"></p-fileUpload>
+                        <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*" [maxFileSize]="1000000" (onSelect)="fileUploader($event)" (onClear)="fileUploaderReset();"
+                        (onRemove)="fileUploaderReset();"></p-fileUpload>
+                    </div>
+                    <div class="col-md-3" *ngIf="(ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!='')">
+                        <label class="form-label">Resident Photo</label>
+                        <div align="left">
+                            <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}">
+                          </div>
+                          <i title="Remove Photo" (click)="RemoveProfileImage()" class="fa fa-times removeicon" aria-hidden="true"></i>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Status <span class="danger">*</span></label>
