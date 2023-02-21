@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UserMasterRoutingModule } from './user-master-routing.module';
-import { UserMasterComponent } from './user-master.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResidentMasterRoutingModule } from './resident-master-routing.module';
+import { ResidentMasterComponent } from './resident-master.component';
+import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
@@ -18,18 +18,15 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DialogModule } from 'primeng/dialog';
-
-
+import {FileUploadModule} from 'primeng/fileupload';
 @NgModule({
   declarations: [
-    UserMasterComponent
+    ResidentMasterComponent
   ],
   imports: [
     CommonModule,
-    UserMasterRoutingModule,
+    ResidentMasterRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     ToastModule,
     TableModule,
     DropdownModule,
@@ -44,7 +41,7 @@ import { DialogModule } from 'primeng/dialog';
     CalendarModule,
     MultiSelectModule,
     TreeTableModule,
-    DialogModule
+    FileUploadModule,
   ]
 })
-export class UserMasterModule { }
+export class ResidentMasterModule { }

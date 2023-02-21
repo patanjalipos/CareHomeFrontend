@@ -170,7 +170,13 @@ export class AppMenuComponent implements OnInit {
                         label: 'Master', icon: 'fa-solid fa-key',
                         items: [
                             {
+                                label: 'Menu Master', icon: 'fa-solid fa-bars',routerLink: ['/master/menu-master'],queryParams:[]
+                            },
+                            {
                                 label: 'User Master', icon: 'fa-solid fa-user',routerLink: ['/master/user-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Resident Master', icon: 'fa-solid fa-user',routerLink: ['/master/resident-master'],queryParams:[]
                             }
                         ]
                     },
