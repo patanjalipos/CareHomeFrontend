@@ -214,3 +214,20 @@ body{ background-color: #F3F4F4;font-family: 'Poppins', sans-serif;}
 .profile-box .detail-table .table tr {  line-height: 36px; }
 
 .profile-box::before {background: url(../src/assets/Images/chair.png); width: 332px; height: 312px; position: absolute; content: ''; bottom: -16px; }
+.p-dropdown, .form-control { height: 44px; border-radius: 6px;}
+
+.p-fileupload { position: relative !important;}
+.p-fileupload-content { padding: 0px !important; width: 100%;   min-height: 50px; }
+.p-fileupload .p-fileupload-row > div {
+    padding: 0 !important;
+}
+
+.p-fileupload-row>div { width: auto !important;}
+.p-fileupload .p-progressbar { height: auto; }
+.p-fileupload-row {
+    padding: 5px;
+    border-bottom: 1px solid #e3e3e3;}
+    .wd-30 { width: 30% !important; float: left;}
+    .wd-50 { width: 50% !important;  float: left;}
+    .wd20 { width: 15% !important; float: left;}
+    .bdr6 { border-radius: 6px;}

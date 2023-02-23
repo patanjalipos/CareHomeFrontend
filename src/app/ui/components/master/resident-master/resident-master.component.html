@@ -100,24 +100,30 @@
                             [(ngModel)]="ResidentMaster.PreferredName"
                             placeholder="">
                     </div>
-                    <div class="col-md-6" *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
-                        <label class="form-label">Resident Photo</label>
-                        <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*" [maxFileSize]="1000000" (onSelect)="fileUploader($event)" (onClear)="fileUploaderReset();"
-                        (onRemove)="fileUploaderReset();"></p-fileUpload>
-                    </div>
-                    <div class="col-md-3" *ngIf="(ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!='')">
-                        <label class="form-label">Resident Photo</label>
-                        <div align="left">
-                            <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}">
-                          </div>
-                          <i title="Remove Photo" (click)="RemoveProfileImage()" class="fa fa-times removeicon" aria-hidden="true"></i>
-                    </div>
                     <div class="col-md-3">
                         <label class="form-label">Status <span class="danger">*</span></label>
                         <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
                             [(ngModel)]="ResidentMaster.Status" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
                         </p-dropdown>
+                    </div>
+                    <div class="col-md-12" *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
+                        <label class="form-label">Resident Photo</label>
+                        <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*" [multiple]="true" [maxFileSize]="1000000" (onSelect)="fileUploader($event)" (onClear)="fileUploaderReset();"
+                        (onRemove)="fileUploaderReset();"></p-fileUpload>
+                    </div>
+                    <div class="row m-0">
+                    <div class="col-md-3 mt-2 border p-2 bdr6" *ngIf="(ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!='')">
+                        <div align="left" class="wd-30">
+                            <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}">
+                          </div>
+                          <div class="wd-50">
+                        <label class="form-label">Resident Photo</label>
+                    </div>
+                        <div class="wd-20">
+                          <i title="Remove Photo" (click)="RemoveProfileImage()" class="fa fa-times removeicon p-button" aria-hidden="true"></i>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </p-accordionTab>
