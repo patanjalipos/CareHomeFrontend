@@ -75,7 +75,7 @@ export class MenuItemMasterComponent implements OnInit{
         },
         error: (e) => {
           this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.Message });
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }
@@ -97,7 +97,7 @@ export class MenuItemMasterComponent implements OnInit{
         },
         error: (e) => {
           this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.Message });
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }  
@@ -128,7 +128,7 @@ export class MenuItemMasterComponent implements OnInit{
         },
         error: (e) => {
           this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.Message });
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }
@@ -160,7 +160,7 @@ export class MenuItemMasterComponent implements OnInit{
         },
         error: (e) => {
           this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.Message });
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }

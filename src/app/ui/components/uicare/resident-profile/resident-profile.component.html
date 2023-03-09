@@ -4,7 +4,7 @@
     <div class="backbutton-cvr">
         <h5>Resident Profile <span class="backbutton"><button type="button" (click)="BacktoResidentList()" class="btn">Back</button></span> </h5>
     </div>
-    <div class="Profile-cvr">
+    <!-- <div class="Profile-cvr">
         <div class="Profile-left">
             <div class="pic">
                 <img [src]="'assets/ui/images/avatar/' + objPatient.image" [alt]="objPatient.name" class="w-6 shadow-2 my-1 mx-0" />
@@ -48,9 +48,57 @@
             {{objPatient.DrugAllergies}}
         </div>
         </div>
+    </div> -->
+    <div class="profile-box">
+        <div class="profile-img">
+            <img [src]="'assets/ui/images/avatar/' + objPatient.image" [alt]="objPatient.name" class="w-6 shadow-2 my-1 mx-0">
+        </div>
+        <h1>{{objPatient.name}}</h1>
+        <div class="detail-table">
+        <table class="table">
+            <tr>
+                <td>Dob</td>
+                <td>:</td>
+                <td>{{objPatient.DOB}}</td>
+            </tr>
+            <tr>
+                <td>Contact No.</td>
+                <td>:</td>
+                <td> {{objPatient.ContactNo}}</td>
+            </tr>
+            <tr>
+                <td>Date of Add.</td>
+                <td>:</td>
+                <td>{{objPatient.admDate}}</td>
+            </tr>
+            <tr>
+                <td>Blood Group</td>
+                <td>:</td>
+                <td>{{objPatient.BloodGroup}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>:</td>
+                <td>{{objPatient.Address}}</td>
+            </tr>
+            <tr>
+                <td>Likes:</td>
+                <td>:</td>
+                <td>{{objPatient.Likes}}</td>
+            </tr>
+            <tr>
+                <td>Dislikes</td>
+                <td>:</td>
+                <td>{{objPatient.Dislikes}}</td>
+            </tr>
+            <tr>
+                <td>Drug Allergies</td>
+                <td>:</td>
+                <td>{{objPatient.DrugAllergies}}</td>
+            </tr>
+        </table>
     </div>
-
-
+    </div>
 </div>
 </div>
 
