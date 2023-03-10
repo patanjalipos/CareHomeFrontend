@@ -3,7 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { ResidentIndicatorsRoutingModule } from './resident-indicators-routing.module';
 import { ResidentIndicatorsComponent } from './resident-indicators.component';
-
+import {FormsModule} from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from "primeng/dropdown";
+import { InputTextModule } from "primeng/inputtext";
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -11,7 +17,14 @@ import { ResidentIndicatorsComponent } from './resident-indicators.component';
   ],
   imports: [
     CommonModule,
-    ResidentIndicatorsRoutingModule
+    ResidentIndicatorsRoutingModule,
+    FormsModule,
+    ToastModule,
+    TableModule,
+    ButtonModule,
+    DropdownModule,
+    InputTextModule,
+    CheckboxModule
   ],
   exports:[ResidentIndicatorsComponent]
 })
