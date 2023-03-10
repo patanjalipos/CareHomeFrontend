@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="profile-box">
+                <div class="profile-img">
+                    <img src="../../../../../assets/Images/profile.png">
+                </div>
+                <h1>Dianne Russell</h1>
+                <div class="detail-table">
+                <table class="table">
+                    <tr>
+                        <td>Dob</td>
+                        <td>:</td>
+                        <td>01-01-1966</td>
+                    </tr>
+                    <tr>
+                        <td>Contact No.</td>
+                        <td>:</td>
+                        <td>9876543210</td>
+                    </tr>
+                    <tr>
+                        <td>Date of Add.</td>
+                        <td>:</td>
+                        <td>16-11-2022</td>
+                    </tr>
+                    <tr>
+                        <td>Blood Group</td>
+                        <td>:</td>
+                        <td>A+ve</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td>41-43, United Kingdom</td>
+                    </tr>
+                    <tr>
+                        <td>Likes:</td>
+                        <td>:</td>
+                        <td> Fry ups, Toast</td>
+                    </tr>
+                    <tr>
+                        <td>Dislikes</td>
+                        <td>:</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>Drug Allergies</td>
+                        <td>:</td>
+                        <td>Paracetamol</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card pb-0 profile-tab">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Allergies</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="resident-indicators-tab" data-bs-toggle="tab" data-bs-target="#resident-indicators" type="button" role="tab" aria-controls="resident-indicators" aria-selected="false">Resident indicators</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="clinical-information-tab" data-bs-toggle="tab" data-bs-target="#clinical-information" type="button" role="tab" aria-controls="clinical-information" aria-selected="false">Clinical information</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="baseline-health-information-tab" data-bs-toggle="tab" data-bs-target="#baseline-health-information" type="button" role="tab" aria-controls="baseline-health-information" aria-selected="false">Baseline health information</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="alert-preferences-tab" data-bs-toggle="tab" data-bs-target="#alert-preferences" type="button" role="tab" aria-controls="alert-preferences" aria-selected="false">Alert preferences</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="chart-preferences-tab" data-bs-toggle="tab" data-bs-target="#chart-preferences" type="button" role="tab" aria-controls="chart-preferences" aria-selected="false">Chart preferences</button>
+                  </li>
+              </ul>
+        </div>
+        <div class="card">
+            
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <app-allergies></app-allergies>
+                </div>
+                <div class="tab-pane fade" id="resident-indicators" role="tabpanel" aria-labelledby="resident-indicators-tab">
+                    <app-resident-indicators></app-resident-indicators>
+                </div>
+                <div class="tab-pane fade" id="clinical-information" role="tabpanel" aria-labelledby="clinical-information-tab">
+                    <app-clinical-information></app-clinical-information>
+                </div>
+                <div class="tab-pane fade" id="baseline-health-information" role="tabpanel" aria-labelledby="baseline-health-information-tab">
+                    <app-baseline-health-information></app-baseline-health-information>
+                </div>
+                <div class="tab-pane fade" id="alert-preferences" role="tabpanel" aria-labelledby="alert-preferences-tab">
+                    <app-alert-preferences></app-alert-preferences>
+                </div>
+                <div class="tab-pane fade" id="chart-preferences" role="tabpanel" aria-labelledby="chart-preferences-tab">
+                    <app-chart-preferences></app-chart-preferences>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
