@@ -14,6 +14,12 @@ export class ClinicalInformationComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.clinicalinformation = {
+      'CoronaVirus':'Does not have Coronavirus (COVID-19)',
+      'Diet' :'Macrobiotic,Semi-vegetarian,Lactovegetarian,Vegan',
+      'Diagnosis':'Chlamydia,Cyclosporiasis',
+      'OtherInfo':'no'
+    }
     //const data$ = this.careService.getAllergiesList();
     //this.lstResidentIndicators = await lastValueFrom(data$);
     //console.log('lstallergies', this.lstallergies);    
@@ -28,7 +34,7 @@ export class ClinicalInformationComponent implements OnInit {
   }
   save()
   {
-   
+    this.mode='view'
   }
 
 }
