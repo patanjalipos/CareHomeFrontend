@@ -177,7 +177,7 @@ h5.label-name {
 
 /*Theme*/
 body{ background-color: #F3F4F4;font-family: 'Poppins', sans-serif;}
-.btn-primary { background:#023C40 ; border-color:#023C40 ;}
+.btn-primary, .p-button { background:#023C40 ; border-color:#023C40 ;}
 .layout-sidebar { width: 246px; top: 0 !important; padding: 1rem; background: #023C40; color: #fff;}
 .layout-topbar { width: 81%; right: 0 !important; left: auto; background: none; box-shadow: none; padding: 0; position: relative; margin-left: 240px;}
 .layout-wrapper.layout-static.layout-static-inactive .layout-sidebar {left: 70px; width: auto; }
