@@ -57,7 +57,7 @@
 <div class="card" *ngIf="mode!=null">
     <form #myForm="ngForm">
         <p-accordion [multiple]="true" activeIndex="0,1">
-            <p-accordionTab header="Resident name">
+            <p-accordionTab header="Resident name" *ngIf="ResidentMasterId==null">
                 <div class="row">
                     <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.SuperAdmin">
                         <label class="form-label">Home<span class="danger">*</span></label>
@@ -127,9 +127,8 @@
                     </div>
                 </div>
             </p-accordionTab>
-           
-           
-            <p-accordionTab header="Resident demographics">
+
+            <p-accordionTab header="Resident demographics" *ngIf="ResidentMasterId==null">
                 <div class="row">                    
                     <div class="col-md-3">
                         <label class="form-label">Date Of Birth <span class="danger">*</span></label>
@@ -188,16 +187,79 @@
                           </p-dropdown>                        
                       </div>
                 </div>                
-            </p-accordionTab>            
-            
+            </p-accordionTab>  
+
+            <p-accordionTab header="Admission Details" *ngIf="ResidentMasterId!=null">
+                <div class="row">                    
+                    <div class="col-md-3">
+                        <label class="form-label">Status<span class="danger">*</span></label>
+                          <p-dropdown [required]="true" name="ddlCountry" [options]="stlststatus"
+                            [(ngModel)]="ResidentBookingDetails.Status" optionLabel="name"
+                            optionValue="code" [filter]="true" placeholder="Choose Status"
+                            [style]="{width: '100%'}">
+                          </p-dropdown>
+                    </div>    
+                    <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.Admin">
+                        <label class="form-label">Residency<span class="danger">*</span></label>
+                        <p-dropdown [required]="true" name="ddlHomee" [options]="lstHomeMaster"
+                            [(ngModel)]="ResidentBookingDetails.HomeId" optionLabel="HomeName"
+                            optionValue="HomeId" [filter]="true" placeholder="--select--"
+                            [style]="{width: '100%'}" #homeref="ngModel">
+                        </p-dropdown>                        
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Dependency level<span class="danger">*</span></label>
+                          <p-dropdown name="ddlDependencyMaster" [required]="true" [options]="lstDependencyMaster"
+                            [(ngModel)]="ResidentBookingDetails.Dependencylevel" optionLabel="name"
+                            optionValue="code" [filter]="true" placeholder="Choose Dependency"
+                            [style]="{width: '100%'}">
+                          </p-dropdown>
+                    </div>    
+                    <div class="col-md-3">
+                        <label class="form-label">Location<span class="danger">*</span></label>
+                          <p-dropdown name="ddlCountry" [required]="true" [options]="lstCountryMaster"
+                            [(ngModel)]="ResidentBookingDetails.CountryId" optionLabel="name"
+                            optionValue="CountryId" [filter]="true" placeholder="Choose country"
+                            [style]="{width: '100%'}">
+                          </p-dropdown>
+                    </div> 
+                    <div class="col-md-3">
+                        <label class="form-label">Room<span class="danger">*</span></label>
+                          <p-dropdown name="ddlRoom" [required]="true" [options]="lstRoomMaster"
+                            [(ngModel)]="ResidentBookingDetails.RoomId" optionLabel="name"
+                            optionValue="code" [filter]="true" placeholder="Choose Room"
+                            [style]="{width: '100%'}">
+                          </p-dropdown>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Last date of admission<span class="danger">*</span></label>
+                        <p-calendar [required]="true" [maxDate]="todayDate"
+                            [(ngModel)]="ResidentBookingDetails.LastAdmDate"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" #lastdtref="ngModel" class="iconcal"></p-calendar> 
+                    </div>  
+                    <div class="col-md-3">
+                        <label class="form-label">Initial Admission Date<span class="danger">*</span></label>
+                        <p-calendar [required]="true" [maxDate]="todayDate"
+                            [(ngModel)]="ResidentBookingDetails.InitialAdmDate"
+                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                            [dateFormat]="customDateFormat.CalendarFormat" #initialadmdateref="ngModel" class="iconcal"></p-calendar> 
+                    </div>  
+                    <div class="col-md-3">
+                        <label class="form-label">Departure Reason</label>
+                        <input pInputText type="text" class="form-control" name="txtDepartureReason"
+                        [(ngModel)]="ResidentBookingDetails.DepartureReason"
+                        placeholder="">
+                    </div>  
+                </div>                
+            </p-accordionTab>      
                  
         </p-accordion>                
-            <div class="flex flex-wrap gap-2">
-                <button pButton type="button" label="Submit" (click)="Submit()"
-                    [disabled]="!myForm.form.valid"></button>
-                <button pButton type="button" label="Close" class="p-button-secondary"
-                    (click)="CloseModal()"></button>
-            </div>                
+            <div class="flex flex-wrap gap-2 mt-2">
+                <button *ngIf="ResidentMasterId==null" pButton type="button" label="Submit" (click)="Submit()" [disabled]="!myForm.form.valid"></button>
+                <button *ngIf="ResidentMasterId!=null" pButton type="button" label="Submit" (click)="SubmitAdmissionForm()" [disabled]="!myForm.form.valid"></button>
+                <button pButton type="button" label="Close" class="p-button-secondary" (click)="CloseModal()"></button>
+            </div>
     </form>
 </div>  
 <p-toast position="left-bottom"></p-toast>
