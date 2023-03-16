@@ -152,7 +152,7 @@
                             placeholder="">
                     </div>
                     <div class="col-md-3">                        
-                          <label>Country of birth</label>
+                          <label class="form-label">Country of birth</label>
                           <p-dropdown name="ddlCountry" [options]="lstCountryMaster"
                             [(ngModel)]="ResidentMaster.CountryId" optionLabel="name"
                             optionValue="CountryId" [filter]="true" placeholder="Choose country"
@@ -179,7 +179,7 @@
                             placeholder="">
                     </div>
                     <div class="col-md-3">                      
-                          <label for="">Marital status</label>
+                          <label class="form-label" for="">Marital status</label>
                           <p-dropdown name="ddlMaritalStatus" [options]="stlstmaritalstatus"
                             [(ngModel)]="ResidentMaster.MaritalStatus" optionLabel="name" optionValue="code"
                              [filter]="true" placeholder="Choose status"
