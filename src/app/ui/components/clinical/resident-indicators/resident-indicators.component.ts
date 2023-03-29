@@ -35,9 +35,9 @@ export class ResidentIndicatorsComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    //const data$ = this.careService.getAllergiesList();
-    //this.lstResidentIndicators = await lastValueFrom(data$);
-    //console.log('lstallergies', this.lstallergies);    
+    const data$ = this.careService.getResidentIndicatorList();
+    this.lstResidentIndicators = await lastValueFrom(data$);
+    console.log('lstResidentIndicators', this.lstResidentIndicators);    
   }
   edit()
   {
@@ -67,7 +67,9 @@ export class ResidentIndicatorsComponent implements OnInit {
     this.ResidentIndicators--;
     console.log(this.AddResidentIndicators)
   }
-  filterResidentIndicators(){
+  async filterResidentIndicators(){
+    const data$ = this.careService.getResidentIndicatorList();
+    this.lstResidentIndicators = await lastValueFrom(data$);
     this.lstResidentIndicators = this.lstResidentIndicators.filter(e=>e.IsEnabled==this.status)
   }
 }

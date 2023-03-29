@@ -26,6 +26,7 @@ export class ResidentMasterComponent implements OnInit {
   lstDependencyMaster: any[]=[];
   lstRoomMaster: any[]=[];
   lstResidentMaster: any[]=[];
+  lstResidentIndicator: any[]=[];
   public ResidentMaster: any = <any>{};
   public ResidentBookingDetails: any = <any>{};
   selectedUserType: any[]=[];
@@ -37,6 +38,8 @@ export class ResidentMasterComponent implements OnInit {
   SelectedFile:any[]=[];
   profileSrc = null;
   ResidentMasterId = null;
+  //funding
+  stlstfunding: any[];
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -73,10 +76,16 @@ export class ResidentMasterComponent implements OnInit {
       { name: 'End of life', code: 'End of life' }
     ];
     this.lstRoomMaster = [
-      { name: 'Delux', code: '302' },
-      { name: 'King', code: '303' },
-      { name: 'Single', code: '305' },
-    ]
+      { name: '302', code: '302' },
+      { name: '303', code: '303' },
+      { name: '305', code: '305' },
+    ];
+    this.stlstfunding = [
+      { name: 'Continuing NHS', code: 'Continuing NHS' },
+      { name: 'Private', code: 'Private' },
+      { name: 'Responsible Local Authority', code: 'Responsible Local Authority' },
+      { name: 'Private/Responsible Local Authority', code: 'Private/Responsible Local Authority' }
+    ];
     this.profileSrc = this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
    }
 
@@ -212,7 +221,6 @@ RemoveProfileImage(){
 }
   Submit()
   {
-    alert('Submit');
     this.ResidentMaster.CreatedBy = localStorage.getItem('userId');  
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
     console.log('ResidentMaster',this.ResidentMaster);
@@ -242,7 +250,6 @@ RemoveProfileImage(){
         });
   }
   SubmitAdmissionForm(){
-    alert('SubmitAdmissionForm');
     this.ResidentBookingDetails.CreatedBy = localStorage.getItem('userId');  
     this.ResidentBookingDetails.ModifiedBy = localStorage.getItem('userId'); 
     this.ResidentBookingDetails.ResidentMasterId = this.ResidentMasterId; 

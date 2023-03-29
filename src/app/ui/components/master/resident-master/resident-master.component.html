@@ -56,7 +56,7 @@
 </div>
 <div class="card" *ngIf="mode!=null">
     <form #myForm="ngForm">
-        <p-accordion [multiple]="true" activeIndex="0,1">
+        <p-accordion [multiple]="true" activeIndex="0,1,2,3,4,5">
             <p-accordionTab header="Resident name" *ngIf="ResidentMasterId==null">
                 <div class="row">
                     <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.SuperAdmin">
@@ -127,7 +127,6 @@
                     </div>
                 </div>
             </p-accordionTab>
-
             <p-accordionTab header="Resident demographics" *ngIf="ResidentMasterId==null">
                 <div class="row">                    
                     <div class="col-md-3">
@@ -188,12 +187,105 @@
                       </div>
                 </div>                
             </p-accordionTab>  
-
+            <p-accordionTab header="Funding" *ngIf="ResidentMasterId==null">
+                <div class="row">                    
+                    <div class="col-md-3">
+                        <label class="form-label">Funding <span class="danger">*</span></label>
+                        <p-dropdown [required]="true" name="ddlFunding" [options]="stlstfunding"
+                            [(ngModel)]="ResidentMaster.Gender" optionLabel="name" optionValue="code"
+                            [filter]="true" placeholder="Choose Funding" [style]="{width: '100%'}"
+                            #Fundingref="ngModel">
+                        </p-dropdown>                        
+                    </div> 
+                     <div class="col-md-3">
+                        <label class="form-label">Payer Details - Name</label>
+                        <input pInputText type="text" class="form-control" name="txtName"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Payer Details - Address</label>
+                        <input pInputText type="text" class="form-control" name="txtAddress"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Payer Details - Postcode</label>
+                        <input pInputText type="text" class="form-control" name="txtPostcode"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Payer Details - Telephone</label>
+                        <p-inputNumber [(ngModel)]="ResidentMaster.MySelfDetails" name="txtTelephone"></p-inputNumber>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Payer Details - relationship to resident</label>
+                        <input pInputText type="text" class="form-control" name="txtrelationship"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                </div>                
+            </p-accordionTab> 
+            <p-accordionTab header="Healthcare details" *ngIf="ResidentMasterId==null">
+                <div class="row">                    
+                    <div class="col-md-3">
+                        <label class="form-label">NHS/CHI Number</label>
+                        <input pInputText type="text" class="form-control" name="txtNHS"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">National Insurance Number</label>
+                        <input pInputText type="text" class="form-control" name="txtInsuranceNumber"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <br>
+                    <span><b>Memebership Details</b></span> 
+                    <div class="col-md-3 mt-2">
+                        <label class="form-label">Private health insurance provider</label>
+                        <input pInputText type="text" class="form-control" name="txtPrivatehealth"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Memebers number</label>
+                        <p-inputNumber [(ngModel)]="ResidentMaster.MySelfDetails" name="Memebersnumber"></p-inputNumber>
+                    </div>
+                </div>                
+            </p-accordionTab>
+            <p-accordionTab header="Resident preferences" *ngIf="ResidentMasterId==null">
+                <div class="row">   
+                    <div class="field-checkbox col-md-3">
+                        <p-checkbox [(ngModel)]="ResidentMaster.MySelfDetails" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
+                        <label for="binary"><b>DNAR/DNACPR is in place?</b></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">National Insurance Number</label>
+                        <input pInputText type="text" class="form-control" name="txtNationalInsuranceNumber"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                    <br>
+                    <span><b>Funeral preferences</b></span> 
+                    <div class="col-md-3 mt-2">
+                        <label class="form-label">Private health insurance provider</label>
+                        <input pInputText type="text" class="form-control" name="txtphinsurance"
+                            [(ngModel)]="ResidentMaster.MySelfDetails"
+                            placeholder="">
+                    </div>
+                     <div class="col-md-3 mt-2">
+                        <label class="form-label">Memebers number</label>
+                        <p-inputNumber [(ngModel)]="ResidentMaster.MySelfDetails" name="Memebersnumber"></p-inputNumber>
+                    </div>
+                </div>                
+            </p-accordionTab>
             <p-accordionTab header="Admission Details" *ngIf="ResidentMasterId!=null">
                 <div class="row">                    
                     <div class="col-md-3">
                         <label class="form-label">Status<span class="danger">*</span></label>
-                          <p-dropdown [required]="true" name="ddlCountry" [options]="stlststatus"
+                          <p-dropdown [required]="true" name="ddlStatuss" [options]="stlststatus"
                             [(ngModel)]="ResidentBookingDetails.Status" optionLabel="name"
                             optionValue="code" [filter]="true" placeholder="Choose Status"
                             [style]="{width: '100%'}">
@@ -217,7 +309,7 @@
                     </div>    
                     <div class="col-md-3">
                         <label class="form-label">Location<span class="danger">*</span></label>
-                          <p-dropdown name="ddlCountry" [required]="true" [options]="lstCountryMaster"
+                          <p-dropdown name="ddllocation" [required]="true" [options]="lstCountryMaster"
                             [(ngModel)]="ResidentBookingDetails.CountryId" optionLabel="name"
                             optionValue="CountryId" [filter]="true" placeholder="Choose country"
                             [style]="{width: '100%'}">
