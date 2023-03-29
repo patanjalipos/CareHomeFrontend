@@ -23,8 +23,12 @@ export class ResidentMasterComponent implements OnInit {
   mode: string = null;
   lstHomeMaster: any[]=[];
   lstCountryMaster: any[]=[];
+  lstDependencyMaster: any[]=[];
+  lstRoomMaster: any[]=[];
   lstResidentMaster: any[]=[];
+  lstResidentIndicator: any[]=[];
   public ResidentMaster: any = <any>{};
+  public ResidentBookingDetails: any = <any>{};
   selectedUserType: any[]=[];
   filteredValuesLength:number=0;
   stlsttitle: any[];
@@ -33,6 +37,9 @@ export class ResidentMasterComponent implements OnInit {
   stlststatus: any[]=[];
   SelectedFile:any[]=[];
   profileSrc = null;
+  ResidentMasterId = null;
+  //funding
+  stlstfunding: any[];
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -60,6 +67,25 @@ export class ResidentMasterComponent implements OnInit {
       { name: 'Active', code: 1 },
       { name: 'Inactive', code: 0 }
     ];
+    this.lstDependencyMaster = [
+      { name: 'Residenttial indenpendent', code: 'Residenttial indenpendent' },
+      { name: 'Residenttial some assistance', code: 'Residenttial some assistance' },
+      { name: 'Residenttial full assistance', code: 'Residenttial full assistance' },
+      { name: 'Dementia', code: 'Dementia' },
+      { name: 'Nursing', code: 'Nursing' },
+      { name: 'End of life', code: 'End of life' }
+    ];
+    this.lstRoomMaster = [
+      { name: '302', code: '302' },
+      { name: '303', code: '303' },
+      { name: '305', code: '305' },
+    ];
+    this.stlstfunding = [
+      { name: 'Continuing NHS', code: 'Continuing NHS' },
+      { name: 'Private', code: 'Private' },
+      { name: 'Responsible Local Authority', code: 'Responsible Local Authority' },
+      { name: 'Private/Responsible Local Authority', code: 'Private/Responsible Local Authority' }
+    ];
     this.profileSrc = this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
    }
 
@@ -67,6 +93,7 @@ export class ResidentMasterComponent implements OnInit {
     if (UserTypes.SuperAdmin === localStorage.getItem('userTypeId')) {
       this.LoadHomeMaster();
     }
+    this.LoadHomeMaster();
     this.LoadCountryList();
     this.LoadResidentList();
   }
@@ -80,7 +107,8 @@ export class ResidentMasterComponent implements OnInit {
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstHomeMaster = tdata;            
+            this.lstHomeMaster = tdata;  
+            console.log('lstHomeMaster',this.lstHomeMaster)          
           }
           else {
             this.lstHomeMaster = [];            
@@ -141,6 +169,7 @@ export class ResidentMasterComponent implements OnInit {
   AddResident()
   {
     this.mode = "add";
+    this.ResidentMasterId = null;
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
     this.ResidentMaster.Status = 1;   
@@ -194,6 +223,7 @@ RemoveProfileImage(){
   {
     this.ResidentMaster.CreatedBy = localStorage.getItem('userId');  
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
+    console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
     if(this.SelectedFile?.length > 0){
@@ -209,7 +239,9 @@ RemoveProfileImage(){
             this.blockUI.stop();
             this.LoadResidentList();
             this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });
-            this.mode = null;            
+            this.ResidentMasterId = data.actionResult.stringVal
+            console.log('actionResult',data.actionResult);
+            //this.mode = null;            
           },
           error: (e) => {
             this.blockUI.stop();
@@ -217,9 +249,30 @@ RemoveProfileImage(){
           },
         });
   }
-
+  SubmitAdmissionForm(){
+    this.ResidentBookingDetails.CreatedBy = localStorage.getItem('userId');  
+    this.ResidentBookingDetails.ModifiedBy = localStorage.getItem('userId'); 
+    this.ResidentBookingDetails.ResidentMasterId = this.ResidentMasterId; 
+    this.blockUI.start("Please Wait.....");
+      this._MasterServices.AddUpdateResidentBookingDetails(this.ResidentBookingDetails)
+        .subscribe
+        ({
+          next:(data) => {
+            this.blockUI.stop();
+            this.LoadResidentList();
+            this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });
+            console.log('actionResult',data.actionResult);
+            this.mode = null;          
+          },
+          error: (e) => {
+            this.blockUI.stop();
+            this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          },
+        });
+  }
   CloseModal() {
     this.mode = null;
+    this.ResidentMasterId = null;
   }
   exportToItemExcel() {
     let importData: any = <any>{};

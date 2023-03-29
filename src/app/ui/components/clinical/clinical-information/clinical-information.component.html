@@ -12,8 +12,14 @@
 </div>
 
 <div *ngIf="mode=='view'">
-   
-    
+    <span style="color: #808080;">Coronavirus:</span><br>
+    <div>{{clinicalinformation.CoronaVirus}}</div><br>
+    <span style="color: #808080;">Diet:</span><br>
+    <div>{{clinicalinformation.Diet}}</div><br>
+    <span style="color: #808080;">Special Needs / Diagnosis:</span><br>
+    <div>{{clinicalinformation.Diagnosis}}</div><br>
+    <span style="color: #808080;">Other information</span><br>
+    <div>{{clinicalinformation.OtherInfo}}</div>
 </div>
 <div *ngIf="mode=='edit'">
     <div class="row">

@@ -1,1 +1,181 @@
-<p>doctor works!</p>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="flex flex-wrap gap-2">
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                (click)="edit()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                (click)="save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="btn btn-secondary"
+                (click)="close()"></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt25" *ngIf="mode=='view'">
+    <div class="col">
+        <div class="row">
+            <span><b>Contact note</b></span>
+            <div class="col-md-12">
+                {{doctorContact.ContactNote}}
+            </div>
+            <span class="mt-5"><b>Surgen Details</b></span>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor Surgen Name</span><br>
+                {{doctorContact.SurgenName}}
+            </div>
+            <div class="col-md-12 mt-3">
+                <span style="color: #808080;">Address 1</span><br>
+                {{doctorContact.Address1}}
+            </div>
+            <div class="col-md-12 mt-3">
+                <span style="color: #808080;">Address 2</span><br>
+                {{doctorContact.Address2}}
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Town</span><br>
+                {{doctorContact.Town}}
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Contry</span><br>
+                {{doctorContact.Country}}
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Postcode</span><br>
+                {{doctorContact.Postcode}}
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor Surgen Phone</span><br>
+                {{doctorContact.SurgenPhoneNumber}}
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor Surgen Fax</span><br>
+                {{doctorContact.SurgenFaxNumber}}
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Email</span><br>
+                {{doctorContact.Email}}
+            </div>
+
+            <span class="mt-5"><b>Contact name</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's First name</span><br>
+                {{doctorContact.DrFirstName}}
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's Last name</span><br>
+                {{doctorContact.DrLastName}}
+            </div>
+            <span class="mt-5"><b>Contact Details</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's Phone</span><br>
+                {{doctorContact.DrPhoneNumber}}
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's Fax</span><br>
+                {{doctorContact.DrFaxNumber}}
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor's Mobile</span><br>
+                {{doctorContact.DrMobileNumber}}
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor's email address</span><br>
+                {{doctorContact.DrEmailAddress}}
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt25" *ngIf="mode=='edit'">
+    <div class="col">
+        <div class="row">
+            <span><b>Contact note</b></span>
+            <div class="col-md-12">
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.ContactNote" [style]="{width: '100%'}" /> 
+            </div>
+            <span class="mt-5"><b>Surgen Details</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor Surgen Name</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.SurgenName" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-12 mt-3">
+                <span style="color: #808080;">Address 1</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.Address1" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-12 mt-3">
+                <span style="color: #808080;">Address 2</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.Address2" [style]="{width: '100%'}" />  
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Town</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.Town" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Contry</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.Country" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Postcode</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.Postcode" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor Surgen Phone</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.SurgenPhoneNumber" [style]="{width: '100%'}" />  
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor Surgen Fax</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.SurgenFaxNumber" [style]="{width: '100%'}" />  
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Email</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.Email" [style]="{width: '100%'}" /> 
+            </div>
+
+            <span class="mt-5"><b>Contact name</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's First name</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.DrFirstName" [style]="{width: '100%'}" />  
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's Last name</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.DrLastName" [style]="{width: '100%'}" />  
+            </div>
+            <span class="mt-5"><b>Contact Details</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's Phone</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.DrPhoneNumber" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Doctor's Fax</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.DrFaxNumber" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor's Mobile</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.DrMobileNumber" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-3">
+                <span style="color: #808080;">Doctor's email address</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="doctorContact.DrEmailAddress" [style]="{width: '100%'}" />
+            </div>
+        </div>
+    </div>
+</div>

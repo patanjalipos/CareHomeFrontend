@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { SecondPowerOfAttorneyRoutingModule } from './second-power-of-attorney-routing.module';
 import { SecondPowerOfAttorneyComponent } from './second-power-of-attorney.component';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from "primeng/inputtext";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,10 @@ import { SecondPowerOfAttorneyComponent } from './second-power-of-attorney.compo
   ],
   imports: [
     CommonModule,
-    SecondPowerOfAttorneyRoutingModule
+    SecondPowerOfAttorneyRoutingModule,
+    ButtonModule,
+    InputTextModule,
+    FormsModule
   ],
   exports:[SecondPowerOfAttorneyComponent]
 })

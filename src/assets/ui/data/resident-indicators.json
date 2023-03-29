@@ -1,0 +1,23 @@
+
+{
+    "data": [
+        {
+            "IndicatorName": "Red Risks Evacuation",
+            "IndicatorGroupName":"Fire/Evacuation Risks",
+            "IsEnabled":"Enabled",
+            "IsVisible":"Enabled"
+        },
+        {
+            "IndicatorName": "Cardiovascular Disease",
+            "IndicatorGroupName":"Medical Dietry/Requirement",
+            "IsEnabled":"Enabled",
+            "IsVisible":"Disabled"
+        },
+        {
+            "IndicatorName": "Level 7 Diet(Regular/Easily Chewable)",
+            "IndicatorGroupName":"Medical Dietry/Requirement",
+            "IsEnabled":"Disabled",
+            "IsVisible":"Enabled"
+        }
+    ]
+}

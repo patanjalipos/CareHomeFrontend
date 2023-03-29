@@ -15,7 +15,7 @@
     <div class="row mb-2">
         <div class="col-auto mt-3"><label>Status</label></div>
         <div class="col-auto">            
-            <p-dropdown [required]="true" [options]="stlststatus"  [(ngModel)]="status"
+            <p-dropdown [required]="true" [options]="stlststatus"  [(ngModel)]="status" (onChange)="filterResidentIndicators()"
                 optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
 
@@ -39,8 +39,8 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>Resident Indicators</th>
                 <th>Resident Indicators Group</th>
+                <th>Resident Indicators</th>
                 <th>Enable for Resident</th>
                 <th>Visible in Header</th>               
             </tr>
@@ -48,10 +48,10 @@
         <ng-template pTemplate="body" let-item let-i="rowIndex" let-expanded="expanded">
             <tr>
                 <td>
-                    {{item.IndicatorName}}
+                    {{item.IndicatorGroupName}}
                 </td>
                 <td>
-                    {{item.IndicatorGroupName}}
+                    {{item.IndicatorName}}
                 </td>
                 <td>
                     {{item.IsEnabled}}
@@ -65,6 +65,58 @@
 </div>
 <div *ngIf="mode=='edit'">
     <div class="row  m-0">
+        <div class="row mt-3">
+            <table class="table table-striped table-bordered" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Resident Indicators Group<span class="required" style="color: red;">*</span></th>
+                        <th>Resident Indicators<span class="required" style="color: red;">*</span></th>
+                        <th>Enable for Resident<span class="required" style="color: red;">*</span></th>
+                        <th>Visible in Header<span class="required" style="color: red;">*</span></th>
+                        <th>Action <span class="required" style="color: red;">*</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let col of AddResidentIndicators;let i=index">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <p-dropdown [required]="true" [options]="lstResidentIndicators" name="txtIndicatorGroupName_{{i}}" [(ngModel)]="col.IndicatorName" optionLabel="IndicatorGroupName" optionValue="IndicatorGroupName"
+                                placeholder="Select" [style]="{width: '100%'}">
+                            </p-dropdown>  
+                        </td>
+                        <td>
+                            <p-dropdown [required]="true" [options]="lstResidentIndicators" name="txtIndicatorName_{{i}}" [(ngModel)]="col.IndicatorGroupName" optionLabel="IndicatorName" optionValue="IndicatorName"
+                                placeholder="Select" [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </td>
+                        <td>
+                            <p-dropdown [required]="true" [options]="stlstIsEnabled" name="txtEnableforResident_{{i}}" [(ngModel)]="col.IsEnabled" optionLabel="name" optionValue="code"
+                                placeholder="Select" [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </td>
+                        <td>
+                            <p-dropdown [required]="true" [options]="stlstIsEnabled" name="txtVisibleInHeader_{{i}}" [(ngModel)]="col.IsVisible" optionLabel="name" optionValue="code"
+                                placeholder="Select" [style]="{width: '100%'}">
+                            </p-dropdown>
+
+                        </td>
+                        <td>
+                            <a class="add-btn mr-2" href="javascript: void(0);"
+                                *ngIf="AddResidentIndicators?.length<10"
+                                (click)="AddBankTransactionDetails()">
+                                <i class="fa fa-plus"></i></a>
+                            <a class="add-btn mr-2"
+                                href="javascript: void(0);"
+                                *ngIf="AddResidentIndicators[i].Sequence!==1"
+                                (click)="RemoveBankTransactionDetails(AddResidentIndicators[i].Sequence)">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <p-toast position="left-bottom"></p-toast>

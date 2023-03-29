@@ -237,6 +237,18 @@ AddUpdateResidentMaster(obj: FormData): Observable<any> {
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddUpdateResidentMaster", data, { "headers": reqHeader, "params": params });
 }   
 
+AddUpdateResidentBookingDetails(obj:any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    console.log('ResidentBookingDetails',obj);
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddUpdateResidentBookingDetails", data, { "headers": reqHeader, "params": params });
+}
+
 //#endregion
 
 //#region  ExportToExcel
