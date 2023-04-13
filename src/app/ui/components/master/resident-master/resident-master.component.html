@@ -1,3 +1,66 @@
+<div class="card">
+
+    <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+  
+        <ng-wizard-step [title]="'1. Resident Details'" [description]="''"
+          [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+          <div class="short-head mt-2">
+            <ul>
+                <li><button (click)="onClick('RI')" pTooltip="Resident Information" tooltipPosition="top">RI</button></li>
+                <li><button (click)="onClick('HD')" pTooltip="Healthcare Details" tooltipPosition="top">HD</button></li>
+                <li><button (click)="onClick('RP')" pTooltip="Resident Preferences" tooltipPosition="top">RP</button></li>
+                <li><button (click)="onClick('DPA')" pTooltip="Details Prior to Admission" tooltipPosition="top">DPA</button></li>
+            </ul>
+        </div>
+        <div class="care-cont">
+        <div class="short-cont" id="RI">
+            <h2>Resident Information</h2>
+        </div>
+        <div class="short-inner">
+            <h4>Admission Details</h4>
+            
+        </div>
+        <div class="short-cont" id="HD">
+            <h2>Healthcare Details</h2>
+        </div>
+        <div class="short-inner">
+            <h4>Admission Details</h4>
+            
+        </div>
+        <div class="short-cont" id="RP">
+            <h2>Resident Preferences</h2>
+        </div>
+        <div class="short-inner">
+            <h4>Admission Details</h4>
+            
+        </div>
+        <div class="short-cont" id="DPA">
+            <h2>Details Prior to Admission</h2>
+        </div>
+        <div class="short-inner">
+            <h4>Admission Details</h4>
+            
+        </div>
+        </div>
+        
+        </ng-wizard-step>
+        
+        <ng-wizard-step [title]="'2. Clinical Details'" [description]="''" >
+          <span>Step 2 content</span>
+        </ng-wizard-step>
+        
+        <ng-wizard-step [title]="'3. Contacts'" [description]="''">
+          <span>Step 3 content</span>
+        </ng-wizard-step>
+      
+      <ng-wizard-step [title]="'4. Occupancy'" [description]="''">
+          <span>Step 4 content</span>
+        </ng-wizard-step>
+
+      </ng-wizard>
+</div>
+
+
 <div *ngIf="mode==null">   
     <div class="card">
             <p-table #dt [value]="lstResidentMaster" responsiveLayout="scroll" styleClass="p-datatable-striped"
