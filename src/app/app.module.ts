@@ -15,6 +15,7 @@ import { PhotoService } from './ui/service/photo.service';
 import { BlockUIModule } from 'ng-block-ui';
 import { MessageService } from 'primeng/api';
 
+
 @NgModule({
     declarations: [
         AppComponent, NotfoundComponent

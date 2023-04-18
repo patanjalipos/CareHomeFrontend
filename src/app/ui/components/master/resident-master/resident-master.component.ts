@@ -5,12 +5,16 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../master.service';
+import { ViewportScroller } from '@angular/common';
+import { of } from 'rxjs';
+import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 
 @Component({
   selector: 'app-resident-master',
   templateUrl: './resident-master.component.html',
   styleUrls: ['./resident-master.component.scss']
 })
+
 export class ResidentMasterComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   @ViewChild('myForm') public myForm: NgForm;
@@ -40,11 +44,30 @@ export class ResidentMasterComponent implements OnInit {
   ResidentMasterId = null;
   //funding
   stlstfunding: any[];
+  stepStates = {
+    normal: STEP_STATE.normal,
+    disabled: STEP_STATE.disabled,
+    error: STEP_STATE.error,
+    hidden: STEP_STATE.hidden
+  };
+
+  config: NgWizardConfig = {
+    selected: 0,
+    theme: THEME.arrows,
+    toolbarSettings: {
+      toolbarExtraButtons: [
+        { text: 'Finish', class: 'btn btn-info', event: () => { alert("Finished!!!"); } }
+      ],
+    }
+  };
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private messageService: MessageService,   
-  ) {
+    private viewportScroller: ViewportScroller,
+    private ngWizardService: NgWizardService
+  ) 
+  {
     this._ConstantServices.ActiveMenuName = "Resident Master"; 
     this.stlsttitle = [
       { name: 'Mr.', code: 'Mr.' },
@@ -97,6 +120,40 @@ export class ResidentMasterComponent implements OnInit {
     this.LoadCountryList();
     this.LoadResidentList();
   }
+
+
+  showPreviousStep(event?: Event) {
+    this.ngWizardService.previous();
+  }
+
+  showNextStep(event?: Event) {
+    this.ngWizardService.next();
+  }
+
+  resetWizard(event?: Event) {
+    this.ngWizardService.reset();
+  }
+
+  setTheme(theme: THEME) {
+    this.ngWizardService.theme(theme);
+  }
+
+  stepChanged(args: StepChangedArgs) {
+    console.log(args.step);
+  }
+
+  isValidTypeBoolean: boolean = true;
+
+  isValidFunctionReturnsBoolean(args: StepValidationArgs) {
+    return true;
+  }
+
+  isValidFunctionReturnsObservable(args: StepValidationArgs) {
+    return of(true);
+  }
+
+
+  public onClick(elementId: string): void { this.viewportScroller.scrollToAnchor(elementId); }
   LoadHomeMaster() {
     this.blockUI.start("Please Wait.....");
     this._MasterServices.GetAllHomeMasterList()
@@ -301,4 +358,10 @@ RemoveProfileImage(){
     }
   }
 
+
+
+  
+
 }
+
+
