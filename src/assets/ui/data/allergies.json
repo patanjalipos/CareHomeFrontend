@@ -1,0 +1,17 @@
+{
+    "data": [ 
+        {"name": "celery", "checkAccess": false}, 
+        {"name": "cereals containing gluten", "checkAccess": false}, 
+        {"name": "crustaceans", "checkAccess": false}, 
+        {"name": "eggs", "checkAccess": false}, 
+        {"name": "fish", "checkAccess": false}, 
+        {"name": "lupin", "checkAccess": false}, 
+        {"name": "milk", "checkAccess": false},
+        {"name": "molluscs", "checkAccess": false}, 
+        {"name": "mustard", "checkAccess": false}, 
+        {"name": "peanuts", "checkAccess": false}, 
+        {"name": "sesame seeds", "checkAccess": false}, 
+        {"name": "soya", "checkAccess": false}, 
+        {"name": "sulphur dioxide and sulphites", "checkAccess": false}       
+    ]
+}

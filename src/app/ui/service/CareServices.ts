@@ -56,4 +56,12 @@ export class CareService {
     return this.http.get<any>('assets/ui/data/falriskassessmentList.json').pipe(
       map(response => response.data as FallRiskAssessmentList[]))
   }
+  getAllergiesList() {
+    return this.http.get<any>('assets/ui/data/allergies.json').pipe(
+      map(response => response.data as any[]))
+  }
+  getResidentIndicatorList() {
+    return this.http.get<any>('assets/ui/data/resident-indicators.json').pipe(
+      map(response => response.data as any[]))
+  }
 }

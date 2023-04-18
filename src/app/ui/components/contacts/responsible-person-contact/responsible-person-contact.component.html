@@ -1,0 +1,153 @@
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="flex flex-wrap gap-2">
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                (click)="edit()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                (click)="save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="btn btn-secondary"
+                (click)="close()"></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt25" *ngIf="mode=='view'">
+    <div class="col">
+        <div class="row">
+            <span><b>Contact note</b></span>
+            <div class="col-md-12">
+                {{responsiblePersionContact.ContactNote}}
+            </div>
+            <span class="mt-5"><b>Contact name</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">First name</span><br>
+                {{responsiblePersionContact.FirstName}}
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Last name</span><br>
+                {{responsiblePersionContact.LastName}}
+            </div>
+            <span class="mt-5"><b>Contact Type</b></span>
+            <div class="col-md-12">
+                <span style="color: #808080;">Relationship to Resident</span><br>
+                {{responsiblePersionContact.ContactType}}
+            </div>
+            <span class="mt-5"><b>Contact Details</b></span>
+            <div class="col-md-4">
+                <span style="color: #808080;">Mobile</span><br>
+                {{responsiblePersionContact.MobileNumber}}
+            </div>
+            <div class="col-md-4">
+                <span style="color: #808080;">Home Telephone</span><br>
+                {{responsiblePersionContact.HomeTelephone}}
+            </div>
+            <div class="col-md-4">
+                <span style="color: #808080;">Work Telephone</span><br>
+                {{responsiblePersionContact.WorkTelephone}}
+            </div>
+            <div class="col-md-4 mb-2">
+                <span style="color: #808080;">Email Address</span><br>
+                {{responsiblePersionContact.Email}}
+            </div>
+            <span class="mt-5"><b>Contact Address</b></span>
+            <div class="col-md-12">
+                <span style="color: #808080;">Address 1</span><br>
+                {{responsiblePersionContact.Address1}}
+            </div>
+            <div class="col-md-12 mt-2">
+                <span style="color: #808080;">Address 2</span><br>
+                {{responsiblePersionContact.Address2}}
+            </div>
+            <div class="col-md-6 mt-2">
+                <span style="color: #808080;">Town</span><br>
+                {{responsiblePersionContact.Town}}
+            </div>
+            <div class="col-md-6 mt-2">
+                <span style="color: #808080;">Contry</span><br>
+                {{responsiblePersionContact.Country}}
+            </div>
+            <div class="col-md-6 mt-2">
+                <span style="color: #808080;">Postcode</span><br>
+                {{responsiblePersionContact.Postcode}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt25" *ngIf="mode=='edit'">
+    <div class="col">
+        <div class="row">
+            <span><b>Contact note</b></span>
+            <div class="col-md-12">
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.ContactNote" [style]="{width: '100%'}" />  
+            </div>
+            <span class="mt-5"><b>Contact name</b></span>
+            <div class="col-md-6">
+                <span style="color: #808080;">First name</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.FirstName" [style]="{width: '100%'}" />  
+            </div>
+            <div class="col-md-6">
+                <span style="color: #808080;">Last name</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.LastName" [style]="{width: '100%'}" />  
+            </div>
+            <span class="mt-5"><b>Contact Type</b></span>
+            <div class="col-md-12">
+                <span style="color: #808080;">Relationship to Resident</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.ContactType" [style]="{width: '100%'}" />  
+            </div>
+            <span class="mt-5"><b>Contact Details</b></span>
+            <div class="col-md-4">
+                <span style="color: #808080;">Mobile</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.MobileNumber" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-4">
+                <span style="color: #808080;">Home Telephone</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.HomeTelephone" [style]="{width: '100%'}" />
+            </div>
+            <div class="col-md-4">
+                <span style="color: #808080;">Work Telephone</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.WorkTelephone" [style]="{width: '100%'}" />
+            </div>
+            <div class="col-md-4">
+                <span style="color: #808080;">Email Address</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.Email" [style]="{width: '100%'}" />
+            </div>
+            <span class="mt-5"><b>Contact Address</b></span>
+            <div class="col-md-12">
+                <span style="color: #808080;">Address 1</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.Address1" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-12 mt-2">
+                <span style="color: #808080;">Address 2</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.Address2" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-2">
+                <span style="color: #808080;">Town</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.Town" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-2">
+                <span style="color: #808080;">Contry</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.Country" [style]="{width: '100%'}" /> 
+            </div>
+            <div class="col-md-6 mt-2">
+                <span style="color: #808080;">Postcode</span><br>
+                <input type="text" name="txtResidentIndicators" pInputText
+                [(ngModel)]="responsiblePersionContact.Postcode" [style]="{width: '100%'}" />
+            </div>
+        </div>
+    </div>
+</div>

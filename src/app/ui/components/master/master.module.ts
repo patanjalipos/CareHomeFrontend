@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { MasterRoutingModule } from './master-routing.module';
 
-
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MasterRoutingModule
+    MasterRoutingModule,
+    
   ]
 })
 export class MasterModule { }
