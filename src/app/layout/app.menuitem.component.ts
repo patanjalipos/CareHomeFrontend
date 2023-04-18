@@ -34,6 +34,9 @@ import { LayoutService } from './service/app.layout.service';
 				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
 					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
 				</ng-template>
+                <li><a href="#"><i class="layout-menuitem-icon pi pi-user-edit"></i> <span class="layout-menuitem-text"> Edit </span></a></li>
+        <li><a href="#"><i class="layout-menuitem-icon pi pi-cog"></i> <span class="layout-menuitem-text"> Setting </span></a></li>
+        <li><a href="#"><i class="layout-menuitem-icon pi pi-unlock"></i> <span class="layout-menuitem-text"> Logout </span></a></li>
 			</ul>
 		</ng-container>
     `,

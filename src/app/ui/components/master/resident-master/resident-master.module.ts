@@ -19,6 +19,13 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
+import { StepsModule } from 'primeng/steps';
+
+import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
+
+const ngWizardConfig: NgWizardConfig = {
+  theme: THEME.default
+};
 @NgModule({
   declarations: [
     ResidentMasterComponent
@@ -42,6 +49,9 @@ import {FileUploadModule} from 'primeng/fileupload';
     MultiSelectModule,
     TreeTableModule,
     FileUploadModule,
+    StepsModule,
+    NgWizardModule.forRoot(ngWizardConfig)
+    
   ]
 })
 export class ResidentMasterModule { }

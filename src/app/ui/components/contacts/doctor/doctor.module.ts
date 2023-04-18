@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorComponent } from './doctor.component';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from "primeng/inputtext";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,10 @@ import { DoctorComponent } from './doctor.component';
   ],
   imports: [
     CommonModule,
-    DoctorRoutingModule
+    DoctorRoutingModule,
+    ButtonModule,
+    InputTextModule,
+    FormsModule
   ],
   exports:[DoctorComponent]
 })

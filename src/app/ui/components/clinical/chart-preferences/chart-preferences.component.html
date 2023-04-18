@@ -1,1 +1,242 @@
-<p>chart-preferences works!</p>
+<div class="row mt25" *ngIf="mode=='view'">
+    <div class="p-fluid">
+        <h5>Baseline health range alerts</h5>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Blood glcose alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo" value="Enable" [(ngModel)]="valRadio1" id="rd1"></p-radioButton>
+                            <label for="rd1">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo" value="Disable" [(ngModel)]="valRadio1" id="rd2"></p-radioButton>
+                            <label for="rd2">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Blood pressure alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo2" value="Enable" [(ngModel)]="valRadio2" id="rd3"></p-radioButton>
+                            <label for="rd3">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo2" value="Disable" [(ngModel)]="valRadio2" id="rd4"></p-radioButton>
+                            <label for="rd4">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">pulse alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo3" value="Enable" [(ngModel)]="valRadio3" id="rd5"></p-radioButton>
+                            <label for="rd5">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo3" value="Disable" [(ngModel)]="valRadio3" id="rd6"></p-radioButton>
+                            <label for="rd6">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Weight alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo4" value="Enable" [(ngModel)]="valRadio4" id="rd7"></p-radioButton>
+                            <label for="rd7">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo4" value="Disable" [(ngModel)]="valRadio4" id="rd8"></p-radioButton>
+                            <label for="rd8">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5>General alerts</h5>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Hight temprature (37.8 °C) alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo5" value="Enable" [(ngModel)]="valRadio5" id="rd9"></p-radioButton>
+                            <label for="rd9">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo5" value="Disable" [(ngModel)]="valRadio5" id="rd10"></p-radioButton>
+                            <label for="rd10">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Fluid intake alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo6" value="Enable" [(ngModel)]="valRadio6" id="rd11"></p-radioButton>
+                            <label for="rd11">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo6" value="Disable" [(ngModel)]="valRadio6" id="rd12"></p-radioButton>
+                            <label for="rd12">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Waterlow alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo7" value="Enable" [(ngModel)]="valRadio7" id="rd13"></p-radioButton>
+                            <label for="rd13">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo7" value="Disable" [(ngModel)]="valRadio7" id="rd14"></p-radioButton>
+                            <label for="rd14">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Must alert fot this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo8" value="Enable" [(ngModel)]="valRadio8" id="rd15"></p-radioButton>
+                            <label for="rd15">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo8" value="Disable" [(ngModel)]="valRadio8" id="rd16"></p-radioButton>
+                            <label for="rd16">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">NEWS2 alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo9" value="Enable" [(ngModel)]="valRadio9" id="rd17"></p-radioButton>
+                            <label for="rd17">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo9" value="Disable" [(ngModel)]="valRadio9" id="rd18"></p-radioButton>
+                            <label for="rd18">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Oxygen Saturation alert for this Resident.</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo10" value="Enable" [(ngModel)]="valRadio10" id="rd19"></p-radioButton>
+                            <label for="rd19">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo10" value="Disable" [(ngModel)]="valRadio10" id="rd20"></p-radioButton>
+                            <label for="rd20">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Pressure ulcer alert for this Resident</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo11" value="Enable" [(ngModel)]="valRadio11" id="rd21"></p-radioButton>
+                            <label for="rd21">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo11" value="Disable" [(ngModel)]="valRadio11" id="rd22"></p-radioButton>
+                            <label for="rd22">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field grid">
+            <label htmlFor="name2" class="col-12 mb-2 md:col-8 md:mb-0 grey">Bowel alert for this Resident</label>
+            <div class="col-12 md:col-4">
+                <div class="grid formgrid">
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo12" value="Enable" [(ngModel)]="valRadio12" id="rd23"></p-radioButton>
+                            <label for="rd23">Enable</label>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <div class="field-radiobutton">
+                            <p-radioButton name="rdNo12" value="Disable" [(ngModel)]="valRadio12" id="rd24"></p-radioButton>
+                            <label for="rd24">Disable</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="mode=='edit'">
+    
+</div>
+
+
+
