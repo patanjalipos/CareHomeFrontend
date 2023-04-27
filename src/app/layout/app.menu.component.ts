@@ -165,7 +165,9 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Care Home',
                 items: [
-                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare'] },
+                    
+                    { label: 'Menu', icon: 'fa-solid fa-dashboard', class:'big-menu-bar'},
+                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare'],class:'big-menu-bar' },
                     {
                         label: 'Master', icon: 'fa-solid fa-key',
                         items: [
@@ -210,6 +212,9 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
                     { label: 'Fall Risk Assessment', icon: 'fa-solid fa-person-falling-burst', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fall Risk Assessment&seq=7&rId=OMR45345')] },
                     { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },
+                    { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/uicare/fallriskassessmentreport'] },
                     
                 ]
             },
