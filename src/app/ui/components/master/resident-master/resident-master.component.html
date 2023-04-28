@@ -122,11 +122,11 @@
         <p-accordion [multiple]="true" activeIndex="0,1,2,3,4,5">
             <p-accordionTab header="Resident name" *ngIf="ResidentMasterId==null">
                 <div class="row">
-                    <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.SuperAdmin">
+                    <div class="col-md-3" *ngIf="s_userTypeId===UserTypes.SuperAdmin">
                         <label class="form-label">Home<span class="danger">*</span></label>
                         <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="ResidentMaster.HomeId" optionLabel="HomeName"
-                            optionValue="HomeId" [filter]="true" placeholder="--select--"
+                            [(ngModel)]="ResidentMaster.HomeMasterId" optionLabel="HomeName"
+                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
                         </p-dropdown>                        
                     </div>
@@ -354,11 +354,11 @@
                             [style]="{width: '100%'}">
                           </p-dropdown>
                     </div>    
-                    <div class="col-md-3" *ngIf="UserTypeCurre===UserTypes.Admin">
+                    <div class="col-md-3" *ngIf="s_userTypeId===UserTypes.Admin">
                         <label class="form-label">Residency<span class="danger">*</span></label>
                         <p-dropdown [required]="true" name="ddlHomee" [options]="lstHomeMaster"
-                            [(ngModel)]="ResidentBookingDetails.HomeId" optionLabel="HomeName"
-                            optionValue="HomeId" [filter]="true" placeholder="--select--"
+                            [(ngModel)]="ResidentBookingDetails.HomeMasterId" optionLabel="HomeName"
+                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
                         </p-dropdown>                        
                     </div>
@@ -417,4 +417,3 @@
             </div>
     </form>
 </div>  
-<p-toast position="left-bottom"></p-toast>

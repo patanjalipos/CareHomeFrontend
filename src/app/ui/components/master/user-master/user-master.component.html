@@ -70,12 +70,12 @@
                     <div class="col-md-3">
                         <label class="form-label">Home<span class="danger">*</span></label>
                         <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
-                            [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeId"
+                            [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
                             placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
                         </p-multiSelect>
                         <!-- <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="RegistrationMainModel.HomeId" optionLabel="HomeName"
-                            optionValue="HomeId" [filter]="true" placeholder="--select--"
+                            [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
+                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
                         </p-dropdown> -->
                         <!-- <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
@@ -239,7 +239,7 @@
                                         inputId="binary"></p-checkbox>
                                     </td>
                                     <td>
-                                        <p-button *ngIf="col.EnableFacility==true" class="print-prew" (click)="$event.stopPropagation();ShowResidentDetails(col.HomeId)">
+                                        <p-button *ngIf="col.EnableFacility==true" class="print-prew" (click)="$event.stopPropagation();ShowResidentDetails(col.HomeMasterId)">
                                             Assign Residents</p-button>
                                     </td>
                                 </tr>
@@ -403,6 +403,4 @@
             </div>
         </div>
     </ng-template>
-
 </p-dialog>
-<p-toast position="left-bottom"></p-toast>

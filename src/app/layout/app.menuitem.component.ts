@@ -19,6 +19,7 @@ import { LayoutService } from './service/app.layout.service';
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
 				<span class="layout-menuitem-text">{{item.label}}</span>
 				<i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                
 			</a>
 			<a *ngIf="(item.routerLink && !item.items) && item.visible !== false" (click)="itemClick($event)" [ngClass]="item.class" 
 			   [routerLink]="item.routerLink" routerLinkActive="active-route" [routerLinkActiveOptions]="item.routerLinkActiveOptions||{ paths: 'exact', queryParams: 'exact', matrixParams: 'ignored', fragment: 'ignored' }"
@@ -34,9 +35,8 @@ import { LayoutService } from './service/app.layout.service';
 				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
 					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
 				</ng-template>
-                <li><a href="#"><i class="layout-menuitem-icon pi pi-user-edit"></i> <span class="layout-menuitem-text"> Edit </span></a></li>
-        <li><a href="#"><i class="layout-menuitem-icon pi pi-cog"></i> <span class="layout-menuitem-text"> Setting </span></a></li>
-        <li><a href="#"><i class="layout-menuitem-icon pi pi-unlock"></i> <span class="layout-menuitem-text"> Logout </span></a></li>
+                 
+
 			</ul>
 		</ng-container>
     `,

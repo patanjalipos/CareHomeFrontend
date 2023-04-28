@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/ui/api/product';
-import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/ui/service/product.service';
 
 @Component({
-    templateUrl: './crud.component.html',
-    providers: [MessageService]
+    templateUrl: './crud.component.html'
 })
 export class CrudComponent implements OnInit {
 
@@ -30,7 +28,7 @@ export class CrudComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private productService: ProductService, private messageService: MessageService) { }
+    constructor(private productService: ProductService) { }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
@@ -73,14 +71,14 @@ export class CrudComponent implements OnInit {
     confirmDeleteSelected() {
         this.deleteProductsDialog = false;
         this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
         this.selectedProducts = [];
     }
 
     confirmDelete() {
         this.deleteProductDialog = false;
         this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
         this.product = {};
     }
 
@@ -97,7 +95,7 @@ export class CrudComponent implements OnInit {
                 // @ts-ignore
                 this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
                 this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+                //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
             } else {
                 this.product.id = this.createId();
                 this.product.code = this.createId();
@@ -105,7 +103,7 @@ export class CrudComponent implements OnInit {
                 // @ts-ignore
                 this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
                 this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
             }
 
             this.products = [...this.products];

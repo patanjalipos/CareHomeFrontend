@@ -1,13 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../master.service';
 import { ViewportScroller } from '@angular/common';
 import { of } from 'rxjs';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
+import { UtilityService } from 'src/app/utility/utility.service';
+import { AppComponentBase } from 'src/app/app-component-base';
 
 @Component({
   selector: 'app-resident-master',
@@ -15,14 +15,13 @@ import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, S
   styleUrls: ['./resident-master.component.scss']
 })
 
-export class ResidentMasterComponent implements OnInit {
-  @BlockUI() blockUI: NgBlockUI;
+export class ResidentMasterComponent extends AppComponentBase implements OnInit {  
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   UserTypes = UserTypes;
   customDateFormat = CustomDateFormat;
-  UserTypeCurre: string = localStorage.getItem('userTypeId');
+  s_userTypeId: any = localStorage.getItem('userTypeId');
   todayDate = new Date();
   mode: string = null;
   lstHomeMaster: any[]=[];
@@ -63,11 +62,12 @@ export class ResidentMasterComponent implements OnInit {
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
-    private messageService: MessageService,   
+    private _UtilityService: UtilityService,   
     private viewportScroller: ViewportScroller,
     private ngWizardService: NgWizardService
   ) 
   {
+    super();
     this._ConstantServices.ActiveMenuName = "Resident Master"; 
     this.stlsttitle = [
       { name: 'Mr.', code: 'Mr.' },
@@ -113,7 +113,7 @@ export class ResidentMasterComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if (UserTypes.SuperAdmin === localStorage.getItem('userTypeId')) {
+    if (UserTypes.SuperAdmin === this.s_userTypeId) {
       this.LoadHomeMaster();
     }
     this.LoadHomeMaster();
@@ -155,12 +155,12 @@ export class ResidentMasterComponent implements OnInit {
 
   public onClick(elementId: string): void { this.viewportScroller.scrollToAnchor(elementId); }
   LoadHomeMaster() {
-    this.blockUI.start("Please Wait.....");
-    this._MasterServices.GetAllHomeMasterList()
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster()
       .subscribe
       ({
         next:(data) => {
-          this.blockUI.stop();
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -172,13 +172,13 @@ export class ResidentMasterComponent implements OnInit {
           }
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }  
   LoadCountryList() {
-    this._MasterServices.GetCountryMaster().subscribe({
+    this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
       next: (data) => {
         if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
@@ -187,21 +187,21 @@ export class ResidentMasterComponent implements OnInit {
         }
       },
       error: (e) => {
-        this.blockUI.stop();
-        this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(e.message);
       },
     });
   }
   LoadResidentList() {
-    var HomeId = "";
-    if (this.UserTypeCurre != UserTypes.SuperAdmin) {
-      HomeId = localStorage.getItem('HomeId');
+    var HomeMasterId = "";
+    if (this.s_userTypeId != UserTypes.SuperAdmin) {
+      HomeMasterId = localStorage.getItem('HomeMasterId');
     }
-    this.blockUI.start("Please Wait.....");   
-    this._MasterServices.GetResidentMaster(HomeId,false)
+    this._UtilityService.showSpinner();   
+    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,false)
       .subscribe({
         next:(data) => {
-          this.blockUI.stop();          
+          this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -218,8 +218,8 @@ export class ResidentMasterComponent implements OnInit {
           }
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }
@@ -230,19 +230,19 @@ export class ResidentMasterComponent implements OnInit {
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
     this.ResidentMaster.Status = 1;   
-    if (UserTypes.SuperAdmin !== localStorage.getItem('userTypeId')) {
-      this.ResidentMaster.HomeId = localStorage.getItem('HomeId');
+    if (UserTypes.SuperAdmin !== this.s_userTypeId) {
+      this.ResidentMaster.HomeMasterId = localStorage.getItem('HomeMasterId');
     } 
   }
   LoadResidentDetails(id)
   {
     this.SelectedFile = [];
-    this.blockUI.start("Please Wait.....");
-    this._MasterServices.GetResidentMasterById(id)
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetResidentMasterById(id)
       .subscribe
       ({
         next:(data) => {
-          this.blockUI.stop();
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) 
           {
             var tdata = JSON.parse(data.actionResult.result);
@@ -257,8 +257,8 @@ export class ResidentMasterComponent implements OnInit {
 
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }
@@ -288,21 +288,21 @@ RemoveProfileImage(){
         formData.append('files[]', file);
       }
     }
-    this.blockUI.start("Please Wait.....");
-      this._MasterServices.AddUpdateResidentMaster(formData)
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.AddUpdateResidentMaster(formData)
         .subscribe
         ({
           next:(data) => {
-            this.blockUI.stop();
+            this._UtilityService.hideSpinner();
             this.LoadResidentList();
-            this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });
+            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
             this.ResidentMasterId = data.actionResult.stringVal
             console.log('actionResult',data.actionResult);
             //this.mode = null;            
           },
           error: (e) => {
-            this.blockUI.stop();
-            this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
           },
         });
   }
@@ -310,20 +310,20 @@ RemoveProfileImage(){
     this.ResidentBookingDetails.CreatedBy = localStorage.getItem('userId');  
     this.ResidentBookingDetails.ModifiedBy = localStorage.getItem('userId'); 
     this.ResidentBookingDetails.ResidentMasterId = this.ResidentMasterId; 
-    this.blockUI.start("Please Wait.....");
-      this._MasterServices.AddUpdateResidentBookingDetails(this.ResidentBookingDetails)
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.AddUpdateResidentBookingDetails(this.ResidentBookingDetails)
         .subscribe
         ({
           next:(data) => {
-            this.blockUI.stop();
+            this._UtilityService.hideSpinner();
             this.LoadResidentList();
-            this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });
+            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
             console.log('actionResult',data.actionResult);
             this.mode = null;          
           },
           error: (e) => {
-            this.blockUI.stop();
-            this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
           },
         });
   }
