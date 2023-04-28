@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { AuthServiceService } from 'src/app/ui/service/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
-import { UtilityService } from 'src/app/utility/utility.service';
-import { AppComponentBase } from 'src/app/app-component-base';
 
 @Component({
     selector: 'app-login',
@@ -18,30 +17,29 @@ import { AppComponentBase } from 'src/app/app-component-base';
         }
     `]
 })
-export class LoginComponent extends AppComponentBase {    
+export class LoginComponent {
+    @BlockUI() blockUI: NgBlockUI;
     valCheck: string[] = ['remember'];
     UserName: string;
     Password: string;
     invalidLogin: Boolean = false;
+
     constructor(
         public layoutService: LayoutService,
         public _AuthServices: AuthServiceService,
         private route: ActivatedRoute,
         private router: Router,
-        private _ConstantService: ConstantsService,
-        private _UtilityService: UtilityService, 
-    ) { 
-        super();
-    }
+        private _ConstantService: ConstantsService
+    ) { }
 
 
     ValidateLogin() {
         //this.router.navigateByUrl("/uicare");
-        this._UtilityService.showSpinner();
-        this.unsubscribe.add = this._AuthServices.Login(this.UserName, this.Password)
+        this.blockUI.start("Please Wait....");
+        this._AuthServices.Login(this.UserName, this.Password)
             .subscribe({
                 next: (data) => {
-                    this._UtilityService.hideSpinner();
+                    this.blockUI.stop();
                     if (data.actionResult.success == true) {
                         var tdata = JSON.parse(data.actionResult.result);
                         tdata = tdata ? tdata : [];
@@ -51,7 +49,7 @@ export class LoginComponent extends AppComponentBase {
                         localStorage.setItem('token', data.actionResult.authenticationToken);
                         localStorage.setItem('userTypeId', data.actionResult.userTypeId);
                         localStorage.setItem('userId', data.actionResult.userId);
-                        localStorage.setItem('HomeMasterId', tdata.HomeMasterId);
+                        localStorage.setItem('HomeId', tdata.HomeId);
                         localStorage.setItem('HomeType', tdata.HomeType);
                         localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
                         localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
@@ -63,14 +61,12 @@ export class LoginComponent extends AppComponentBase {
                     }
                     else {
                         this.invalidLogin = true;
-                        this._UtilityService.showWarningAlert("Invalid credentials.");
-                        //alert("Invalid user");
+                        alert("Invalid user");
                     }
                 },
                 error: (e) => {
-                    this._UtilityService.hideSpinner();
-                    this._UtilityService.showErrorAlert(e.message);
-                    //alert(e.message);
+                    this.blockUI.stop();
+                    alert(e.message);
                 }
             }
             );

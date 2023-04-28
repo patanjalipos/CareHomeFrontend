@@ -31,14 +31,14 @@ export class MasterService {
     params = params.append('status', status);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetMenuItemMaster", { "headers": reqHeader, "params": params });
 }    
-GetMenuItemMasterById(menuid): Observable<any> {
+GetMenuItemMasterById(MenuItemId: string): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     })
     let params = new HttpParams();
-    params = params.append('menuid', menuid);
+    params = params.append('MenuItemId', MenuItemId);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetMenuItemMasterById", { "headers": reqHeader, "params": params });
 }
 AddUpdateMenuItemMaster(MenuItemMaster: any): Observable<any> {
@@ -49,13 +49,26 @@ AddUpdateMenuItemMaster(MenuItemMaster: any): Observable<any> {
     });
     let params = new HttpParams();
     var data = JSON.stringify(MenuItemMaster).toString();
-    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddUpdateMenuItemtMaster", data, { "headers": reqHeader, "params": params });  
+    if (MenuItemMaster.MenuItemId != null && MenuItemMaster.MenuItemId != "") {
+        return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/EditMenuItemMaster", data, { "headers": reqHeader, "params": params });
+    }
+    else {
+        return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddMenuItemMaster", data, { "headers": reqHeader, "params": params });
+    }
 }
 
 //#end region
 
   //  #region HomeMaster
-  
+
+  GetAllHomeMasterList(): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin
+    });
+    let params = new HttpParams();
+    return this._httpclient.get(this._ConstService.BaseUriAdmin + "api/Admin/GetAllHomeMasterList");
+}
 GetHomeMaster(): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -64,14 +77,14 @@ GetHomeMaster(): Observable<any> {
     let params = new HttpParams();
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetHomeMaster", { "headers": reqHeader, "params": params });
 }
-GetHomeMasterById(HomeMasterId: string): Observable<any> {
+GetHomeMasterById(HomeId: string): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
         //5'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    params = params.append('HomeMasterId', HomeMasterId);
+    params = params.append('HomeId', HomeId);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetHomeMasterById", { "headers": reqHeader, "params": params });
 }
 GetHomeMasterEnabledBooking(): Observable<any> {
@@ -92,7 +105,7 @@ AddUpdateHomeMaster(HomeMaster: any): Observable<any> {
     let params = new HttpParams();
     var data = JSON.stringify(HomeMaster).toString();
 
-    if (HomeMaster.HomeMasterId != null && HomeMaster.HomeMasterId != "") {
+    if (HomeMaster.HomeId != null && HomeMaster.HomeId != "") {
         return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/EditHomeMaster", data, { "headers": reqHeader, "params": params });
     }
     else {
@@ -118,14 +131,14 @@ GetUserTypeMaster(moduleId: string = ""): Observable<any> {
  
   //#region  UserMaster
 
-  GetUserMaster(homeMasterId): Observable<any> {
+  GetUserMaster(HomeId: string = ""): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    params = params.append('homeMasterId', homeMasterId);
+    params = params.append('HomeId', HomeId);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetUserMaster", { "headers": reqHeader, "params": params });
 }
 
@@ -191,14 +204,14 @@ LoadItemCatgMasterForAccess(): Observable<any> {
 
 //#region  ResidentMaster
 
-GetResidentMaster(HomeMasterId: string = "", status: any = true): Observable<any> {
+GetResidentMaster(HomeId: string = "", status: any = true): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
-    params = params.append('HomeMasterId', HomeMasterId);
+    params = params.append('HomeId', HomeId);
     params = params.append('status', status);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentMaster", { "headers": reqHeader, "params": params });
 }

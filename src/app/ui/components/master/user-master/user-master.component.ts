@@ -1,23 +1,26 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../master.service';
-import { AppComponentBase } from 'src/app/app-component-base';
-import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
   selector: 'app-user-master',
   templateUrl: './user-master.component.html',
-  styleUrls: ['./user-master.component.scss']
+  styleUrls: ['./user-master.component.scss'],
+  providers: [
+    MessageService,   
+  ]
 })
-export class UserMasterComponent extends AppComponentBase implements OnInit {
-  
+export class UserMasterComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   UserTypes = UserTypes;
   customDateFormat = CustomDateFormat;
-  s_HomeMasterId: string = localStorage.getItem('HomeMasterId');
-  s_userTypeId:any = localStorage.getItem('userTypeId');
+  HomeCurre: string = localStorage.getItem('HomeId');
+  UserTypeCurre: string = localStorage.getItem('userTypeId');
   mode:string=null;
   filteredValuesLength:number=0;
   todayDate = new Date();
@@ -35,15 +38,14 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   lstFacilityResident:any[]=[];
   lstResidentfacility:any[]=[];
   ShowResidentFacilityModel:Boolean=false;
-  slectedHomeMasterId:string=null;
+  slectedHomeId:string=null;
 
   constructor(
     private _ConstServices: ConstantsService,
     private _MasterServices:MasterService,
-    private _UtilityService: UtilityService,
+    private messageService: MessageService,
     ) 
     { 
-      super();
       this.stlsttitle = [
         { name: 'Mr.', code: 'Mr.' },
         { name: 'Mrs.', code: 'Mrs.' },
@@ -79,12 +81,12 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.todayDate.setDate(this.todayDate.getDate() - 7);
   }
   LoadHomeMaster() {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster()
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.GetAllHomeMasterList()
       .subscribe
       ({
         next:(data) => {
-          this._UtilityService.hideSpinner();
+          this.blockUI.stop();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -95,25 +97,25 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           }
         },
         error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }  
   LoadUserTypeList() {
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetUserTypeMaster()
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.GetUserTypeMaster()
       .subscribe
       ({
         next:(data) => {
-          this._UtilityService.hideSpinner();
+          this.blockUI.stop();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstUserType = tdata;
             if(this.lstUserType?.length>0)
             {
-              //this.lstUserType=this.lstUserType.filter(f=>f.UserTypeId!=='6075474600f6f4c43c5d54a1');
+              this.lstUserType=this.lstUserType.filter(f=>f.UserTypeId!=='6075474600f6f4c43c5d54a1');
             }
           }
           else {
@@ -121,18 +123,22 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           }
         },
         error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }
-  LoadUserList() {   
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetUserMaster(this.s_HomeMasterId)
+  LoadUserList() {
+    var HomeId = "";
+    if (this.UserTypeCurre != UserTypes.SuperAdmin) {
+      HomeId = localStorage.getItem('HomeId');
+    }
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.GetUserMaster(HomeId)
       .subscribe
       ({
         next:(data) => {
-          this._UtilityService.hideSpinner();
+          this.blockUI.stop();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -148,8 +154,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
           }
         },
         error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }
@@ -158,8 +164,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.mode = "add";
     this.RegistrationMainModel = <any>{};
     this.RegistrationMainModel.DateOfBirth = new Date("01/01/2001 00:00:00");
-    if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.RegistrationMainModel.HomeMasterId = localStorage.getItem('HomeMasterId');
+    if (UserTypes.SuperAdmin !== localStorage.getItem('userTypeId')) {
+      this.RegistrationMainModel.HomeId = localStorage.getItem('HomeId');
     }
     this.RegistrationMainModel.Status = 1;    
   }
@@ -168,12 +174,12 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.lstFacilityResident=[];
     this.RegistrationMainModel=<any>{};
 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetUserMasterById(userId)
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.GetUserMasterById(userId)
       .subscribe
       ({
         next:(data) => {
-          this._UtilityService.hideSpinner();
+          this.blockUI.stop();
           if (data.actionResult.success == true) 
           {
             var tdata = JSON.parse(data.actionResult.result);
@@ -200,35 +206,35 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
 
         },
         error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }
   Submit()
   {
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateUserMaster(this.RegistrationMainModel)
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.AddUpdateUserMaster(this.RegistrationMainModel)
       .subscribe
       ({
         next:(data) => {
-          this._UtilityService.hideSpinner();
+          this.blockUI.stop();
           if (data.actionResult.success == true) 
           {
             this.mode=null;
             this.LoadUserList();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);  
+            this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });  
           }
           else
           {
-            this._UtilityService.showWarningAlert(data.actionResult.errMsg);  
+            this.messageService.add({ severity: 'warn', summary: 'Warning Message', detail: data.actionResult.errMsg });  
           }
 
         },
         error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
   }
@@ -247,14 +253,14 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   // Export
   exportToItemExcel()
   {
-    var NewHomeMasterId = "";
-    if (this.s_userTypeId != UserTypes.SuperAdmin) {
-      NewHomeMasterId = localStorage.getItem('HomeMasterId');
+    var NewHomeId = "";
+    if (this.UserTypeCurre != UserTypes.SuperAdmin) {
+      NewHomeId = localStorage.getItem('HomeId');
     }
     let importData: any = <any>{};
     importData.reportname = "userlist";
     importData.filename = "userlist";
-    importData.HomeMasterId = NewHomeMasterId;
+    importData.homeId = NewHomeId;
     this._MasterServices.downloadReport(importData);
   }
   // Functions
@@ -278,20 +284,20 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
       {
         this.RegistrationMainModel.Homes.map(e=>
           {
-              if(this.lstFacilityResident.filter(f=>f.HomeMasterId==e)?.length==0)
+              if(this.lstFacilityResident.filter(f=>f.HomeId==e)?.length==0)
               {
-                this.lstFacilityResident.push({"FacilityName":this.lstHomeMaster.find(f=>f.HomeMasterId==e).HomeName,"HomeMasterId":e,"EnableFacility":false,"AutoAssignResident":false,"ResidentList":[]});
+                this.lstFacilityResident.push({"FacilityName":this.lstHomeMaster.find(f=>f.HomeId==e).HomeName,"HomeId":e,"EnableFacility":false,"AutoAssignResident":false,"ResidentList":[]});
               }
           });
 
           this.lstFacilityResident.map(e=>
             {
-              if(this.RegistrationMainModel.Homes.filter(f=>f==e.HomeMasterId)?.length==0)
+              if(this.RegistrationMainModel.Homes.filter(f=>f==e.HomeId)?.length==0)
               {
                 if(this.lstFacilityResident?.length==1)
                 this.lstFacilityResident=[];
                 else
-                this.lstFacilityResident=this.lstFacilityResident.filter(f=>f.HomeMasterId!==e.HomeMasterId);
+                this.lstFacilityResident=this.lstFacilityResident.filter(f=>f.HomeId!==e.HomeId);
               }
             });
       }
@@ -300,27 +306,27 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         this.lstFacilityResident=[];
       }
   }
-  ShowResidentDetails(HomeMasterId)
+  ShowResidentDetails(HomeId)
   {
-    this.slectedHomeMasterId=HomeMasterId;
+    this.slectedHomeId=HomeId;
     this.lstResidentfacility=[];
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,true)
+    this.blockUI.start("Please Wait.....");
+    this._MasterServices.GetResidentMaster(HomeId,true)
       .subscribe
       ({
         next:(data) => {
-          this._UtilityService.hideSpinner();
+          this.blockUI.stop();
           if (data.actionResult.success == true) 
           {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.lstResidentfacility = tdata;
 
-            if(this.lstFacilityResident.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0]?.ResidentList?.length>0)
+            if(this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0]?.ResidentList?.length>0)
             {
               for(let a=0;a<this.lstResidentfacility?.length;a++)
               {
-                if(this.lstFacilityResident.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0]?.ResidentList.filter(f=>f.ResidentId==this.lstResidentfacility[a].UserId)?.length>0)
+                if(this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0]?.ResidentList.filter(f=>f.ResidentId==this.lstResidentfacility[a].UserId)?.length>0)
                 {
                   this.lstResidentfacility[a].Checked=true;
                 }
@@ -335,8 +341,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
 
         },
         error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
+          this.blockUI.stop();
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
         },
       });
       
@@ -345,11 +351,11 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   {
       if(event.checked==true)
       {
-        this.lstFacilityResident.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0].ResidentList.push({"ResidentId":UserId});
+        this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0].ResidentList.push({"ResidentId":UserId});
       }
       else
       {
-        this.lstFacilityResident.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0].ResidentList=this.lstFacilityResident?.filter(f=>f.HomeMasterId==this.slectedHomeMasterId)[0]?.ResidentList?.filter(w=>w.ResidentId!=UserId);
+        this.lstFacilityResident.filter(f=>f.HomeId==this.slectedHomeId)[0].ResidentList=this.lstFacilityResident?.filter(f=>f.HomeId==this.slectedHomeId)[0]?.ResidentList?.filter(w=>w.ResidentId!=UserId);
       }
   }
   

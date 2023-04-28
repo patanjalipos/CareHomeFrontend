@@ -12,7 +12,8 @@ import { EventService } from './ui/service/event.service';
 import { IconService } from './ui/service/icon.service';
 import { NodeService } from './ui/service/node.service';
 import { PhotoService } from './ui/service/photo.service';
-import { UtilityModule } from './utility/utility.module';
+import { BlockUIModule } from 'ng-block-ui';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -22,12 +23,13 @@ import { UtilityModule } from './utility/utility.module';
     imports: [
         AppRoutingModule,
         AppLayoutModule,
-        UtilityModule
+        BlockUIModule.forRoot(),
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService,CareService
+        PhotoService, ProductService,CareService,
+        MessageService, 
     ],
     bootstrap: [AppComponent]
 })
