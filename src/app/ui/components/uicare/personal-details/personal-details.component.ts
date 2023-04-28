@@ -1,10 +1,14 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
-  styleUrls: ['./personal-details.component.scss']
+  styleUrls: ['./personal-details.component.scss'],
+  providers: [
+    MessageService
+  ],
 })
 export class PersonalDetailsComponent implements OnChanges {
   @Input() tabid:string=null;
@@ -22,7 +26,7 @@ export class PersonalDetailsComponent implements OnChanges {
   time1: Date;
   uploadedFiles: any[] = [];
   tblDNACPRHistory: any[] = [];
-  constructor(private datePipe: DatePipe) { }
+  constructor(private datePipe: DatePipe,private messageService: MessageService) { }
 
   ngOnInit(): void {
     
@@ -39,7 +43,8 @@ export class PersonalDetailsComponent implements OnChanges {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
-    
+
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
 AddDNACPR()
 {

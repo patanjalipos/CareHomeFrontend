@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CareService } from 'src/app/ui/service/CareServices';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-care-passport',
   templateUrl: './care-passport.component.html',
-  styleUrls: ['./care-passport.component.scss'] 
+  styleUrls: ['./care-passport.component.scss'],
+  providers: [
+    MessageService
+  ],
 })
 export class CarePassportComponent implements OnInit {
   rId:string=null;
   objPatient:any=<any>{};
   CarePassportObj:any=<any>{};
   uploadedFiles: any[] = [];
-  constructor(private route: ActivatedRoute,private careService:CareService) { }
+
+  constructor(private route: ActivatedRoute,private careService:CareService,private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => 
@@ -39,7 +44,8 @@ export class CarePassportComponent implements OnInit {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
-   
+
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
 
 }
