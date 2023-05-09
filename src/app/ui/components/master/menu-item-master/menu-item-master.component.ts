@@ -51,6 +51,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     this.LoadUserTypeMasterList();    
   }
   LoadMenuItemList() {
+    console.log(localStorage.getItem('userTypeId'));
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetMenuItemMaster (this.s_userTypeId==this.userTypes.SuperAdmin?"":this.s_userTypeId,false)
       .subscribe({
@@ -176,7 +177,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
   ResetModel() {
     this.selectedUserType=[];
     this.MenuItemMaster = <any>{};
-    this.MenuItemMaster.Status = 1;
+    this.MenuItemMaster.status = true;
     this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster));
   }
   CloseModal() {

@@ -15,7 +15,7 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { RadioButtonModule } from 'primeng/radiobutton';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
+
 import { DailyReportModule } from '../daily-report/daily-report.module';
 import { CarePassportModule } from '../care-passport/care-passport.module';
 @NgModule({
@@ -38,7 +38,6 @@ import { CarePassportModule } from '../care-passport/care-passport.module';
     RadioButtonModule,
     CalendarModule,
     FileUploadModule,
-    ToastModule,
     DailyReportModule,
     DailyAssessmentModule,
     CarePassportModule

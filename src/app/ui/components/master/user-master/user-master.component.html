@@ -45,15 +45,15 @@
             </ng-template>
             <ng-template pTemplate="body" let-col let-i="rowIndex">
                 <tr>
-                    <td>{{col.HomeCode}}</td>
-                    <td>{{col.HomeName}}</td>
-                    <td>{{col.UserTypeName}}</td>
-                    <td>{{col.LoginId}}</td>
-                    <td>{{col.FullName}}</td>
-                    <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
+                    <td>{{col.homecode}}</td>
+                    <td>{{col.homename}}</td>
+                    <td>{{col.usertypename}}</td>
+                    <td>{{col.loginid}}</td>
+                    <td>{{col.firstname}} {{col.lastname}}</td>
+                    <td>{{col.status==true?'Active':'Inactive'}}</td>                  
                     <td>
                         <a matTooltip="View/Edit" style="cursor: pointer;"
-                            (click)="LoadUserDetails(col.UserId)">
+                            (click)="LoadUserDetails(col.userid)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>

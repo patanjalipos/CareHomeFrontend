@@ -10,8 +10,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
   templateUrl: './user-master.component.html',
   styleUrls: ['./user-master.component.scss']
 })
-export class UserMasterComponent extends AppComponentBase implements OnInit {
-  
+export class UserMasterComponent extends AppComponentBase implements OnInit {  
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   UserTypes = UserTypes;
@@ -167,7 +166,6 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   {
     this.lstFacilityResident=[];
     this.RegistrationMainModel=<any>{};
-
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetUserMasterById(userId)
       .subscribe
@@ -209,7 +207,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   {
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateUserMaster(this.RegistrationMainModel)
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
       .subscribe
       ({
         next:(data) => {

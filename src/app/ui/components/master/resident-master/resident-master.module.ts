@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ResidentMasterRoutingModule } from './resident-master-routing.module';
 import { ResidentMasterComponent } from './resident-master.component';
 import { FormsModule } from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
+
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -34,7 +34,6 @@ const ngWizardConfig: NgWizardConfig = {
     CommonModule,
     ResidentMasterRoutingModule,
     FormsModule,
-    ToastModule,
     TableModule,
     DropdownModule,
     CheckboxModule,
