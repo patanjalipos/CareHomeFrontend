@@ -10,7 +10,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -29,7 +29,6 @@ import { FormsModule } from '@angular/forms';
     RadioButtonModule,
     CalendarModule,
     FileUploadModule,
-    ToastModule,
     FormsModule
   ],
   exports:[CarePassportComponent]

@@ -48,13 +48,12 @@ export class LoginComponent extends AppComponentBase {
                         sessionStorage.clear();
                         localStorage.clear();
 
-                        localStorage.setItem('token', data.actionResult.authenticationToken);
+                        localStorage.setItem('token', data.actionResult.AuthenticationToken);
                         localStorage.setItem('userTypeId', data.actionResult.userTypeId);
                         localStorage.setItem('userId', data.actionResult.userId);
                         localStorage.setItem('HomeMasterId', tdata.HomeMasterId);
-                        localStorage.setItem('HomeType', tdata.HomeType);
-                        localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
-                        localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
+                        localStorage.setItem('FirstName', tdata.firstname == null ? '' : tdata.FirstName);
+                        localStorage.setItem('LastName', tdata.lastname == null ? '' : tdata.LastName);
                         localStorage.setItem('Gender', tdata.Gender);
                         localStorage.setItem('ProfileImage', tdata.ProfileImage);
                         //this._dymservice.loadMenu();

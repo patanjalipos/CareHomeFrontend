@@ -31,7 +31,6 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   lstResidentMaster: any[]=[];
   lstResidentIndicator: any[]=[];
   public ResidentMaster: any = <any>{};
-  public ResidentBookingDetails: any = <any>{};
   selectedUserType: any[]=[];
   filteredValuesLength:number=0;
   stlsttitle: any[];
@@ -278,7 +277,7 @@ RemoveProfileImage(){
 }
   Submit()
   {
-    this.ResidentMaster.CreatedBy = localStorage.getItem('userId');  
+    this.ResidentMaster.UserTypeId=this.UserTypes.Resident;
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
     console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
@@ -289,7 +288,7 @@ RemoveProfileImage(){
       }
     }
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateResidentMaster(formData)
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateResidentMaster(formData)
         .subscribe
         ({
           next:(data) => {
@@ -306,27 +305,7 @@ RemoveProfileImage(){
           },
         });
   }
-  SubmitAdmissionForm(){
-    this.ResidentBookingDetails.CreatedBy = localStorage.getItem('userId');  
-    this.ResidentBookingDetails.ModifiedBy = localStorage.getItem('userId'); 
-    this.ResidentBookingDetails.ResidentMasterId = this.ResidentMasterId; 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateResidentBookingDetails(this.ResidentBookingDetails)
-        .subscribe
-        ({
-          next:(data) => {
-            this._UtilityService.hideSpinner();
-            this.LoadResidentList();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            console.log('actionResult',data.actionResult);
-            this.mode = null;          
-          },
-          error: (e) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(e.message);
-          },
-        });
-  }
+  
   CloseModal() {
     this.mode = null;
     this.ResidentMasterId = null;

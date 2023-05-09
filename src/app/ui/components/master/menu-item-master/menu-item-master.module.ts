@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MenuItemMasterRoutingModule } from './menu-item-master-routing.module';
 import { MenuItemMasterComponent } from './menu-item-master.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
+
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -21,7 +21,6 @@ import { InputNumberModule } from "primeng/inputnumber";
     MenuItemMasterRoutingModule,    
     FormsModule,
     ReactiveFormsModule,
-    ToastModule,
     TableModule,
     ButtonModule,
     RippleModule,
