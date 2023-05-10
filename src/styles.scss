@@ -181,15 +181,14 @@ h5.label-name {
 /*Theme*/
 body{ background-color: #F3F4F4;font-family: 'Poppins', sans-serif;}
 .btn-primary, .p-button { background:#023C40 ; border-color:#023C40 ;}
-.layout-sidebar { width: 75px; top: 0 !important; padding: 1rem; background: #023C40; color: #fff;}
+.layout-sidebar { width: 246px; top: 0 !important; padding: 1rem; background: #023C40; color: #fff;}
 .layout-topbar { width: 100%; right: 0 !important; left: auto; background: none; box-shadow: none; padding: 0; position: relative; margin-left: 240px;}
 .layout-wrapper.layout-static.layout-static-inactive .layout-sidebar {left: 0px; width: auto; }
 .layout-wrapper.layout-static.layout-static-inactive .layout-topbar { width: 94%; margin-left: 60px;}
-.layout-wrapper.layout-static.layout-static-inactive .layout-menuitem-text { display: none;}
 .layout-wrapper.layout-static.layout-static-inactive .layout-menu ul a { left: 20px;}
 .layout-wrapper.layout-static.layout-static-inactive .layout-main { margin-left: -10px;}
-.layout-wrapper.layout-static .layout-main-container { margin-left: 70px; }
-.layout-menu ul a { color: #fff;}
+.layout-wrapper.layout-static .layout-main-container { margin-left: 235px; }
+.layout-menu ul a { color: #fff; width: 227px;}
 .layout-menu ul a:hover {border-radius: 2px; background: #1E4F53 !important;}
 .layout-topbar .layout-topbar-logo { width: 70px;}
 .layout-main-container { padding-top: 5px;}
@@ -358,5 +357,7 @@ i.iconset:hover {background: #e9ecef !important; }
     width: 200px;
     height: 100vh;
     left: 68px;
-    top: 0; background: #023c40; color: #fff; }
-    .layout-menuitem-text { display: none;}   
+    top: 0; background: #023c40; color: #fff; } 
+    .errorMessage  { color: red;}
+
+    .layout-menu{ margin-top: 30px;}

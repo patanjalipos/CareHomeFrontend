@@ -51,7 +51,6 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     this.LoadUserTypeMasterList();    
   }
   LoadMenuItemList() {
-    console.log(localStorage.getItem('userTypeId'));
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetMenuItemMaster (this.s_userTypeId==this.userTypes.SuperAdmin?"":this.s_userTypeId,false)
       .subscribe({

@@ -51,11 +51,11 @@ export class LoginComponent extends AppComponentBase {
                         localStorage.setItem('token', data.actionResult.AuthenticationToken);
                         localStorage.setItem('userTypeId', data.actionResult.userTypeId);
                         localStorage.setItem('userId', data.actionResult.userId);
-                        localStorage.setItem('HomeMasterId', tdata.HomeMasterId);
-                        localStorage.setItem('FirstName', tdata.firstname == null ? '' : tdata.FirstName);
-                        localStorage.setItem('LastName', tdata.lastname == null ? '' : tdata.LastName);
-                        localStorage.setItem('Gender', tdata.Gender);
-                        localStorage.setItem('ProfileImage', tdata.ProfileImage);
+                        localStorage.setItem('HomeMasterId', tdata.homemasterid);
+                        localStorage.setItem('FirstName', tdata.firstname == null ? '' : tdata.firstname);
+                        localStorage.setItem('LastName', tdata.lastname == null ? '' : tdata.lastname);
+                        localStorage.setItem('Gender', tdata.gender);
+                        localStorage.setItem('ProfileImage', tdata.profileimage);
                         //this._dymservice.loadMenu();
                         this.router.navigateByUrl("/uicare");
                         this._ConstantService.IsLocal = true;

@@ -37,6 +37,16 @@ export enum UserTypes {
   // Billing="6396f00addc59e9aac93b137"
 }
 
+export enum AdmissionStatus {
+  Active = 1,
+  Deceased = 2,
+  Discharged = 3,
+  Transferred = 4,
+  WaitListed = 5,
+  Suspended = 6,
+  Unallocated = 7,
+}
+
 export enum CustomDateFormat {
   DEF_DATE = "dd-MM-yyyy",
   DEF_DATE_TIME = "dd-MM-yyyy HH:mm",

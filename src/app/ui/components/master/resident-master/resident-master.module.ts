@@ -20,8 +20,11 @@ import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
 import { StepsModule } from 'primeng/steps';
-
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
+import { ResidentHealthcareDetailsModule } from '../resident-healthcare-details/resident-healthcare-details.module';
+import { ResidentPreferencesModule } from '../resident-preferences/resident-preferences.module';
+import { ResidentPriorAdmissionModule } from '../resident-prior-admission/resident-prior-admission.module';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -49,7 +52,11 @@ const ngWizardConfig: NgWizardConfig = {
     TreeTableModule,
     FileUploadModule,
     StepsModule,
-    NgWizardModule.forRoot(ngWizardConfig)
+    SelectButtonModule,
+    NgWizardModule.forRoot(ngWizardConfig),
+    ResidentHealthcareDetailsModule,
+    ResidentPreferencesModule,
+    ResidentPriorAdmissionModule
     
   ]
 })
