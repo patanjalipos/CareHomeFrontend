@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { UserMasterRoutingModule } from './user-master-routing.module';
 import { UserMasterComponent } from './user-master.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -30,7 +29,6 @@ import { DialogModule } from 'primeng/dialog';
     UserMasterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule,
     TableModule,
     DropdownModule,
     CheckboxModule,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
-import { ToastModule } from 'primeng/toast';
+
 import { LoginComponent } from './login.component';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -14,8 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
     imports: [
         CommonModule,
         LoginRoutingModule,
-        ToastModule,
-        ButtonModule,
+            ButtonModule,
         CheckboxModule,
         InputTextModule,
         FormsModule,

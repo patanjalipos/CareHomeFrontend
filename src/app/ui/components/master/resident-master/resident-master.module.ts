@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ResidentMasterRoutingModule } from './resident-master-routing.module';
 import { ResidentMasterComponent } from './resident-master.component';
 import { FormsModule } from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
+
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -20,8 +20,11 @@ import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
 import { StepsModule } from 'primeng/steps';
-
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
+import { ResidentHealthcareDetailsModule } from '../resident-healthcare-details/resident-healthcare-details.module';
+import { ResidentPreferencesModule } from '../resident-preferences/resident-preferences.module';
+import { ResidentPriorAdmissionModule } from '../resident-prior-admission/resident-prior-admission.module';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -34,7 +37,6 @@ const ngWizardConfig: NgWizardConfig = {
     CommonModule,
     ResidentMasterRoutingModule,
     FormsModule,
-    ToastModule,
     TableModule,
     DropdownModule,
     CheckboxModule,
@@ -50,7 +52,11 @@ const ngWizardConfig: NgWizardConfig = {
     TreeTableModule,
     FileUploadModule,
     StepsModule,
-    NgWizardModule.forRoot(ngWizardConfig)
+    SelectButtonModule,
+    NgWizardModule.forRoot(ngWizardConfig),
+    ResidentHealthcareDetailsModule,
+    ResidentPreferencesModule,
+    ResidentPriorAdmissionModule
     
   ]
 })

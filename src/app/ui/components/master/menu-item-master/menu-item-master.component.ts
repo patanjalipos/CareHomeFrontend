@@ -1,10 +1,10 @@
 import { Component, ElementRef, Injectable, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ConstantsService, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../master.service';
+import { AppComponentBase } from 'src/app/app-component-base';
+import { UtilityService } from 'src/app/utility/utility.service';
 
 
 @Component({
@@ -13,13 +13,12 @@ import { MasterService } from '../master.service';
   styleUrls: ['./menu-item-master.component.scss'],
    
 })
-export class MenuItemMasterComponent implements OnInit{
-  @BlockUI() blockUI: NgBlockUI;
-  @ViewChild('myForm') public myForm: NgForm;
+export class MenuItemMasterComponent extends AppComponentBase implements OnInit{  
+ @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   userTypes = UserTypes;
-  UserTypeCurre: string = localStorage.getItem('userTypeId');
+  s_userTypeId: any = localStorage.getItem('userTypeId');
   mode: string = null;
   MenuItemMasterByModule:any=[];
   public lstMenuItemMaster: any[]=[];
@@ -33,17 +32,18 @@ export class MenuItemMasterComponent implements OnInit{
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
-    private messageService: MessageService,    
+    private _UtilityService: UtilityService,    
   ) 
   { 
+    super();
     this._ConstantServices.ActiveMenuName = "Menu Master"; 
     this.stlststatus = [
-      { name: 'Active', code: 1 },
-      { name: 'Inactive', code: 0 }
+      { name: 'Active', code: true },
+      { name: 'Inactive', code: false }
     ];
     this.stlstsubmenu = [
-      { name: 'Yes', code: 'Y' },
-      { name: 'No', code: 'N' }
+      { name: 'Yes', code: true},
+      { name: 'No', code: false }
     ];
   } 
   ngOnInit(): void {
@@ -51,11 +51,11 @@ export class MenuItemMasterComponent implements OnInit{
     this.LoadUserTypeMasterList();    
   }
   LoadMenuItemList() {
-    this.blockUI.start("Please Wait.....");   
-    this._MasterServices.GetMenuItemMaster (this.UserTypeCurre==this.userTypes.SuperAdmin?"":this.UserTypeCurre,false)
+    this._UtilityService.showSpinner();   
+    this.unsubscribe.add = this._MasterServices.GetMenuItemMaster (this.s_userTypeId==this.userTypes.SuperAdmin?"":this.s_userTypeId,false)
       .subscribe({
         next:(data) => {
-          this.blockUI.stop();          
+          this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -74,17 +74,17 @@ export class MenuItemMasterComponent implements OnInit{
           }
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }
   LoadUserTypeMasterList() {
-    this.blockUI.start("Please Wait.....");
-    this._MasterServices.GetUserTypeMaster(this.UserTypeCurre)
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetUserTypeMaster(this.s_userTypeId)
       .subscribe({
         next:(data) => {
-          this.blockUI.stop();
+          this._UtilityService.hideSpinner();
           
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
@@ -96,19 +96,19 @@ export class MenuItemMasterComponent implements OnInit{
           }
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }  
-  LoadMenuItemMasterById(MenuItemId: string) {
-    this.blockUI.start("Please Wait.....");
+  LoadMenuItemMasterById(MenuItemId) {
+    this._UtilityService.showSpinner();
     this.mode = "Edit";
     this.selectedUserType=[];   
-    this._MasterServices.GetMenuItemMasterById(MenuItemId)  
+    this.unsubscribe.add = this._MasterServices.GetMenuItemMasterById(MenuItemId)  
       .subscribe({
         next:(data) => {
-          this.blockUI.stop();          
+          this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
@@ -119,7 +119,7 @@ export class MenuItemMasterComponent implements OnInit{
               tdata2 = tdata2 ? tdata2 : [];
               var checkedItemArray: any[] = [];
               for (var i = 0; i < tdata2?.length; i++) {
-                checkedItemArray.push(tdata2[i]?.UserTypeId);
+                checkedItemArray.push(tdata2[i]?.usertypeid);
               } 
               this.selectedUserType=checkedItemArray;                                      
             }
@@ -127,40 +127,44 @@ export class MenuItemMasterComponent implements OnInit{
           }
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }
   Save() {
     if (this.MenuItemMaster?.SubMenu == "Y" && (this.MenuItemMaster?.ParentMenuId == null || this.MenuItemMaster?.ParentMenuId == undefined  || this.MenuItemMaster?.ParentMenuId == '')) {
-      this.messageService.add({ severity: 'warn', summary: 'Warning Message', detail: "Please select parent menu" });
+      this._UtilityService.showWarningAlert("Please select parent menu");
       return;
     }
     var checkedItemArray: any[] = [];
     for (var i = 0; i < this.selectedUserType?.length; i++) {
-      checkedItemArray.push({
-        "id": this.selectedUserType[i]
-      });
+      checkedItemArray.push(
+        this.selectedUserType[i]
+      );
     }
     this.MenuItemMaster.lstUserTypeId = checkedItemArray;
-    this.blockUI.start("Please Wait.....");
-    this._MasterServices.AddUpdateMenuItemMaster(this.MenuItemMaster)
+    if (this.mode == "Add")
+      this.MenuItemMaster.StatementType = "Insert";
+    else
+      this.MenuItemMaster.StatementType = "Update";
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.AddUpdateMenuItemMaster(this.MenuItemMaster)
       .subscribe({
         next:(data) => {
-          this.blockUI.stop();
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
-            this.messageService.add({ severity: 'success', summary: 'Success Message', detail: data.actionResult.errMsg });
+            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
             this.LoadMenuItemList();
             this.mode = null;
           }
           else {
-            this.messageService.add({ severity: 'error', summary: 'Error Message', detail: data.actionResult.errMsg });
+            this._UtilityService.showWarningAlert(data.actionResult.errMsg);
           }
         },
         error: (e) => {
-          this.blockUI.stop();
-          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: e.message });
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
         },
       });
   }
@@ -172,7 +176,7 @@ export class MenuItemMasterComponent implements OnInit{
   ResetModel() {
     this.selectedUserType=[];
     this.MenuItemMaster = <any>{};
-    this.MenuItemMaster.Status = 1;
+    this.MenuItemMaster.status = true;
     this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster));
   }
   CloseModal() {
@@ -182,7 +186,7 @@ export class MenuItemMasterComponent implements OnInit{
     let importData: any = <any>{};
     importData.reportname = "MenuItem";
     importData.filename = "MenuItem";
-    importData.createdBy=this.UserTypeCurre==this.userTypes.SuperAdmin?"":this.UserTypeCurre;
+    importData.createdBy=this.s_userTypeId==this.userTypes.SuperAdmin?"":this.s_userTypeId;
     this._MasterServices.downloadReport(importData);
   } 
   //Filter

@@ -42,14 +42,14 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-dt let-i="rowIndex">
                         <tr>
-                            <td>{{dt.ModuleName}}</td>
-                            <td>{{dt.MenuItemName}}</td>
-                            <td>{{dt.MenuItemURL}}</td>
-                            <td>{{dt.ParentMenuName}}</td>
-                            <td>{{dt.MenuOrder}}</td>
-                            <td>{{dt.Status==1?'Active':'Inactive'}}</td>
+                            <td>{{dt.modulename}}</td>
+                            <td>{{dt.menuitemname}}</td>
+                            <td>{{dt.menuitemurl}}</td>
+                            <td>{{dt.parentmenuname}}</td>
+                            <td>{{dt.orderno}}</td>
+                            <td>{{dt.status==true?'Active':'Inactive'}}</td>
                              <td>
-                                <a matTooltip="View/Edit" (click)="LoadMenuItemMasterById(dt.MenuItemId)">
+                                <a matTooltip="View/Edit" (click)="LoadMenuItemMasterById(dt.menuitemmasterid)">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </td> 
@@ -73,17 +73,17 @@
                         <div class="col-md-3"> 
                                <label class="form-label">Menu Name <span class="required">*</span></label>
                                 <input pInputText type="text" required name="MenuItemName"
-                                    [(ngModel)]="MenuItemMaster.MenuItemName" class="form-control" #menuname="ngModel"/>
+                                    [(ngModel)]="MenuItemMaster.menuitemname" class="form-control" #menuname="ngModel"/>
                                     
                         </div>
                         <div class="col-md-3"> 
                                 <label class="form-label">Menu URL</label>
                                 <input pInputText type="text" name="MenuItemURL"
-                                    [(ngModel)]="MenuItemMaster.MenuItemURL" class="form-control" />                           
+                                    [(ngModel)]="MenuItemMaster.menuitemurl" class="form-control" />                           
                         </div>
                         <div class="col-md-3"> 
                                 <label class="form-label">SubMenu <span class="required">*</span></label>
-                                <p-dropdown [required]="true" [options]="stlstsubmenu" [(ngModel)]="MenuItemMaster.SubMenu"
+                                <p-dropdown [required]="true" [options]="stlstsubmenu" [(ngModel)]="MenuItemMaster.submenu"
                                 [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
                                 placeholder="Select" [style]="{width: '100%'}">
                             </p-dropdown>                             
@@ -91,8 +91,8 @@
                         <div class="col-md-3"> 
                                 <label class="form-label">Parent Menu</label>
                                 <p-dropdown name="ddlParentMenuName" [options]="lstParentMenuItemMaster"
-                                    [(ngModel)]="MenuItemMaster.ParentMenuId" [disabled]="MenuItemMaster.SubMenu=='Y'?false:true"
-                                    optionLabel="MenuItemName" optionValue="MenuItemId" [filter]="true"
+                                    [(ngModel)]="MenuItemMaster.parentmenuid" [disabled]="MenuItemMaster.submenu==true?false:true"
+                                    optionLabel="menuitemname" optionValue="menuitemmasterid" [filter]="true"
                                     placeholder="Please Select Parent Menu" [style]="{width: '100%'}"
                                     >
                                 </p-dropdown>
@@ -100,16 +100,16 @@
                         <div class="col-md-3"> 
                                 <label class="form-label">Icon</label>
                                 <input pInputText type="text"  name="IconName"
-                                    [(ngModel)]="MenuItemMaster.IconName" class="form-control" />                           
+                                    [(ngModel)]="MenuItemMaster.iconname" class="form-control" />                           
                         </div>                        
                         <div class="col-md-3"> 
                                 <label class="form-label">Order No. <span class="required">*</span></label>
-                                <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="MenuItemMaster.MenuOrder" mode="decimal"></p-inputNumber>
+                                <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="MenuItemMaster.orderno" mode="decimal"></p-inputNumber>
                                                        
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Status<span class="required">*</span></label>
-                            <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="MenuItemMaster.Status"
+                            <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="MenuItemMaster.status"
                                 [ngModelOptions]="{standalone: true}" optionLabel="name" optionValue="code"
                                 placeholder="Select" [style]="{width: '100%'}">
                             </p-dropdown>
@@ -128,4 +128,4 @@
                 </div>
                 </form>         
     </div>
-<p-toast position="left-bottom"></p-toast>
+
