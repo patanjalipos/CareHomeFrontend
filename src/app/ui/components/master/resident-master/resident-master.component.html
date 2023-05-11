@@ -118,6 +118,26 @@
         </div>   
 </div>
 <div class="card" *ngIf="mode!=null">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="care-cont">
+                <div class="short-cont" id="RI">
+                    <h2>Resident Information</h2>
+                </div>
+               
+                <div class="short-cont" id="HD">
+                    <h2>Healthcare Details</h2>
+                </div>
+                <div class="short-cont" id="RP">
+                    <h2>Resident Preferences</h2>
+                </div>
+                <div class="short-cont" id="DPA">
+                    <h2>Details Prior to Admission</h2>
+                </div>
+        </div>
+        </div>
+        <div class="col-md-9">
+          
     <form #myForm="ngForm">        
         <p-accordion [multiple]="true" activeIndex="0,1,2,3">
             <p-accordionTab header="Resident information">
@@ -404,5 +424,7 @@
                     [admissionid]="selectedadmissionid"></app-resident-prior-admission>
             </p-accordionTab>
         </p-accordion>           
-    </form>
+    </form>  
+        </div>
+    </div>
 </div>  
