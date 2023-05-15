@@ -166,19 +166,22 @@ export class AppMenuComponent implements OnInit {
                 label: 'Care Home',
                 items: [
                     
-                    { label: 'Menu', icon: 'fa-solid fa-dashboard', class:'big-menu-bar'},
-                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare'],class:'big-menu-bar' },
+                    { label: 'Menu', icon: 'fa-solid fa-dashboard'},
+                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare']},
                     {
                         label: 'Master', icon: 'fa-solid fa-key',
                         items: [
                             {
-                                label: 'Menu Master', icon: 'fa-solid fa-bars',routerLink: ['/master/menu-master'],queryParams:[]
+                                label: 'Menu Master', icon: 'fa-solid fa-bars', routerLink: ['/master/menu-master'],queryParams:[]
                             },
+                            {
+                                label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
+                            },                          
                             {
                                 label: 'User Master', icon: 'fa-solid fa-user',routerLink: ['/master/user-master'],queryParams:[]
                             },
                             {
-                                label: 'Resident Master', icon: 'fa-solid fa-user',routerLink: ['/master/resident-master'],queryParams:[]
+                                label: 'Resident Master', icon: 'fa-solid fa-user', routerLink: ['/master/resident-master'],queryParams:[]
                             }
                         ]
                     },

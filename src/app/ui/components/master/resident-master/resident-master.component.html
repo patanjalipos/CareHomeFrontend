@@ -1,5 +1,4 @@
-<div class="card">
-
+<!-- <div class="card">
     <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
   
         <ng-wizard-step [title]="'1. Resident Details'" [description]="''"
@@ -58,8 +57,7 @@
         </ng-wizard-step>
 
       </ng-wizard>
-</div>
-
+</div> -->
 
 <div *ngIf="mode==null">   
     <div class="card">
@@ -94,21 +92,26 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Resident Id</th>
-                        <th>Name</th>
-                        <!-- <th>Profile Image</th> -->
+                        <th>Unique Id</th>
+                        <th pSortableColumn="firstname">Resident <p-sortIcon field="firstname"></p-sortIcon></th>                       
+                        <th pSortableColumn="roomnumber">Room <p-sortIcon field="roomnumber"></p-sortIcon></th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <!-- <th>Status</th> -->
+                        <th>Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-dt let-i="rowIndex">
                     <tr>
-                        <td>{{dt.ResidentNo}}</td>
-                        <td>{{dt.FullName}}</td>
-                        <!-- <td><img [src]="'assets/ui/images/avatar/' + dt.image" class="table-image"></td> -->
-                        <td>{{dt.Status==1?'Active':'Inactive'}}</td>
+                        <td>{{dt.admissionnumber}}</td>
+                        <td><img [src]="profileUrl+ (dt.profileimage==''? 'no-picture.png': dt.profileimage)" class="table-image mr-2"> {{dt.firstname}} {{dt.lastname}} {{dt.preferredname==''? '': '('+ dt.preferredname+')'}}
+                        <br/>{{dt.dateofbirth|date:customDateFormat.DEF_DATE}} (Age {{calculateAge(dt.dateofbirth)}})
+                        <br/> {{dt.isdnar==true?'DNAR/DNACPR':''}}
+                        </td>
+                        <td>{{dt.roomnumber}}</td>
+                        <td>{{admissionStatus[dt.admissionstatus]}}</td>
+                        <!-- <td>{{dt.status==true?'Active':'Inactive'}}</td> -->
                          <td>
-                            <a matTooltip="View/Edit" (click)="LoadResidentDetails(dt.ResidentMasterId)">
+                            <a matTooltip="View/Edit" (click)="LoadResidentDetails(dt.userid, dt.residentadmissioninfoid)">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                         </td> 
@@ -118,302 +121,315 @@
         </div>   
 </div>
 <div class="card" *ngIf="mode!=null">
-    <form #myForm="ngForm">
-        <p-accordion [multiple]="true" activeIndex="0,1,2,3,4,5">
-            <p-accordionTab header="Resident name" *ngIf="ResidentMasterId==null">
-                <div class="row">
-                    <div class="col-md-3" *ngIf="s_userTypeId===UserTypes.SuperAdmin">
-                        <label class="form-label">Home<span class="danger">*</span></label>
-                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="ResidentMaster.HomeMasterId" optionLabel="HomeName"
-                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
-                            [style]="{width: '100%'}" #homeref="ngModel">
-                        </p-dropdown>                        
+    <div class="row">
+        <div class="col-md-3">
+            <div class="care-cont">
+                <div class="short-cont" id="RI">
+                    <h2>Resident Information</h2>
+                </div>
+               
+                <div class="short-cont" id="HD">
+                    <h2>Healthcare Details</h2>
+                </div>
+                <div class="short-cont" id="RP">
+                    <h2>Resident Preferences</h2>
+                </div>
+                <div class="short-cont" id="DPA">
+                    <h2>Details Prior to Admission</h2>
+                </div>
+        </div>
+        </div>
+        <div class="col-md-9">
+          
+    <form #myForm="ngForm">        
+        <p-accordion [multiple]="true" activeIndex="0,1,2,3">
+            <p-accordionTab header="Resident information">
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <div class="flex flex-wrap gap-2">
+                            <button *ngIf="mode=='view'" pButton type="button" label="Edit" (click)="edit()"></button>
+                            <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Save" (click)="Submit()"
+                                [disabled]="!myForm.form.valid"></button>
+                            <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Close" class="p-button-secondary"
+                                (click)="CloseModal()"></button>
+                        </div>
                     </div>
-                    
-                    <div class="col-md-3">
-                        <label class="form-label">Title</label>
-                        <p-dropdown name="ddlTitle" [options]="stlsttitle"
-                            [(ngModel)]="ResidentMaster.Title" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="Choose title" [style]="{width: '100%'}"
-                           >
-                        </p-dropdown>                        
+                </div>
+                <div *ngIf="mode=='add' || mode=='edit'">                    
+                    <!-- Resident details -->
+                    <h5>Resident name</h5>
+                    <div class="row" *ngIf="s_userTypeId===UserTypes.SuperAdmin">
+                        <div class="col-md-4">
+                            <label class="form-label">Home<span class="danger">*</span></label>
+                            <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster" [(ngModel)]="ResidentMaster.homemasterid"
+                                optionLabel="HomeName" optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
+                                [style]="{width: '100%'}" #homeref="ngModel">
+                            </p-dropdown>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <label class="form-label">First Name <span class="danger">*</span></label>
-                        <input pInputText type="text" required class="form-control" name="txtFName"
-                        [(ngModel)]="ResidentMaster.FirstName" placeholder=""
-                        (keypress)="keyPress1($event)">                                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Title</label>
+                            <p-selectButton [options]="stlsttitle" [(ngModel)]="ResidentMaster.title" optionLabel="name"
+                                optionValue="code" name="Title" #titleref="ngModel"></p-selectButton>                            
+                        </div>
+                        <div class="col-md-auto errorMessage pt-6" *ngIf="titleref.errors &&(titleref.touched || titleref.dirty)">
+                            <div>Title is required.</div>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Middle Name</label>
-                        <input type="text" pInputText class="form-control" name="txtMiddleName"
-                            [(ngModel)]="ResidentMaster.MiddleName" placeholder=""
-                            (keypress)="keyPress1($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Last Name <span class="danger">*</span></label>
-                        <input type="text" pInputText class="form-control" name="txtLname"
-                            [(ngModel)]="ResidentMaster.LastName" placeholder=""
-                            (keypress)="keyPress1($event)">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Preferred Name</label>
-                        <input pInputText type="text" class="form-control" name="txtFHName"
-                            [(ngModel)]="ResidentMaster.PreferredName"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Status <span class="danger">*</span></label>
-                        <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
-                            [(ngModel)]="ResidentMaster.Status" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
-                        </p-dropdown>
-                    </div>
-                    <div class="col-md-12" *ngIf="(ResidentMaster.ProfileImage==null || ResidentMaster.ProfileImage==undefined || ResidentMaster.ProfileImage=='')">
-                        <label class="form-label">Resident Photo</label>
-                        <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*" [multiple]="true" [maxFileSize]="1000000" (onSelect)="fileUploader($event)" (onClear)="fileUploaderReset();"
-                        (onRemove)="fileUploaderReset();"></p-fileUpload>
-                    </div>
-                    <div class="row m-0">
-                    <div class="col-md-3 mt-2 border p-2 bdr6" *ngIf="(ResidentMaster.ProfileImage!=null && ResidentMaster.ProfileImage!=undefined && ResidentMaster.ProfileImage!='')">
-                        <div align="left" class="wd-30">
-                            <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.ProfileImage}}">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">First Name <span class="danger">*</span></label>
+                            <input pInputText type="text" required class="form-control" name="txtFName"
+                                [(ngModel)]="ResidentMaster.firstname"  (keypress)="validateText($event)" #fNameref="ngModel">
+                        </div>
+                        <div class="col-md-auto errorMessage pt-6" *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
+                            <div>First Name is required.</div>
                           </div>
-                          <div class="wd-50">
-                        <label class="form-label">Resident Photo</label>
                     </div>
-                        <div class="wd-20">
-                          <i title="Remove Photo" (click)="RemoveProfileImage()" class="fa fa-times removeicon p-button" aria-hidden="true"></i>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Middle Name</label>
+                            <input type="text" pInputText class="form-control" name="txtMiddleName"
+                                [(ngModel)]="ResidentMaster.middlename"  (keypress)="validateText($event)">
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Last Name <span class="danger">*</span></label>
+                            <input type="text" pInputText type="text" required class="form-control" name="txtLname"
+                                [(ngModel)]="ResidentMaster.lastname"  (keypress)="validateText($event)" #lNameref="ngModel">
+                        </div>
+                        <div class="col-md-auto errorMessage pt-6" *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
+                            <div>Last Name is required.</div>
+                          </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Preferred Name</label>
+                            <input pInputText type="text" class="form-control" name="txtFHName"
+                                [(ngModel)]="ResidentMaster.preferredname"  />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Status <span class="danger">*</span></label>
+                            <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus" [(ngModel)]="ResidentMaster.status"
+                                optionLabel="name" optionValue="code" [filter]="true" placeholder="Please Select Status"
+                                [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"
+                            *ngIf="(ResidentMaster.profileimage==null || ResidentMaster.profileimage==undefined || ResidentMaster.profileimage=='')">
+                            <label class="form-label">Resident Photo</label>
+                            <p-fileUpload name="file[]" [showUploadButton]="false" accept="image/*" [multiple]="true"
+                                [maxFileSize]="1000000" (onSelect)="fileUploader($event)" (onClear)="fileUploaderReset();"
+                                (onRemove)="fileUploaderReset();"></p-fileUpload>
+                        </div>
+                        <div class="row m-0">
+                            <div class="col-md-3 mt-2 border p-2 bdr6"
+                                *ngIf="(ResidentMaster.profileimage!=null && ResidentMaster.profileimage!=undefined && ResidentMaster.profileimage!='')">
+                                <div align="left" class="wd-30">
+                                    <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.profileimage}}">
+                                </div>
+                                <div class="wd-50">
+                                    <label class="form-label">Resident Photo</label>
+                                </div>
+                                <div class="wd-20">
+                                    <i title="Remove Photo" (click)="RemoveProfileImage()" class="fa fa-times removeicon p-button"
+                                        aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Resident demographics -->
+                    <h5>Resident demographics</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Date Of Birth <span class="danger">*</span></label>
+                            <p-calendar [required]="true" [maxDate]="todayDate" [(ngModel)]="ResidentMaster.dateofbirth"
+                                [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                                [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel" class="iconcal"></p-calendar>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label class="form-label">Gender / sex <span class="danger">*</span></label>
+                            <p-selectButton [options]="stlstgender" [(ngModel)]="ResidentMaster.gender" optionLabel="name"
+                                optionValue="code" name="gender"></p-selectButton>                                                 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">I describe myself as</label>
+                            <p-dropdown name="ddlMySelf" [options]="stlstmyself" [(ngModel)]="ResidentMaster.myself" optionLabel="name"
+                                optionValue="code" [filter]="true" placeholder="Choose description" [style]="{width: '100%'}"
+                                #myselfref="ngModel">
+                            </p-dropdown>
+                        </div>                    
+                        <div class="col-md-4" *ngIf="ResidentMaster.myself=='Other'">
+                            <label class="form-label"> </label>
+                            <input pInputText type="text" class="form-control" name="txtMySelfOther"
+                                [(ngModel)]="ResidentMaster.myselfother" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Country of birth</label>
+                            <p-dropdown name="ddlBirthCountry" [options]="lstCountryMaster" [(ngModel)]="ResidentMaster.birthcountryid"
+                                optionLabel="name" optionValue="id" [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
+                            </p-dropdown>
+                    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Primary language spoken</label>
+                            <input pInputText type="text" class="form-control" name="txtPrimaryLanguage"
+                                [(ngModel)]="ResidentMaster.primarylanguage" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Secondary language spoken</label>
+                            <input pInputText type="text" class="form-control" name="txtSecondaryLanguage"
+                                [(ngModel)]="ResidentMaster.secondarylanguage" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Religion</label>
+                            <input pInputText type="text" class="form-control" name="txtReligion" [(ngModel)]="ResidentMaster.religion" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label" for="">Marital status</label>
+                            <p-dropdown name="ddlMaritalStatus" [options]="stlstmaritalstatus" [(ngModel)]="ResidentMaster.maritalstatus"
+                                optionLabel="name" optionValue="code" [filter]="true" placeholder="Choose status" [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <!-- Admission setails -->
+                    <h5>Admission setails</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Status</label>
+                            <p-dropdown [required]="true" name="ddlAdmissionStatus" [options]="stlstadmissionstatus" [(ngModel)]="ResidentMaster.admissionstatus"
+                                optionLabel="name" optionValue="code" [filter]="true" placeholder="Choose status"
+                                [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Residency</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Dependency level</label>
+                            <p-dropdown name="ddlDependencyMaster" [options]="lstDependencyMaster"
+                                [(ngModel)]="ResidentMaster.dependencylevel" optionLabel="name" optionValue="code" [filter]="true"
+                                placeholder="Choose Dependency" [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Location</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Room </label>
+                            <p-dropdown name="ddlRoom" [options]="lstRoomMaster" [(ngModel)]="ResidentMaster.roomnumber"
+                                optionLabel="name" optionValue="code" [filter]="true" placeholder="Choose Room"
+                                [style]="{width: '100%'}">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Last date of admission</label>
+                
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Initial Admission Date</label>
+                            <p-calendar [maxDate]="todayDate" [(ngModel)]="ResidentMaster.admissiondate"
+                                [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
+                                [dateFormat]="customDateFormat.CalendarFormat" #initialadmdateref="ngModel"
+                                class="iconcal"></p-calendar>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Departure Date</label>
+                
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Departure Reason</label>
+                            <input pInputText type="text" class="form-control" name="txtDepartureReason"
+                                [(ngModel)]="ResidentMaster.departurereason"  />
+                        </div>
+                    </div>
+                    <!-- Funding -->
+                    <h5>Funding</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Funding</label>
+                            <p-dropdown name="ddlFunding" [options]="stlstfunding"
+                                [(ngModel)]="ResidentMaster.funding" optionLabel="name" optionValue="code" [filter]="true"
+                                placeholder="Choose Funding" [style]="{width: '100%'}" #Fundingref="ngModel">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Payer details - name</label>
+                            <input pInputText type="text" class="form-control" name="txtName" [(ngModel)]="ResidentMaster.payername"
+                                 />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Payer details - address</label>
+                            <input pInputText type="text" class="form-control" name="txtAddress" [(ngModel)]="ResidentMaster.payeraddress"
+                                 />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Payer details - post code</label>
+                            <input pInputText type="text" class="form-control" name="txtPostcode" [(ngModel)]="ResidentMaster.payerpostcode"
+                                 />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Payer details - telephone</label>
+                            <p-inputNumber [(ngModel)]="ResidentMaster.payertelephone" name="txtTelephone"></p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Payer details - relationship to resident</label>
+                            <input pInputText type="text" class="form-control" name="txtrelationship"
+                                [(ngModel)]="ResidentMaster.payerrelationship"  />
+                        </div>
                     </div>
                 </div>
             </p-accordionTab>
-            <p-accordionTab header="Resident demographics" *ngIf="ResidentMasterId==null">
-                <div class="row">                    
-                    <div class="col-md-3">
-                        <label class="form-label">Date Of Birth <span class="danger">*</span></label>
-                        <p-calendar [required]="true" [maxDate]="todayDate"
-                            [(ngModel)]="ResidentMaster.DateOfBirth"
-                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
-                            [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel" class="iconcal"></p-calendar> 
-                    </div>    
-                    <div class="col-md-3">
-                        <label class="form-label">Gender <span class="danger">*</span></label>
-                        <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
-                            [(ngModel)]="ResidentMaster.Gender" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="Choose gender" [style]="{width: '100%'}"
-                            #genderref="ngModel">
-                        </p-dropdown>                        
-                    </div>  
-                    <div class="col-md-3">
-                        <label class="form-label">I describe myself as</label>
-                        <input pInputText type="text" class="form-control" name="txtMySelfDetails"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">                        
-                          <label class="form-label">Country of birth</label>
-                          <p-dropdown name="ddlCountry" [options]="lstCountryMaster"
-                            [(ngModel)]="ResidentMaster.CountryId" optionLabel="name"
-                            optionValue="CountryId" [filter]="true" placeholder="Choose country"
-                            [style]="{width: '100%'}">
-                          </p-dropdown>
-                                          
-                      </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Primary language spoken</label>
-                        <input pInputText type="text" class="form-control" name="txtPrimaryLanguage"
-                            [(ngModel)]="ResidentMaster.PrimaryLanguage"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Secondary language spoken</label>
-                        <input pInputText type="text" class="form-control" name="txtSecondaryLanguage"
-                            [(ngModel)]="ResidentMaster.SecondaryLanguage"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Religion</label>
-                        <input pInputText type="text" class="form-control" name="txtReligion"
-                            [(ngModel)]="ResidentMaster.Religion"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">                      
-                          <label class="form-label" for="">Marital status</label>
-                          <p-dropdown name="ddlMaritalStatus" [options]="stlstmaritalstatus"
-                            [(ngModel)]="ResidentMaster.MaritalStatus" optionLabel="name" optionValue="code"
-                             [filter]="true" placeholder="Choose status"
-                            [style]="{width: '100%'}">
-                          </p-dropdown>                        
-                      </div>
-                </div>                
-            </p-accordionTab>  
-            <p-accordionTab header="Funding" *ngIf="ResidentMasterId==null">
-                <div class="row">                    
-                    <div class="col-md-3">
-                        <label class="form-label">Funding <span class="danger">*</span></label>
-                        <p-dropdown [required]="true" name="ddlFunding" [options]="stlstfunding"
-                            [(ngModel)]="ResidentMaster.Gender" optionLabel="name" optionValue="code"
-                            [filter]="true" placeholder="Choose Funding" [style]="{width: '100%'}"
-                            #Fundingref="ngModel">
-                        </p-dropdown>                        
-                    </div> 
-                     <div class="col-md-3">
-                        <label class="form-label">Payer Details - Name</label>
-                        <input pInputText type="text" class="form-control" name="txtName"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Payer Details - Address</label>
-                        <input pInputText type="text" class="form-control" name="txtAddress"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Payer Details - Postcode</label>
-                        <input pInputText type="text" class="form-control" name="txtPostcode"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Payer Details - Telephone</label>
-                        <p-inputNumber [(ngModel)]="ResidentMaster.MySelfDetails" name="txtTelephone"></p-inputNumber>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Payer Details - relationship to resident</label>
-                        <input pInputText type="text" class="form-control" name="txtrelationship"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                </div>                
-            </p-accordionTab> 
-            <p-accordionTab header="Healthcare details" *ngIf="ResidentMasterId==null">
-                <div class="row">                    
-                    <div class="col-md-3">
-                        <label class="form-label">NHS/CHI Number</label>
-                        <input pInputText type="text" class="form-control" name="txtNHS"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">National Insurance Number</label>
-                        <input pInputText type="text" class="form-control" name="txtInsuranceNumber"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <br>
-                    <span><b>Memebership Details</b></span> 
-                    <div class="col-md-3 mt-2">
-                        <label class="form-label">Private health insurance provider</label>
-                        <input pInputText type="text" class="form-control" name="txtPrivatehealth"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Memebers number</label>
-                        <p-inputNumber [(ngModel)]="ResidentMaster.MySelfDetails" name="Memebersnumber"></p-inputNumber>
-                    </div>
-                </div>                
+            <p-accordionTab header="Healthcare details" *ngIf="healthcareMode!=''">
+                <app-resident-healthcare-details [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-resident-healthcare-details>
             </p-accordionTab>
-            <p-accordionTab header="Resident preferences" *ngIf="ResidentMasterId==null">
-                <div class="row">   
-                    <div class="field-checkbox col-md-3">
-                        <p-checkbox [(ngModel)]="ResidentMaster.MySelfDetails" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
-                        <label for="binary"><b>DNAR/DNACPR is in place?</b></label>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">National Insurance Number</label>
-                        <input pInputText type="text" class="form-control" name="txtNationalInsuranceNumber"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                    <br>
-                    <span><b>Funeral preferences</b></span> 
-                    <div class="col-md-3 mt-2">
-                        <label class="form-label">Private health insurance provider</label>
-                        <input pInputText type="text" class="form-control" name="txtphinsurance"
-                            [(ngModel)]="ResidentMaster.MySelfDetails"
-                            placeholder="">
-                    </div>
-                     <div class="col-md-3 mt-2">
-                        <label class="form-label">Memebers number</label>
-                        <p-inputNumber [(ngModel)]="ResidentMaster.MySelfDetails" name="Memebersnumber"></p-inputNumber>
-                    </div>
-                </div>                
+            <p-accordionTab header="Resident preferences" *ngIf="healthcareMode!=''">
+                <app-resident-preferences [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-resident-preferences>
             </p-accordionTab>
-            <p-accordionTab header="Admission Details" *ngIf="ResidentMasterId!=null">
-                <div class="row">                    
-                    <div class="col-md-3">
-                        <label class="form-label">Status<span class="danger">*</span></label>
-                          <p-dropdown [required]="true" name="ddlStatuss" [options]="stlststatus"
-                            [(ngModel)]="ResidentBookingDetails.Status" optionLabel="name"
-                            optionValue="code" [filter]="true" placeholder="Choose Status"
-                            [style]="{width: '100%'}">
-                          </p-dropdown>
-                    </div>    
-                    <div class="col-md-3" *ngIf="s_userTypeId===UserTypes.Admin">
-                        <label class="form-label">Residency<span class="danger">*</span></label>
-                        <p-dropdown [required]="true" name="ddlHomee" [options]="lstHomeMaster"
-                            [(ngModel)]="ResidentBookingDetails.HomeMasterId" optionLabel="HomeName"
-                            optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
-                            [style]="{width: '100%'}" #homeref="ngModel">
-                        </p-dropdown>                        
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Dependency level<span class="danger">*</span></label>
-                          <p-dropdown name="ddlDependencyMaster" [required]="true" [options]="lstDependencyMaster"
-                            [(ngModel)]="ResidentBookingDetails.Dependencylevel" optionLabel="name"
-                            optionValue="code" [filter]="true" placeholder="Choose Dependency"
-                            [style]="{width: '100%'}">
-                          </p-dropdown>
-                    </div>    
-                    <div class="col-md-3">
-                        <label class="form-label">Location<span class="danger">*</span></label>
-                          <p-dropdown name="ddllocation" [required]="true" [options]="lstCountryMaster"
-                            [(ngModel)]="ResidentBookingDetails.CountryId" optionLabel="name"
-                            optionValue="CountryId" [filter]="true" placeholder="Choose country"
-                            [style]="{width: '100%'}">
-                          </p-dropdown>
-                    </div> 
-                    <div class="col-md-3">
-                        <label class="form-label">Room<span class="danger">*</span></label>
-                          <p-dropdown name="ddlRoom" [required]="true" [options]="lstRoomMaster"
-                            [(ngModel)]="ResidentBookingDetails.RoomId" optionLabel="name"
-                            optionValue="code" [filter]="true" placeholder="Choose Room"
-                            [style]="{width: '100%'}">
-                          </p-dropdown>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Last date of admission<span class="danger">*</span></label>
-                        <p-calendar [required]="true" [maxDate]="todayDate"
-                            [(ngModel)]="ResidentBookingDetails.LastAdmDate"
-                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
-                            [dateFormat]="customDateFormat.CalendarFormat" #lastdtref="ngModel" class="iconcal"></p-calendar> 
-                    </div>  
-                    <div class="col-md-3">
-                        <label class="form-label">Initial Admission Date<span class="danger">*</span></label>
-                        <p-calendar [required]="true" [maxDate]="todayDate"
-                            [(ngModel)]="ResidentBookingDetails.InitialAdmDate"
-                            [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
-                            [dateFormat]="customDateFormat.CalendarFormat" #initialadmdateref="ngModel" class="iconcal"></p-calendar> 
-                    </div>  
-                    <div class="col-md-3">
-                        <label class="form-label">Departure Reason</label>
-                        <input pInputText type="text" class="form-control" name="txtDepartureReason"
-                        [(ngModel)]="ResidentBookingDetails.DepartureReason"
-                        placeholder="">
-                    </div>  
-                </div>                
-            </p-accordionTab>      
-                 
-        </p-accordion>                
-            <div class="flex flex-wrap gap-2 mt-2">
-                <button *ngIf="ResidentMasterId==null" pButton type="button" label="Submit" (click)="Submit()" [disabled]="!myForm.form.valid"></button>
-                <button *ngIf="ResidentMasterId!=null" pButton type="button" label="Submit" (click)="SubmitAdmissionForm()" [disabled]="!myForm.form.valid"></button>
-                <button pButton type="button" label="Close" class="p-button-secondary" (click)="CloseModal()"></button>
-            </div>
-    </form>
+            <p-accordionTab header="Details prior to admission" *ngIf="healthcareMode!=''">
+                <app-resident-prior-admission [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-resident-prior-admission>
+            </p-accordionTab>
+        </p-accordion>           
+    </form>  
+        </div>
+    </div>
 </div>  

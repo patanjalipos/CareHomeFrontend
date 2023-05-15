@@ -45,15 +45,15 @@
             </ng-template>
             <ng-template pTemplate="body" let-col let-i="rowIndex">
                 <tr>
-                    <td>{{col.HomeCode}}</td>
-                    <td>{{col.HomeName}}</td>
-                    <td>{{col.UserTypeName}}</td>
-                    <td>{{col.LoginId}}</td>
-                    <td>{{col.FullName}}</td>
-                    <td>{{col.Status==1?'Active':'Inactive'}}</td>                  
+                    <td>{{col.homecode}}</td>
+                    <td>{{col.homename}}</td>
+                    <td>{{col.usertypename}}</td>
+                    <td>{{col.loginid}}</td>
+                    <td>{{col.firstname}} {{col.lastname}}</td>
+                    <td>{{col.status==true?'Active':'Inactive'}}</td>                  
                     <td>
                         <a matTooltip="View/Edit" style="cursor: pointer;"
-                            (click)="LoadUserDetails(col.UserId)">
+                            (click)="LoadUserDetails(col.userid)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -69,44 +69,44 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label class="form-label">Home<span class="danger">*</span></label>
-                        <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
+                        <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
                             [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
                             placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
-                        </p-multiSelect>
-                        <!-- <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
-                            [(ngModel)]="RegistrationMainModel.HomeMasterId" optionLabel="HomeName"
+                        </p-multiSelect> -->
+                        <p-dropdown [required]="true" name="ddlHome" [options]="lstHomeMaster"
+                            [(ngModel)]="RegistrationMainModel.homemasterid" optionLabel="HomeName"
                             optionValue="HomeMasterId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #homeref="ngModel">
-                        </p-dropdown> -->
-                        <!-- <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
-                            class="alert alert-danger">
+                        </p-dropdown>
+                        <div *ngIf="homeref.errors &&(homeref.touched || homeref.dirty)"
+                            class="errorMessage">
                             <div *ngIf="homeref.errors?.['required']">Home is required.</div>
-                        </div> -->
+                        </div>
                     </div>
                     
                     
                     <div class="col-md-3">
                         <label class="form-label">First Name<span class="danger">*</span></label>
                         <input pInputText type="text" required class="form-control" name="txtFName"
-                        [(ngModel)]="RegistrationMainModel.FirstName" placeholder=""
-                        (keypress)="keyPress1($event)">                                
+                        [(ngModel)]="RegistrationMainModel.firstname" placeholder=""
+                        (keypress)="validateText($event)">                                
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Middle Name</label>
                         <input type="text" pInputText class="form-control" name="txtMiddleName"
-                            [(ngModel)]="RegistrationMainModel.MiddleName" placeholder=""
-                            (keypress)="keyPress1($event)">
+                            [(ngModel)]="RegistrationMainModel.middlename" placeholder=""
+                            (keypress)="validateText($event)">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Last Name</label>
                         <input type="text" pInputText class="form-control" name="txtLname"
-                            [(ngModel)]="RegistrationMainModel.LastName" placeholder=""
-                            (keypress)="keyPress1($event)">
+                            [(ngModel)]="RegistrationMainModel.lastname" placeholder=""
+                            (keypress)="validateText($event)">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Preferred Name</label>
                         <input pInputText type="text" class="form-control" name="txtFHName"
-                            [(ngModel)]="RegistrationMainModel.PreferredName"
+                            [(ngModel)]="RegistrationMainModel.preferredname"
                             placeholder="">
                     </div>
                     <!-- <div class="col-md-3">
@@ -132,18 +132,18 @@
                         <label class="form-label">Login Id</label>
                         <input type="text" pInputText disabled="disabled" class="form-control"
                             placeholder="Login Id" name="txtLoginId"
-                            [(ngModel)]="RegistrationMainModel.LoginId">
+                            [(ngModel)]="RegistrationMainModel.loginid">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Password</label>
                         <input type="text" pInputText disabled="disabled" class="form-control"
                             placeholder="Password" name="txtPassword"
-                            [(ngModel)]="RegistrationMainModel.Password">
+                            [(ngModel)]="RegistrationMainModel.password">
                     </div>                    
                     <div class="col-md-3">
                         <label class="form-label">Status <span class="danger">*</span></label>
                         <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
-                            [(ngModel)]="RegistrationMainModel.Status" optionLabel="name" optionValue="code"
+                            [(ngModel)]="RegistrationMainModel.status" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
                         </p-dropdown>
                     </div>
@@ -154,14 +154,14 @@
                     <div class="col-md-3">
                         <label class="form-label">Date Of Birth</label>
                         <p-calendar [maxDate]="todayDate"
-                            [(ngModel)]="RegistrationMainModel.DateOfBirth"
+                            [(ngModel)]="RegistrationMainModel.dateofbirth"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" #dobref="ngModel" class="iconcal"></p-calendar> 
                     </div>    
                     <div class="col-md-3">
                         <label class="form-label">Title</label>
                         <p-dropdown [required]="true" name="ddlTitle" [options]="stlsttitle"
-                            [(ngModel)]="RegistrationMainModel.Title" optionLabel="name" optionValue="code"
+                            [(ngModel)]="RegistrationMainModel.title" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
                            >
                         </p-dropdown>                        
@@ -169,12 +169,12 @@
                     <div class="col-md-3">
                         <label class="form-label">Designation</label>
                         <input type="text" pInputText name="txtDesignation" class="form-control"
-                            [(ngModel)]="RegistrationMainModel.Designation" (keypress)="keyPress1($event)" />              
+                            [(ngModel)]="RegistrationMainModel.designation" (keypress)="validateText($event)" />              
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Date employment commenced</label>
                         <p-calendar [maxDate]="todayDate"
-                            [(ngModel)]="RegistrationMainModel.EmploymentDate"
+                            [(ngModel)]="RegistrationMainModel.employmentdate"
                             [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon"
                             [dateFormat]="customDateFormat.CalendarFormat" #empdateref="ngModel" class="iconcal"></p-calendar>
                     </div> 
@@ -186,7 +186,7 @@
                         <label class="form-label">User Type<span class="danger">*</span></label>
                         <p-dropdown [required]="true"
                             name="ddlUserType" [options]="lstUserType"
-                            [(ngModel)]="RegistrationMainModel.UserTypeId" optionLabel="UserTypeName"
+                            [(ngModel)]="RegistrationMainModel.usertypeid" optionLabel="UserTypeName"
                             optionValue="UserTypeId" [filter]="true" placeholder="--select--"
                             [style]="{width: '100%'}" #usertyperef="ngModel">
                         </p-dropdown>
@@ -199,7 +199,7 @@
                         <label class="form-label">Region</label>
                         <input type="text" pInputText class="form-control"
                         placeholder="Region" name="txtRegion"
-                        [(ngModel)]="RegistrationMainModel.Region">
+                        [(ngModel)]="RegistrationMainModel.region">
                     </div>
                 </div>
             </p-accordionTab> 
@@ -254,12 +254,12 @@
                     <div class="col-md-3">
                         <label class="form-label">Contact address</label>
                         <input type="text" pInputText id='txtAddress' class="form-control" name="txtAddress"
-                            [(ngModel)]="RegistrationMainModel.Address" (keypress)="keyPress1($event)" />
+                            [(ngModel)]="RegistrationMainModel.address" (keypress)="validateText($event)" />
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Location</label>
                         <input type="text" pInputText class="form-control" placeholder=""
-                            name="Location" [(ngModel)]="RegistrationMainModel.Location">
+                            name="Location" [(ngModel)]="RegistrationMainModel.location">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Phone (area - local)</label>
@@ -269,17 +269,17 @@
                     <div class="col-md-3">
                         <label class="form-label">Fax (area - local)</label>
                         <input type="text" pInputText class="form-control" placeholder=""
-                            name="Fax" [(ngModel)]="RegistrationMainModel.Fax">
+                            name="Fax" [(ngModel)]="RegistrationMainModel.fax">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Pager (area - local)</label>
                         <input type="text" pInputText class="form-control" placeholder="" name="Pager"
-                            [(ngModel)]="RegistrationMainModel.Pager" (keypress)="keyPress($event)">                        
+                            [(ngModel)]="RegistrationMainModel.pager" (keypress)="validateNumber($event)">                        
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile phone </label>
                         <input type="text" pInputText class="form-control" name="txtContactNumber"
-                            [(ngModel)]="RegistrationMainModel.ContactNumber" (keypress)="keyPress($event)"
+                            [(ngModel)]="RegistrationMainModel.contactnumber" (keypress)="validateNumber($event)"
                             placeholder="" pattern="[0-9]{10}$" minlength="10" maxlength="10"
                             #mobileref="ngModel">
                         <div *ngIf="mobileref.errors &&(mobileref.touched || mobileref.dirty)"
@@ -292,7 +292,7 @@
                     <div class="col-md-3">
                         <label class="form-label">Email address 1</label>
                         <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
-                            [(ngModel)]="RegistrationMainModel.Email1"
+                            [(ngModel)]="RegistrationMainModel.email1"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref1="ngModel">
                         <div *ngIf="emailref1.errors &&(emailref1.touched || emailref1.dirty)"
                             class="alert alert-danger">
@@ -304,7 +304,7 @@
                     <div class="col-md-3">
                         <label class="form-label">Email address 2</label>
                         <input type="email" pInputText class="form-control" placeholder="" name="txtEmail"
-                            [(ngModel)]="RegistrationMainModel.Email2"
+                            [(ngModel)]="RegistrationMainModel.email2"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailref2="ngModel">
                         <div *ngIf="emailref2.errors &&(emailref2.touched || emailref2.dirty)"
                             class="alert alert-danger">
@@ -315,7 +315,7 @@
                     </div> 
                     <div class="col-md-3">
                         <label class="form-label">Comments</label>
-                        <textarea rows="3" cols="30"  name="comments" [(ngModel)]="RegistrationMainModel.Comments"  placeholder="" pInputTextarea></textarea>
+                        <textarea rows="3" cols="30"  name="comments" [(ngModel)]="RegistrationMainModel.comments"  placeholder="" pInputTextarea></textarea>
                         
                     </div>
                 </div>                
@@ -327,25 +327,25 @@
                         <label class="form-label">Name</label>
                         <input type="text" pInputText class="form-control"
                             placeholder="" name="txtEmergencyContactName"
-                            [(ngModel)]="RegistrationMainModel.EmergencyContactName">
+                            [(ngModel)]="RegistrationMainModel.emergencycontactname">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Address</label>
                         <input type="text" pInputText class="form-control"
                             placeholder="" name="txtEmergencyContactAddress"
-                            [(ngModel)]="RegistrationMainModel.EmergencyContactAddress">
+                            [(ngModel)]="RegistrationMainModel.emergencycontactaddress">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Telephone</label>
                         <input type="text" pInputText class="form-control"
                             placeholder="" name="txtEmergencyContactTelephone"
-                            [(ngModel)]="RegistrationMainModel.EmergencyContactTelephone">
+                            [(ngModel)]="RegistrationMainModel.emergencycontacttelephone">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile</label>
                         <input type="text" pInputText class="form-control"
                             placeholder="" name="txtEmergencyContactMobile"
-                            [(ngModel)]="RegistrationMainModel.EmergencyContactMobile">
+                            [(ngModel)]="RegistrationMainModel.emergencycontactmobile">
                     </div>
                 </div>
             </p-accordionTab>           

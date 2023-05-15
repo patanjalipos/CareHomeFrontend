@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ResidentIndicatorsRoutingModule } from './resident-indicators-routing.module';
 import { ResidentIndicatorsComponent } from './resident-indicators.component';
 import {FormsModule} from '@angular/forms';
-import { ToastModule } from 'primeng/toast';
+
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from "primeng/dropdown";
@@ -19,7 +19,6 @@ import { CheckboxModule } from 'primeng/checkbox';
     CommonModule,
     ResidentIndicatorsRoutingModule,
     FormsModule,
-    ToastModule,
     TableModule,
     ButtonModule,
     DropdownModule,

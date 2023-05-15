@@ -1,0 +1,130 @@
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="">
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit" (click)="edit()"
+                [disabled]="(admissionid==null || admissionid==undefined)"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Save" (click)="save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary"
+                (click)="close()"></button>
+        </div>
+    </div>
+</div>
+<div *ngIf="mode=='view'">
+    <div class="row">
+        <h5>Previous Care</h5>
+        <div class="col-md-9">
+            <label class="form-label">Admitted From</label>
+            {{ResidentMaster.admittedform}}
+        </div>
+        <div class="col-md-3" *ngIf="ResidentMaster.admittedform=='Other'">
+            <label class="form-label">Admitted From Other</label>
+            {{ResidentMaster.admittedformother}}
+        </div>
+    </div>
+    <h5>Contact Details</h5>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="form-label">Phone number</label>
+            {{ResidentMaster.phone}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Email address</label>
+            {{ResidentMaster.email}}
+        </div>
+    </div>
+    <h5>Address</h5>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Country</label>
+            {{ResidentMaster.country}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Street</label>
+            {{ResidentMaster.Street}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Town</label>
+            {{ResidentMaster.town}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label class="form-label">County</label>
+            {{ResidentMaster.county}}
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Postcode</label>
+            {{ResidentMaster.postcode}}
+        </div>
+    </div>
+</div>
+<div *ngIf="mode=='edit'">
+    <h5>Previous Care</h5>
+    <div class="row">
+        <div class="col-md-9">
+            <label class="form-label">Admitted From</label>
+            <p-selectButton [options]="stlstadmitted" [(ngModel)]="ResidentMaster.admittedform" optionLabel="name"
+                optionValue="code" name="admittedform" (onChange)="setSelectedAdmittedForm($event)"></p-selectButton>
+        </div>
+        <div class="col-md-3" *ngIf="ResidentMaster.AdmittedForm=='Other'">
+            <label class="form-label">Admitted From Other</label>
+            <input pInputText type="text" class="form-control" name="AdmittedFormOther"
+                [(ngModel)]="ResidentMaster.admittedformother" placeholder="" />
+        </div>
+    </div>
+    <h5>Contact Details</h5>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="form-label">Phone number</label>
+            <input pInputText type="text" class="form-control" name="Phone" [(ngModel)]="ResidentMaster.phone"
+                placeholder="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Email address</label>
+            <input pInputText type="text" class="form-control" name="Email" [(ngModel)]="ResidentMaster.email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" #emailref="ngModel" />            
+        </div>
+        <div class="col-md-auto errorMessage pt-6" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
+            <div>Please enter valid email id.</div>
+        </div>
+    </div>
+    <h5>Address</h5>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Country</label>
+            <p-dropdown name="ddlCountry" [options]="lstCountryMaster" [(ngModel)]="ResidentMaster.countryid"
+                optionLabel="name" optionValue="id" [filter]="true" placeholder="Choose country"
+                [style]="{width: '100%'}">
+            </p-dropdown>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Street</label>
+            <input pInputText type="text" class="form-control" name="Street" [(ngModel)]="ResidentMaster.street" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Town</label>
+            <input pInputText type="text" class="form-control" name="Town" [(ngModel)]="ResidentMaster.town" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label class="form-label">County</label>
+            <input pInputText type="text" class="form-control" name="County" [(ngModel)]="ResidentMaster.county" />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Postcode</label>
+            <input pInputText type="text" class="form-control" name="Postcode" [(ngModel)]="ResidentMaster.postcode" />
+        </div>
+    </div>
+</div>

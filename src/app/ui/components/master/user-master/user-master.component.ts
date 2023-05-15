@@ -10,8 +10,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
   templateUrl: './user-master.component.html',
   styleUrls: ['./user-master.component.scss']
 })
-export class UserMasterComponent extends AppComponentBase implements OnInit {
-  
+export class UserMasterComponent extends AppComponentBase implements OnInit {  
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   UserTypes = UserTypes;
@@ -66,8 +65,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
         { name: 'Other', code: 'Other' }
       ];
       this.stlststatus = [
-        { name: 'Active', code: 1 },
-        { name: 'Inactive', code: 0 }
+        { name: 'Active', code: true },
+        { name: 'Inactive', code: false }
       ];
     }
 
@@ -156,18 +155,18 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   AddUserDetails()
   {
     this.mode = "add";
+    this.RegistrationMainModel.StatementType ="Insert";
     this.RegistrationMainModel = <any>{};
-    this.RegistrationMainModel.DateOfBirth = new Date("01/01/2001 00:00:00");
+    this.RegistrationMainModel.dateofbirth = new Date("01/01/2001 00:00:00");
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.RegistrationMainModel.HomeMasterId = localStorage.getItem('HomeMasterId');
+      this.RegistrationMainModel.homemasterid = localStorage.getItem('HomeMasterId');
     }
-    this.RegistrationMainModel.Status = 1;    
+    this.RegistrationMainModel.status = true;    
   }
   LoadUserDetails(userId)
   {
     this.lstFacilityResident=[];
     this.RegistrationMainModel=<any>{};
-
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetUserMasterById(userId)
       .subscribe
@@ -179,13 +178,14 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.RegistrationMainModel = tdata;
-            if(this.RegistrationMainModel?.DateOfBirth!=null && this.RegistrationMainModel?.DateOfBirth!=undefined)
+            if(this.RegistrationMainModel?.dateofbirth!=null && this.RegistrationMainModel?.dateofbirth!=undefined)
             {
-              var newDate=new Date(this.RegistrationMainModel.DateOfBirth);           
-              this.RegistrationMainModel.DateOfBirth=newDate;
+              var newDate=new Date(this.RegistrationMainModel.dateofbirth);           
+              this.RegistrationMainModel.dateofbirth=newDate;
             }
-            this.RegistrationMainModel.DateOfBirth = new Date(this.RegistrationMainModel.DateOfBirth);           
-            this.mode = "update";    
+            this.RegistrationMainModel.dateofbirth = new Date(this.RegistrationMainModel.dateofbirth);           
+            this.mode = "update"; 
+            this.RegistrationMainModel.StatementType ="Update";   
             
             if(data.actionResult.result2!=null)
             {
@@ -209,7 +209,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   {
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateUserMaster(this.RegistrationMainModel)
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
       .subscribe
       ({
         next:(data) => {
@@ -257,21 +257,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     importData.HomeMasterId = NewHomeMasterId;
     this._MasterServices.downloadReport(importData);
   }
-  // Functions
-  keyPress(event: any) {
-    const pattern = /[0-9\+\-\ ]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 32 && event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-  keyPress1(event: any) {
-    const pattern = /[A-Za-z\+\-\ ]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 32 && event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
+  // Functions   
   SetFacility()
   {
       if(this.RegistrationMainModel.Homes?.length>0)

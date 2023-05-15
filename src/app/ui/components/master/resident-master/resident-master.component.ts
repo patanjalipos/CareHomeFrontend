@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
-import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
+import { AdmissionStatus, ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../master.service';
 import { ViewportScroller } from '@angular/common';
 import { of } from 'rxjs';
@@ -20,8 +20,11 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
   UserTypes = UserTypes;
+  admissionStatus = AdmissionStatus;
   customDateFormat = CustomDateFormat;
   s_userTypeId: any = localStorage.getItem('userTypeId');
+  selecteduserid:any=null;
+  selectedadmissionid:any=null;
   todayDate = new Date();
   mode: string = null;
   lstHomeMaster: any[]=[];
@@ -31,16 +34,16 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   lstResidentMaster: any[]=[];
   lstResidentIndicator: any[]=[];
   public ResidentMaster: any = <any>{};
-  public ResidentBookingDetails: any = <any>{};
   selectedUserType: any[]=[];
   filteredValuesLength:number=0;
   stlsttitle: any[];
   stlstgender: any[];
+  stlstmyself: any[];
   stlstmaritalstatus: any[];
+  stlstadmissionstatus: any[];
   stlststatus: any[]=[];
   SelectedFile:any[]=[];
-  profileSrc = null;
-  ResidentMasterId = null;
+  profileSrc = null;  
   //funding
   stlstfunding: any[];
   stepStates = {
@@ -59,36 +62,62 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       ],
     }
   };
+
+  healthcareMode:string="";
+  profileUrl:string=this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,   
     private viewportScroller: ViewportScroller,
-    private ngWizardService: NgWizardService
+    private ngWizardService: NgWizardService,
   ) 
   {
     super();
     this._ConstantServices.ActiveMenuName = "Resident Master"; 
+    this.stlstadmissionstatus = [
+      { name: this.admissionStatus[this.admissionStatus.Active], code: this.admissionStatus.Active },
+      { name: this.admissionStatus[this.admissionStatus.Deceased], code: this.admissionStatus.Deceased },
+      { name: this.admissionStatus[this.admissionStatus.Discharged], code: this.admissionStatus.Discharged },
+      { name: this.admissionStatus[this.admissionStatus.Transferred], code: this.admissionStatus.Transferred },
+      { name: this.admissionStatus[this.admissionStatus.WaitListed], code: this.admissionStatus.WaitListed },
+      { name: this.admissionStatus[this.admissionStatus.Suspended], code: this.admissionStatus.Suspended },
+      { name: this.admissionStatus[this.admissionStatus.Unallocated], code: this.admissionStatus.Unallocated }
+    ];
     this.stlsttitle = [
-      { name: 'Mr.', code: 'Mr.' },
-      { name: 'Mrs.', code: 'Mrs.' },
-      { name: 'Ms.', code: 'Ms.' },
-      { name: 'Master', code: 'Master' }
+      { name: 'Mr', code: 'Mr' },
+      { name: 'Mrs', code: 'Mrs' },
+      { name: 'Ms', code: 'Ms' },
+      { name: 'Miss', code: 'Miss' },
+      { name: 'Other', code: 'Other' }
     ];
     this.stlstgender = [
       { name: 'Male', code: 'Male' },
       { name: 'Female', code: 'Female' },
+      { name: 'Intersex or indeterminate', code: 'Intersex or indeterminate' },
+      { name: 'Not stated / inadequately described', code: 'Not stated / inadequately described' }
+    ];
+    this.stlstmyself = [
+      { name: 'Male', code: 'Male' },
+      { name: 'Female', code: 'Female' },
+      { name: 'Lesbian', code: 'Lesbian' },
+      { name: 'Gay', code: 'Gay' },
+      { name: 'Bi-sexual', code: 'Bi-sexual' },
+      { name: 'Transgender', code: 'Transgender' },
+      { name: 'Intersex', code: 'Intersex' },
       { name: 'Other', code: 'Other' }
     ];
     this.stlstmaritalstatus = [
+      { name: 'Unknown', code: 'Unknown' },
+      { name: 'Single', code: 'Single' },
       { name: 'Married', code: 'Married' },
-      { name: 'Unmaaried', code: 'Unmaaried' },
-      { name: 'Widow', code: 'Widow' },
-      { name: 'Divoreced', code: 'Divoreced' }
+      { name: 'Widowed', code: 'Widowed' },
+      { name: 'Divoreced', code: 'Divoreced' },
+      { name: 'Separated', code: 'Separated' },
     ]
     this.stlststatus = [
-      { name: 'Active', code: 1 },
-      { name: 'Inactive', code: 0 }
+      { name: 'Active', code: true },
+      { name: 'Inactive', code: false }
     ];
     this.lstDependencyMaster = [
       { name: 'Residenttial indenpendent', code: 'Residenttial indenpendent' },
@@ -108,7 +137,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'Private', code: 'Private' },
       { name: 'Responsible Local Authority', code: 'Responsible Local Authority' },
       { name: 'Private/Responsible Local Authority', code: 'Private/Responsible Local Authority' }
-    ];
+    ];    
     this.profileSrc = this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
    }
 
@@ -226,16 +255,21 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   AddResident()
   {
     this.mode = "add";
-    this.ResidentMasterId = null;
+    this.healthcareMode="view";
+    this.selecteduserid = null;
+    this.selectedadmissionid = null;
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
-    this.ResidentMaster.Status = 1;   
+    this.ResidentMaster.admissionstatus = this.admissionStatus.Active;   
+    this.ResidentMaster.status = true;  
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
-      this.ResidentMaster.HomeMasterId = localStorage.getItem('HomeMasterId');
+      this.ResidentMaster.homemasterid = localStorage.getItem('HomeMasterId');
     } 
   }
-  LoadResidentDetails(id)
+  LoadResidentDetails(id, admissionid)
   {
+    this.selecteduserid=id;
+    this.selectedadmissionid=admissionid;
     this.SelectedFile = [];
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetResidentMasterById(id)
@@ -248,11 +282,13 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
-            if(this.ResidentMaster?.DateOfBirth!=null && this.ResidentMaster?.DateOfBirth!=undefined)
+            //console.log('this.ResidentMaster', this.ResidentMaster)
+            if(this.ResidentMaster?.dateofbirth!=null && this.ResidentMaster?.dateofbirth!=undefined)
             {
-              this.ResidentMaster.DateOfBirth = new Date(this.ResidentMaster.DateOfBirth);
+              this.ResidentMaster.dateofbirth = new Date(this.ResidentMaster.dateofbirth);
             }
-            this.mode = "update";            
+            this.mode = "edit";   
+            this.healthcareMode="view";         
           }
 
         },
@@ -273,13 +309,21 @@ fileUploaderReset()
   this.SelectedFile = [];
 }
 RemoveProfileImage(){
-  this.ResidentMaster.ProfileImage=null;
+  this.ResidentMaster.profileimage=null;
   this.SelectedFile = [];
 }
+
+  edit()
+  {
+    this.mode='edit';
+  }
+  
   Submit()
   {
-    this.ResidentMaster.CreatedBy = localStorage.getItem('userId');  
-    this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
+    this.ResidentMaster.userid=this.selecteduserid;
+    this.ResidentMaster.residentadmissioninfoid=this.selectedadmissionid;          
+    this.ResidentMaster.usertypeid=this.UserTypes.Resident;
+    this.ResidentMaster.modifiedby = localStorage.getItem('userId');  
     console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
@@ -289,16 +333,16 @@ RemoveProfileImage(){
       }
     }
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateResidentMaster(formData)
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateResidentMaster(formData)
         .subscribe
         ({
           next:(data) => {
             this._UtilityService.hideSpinner();
-            this.LoadResidentList();
+            //this.LoadResidentList();
             this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            this.ResidentMasterId = data.actionResult.stringVal
-            console.log('actionResult',data.actionResult);
-            //this.mode = null;            
+            this.selecteduserid = data.actionResult.userId;
+            this.selectedadmissionid = data.actionResult.stringVal;           
+                       
           },
           error: (e) => {
             this._UtilityService.hideSpinner();
@@ -306,30 +350,37 @@ RemoveProfileImage(){
           },
         });
   }
-  SubmitAdmissionForm(){
-    this.ResidentBookingDetails.CreatedBy = localStorage.getItem('userId');  
-    this.ResidentBookingDetails.ModifiedBy = localStorage.getItem('userId'); 
-    this.ResidentBookingDetails.ResidentMasterId = this.ResidentMasterId; 
-    this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddUpdateResidentBookingDetails(this.ResidentBookingDetails)
-        .subscribe
-        ({
-          next:(data) => {
-            this._UtilityService.hideSpinner();
-            this.LoadResidentList();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            console.log('actionResult',data.actionResult);
-            this.mode = null;          
-          },
-          error: (e) => {
-            this._UtilityService.hideSpinner();
-            this._UtilityService.showErrorAlert(e.message);
-          },
-        });
-  }
+
+  calculateAge(birthday):number {    
+    if (birthday != undefined) {
+       var curdate = new Date();
+       var dob = new Date(birthday);
+       var ageyear = curdate.getFullYear() - dob.getFullYear();
+       var agemonth = curdate.getMonth() - dob.getMonth();
+       var ageday = curdate.getDate() - dob.getDate();
+       if (agemonth <= 0) {
+         ageyear--;
+         agemonth = (12 + agemonth);
+       }
+       if (curdate.getDate() < dob.getDate()) {
+         agemonth--;
+         ageday = 30 + ageday;
+       } if (agemonth == 12) {
+         ageyear = ageyear + 1;
+         agemonth = 0;
+       }
+       return ageyear;      
+     }
+     else
+     return 0;
+   }
+  
   CloseModal() {
     this.mode = null;
-    this.ResidentMasterId = null;
+    this.healthcareMode="";
+    this.selecteduserid = null;
+    this.selectedadmissionid = null;
+    this.LoadResidentList();
   }
   exportToItemExcel() {
     let importData: any = <any>{};
@@ -341,27 +392,6 @@ RemoveProfileImage(){
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
-
-  // Functions
-  keyPress(event: any) {
-    const pattern = /[0-9\+\-\ ]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 32 && event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-  keyPress1(event: any) {
-    const pattern = /[A-Za-z\+\-\ ]/;
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 32 && event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-
-
-
-  
-
 }
 
 

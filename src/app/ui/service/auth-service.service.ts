@@ -23,8 +23,8 @@ export class AuthServiceService {
         let params = new HttpParams();
 
         var UserMasterNew:any=<any>{};
-        UserMasterNew.LoginId=LoginId;
-        UserMasterNew.Password=Password;
+        UserMasterNew.loginid=LoginId;
+        UserMasterNew.password=Password;
 
         var data = JSON.stringify(UserMasterNew);
         return this.httpClient.post<any>(this._ConsService.BaseUriUser + "api/User/ValidateUser", data, { "headers": reqHeader, "params": params });

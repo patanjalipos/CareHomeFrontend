@@ -176,7 +176,7 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
   ResetModel() {
     this.selectedUserType=[];
     this.MenuItemMaster = <any>{};
-    this.MenuItemMaster.Status = 1;
+    this.MenuItemMaster.status = true;
     this.lstParentMenuItemMaster=JSON.parse(JSON.stringify(this.lstMenuItemMaster));
   }
   CloseModal() {
