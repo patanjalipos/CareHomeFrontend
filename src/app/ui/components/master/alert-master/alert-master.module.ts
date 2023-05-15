@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeMasterRoutingModule } from './home-master-routing.module';
-import { HomeMasterComponent } from './home-master.component';
+import { AlertMasterRoutingModule } from './alert-master-routing.module';
+import { AlertMasterComponent } from './alert-master.component';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
@@ -12,11 +12,11 @@ import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
-    HomeMasterComponent
+    AlertMasterComponent
   ],
   imports: [
     CommonModule,
-    HomeMasterRoutingModule,
+    AlertMasterRoutingModule,
     FormsModule,
     TableModule,
     DropdownModule,
@@ -25,4 +25,4 @@ import { ButtonModule } from 'primeng/button';
     ButtonModule,
   ]
 })
-export class HomeMasterModule { }
+export class AlertMasterModule { }

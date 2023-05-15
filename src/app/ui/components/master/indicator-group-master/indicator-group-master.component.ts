@@ -1,25 +1,21 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
-import { ConstantsService, UserTypes } from 'src/app/ui/service/constants.service';
+import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../master.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
-  selector: 'app-home-master',
-  templateUrl: './home-master.component.html',
-  styleUrls: ['./home-master.component.scss']
+  selector: 'app-indicator-group-master',
+  templateUrl: './indicator-group-master.component.html',
+  styleUrls: ['./indicator-group-master.component.scss']
 })
-export class HomeMasterComponent extends AppComponentBase implements OnInit {
+export class IndicatorGroupMasterComponent extends AppComponentBase implements OnInit {
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
-  userTypes = UserTypes;
-  s_userTypeId: any = localStorage.getItem('userTypeId');
-  mode: string = null;
-  lstCountryMaster: any[]=[];
-  lstHeadMaster: any[]=[];
+  mode: string = null;  
   public lstMaster: any[]=[];
   public master: any = <any>{};
   filteredValuesLength:number=0;
@@ -31,34 +27,18 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
   ) 
   { 
     super();
-    this._ConstantServices.ActiveMenuName = "Home Master"; 
+    this._ConstantServices.ActiveMenuName = "Indicator Group Master"; 
     this.stlststatus = [
       { name: 'Active', code: true },
       { name: 'Inactive', code: false }
     ];    
   } 
   ngOnInit(): void {
-    this.LoadCountryList();
-   this.GetHomeMaster();        
+   this.GetIndicatorGroupMaster();        
   }
-  LoadCountryList() {
-    this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
-      next: (data) => {
-        if (data.actionResult.success == true) {
-          var tdata = JSON.parse(data.actionResult.result);
-          tdata = tdata ? tdata : [];
-          this.lstCountryMaster = tdata;
-        }
-      },
-      error: (e) => {
-        this._UtilityService.hideSpinner();
-        this._UtilityService.showErrorAlert(e.message);
-      },
-    });
-  }  
-  GetHomeMaster() {
+  GetIndicatorGroupMaster() {
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetHomeMaster(false)
+    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMaster(false)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -83,11 +63,10 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
         },
       });
   }   
-  GetHomeMasterById(id) {
+  GetIndicatorGroupMasterById(id) {
     this._UtilityService.showSpinner();
-    this.ResetModel();
     this.mode = "Edit";
-    this.unsubscribe.add = this._MasterServices.GetHomeMasterById(id)  
+    this.unsubscribe.add = this._MasterServices.GetIndicatorGroupMasterById(id)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -111,13 +90,13 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
     
     this.master.modifiedby = localStorage.getItem('userId');;  
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddInsertUpdateAlert(this.master)
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateIndicatorGroup(this.master)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            this.GetHomeMaster();
+            this.GetIndicatorGroupMaster();
             this.mode = null;
           }
           else {
@@ -145,8 +124,8 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
   }
   exportToItemExcel() {
     let importData: any = <any>{};
-    importData.reportname = "Home";
-    importData.filename = "Home";
+    importData.reportname = "IndicatorGroup";
+    importData.filename = "IndicatorGroup";
     this._MasterServices.downloadReport(importData);
   } 
   //Filter
