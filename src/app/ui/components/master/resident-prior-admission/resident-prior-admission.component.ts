@@ -61,7 +61,7 @@ export class ResidentPriorAdmissionComponent extends AppComponentBase  implement
   {
     this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GeResidentPriorAdmissionById(this.admissionid);      
+      this.GetResidentPriorAdmissionById(this.admissionid);      
     }
     else
     {
@@ -73,10 +73,10 @@ export class ResidentPriorAdmissionComponent extends AppComponentBase  implement
     if(event.value!=='Other')
     this.ResidentMaster.admittedformother="";
   }
-  GeResidentPriorAdmissionById(admissionid) {
+  GetResidentPriorAdmissionById(admissionid) {
     this.ResidentMaster.StatementType = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GeResidentPriorAdmissionById(admissionid)  
+    this.unsubscribe.add = this._MasterServices.GetResidentPriorAdmissionById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          

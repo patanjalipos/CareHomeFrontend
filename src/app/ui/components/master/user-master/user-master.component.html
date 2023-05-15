@@ -52,7 +52,7 @@
                     <td>{{col.firstname}} {{col.lastname}}</td>
                     <td>{{col.status==true?'Active':'Inactive'}}</td>                  
                     <td>
-                        <a matTooltip="View/Edit" style="cursor: pointer;"
+                        <a title="View/Edit" style="cursor: pointer;"
                             (click)="LoadUserDetails(col.userid)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
