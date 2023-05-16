@@ -185,13 +185,17 @@ h5.label-name {
 /*Theme*/
 body{ background-color: #F3F4F4;font-family: 'Poppins', sans-serif;}
 .btn-primary, .p-button { background:#023C40 ; border-color:#023C40 ;}
-.layout-sidebar { width: 232px; top: 0 !important; padding: 1rem; background: #023C40; color: #fff; padding-left:0 !important ;}
+.layout-sidebar { left: 0 !important; width: 232px; top: 0 !important; transition: none !important; padding: 1rem; background: #023C40; color: #fff; padding-left:0 !important ;}
 .layout-topbar { width: 100%; right: 0 !important; left: auto; background: none; box-shadow: none; padding: 0; position: relative; margin-left: 240px;}
-.layout-wrapper.layout-static.layout-static-inactive .layout-sidebar {left: 0px; width: auto; }
+.layout-wrapper.layout-static.layout-static-inactive .layout-sidebar {left: 70px !important; width: auto; }
 .layout-wrapper.layout-static.layout-static-inactive .layout-topbar { width: 94%; margin-left: 60px;}
-.layout-wrapper.layout-static.layout-static-inactive .layout-menu ul a { left: 20px;}
+.layout-wrapper.layout-static.layout-static-inactive .layout-menu ul a { left: 20px; width: auto;}
 .layout-wrapper.layout-static.layout-static-inactive .layout-main { margin-left: -10px;}
 .layout-wrapper.layout-static .layout-main-container { margin-left: 221px; }
+.layout-wrapper.layout-static.layout-static-inactive .layout-menuitem-text { display: none;}
+.layout-wrapper.layout-static.layout-static-inactive .layout-main-container {
+    margin-left: 70px !important;}
+
 .layout-menu ul a { color: #fff; width: 227px;}
 .layout-menu ul a:hover {border-radius: 2px; background: #1E4F53 !important;}
 .layout-topbar .layout-topbar-logo { width: 70px;}
@@ -397,3 +401,8 @@ i.iconset:hover {background: #e9ecef !important; }
         .p-dropdown:not(.p-disabled):hover {
             border-color: #023c40;
         }
+        .acc-tab {display: flex;
+            align-items: center;
+            justify-content: space-between;}
+            .p-accordion .p-accordion-header .p-accordion-header-link {
+                padding: 0.5rem;}

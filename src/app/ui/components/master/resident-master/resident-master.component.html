@@ -140,18 +140,20 @@
           
     <form #myForm="ngForm">        
         <p-accordion [multiple]="true" activeIndex="0,1,2,3">
-            <p-accordionTab header="Resident information">
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <div class="flex flex-wrap gap-2">
-                            <button *ngIf="mode=='view'" pButton type="button" label="Edit" (click)="edit()"></button>
+            <p-accordionTab>
+                <p-header class="w-100">
+                    <div class="acc-tab">
+                    <span>Resident information</span>
+                    <div>
+                    <button *ngIf="mode=='view'" pButton type="button" label="Edit" (click)="edit()"></button>
                             <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Save" (click)="Submit()"
                                 [disabled]="!myForm.form.valid"></button>
-                            <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Close" class="p-button-secondary"
+                            <button *ngIf="mode=='add' || mode=='edit'" pButton type="button" label="Close" class="p-button-secondary ml-2"
                                 (click)="CloseModal()"></button>
-                        </div>
-                    </div>
+                    </div>            
                 </div>
+                </p-header>
+              
                 <div *ngIf="mode=='add' || mode=='edit'">
                     <h5>Admission setails</h5>
                     <div class="row">
@@ -412,6 +414,7 @@
                 </div>
             </p-accordionTab>
             <p-accordionTab header="Healthcare details" *ngIf="healthcareMode!=''">
+                
                 <app-resident-healthcare-details [mode]="healthcareMode" [userid]="selecteduserid"
                     [admissionid]="selectedadmissionid"></app-resident-healthcare-details>
             </p-accordionTab>

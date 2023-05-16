@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
+import { AccordionModule } from 'primeng/accordion';
+
 @NgModule({
   declarations: [
     ResidentHealthcareDetailsComponent
@@ -17,7 +19,8 @@ import { InputTextModule } from 'primeng/inputtext';
     ResidentHealthcareDetailsRoutingModule,
     FormsModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    AccordionModule
   ],
   exports:[ResidentHealthcareDetailsComponent]
 })
