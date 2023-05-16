@@ -1,4 +1,19 @@
-<div class="row mb-5">
+
+<p-accordionTab>
+<p-header class="w-100">
+    <div class="acc-tab">
+        <span>Healthcare details</span>
+        <div>
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit"
+                (click)="edit()" [disabled]="(admissionid==null || admissionid==undefined)"></button>
+                <button *ngIf="mode=='edit'" pButton type="button" label="Save"
+                (click)="save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary ml-2"
+                (click)="close()"></button>
+        </div>
+    </div>
+</p-header>
+<!-- <div class="row mb-5">
     <div class="col-md-12">
         <div class="">
             <button *ngIf="mode=='view'" pButton type="button" label="Edit" 
@@ -9,7 +24,7 @@
                 (click)="close()"></button>
         </div>
     </div>
-</div>
+</div> -->
 <div *ngIf="mode=='view'">
     <div class="row">                    
         <div class="col-md-3">
@@ -65,5 +80,6 @@
             <input pInputText type="text" class="form-control" name="Memebersnumber" [(ngModel)]="ResidentMaster.MembershipNumber" placeholder="" />
         </div>
     </div> 
-    </div>
+</div>
+</p-accordionTab>
     

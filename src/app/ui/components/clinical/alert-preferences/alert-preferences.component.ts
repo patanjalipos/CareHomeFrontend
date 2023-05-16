@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-alert-preferences',
@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alert-preferences.component.scss']
 })
 export class AlertPreferencesComponent implements OnInit {
-  mode:string='view';
+  @Input() mode: string = 'view';
+  @Input() userid: any = null;
+  @Input() admissionid: any = null;
+  Clinical: any = <any>{};
   valRadio1: string = "Enable";
   valRadio2: string = "Disable";
   valRadio3: string = "Enable";
@@ -22,6 +25,18 @@ export class AlertPreferencesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  edit()
+  {
+    this.mode='edit'
+  }
+  close()
+  {
+    this.mode='view'
+  }
+  save()
+  {
+    this.mode='view'
   }
 
 }

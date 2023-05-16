@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { CareService } from 'src/app/ui/service/CareServices';
 
@@ -8,7 +8,10 @@ import { CareService } from 'src/app/ui/service/CareServices';
   styleUrls: ['./resident-indicators.component.scss']
 })
 export class ResidentIndicatorsComponent implements OnInit {
-  mode:string='view';
+  @Input() mode: string = 'view';
+  @Input() userid: any = null;
+  @Input() admissionid: any = null;
+  Clinical: any = <any>{};
   status:string='Enabled';
   lstResidentIndicators:any[]=[];
   AddResidentIndicators:any[]=[];

@@ -1,31 +1,17 @@
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="flex flex-wrap gap-2">
+<p-accordionTab>
+    <p-header class="w-100">
+        <div class="acc-tab">
+            <span>Baseline health information</span>
+            <div>
             <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
                 (click)="edit()"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
                 (click)="save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="btn btn-secondary"
+            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
                 (click)="close()"></button>
+            </div>
         </div>
-    </div>
-</div>
-<!-- <div *ngIf="mode=='view'" class="mt-5">
-    <h5>Usual Bowel Pattern:</h5><br>
-    <div>{{healthinformation.BowelPattern}}</div><br>
-    <h5>Height:</h5>
-    <span style="color: #808080;">Resident Height in cm</span><br>
-    <div>{{healthinformation.Height}}</div><br>
-    <h5>Weight Upon Admission:</h5>
-    <div>{{healthinformation.WeightUponAdm}}</div><br>
-    <span style="color: #808080;">Resident Weight Upon Admission (Kg)</span>
-    <h5>Wight Range</h5><br>
-    <div class="col-md-3">
-        {{healthinformation.WightRangeMin}}
-    </div>
-    <div>{{healthinformation.WightRangeMax}}</div>
-</div> -->
-
+</p-header>
 <div class="row mt25" *ngIf="mode=='view'">
     <div class="col">
         <div class="row">
@@ -109,8 +95,6 @@
         </div>
     </div>
 </div>
-
-
 <div *ngIf="mode=='edit'">
     <div class="row">
         <span><b>Usual Bowel Pattern</b></span>
@@ -209,3 +193,4 @@
         </div>
     </div>
 </div>
+</p-accordionTab>

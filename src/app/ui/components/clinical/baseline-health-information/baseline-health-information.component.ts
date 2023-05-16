@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-baseline-health-information',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./baseline-health-information.component.scss']
 })
 export class BaselineHealthInformationComponent implements OnInit {
-
-  mode:string='view';
+  @Input() mode: string = 'view';
+  @Input() userid: any = null;
+  @Input() admissionid: any = null;
+  Clinical: any = <any>{};
   healthinformation:any = <any>{};
   constructor() { }
 

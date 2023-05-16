@@ -36,7 +36,8 @@ export class ResidentHealthcareDetailsComponent extends AppComponentBase impleme
   {    
     if (this.userid != null && this.admissionid != null) {
       this.mode='edit';
-      this.GetResidentHealthCareById(this.admissionid);      
+      this.GetResidentHealthCareById(this.admissionid);  
+      console.log(this.userid, this.admissionid);    
     }
     else
     {
