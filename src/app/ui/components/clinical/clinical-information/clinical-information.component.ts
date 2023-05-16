@@ -26,18 +26,21 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
-    
+    if (this.userid != null && this.admissionid != null) {
+      this.GetClinicalInformationById(this.admissionid);      
+    }
   }
 
   edit()
   {
     this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GetClinicalInformationById(this.admissionid);      
+      //this.GetClinicalInformationById(this.admissionid);      
     }
     else
     {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
+      this.mode='view';
     }
   }
   AddNewAllergy()
@@ -54,7 +57,8 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.Clinical = tdata;            
+            this.Clinical = tdata;       
+            //console.log('this.Clinical', this.Clinical);     
             this.Clinical.StatementType = "Update";
           }
         },
