@@ -1,4 +1,60 @@
+
 <div class="row">
+    <div class="col-md-3">
+        <div class="care-cont">
+            <div class="short-cont">
+                <h2>Allergies</h2>
+            </div>
+            <div class="short-cont">
+                <h2>Resident indicators</h2>
+            </div>
+            <div class="short-cont">
+                <h2>Clinical information</h2>
+            </div>
+            <div class="short-cont">
+                <h2>Baseline health information</h2>
+            </div>
+            <div class="short-cont">
+                <h2>Alert preferences</h2>
+            </div>
+            <div class="short-cont">
+                <h2>Chart preferences</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <form #myForm="ngForm">
+            <p-accordion [multiple]="true" activeIndex="0,1,2,3,4,5">
+                <div *ngIf="healthcareMode!=''">
+                    <app-allergies [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-allergies>
+                </div>
+                <div *ngIf="healthcareMode!=''">
+                    <app-resident-indicators [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-resident-indicators>
+                </div>
+                <div *ngIf="healthcareMode!=''">
+                    <app-clinical-information [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-clinical-information>
+                </div>
+                <div *ngIf="healthcareMode!=''">
+                    <app-baseline-health-information [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-baseline-health-information>
+                </div>
+                <div *ngIf="healthcareMode!=''">
+                    <app-alert-preferences [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-alert-preferences>
+                </div>
+                <div *ngIf="healthcareMode!=''">
+                    <app-chart-preferences [mode]="healthcareMode" [userid]="selecteduserid"
+                    [admissionid]="selectedadmissionid"></app-chart-preferences>
+                </div>
+            </p-accordion>
+        </form>
+
+    </div>
+</div>
+<!-- <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="profile-box">
@@ -102,4 +158,4 @@
               </div>
         </div>
     </div>
-</div>
+</div> -->

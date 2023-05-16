@@ -1,3 +1,17 @@
+<p-accordionTab>
+    <p-header class="w-100">
+        <div class="acc-tab">
+            <span>Chart preferences</span>
+            <div>
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                (click)="edit()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                (click)="save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                (click)="close()"></button>
+            </div>
+        </div>
+</p-header>
 <div class="row mt25" *ngIf="mode=='view'">
     <div class="p-fluid">
         <h5>Baseline health range alerts</h5>
@@ -232,11 +246,10 @@
         </div>
     </div>
 </div>
-
-
-<div *ngIf="mode=='edit'">
-    
+<div *ngIf="mode=='edit'">    
 </div>
+</p-accordionTab>
+
 
 
 

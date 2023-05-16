@@ -1,15 +1,17 @@
-<div class="row mb-5">
-    <div class="col-md-12">
-        <div class="">
+<p-accordionTab>
+    <p-header class="w-100">
+        <div class="acc-tab">
+            <span>Resident preferences</span>
+            <div>
             <button *ngIf="mode=='view'" pButton type="button" label="Edit" 
                 (click)="edit()" [disabled]="(admissionid==null || admissionid==undefined)"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Save"
                 (click)="save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary"
+            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary ml-2"
                 (click)="close()"></button>
+            </div>
         </div>
-    </div>
-</div>
+</p-header>
 <div *ngIf="mode=='view'">
     <h5>DNAR/DNACPR</h5>                    
     <div class="row"> 
@@ -64,5 +66,6 @@
             <input pInputText type="text" class="form-control" name="FuneralDirector" [(ngModel)]="ResidentMaster.funeraldirector" placeholder="" />
         </div>
     </div>  
-    </div>
+</div>
+</p-accordionTab>
  

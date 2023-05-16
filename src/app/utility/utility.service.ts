@@ -11,17 +11,24 @@ export class UtilityService {
     public message = new BehaviorSubject<string>('');
     castSpinnerText = this.message.asObservable();
     SpinnerText: string = '';
+    count:number=0;
     constructor(private messageService: MessageService) {}
     showSpinnerWithMsg(msg: string) {
+        this.count++;
         this.isSpinner.next(true);
         this.message.next(msg);
     }
     showSpinner() {
+        this.count++;
         this.isSpinner.next(true);
     }
     hideSpinner() {
-        this.isSpinner.next(false);
-        this.message.next('');
+        this.count--;
+        if (this.count <= 0) {
+            this.count = 0;
+            this.isSpinner.next(false);
+            this.message.next('');
+        }
     }
     showAlert(_summary: string, _detail: string, _severity: string) {
         this.messageService.add({

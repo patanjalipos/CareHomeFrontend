@@ -59,6 +59,10 @@ constructor(
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
+  AddNewAllergy()
+  {
+    
+  }
   GetClinicalAllergiesById(admissionid) {
     this.Clinical.StatementType = "Insert";
     this._UtilityService.showSpinner();   
