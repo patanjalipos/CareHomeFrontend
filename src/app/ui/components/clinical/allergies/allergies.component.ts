@@ -15,10 +15,16 @@ export class AllergiesComponent extends AppComponentBase implements OnInit {
 @Input() mode:string='view';
 @Input() userid:any=null;
 @Input() admissionid:any=null;
+loginId:any=localStorage.getItem('userId');
 public Clinical: any = <any>{};
 allergies:string=null;
 lstallergies:any[]=[];
 stlstUnknownAllergies:any[]=[];
+stlstStatus:any[]=[];
+status:string="All";
+showcolumn:string="Created";
+extraItemRowCounter: number = 0;
+public lstExtraItemDetails: any[] = [];
 constructor(
   private _ConstantServices: ConstantsService,
   private _MasterServices:MasterService,
@@ -29,9 +35,13 @@ constructor(
   super();
   this.stlstUnknownAllergies = [
     { name: 'The resident has no known allergies / adverse reactions', code: 'The resident has no known allergies / adverse reactions' },
-    { name: 'Cremation', code: 'Cremation' },
-    { name: 'Burial', code: 'Burial' },
-    { name: 'Body to science', code: 'Body to science' }
+    { name: 'The resident has not been asked about any known allergies/adverse reactions', code: 'The resident has not been asked about any known allergies/adverse reactions' },
+    { name: 'It is unknown if the resident has any known allergies/adverse reactions', code: 'It is unknown if the resident has any known allergies/adverse reactions' }    
+  ];
+  this.stlstStatus = [
+    { name: 'All', code: 'All' },
+    { name: 'Active', code: 'Active' },
+    { name: 'Closed', code: 'Closed' }
   ];
  }
 
@@ -61,8 +71,36 @@ constructor(
   }
   AddNewAllergy()
   {
-    
+    this.extraItemRowCounter = this.extraItemRowCounter + 1;
+    this.lstExtraItemDetails.push({      
+      Sequence: this.extraItemRowCounter,
+      mode:'add',
+      allergen: "",
+      reaction: "",
+      status: 1,
+      createdby: this.loginId,
+      createdon: new Date(),
+      modifiedby: null,
+      modifiedon:null,
+
+    }
+    );
   }
+  RemoveExtraItemDetails(Sequence: number) {    
+      this.lstExtraItemDetails = this.lstExtraItemDetails.filter((item) => item.Sequence !== Sequence);  
+  }
+  // ResetItem(Sequence:number)
+  // {
+    
+  //   this.lstExtraItemDetails[Sequence-1].allergen="";
+  //   this.lstExtraItemDetails[Sequence-1].reaction="";
+  //   this.lstExtraItemDetails[Sequence-1].status = 1;
+  //   this.lstExtraItemDetails[Sequence-1].createdby=this.loginId;
+  //   this.lstExtraItemDetails[Sequence-1].createdon=new Date();
+  //   this.lstExtraItemDetails[Sequence-1].modifiedby = null;
+  //   this.lstExtraItemDetails[Sequence-1].modifiedon = null;    
+    
+  // }
   GetClinicalAllergiesById(admissionid) {
     this.Clinical.StatementType = "Insert";
     this._UtilityService.showSpinner();   
@@ -88,7 +126,7 @@ constructor(
     if (this.userid != null && this.admissionid != null) {      
       this.Clinical.userid = this.userid;
       this.Clinical.residentadmissioninfoid = this.admissionid;
-      this.Clinical.modifiedby = localStorage.getItem('userId');
+      this.Clinical.modifiedby = this.loginId;
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalAllergies(this.Clinical)
         .subscribe

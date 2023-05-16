@@ -14,13 +14,13 @@
 </p-header>
 <div *ngIf="mode=='view'">
     <span style="color: #808080;">Coronavirus:</span><br>
-    <div>{{Clinical.CoronaVirus}}</div><br>
+    <h5>{{Clinical.iscovid?'Is suspected of having or has been diagnosed with COVID-19. Please keep isolated.':''}}</h5><br>
     <span style="color: #808080;">Diet:</span><br>
-    <div>{{Clinical.Diet}}</div><br>
+    <h5>{{Clinical.diet}}</h5><br>
     <span style="color: #808080;">Special Needs / Diagnosis:</span><br>
-    <div>{{Clinical.Diagnosis}}</div><br>
+    <h5>{{Clinical.diagnosis}}</h5><br>
     <span style="color: #808080;">Other information</span><br>
-    <div>{{Clinical.OtherInfo}}</div>
+    <h5>{{Clinical.otherinfo}}</h5>
 </div>
 <div *ngIf="mode=='edit'">
     <div class="row">
