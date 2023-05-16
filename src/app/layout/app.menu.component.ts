@@ -175,6 +175,24 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Menu Master', icon: 'fa-solid fa-bars', routerLink: ['/master/menu-master'],queryParams:[]
                             },
                             {
+                                label: 'Alert Head Master', icon: 'fa-solid fa-bars', routerLink: ['/master/alert-head-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Alert Master', icon: 'fa-solid fa-bars', routerLink: ['/master/alert-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Chart Head Master', icon: 'fa-solid fa-bars', routerLink: ['/master/chart-head-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Chart Master', icon: 'fa-solid fa-bars', routerLink: ['/master/chart-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Indicator Group Master', icon: 'fa-solid fa-bars', routerLink: ['/master/indicator-group-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Indicator Master', icon: 'fa-solid fa-bars', routerLink: ['/master/indicator-master'],queryParams:[]
+                            },
+                            {
                                 label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
                             },                          
                             {

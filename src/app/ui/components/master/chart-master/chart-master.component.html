@@ -1,7 +1,7 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['homecode','homename']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
+            [globalFilterFields]="['chartheadname','chartname']" [scrollable]="true" scrollHeight="calc(100vh - 215px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
@@ -30,8 +30,8 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Home Code</th>
-                    <th>Home Name</th>
+                    <th>Chart Head Name</th>
+                    <th>Chart Name</th>
                     <th>Order No.</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -39,12 +39,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.HomeCode}}</td>
-                    <td>{{dt.HomeName}}</td>
-                    <td>{{dt.OrderNo}}</td>
-                    <td>{{dt.Status==true?'Active':'Inactive'}}</td>
+                    <td>{{dt.chartheadname}}</td>
+                    <td>{{dt.chartname}}</td>
+                    <td>{{dt.orderno}}</td>
+                    <td>{{dt.status==true?'Active':'Inactive'}}</td>
                     <td>
-                        <a title="View/Edit" (click)="GetHomeMasterById(dt.HomeMasterId)">
+                        <a title="View/Edit" (click)="GetChartMasterById(dt.chartmasterid)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -59,24 +59,18 @@
         <div class="card">
             <div class="row">
                 <div class="col-md-3">
-                    <label class="form-label">Country <span class="required">*</span></label>
-                    <p-dropdown name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.countryid"
-                        optionLabel="name" optionValue="id"
-                        [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
+                    <label class="form-label">Chart Head Name <span class="required">*</span></label>
+                    <p-dropdown name="ddlHeadName" [options]="lstHeadMaster" [(ngModel)]="master.chartheadmasterid"
+                        [disabled]="mode=='Edit'" optionLabel="chartheadname" optionValue="chartheadmasterid"
+                        [filter]="true" placeholder="Please Select Head" [style]="{width: '100%'}">
                     </p-dropdown>
 
 
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">Home Code <span class="required">*</span></label>
-                    <input pInputText type="text" required name="homecode" [(ngModel)]="master.homecode"
-                        class="form-control" #homecode="ngModel" />
-
-                </div>
-                <div class="col-md-3">
-                    <label class="form-label">Home Name <span class="required">*</span></label>
-                    <input pInputText type="text" required name="homename" [(ngModel)]="master.homename"
-                        class="form-control" #homename="ngModel" />
+                    <label class="form-label">Chart Name <span class="required">*</span></label>
+                    <input pInputText type="text" required name="chartheadname" [(ngModel)]="master.chartname"
+                        class="form-control" #chartname="ngModel" />
 
                 </div>
                 <div class="col-md-3">
@@ -96,8 +90,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="flex flex-wrap gap-2">
-                        <!-- <button pButton type="button" label="Submit" (click)="Save()"
-                            [disabled]="!myForm.form.valid"></button> -->
+                        <button pButton type="button" label="Submit" (click)="Save()"
+                            [disabled]="!myForm.form.valid"></button>
                         <button pButton type="button" label="Close" class="p-button-secondary"
                             (click)="Close()"></button>
                     </div>

@@ -44,17 +44,17 @@ export class ResidentPreferencesComponent extends AppComponentBase implements On
   {
     this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GeResidentPreferencesById(this.admissionid);      
+      this.GetResidentPreferencesById(this.admissionid);      
     }
     else
     {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-  GeResidentPreferencesById(admissionid) {
+  GetResidentPreferencesById(admissionid) {
     this.ResidentMaster.StatementType = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GeResidentPreferencesById(admissionid)  
+    this.unsubscribe.add = this._MasterServices.GetResidentPreferencesById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          

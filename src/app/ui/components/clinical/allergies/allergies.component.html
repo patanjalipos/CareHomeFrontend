@@ -10,12 +10,39 @@
         </div>
     </div>
 </div>
-<h5>Allergies notes</h5>
+
 <div *ngIf="mode=='view'">
     <p>The resident has no known allergies/ adverse reactions</p>
 </div>
 <div *ngIf="mode=='edit'">
-    <div class="row  m-0">
+    <h5>Allergies notes</h5>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- <label class="form-label">Allergy notes</label> -->
+            <input pInputText type="text" class="form-control" name="AllergyNotes" [(ngModel)]="Clinical.allergynotes" placeholder="" /> 
+            
+        </div>
+    </div>
+    <h5>Allergy details</h5>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- <label class="form-label">Allergy details</label> -->
+            <div class="field-checkbox">
+                <p-checkbox [(ngModel)]="Clinical.isunknownallergies" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
+                <label for="binary"><b>The resident has no known allergies</b></label>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="Clinical.isunknownallergies">
+        <div class="col-md-6">
+            <p-dropdown name="ddlUnknownAllergies" [options]="stlstUnknownAllergies" [(ngModel)]="Clinical.unknownreason" optionLabel="name"
+                optionValue="code" [filter]="true" [style]="{width: '100%'}">
+            </p-dropdown>
+        </div>
+    </div>
+    
+
+    <!-- <div class="row  m-0">
         <div class="col-md-6">
             <p-table class="ColumnFilterTable" #dt [value]="lstallergies" [rowHover]="true"
                 [globalFilterFields]="['name']" [scrollable]="true" scrollHeight="calc(100vh - 400px)"
@@ -46,11 +73,5 @@
                 </ng-template>
             </p-table>
         </div>
-        <div class="col-md-6">
-            <textarea class="form-control" rows="4" name="allergies" [(ngModel)]="allergies"
-                style="width: 100%;"></textarea>
-        </div>
-
-
-    </div>
-    
+    </div> -->
+</div>

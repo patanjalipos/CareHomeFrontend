@@ -29,14 +29,14 @@ export class ResidentHealthcareDetailsComponent extends AppComponentBase impleme
   ngOnInit(): void {
   }
   ngOnChanges(changes: SimpleChanges): void {  
-     this.GeResidentHealthCareById(this.admissionid);
+     this.GetResidentHealthCareById(this.admissionid);
   }
 
   edit()
   {    
     if (this.userid != null && this.admissionid != null) {
       this.mode='edit';
-      this.GeResidentHealthCareById(this.admissionid);      
+      this.GetResidentHealthCareById(this.admissionid);      
     }
     else
     {
@@ -44,10 +44,10 @@ export class ResidentHealthcareDetailsComponent extends AppComponentBase impleme
       this.mode='view';
     }
   }
-  GeResidentHealthCareById(admissionid) {
+  GetResidentHealthCareById(admissionid) {
     this.ResidentMaster.StatementType = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GeResidentHealthCareById(admissionid)  
+    this.unsubscribe.add = this._MasterServices.GetResidentHealthCareById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
