@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
-import { MessageService } from 'primeng/api';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UtilityService {
     public isSpinner = new BehaviorSubject<boolean>(false);
+    public isConfirm = new BehaviorSubject<boolean>(false);
+    castConfirm = this.isConfirm.asObservable();
     castSpinner = this.isSpinner.asObservable();
     public message = new BehaviorSubject<string>('');
     castSpinnerText = this.message.asObservable();
     SpinnerText: string = '';
     count:number=0;
-    constructor(private messageService: MessageService) {}
+    constructor(private messageService: MessageService,
+        private confirmationService: ConfirmationService,
+        ) {}
     showSpinnerWithMsg(msg: string) {
         this.count++;
         this.isSpinner.next(true);
@@ -69,5 +73,20 @@ export class UtilityService {
             summary: 'Error',
             detail: _detail,
         });
+    }
+
+    showConfirm(_message: string,_header: string="Confirmation",  _icon: string="pi pi-exclamation-triangle") {
+        this.confirmationService.confirm({
+            header:_header,
+            message: _message,
+            icon: _icon,
+            accept: () => 
+            {
+                this.isConfirm.next(true);
+            },
+            reject: () => {
+                this.isConfirm.next(false);
+            }
+          });   
     }
 }
