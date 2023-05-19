@@ -7,7 +7,7 @@
             <button *ngIf="mode=='view'" pButton type="button" label="Edit"
                 (click)="edit()" [disabled]="(admissionid==null || admissionid==undefined)"></button>
                 <button *ngIf="mode=='edit'" pButton type="button" label="Save"
-                (click)="save()"></button>
+                (click)="$event.stopPropagation();save()"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary ml-2"
                 (click)="close()"></button>
         </div>
@@ -19,7 +19,7 @@
             <button *ngIf="mode=='view'" pButton type="button" label="Edit" 
                 (click)="edit()" [disabled]="(admissionid==null || admissionid==undefined)"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Save"
-                (click)="save()"></button>
+                (click)="$event.stopPropagation();save()"></button>
             <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary"
                 (click)="close()"></button>
         </div>

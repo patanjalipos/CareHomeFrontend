@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from "primeng/inputtext";
 import {FormsModule} from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     BaselineHealthInformationComponent
@@ -17,7 +18,8 @@ import { AccordionModule } from 'primeng/accordion';
     ButtonModule,
     InputTextModule,
     FormsModule,
-    AccordionModule
+    AccordionModule,
+    InputNumberModule
   ],
   exports:[BaselineHealthInformationComponent]
 })
