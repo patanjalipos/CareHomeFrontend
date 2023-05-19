@@ -9,7 +9,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [SpinnerComponent, ToastComponent],
@@ -18,10 +20,12 @@ import { MessageService } from 'primeng/api';
         CommonModule,
         UtilityRoutingModule,
         ProgressSpinnerModule,
+        DialogModule,
+        ConfirmDialogModule,
         MessagesModule,
         MessageModule,
         ToastModule,
     ],
-    providers: [UtilityService, MessageService],
+    providers: [UtilityService, MessageService, ConfirmationService],
 })
 export class UtilityModule {}
