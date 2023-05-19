@@ -1,48 +1,99 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { AppComponentBase } from 'src/app/app-component-base';
+import { ConstantsService } from 'src/app/ui/service/constants.service';
+import { MasterService } from '../../master/master.service';
+import { UtilityService } from 'src/app/utility/utility.service';
 
 @Component({
   selector: 'app-baseline-health-information',
   templateUrl: './baseline-health-information.component.html',
   styleUrls: ['./baseline-health-information.component.scss']
 })
-export class BaselineHealthInformationComponent implements OnInit {
+export class BaselineHealthInformationComponent extends AppComponentBase implements OnInit {
   @Input() mode: string = 'view';
   @Input() userid: any = null;
   @Input() admissionid: any = null;
   Clinical: any = <any>{};
-  healthinformation:any = <any>{};
-  constructor() { }
+  constructor(private _ConstantServices: ConstantsService,
+    private _MasterServices: MasterService,
+    private _UtilityService: UtilityService,
+  ) {
+    super();
+
+  }
 
   ngOnInit(): void {
-    this.healthinformation = {
-      'BowelPattern':'-',
-      'Height':'56',
-      'WeightUponAdm':'77',
-      'WeightRangeMin':'66',
-      'WeightRangeMax':'78',
-      'PulseRangeMin':'65',
-      'PulseRangeMax':'78',
-      'BloodglucoseMin':'98',
-      'BloodglucoseMax':'120',
-      'SystolicBpMin':'35',
-      'SystolicBpMax':'87',
-      'DiastolicBpMin':'89',
-      'DiastolicBpMax':'98',
-      'FuildlevelMin':'86',
-      'FuildlevelMax':'87',
-      'OxygenSaturationMin':'45',
-      'OxygenSaturationMax':'35'
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {  
+    if (this.userid != null && this.admissionid != null) {
+      this.GetClinicalBaselineHealthInfoById(this.admissionid);      
     }
   }
   edit()
   {
-    this.mode='edit'
+    this.mode='edit';
+    if (this.userid != null && this.admissionid != null) {
+      //this.GetClinicalBaselineHealthInfoById(this.admissionid);      
+    }
+    else
+    {
+      this._UtilityService.showWarningAlert("Resident admission details are missing.");
+      this.mode='view';
+    }
+  }
+  AddNewAllergy()
+  {
+    
+  }
+  GetClinicalBaselineHealthInfoById(admissionid) {
+    this.Clinical.StatementType = "Insert";
+    this._UtilityService.showSpinner();   
+    this.unsubscribe.add = this._MasterServices.GetClinicalBaselineHealthInfoById(admissionid)  
+      .subscribe({
+        next:(data) => {
+          this._UtilityService.hideSpinner();          
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : [];
+            this.Clinical = tdata;       
+            //console.log('this.Clinical', this.Clinical);     
+            this.Clinical.StatementType = "Update";
+          }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }  
+  save()
+  {
+    if (this.userid != null && this.admissionid != null) {      
+      this.Clinical.userid = this.userid;
+      this.Clinical.residentadmissioninfoid = this.admissionid;
+      this.Clinical.modifiedby = localStorage.getItem('userId');
+      this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateClinicalBaselineHealthInfo(this.Clinical)
+        .subscribe
+        ({
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            this.mode = 'view'
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
+        });
+    }
+    else
+    {
+      this._UtilityService.showWarningAlert("Resident admission details are missing.");
+    }
   }
   close()
-  {
-    this.mode='view'
-  }
-  save()
   {
     this.mode='view'
   }

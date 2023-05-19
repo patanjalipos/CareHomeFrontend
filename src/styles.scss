@@ -526,7 +526,9 @@ i.iconset:hover {
 .short-cont:hover {
     background: #DBE6E7;
     color: #023C40;
+    cursor: pointer;
 }
+.care-cont { position: sticky; top: 0;}
 
 .short-inner {
     background: #F6F9F9;

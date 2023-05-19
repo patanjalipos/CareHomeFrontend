@@ -572,6 +572,116 @@ AddInsertUpdateClinicalBaselineHealthInfo(obj: any): Observable<any> {
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateClinicalBaselineHealthInfo", data, { "headers": reqHeader, "params": params });
 } 
 
+GetClinicalAlertPreferencesById(admissionid: string): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetClinicalAlertPreferencesById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateAlertPreferences(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateAlertPreferences", data, { "headers": reqHeader, "params": params });
+} 
+
+GetClinicalChartPreferencesById(admissionid: string): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetClinicalChartPreferencesById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateChartPreferences(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateChartPreferences", data, { "headers": reqHeader, "params": params });
+} 
+
+//#endregion
+
+//#region  Contacts
+
+GetContactPrimaryById(admissionid: string): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetContactPrimaryById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateContactPrimary(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateContactPrimary", data, { "headers": reqHeader, "params": params });
+} 
+
+GetContactSecondaryById(admissionid: string): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetContactSecondaryById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateContactSecondary(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateContactSecondary", data, { "headers": reqHeader, "params": params });
+} 
+
+GetContactResponsiblePersonById(admissionid: string): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetContactResponsiblePersonById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateContactResponsiblePerson(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateContactResponsiblePerson", data, { "headers": reqHeader, "params": params });
+} 
+
+
 //#endregion
 
 
