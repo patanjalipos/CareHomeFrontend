@@ -235,7 +235,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },
                     { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
                     { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/auth/logout'] },
                     
                 ]
             },
