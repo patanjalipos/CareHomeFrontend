@@ -30,7 +30,7 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {  
     if (this.userid != null && this.admissionid != null) {
       this.LoadCountryList();
-      this.GetContactSecondaryById(this.admissionid);      
+      this.GetContactDoctorById(this.admissionid);      
     }
   }
 
@@ -54,7 +54,7 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
   {
     this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
-      //this.GetContactSecondaryById(this.admissionid);      
+      this.GetContactDoctorById(this.admissionid);      
     }
     else
     {
@@ -62,10 +62,10 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
       this.mode='view';
     }
   } 
-  GetContactSecondaryById(admissionid) {
+  GetContactDoctorById(admissionid) {
     this.Contact.StatementType = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetContactSecondaryById(admissionid)  
+    this.unsubscribe.add = this._MasterServices.GetContactDoctorById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -90,7 +90,7 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
       this.Contact.residentadmissioninfoid = this.admissionid;
       this.Contact.modifiedby = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactSecondary(this.Contact)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactDoctor(this.Contact)
         .subscribe
         ({
           next: (data) => {
