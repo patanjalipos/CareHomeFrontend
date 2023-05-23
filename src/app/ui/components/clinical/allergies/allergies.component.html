@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="row mt-5" *ngIf="!Clinical.isunknownallergies">    
-        <div class="col-auto">Status</div>
+        <div class="col-auto mt-3">Status</div>
         <div class="col-auto">          
             <p-dropdown name="ddlStatus" [options]="stlstStatus" [(ngModel)]="status" optionLabel="name"
             (onChange)="onChangeFilterStatus()" optionValue="code" [filter]="true" [style]="{width: '100%'}">

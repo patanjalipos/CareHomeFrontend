@@ -227,10 +227,82 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.btn-primary,
+/*Btn Start */
+.p-datepicker-trigger{ background:#023C40 !important ;}
 .p-button {
+    border-color: #023C40 !important; } 
+.btn-primary{
+    background: #023C40 !important;
+    border-color: #023C40 !important;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #023C40 !important;
+    border-color: #023C40 !important;
+}
+
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #657374 !important;
+    border-color: #657374 !important;
+}
+
+
+.btn-secondary {
+    color: #fff;
+    background-color: #5A6D87 !important;
+    border-color: #5A6D87 !important;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5A6D87 !important;
+    border-color: #5A6D87 !important;
+}
+.btn-secondary:disabled {
+    color: #fff;
+    background-color: #819EC5 !important;
+    border-color: #819EC5 !important;
+}
+
+.p-button.p-button-outlined {
+    color: #023C40;
+}
+
+.p-button.p-button-outlined:enabled:hover {
+    color: #023C40;
+}
+
+.p-button:enabled:hover {
     background: #023C40;
     border-color: #023C40;
+}
+
+
+.btn-info {
+    background-color: #5c5ee6;
+    border-color: #5c5ee6;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: #4447f5;
+    border-color: #4447f5;
+    color: #fff;
+}
+
+/*Btn End */
+.p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box.p-focus, .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+
+    box-shadow:none !important;
+  
+  }
+.p-radiobutton .p-radiobutton-box.p-highlight, .p-checkbox .p-checkbox-box.p-highlight {
+    border-color: #023C40 !important;
+    background: #023C40 !important;
+}
+.p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover, .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+    border-color: #023C40 !important;
 }
 
 .layout-sidebar {
@@ -311,7 +383,7 @@ body {
 
 .layout-topbar-menu i,
 .layout-topbar .layout-menu-button {
-    color: #023c40;
+    color: #5A6D87;
     background: #fff;
     padding: 10px;
     border-radius: 5px;
@@ -340,13 +412,13 @@ body {
 .nav-tabs .nav-link {
     border: 0;
     font-size: 15px;
-    color: #023C40 !important;
+    color: #5A6D87 !important;
 }
 
 .nav-tabs .nav-link.active {
     border: 0;
     font-weight: 700;
-    border-bottom: 3px solid #023C40;
+    border-bottom: 3px solid #5A6D87;
 }
 
 .profile-box {
@@ -464,7 +536,7 @@ p-inputnumber,
 }
 
 .dropdown-item {
-    color: #023c40;
+    color: #5A6D87;
     line-height: 36px;
     font-weight: 500;
 }
@@ -503,7 +575,7 @@ i.iconset:hover {
 }
 
 .short-head ul li button:hover {
-    background: #023C40;
+    background: #5A6D87;
     color: #fff;
 }
 
@@ -515,17 +587,17 @@ i.iconset:hover {
 .short-cont h2 {
     margin-bottom: 0 !important;
     font-size: 16px;
-    color: #023C40;
+    color: #5A6D87;
     font-weight: 500;
     padding-left: 15px;
     position: relative;
-    border-left: 4px solid #023C40;
+    border-left: 4px solid #5A6D87;
     border-radius: 2px;
 }
 
 .short-cont:hover {
     background: #DBE6E7;
-    color: #023C40;
+    color: #5A6D87;
     cursor: pointer;
 }
 .care-cont { position: sticky; top: 0;}
@@ -554,7 +626,7 @@ i.iconset:hover {
 
 .menu-icon i {
     color: #fff;
-    background: #023c40;
+    background: #023C40;
     padding: 10px;
     /* border-radius: 5px; */
     /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098); */
@@ -569,7 +641,7 @@ i.iconset:hover {
 
 .ng-wizard-theme-arrows>ul.step-anchor>li.active>a {
     border-color: #DFDFDF !important;
-    color: #023C40 !important;
+    color: #5A6D87 !important;
     background: #fff !important;
 }
 
@@ -594,50 +666,22 @@ i.iconset:hover {
 }
 
 .ng-wizard-theme-arrows>ul.step-anchor>li.done>a {
-    border-color: #023C40 !important;
+    border-color: #5A6D87 !important;
     color: #fff !important;
-    background: #023C40 !important;
+    background: #5A6D87 !important;
 }
 
 .ng-wizard-theme-arrows>ul.step-anchor>li.done>a:after {
-    border-left: 30px solid #023C40;
+    border-left: 30px solid #5A6D87;
 }
 
-.btn-secondary.disabled,
-.btn-secondary:disabled {
-    color: #fff;
-    background-color: #023C40;
-    border-color: #023C40;
-}
 
-.btn-secondary {
-    color: #fff;
-    background-color: #023C40;
-    border-color: #023C40;
-}
-
-.btn-secondary:hover {
-    color: #fff;
-    background-color: #022e31;
-    border-color: #022e31;
-}
 
 .ng-wizard-theme-arrows>ul.step-anchor>li>a,
 .ng-wizard-theme-arrows>ul.step-anchor>li>a:hover {
     padding: 15px 0 15px 45px;
 }
 
-.btn-info {
-    background-color: #5c5ee6;
-    border-color: #5c5ee6;
-    color: #fff;
-}
-
-.btn-info:hover {
-    background-color: #4447f5;
-    border-color: #4447f5;
-    color: #fff;
-}
 
 .layout-main {
     margin-top: 11px;
@@ -648,7 +692,7 @@ i.iconset:hover {
 }
 
 .form-box {
-    background: #023C40;
+    background: #5A6D87;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -671,7 +715,7 @@ i.iconset:hover {
 
 .form-box-inner .p-inputtext {
     border: 1px solid #fff !important;
-    background: #023c40 !important;
+    background: #5A6D87 !important;
     color: #fff !important;
     height: 50px !important;
 }
@@ -682,7 +726,7 @@ i.iconset:hover {
 
 .form-box-inner button {
     background: #F4CC2A !important;
-    color: #023C40;
+    color: #5A6D87;
     font-size: 16px !important;
     height: 50px;
     font-weight: 500;
@@ -705,7 +749,7 @@ i.iconset:hover {
     height: 100vh;
     left: 68px;
     top: 0;
-    background: #023c40;
+    background: #5A6D87;
     color: #fff;
 }
 
@@ -717,18 +761,7 @@ i.iconset:hover {
     margin-top: 30px;
 }
 
-.p-button.p-button-outlined {
-    color: #023c40;
-}
 
-.p-button.p-button-outlined:enabled:hover {
-    color: #023c40;
-}
-
-.p-button:enabled:hover {
-    background: #023c40;
-    border-color: #023c40;
-}
 
 .p-inputtext:enabled:hover {
     border-color: #2f98a0;
@@ -739,7 +772,7 @@ i.iconset:hover {
 }
 
 .layout-menu ul a.active-route {
-    color: #023c40 !important;
+    color: #5A6D87 !important;
 }
 
 .layout-menu ul a:hover {
@@ -748,13 +781,13 @@ i.iconset:hover {
 
 .p-selectbutton .p-button.p-highlight,
 .p-selectbutton .p-button.p-highlight:hover {
-    background: #023c40;
-    border-color: #023c40;
+    background: #5A6D87;
+    border-color: #5A6D87;
     color: #ffffff;
 }
 
 .p-dropdown:not(.p-disabled):hover {
-    border-color: #023c40;
+    border-color: #5A6D87;
 }
 
 .acc-tab {
