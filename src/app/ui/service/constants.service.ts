@@ -19,7 +19,28 @@ export class ConstantsService {
   public readonly BaseUriUser: string = 'http://localhost:34435/';
   public readonly BaseUriAdmin: string = 'http://localhost:36099/';
   public readonly BaseUriHome: string = 'http://localhost:18157/';
+
+  GetParmasVal(paramsstr)
+  {
+      let ParamsArray:any[]=[];
+      if(paramsstr!=null && paramsstr!=undefined)
+      {
+        var result=decodeURIComponent(atob(paramsstr));
+        var NewCellData = result.split('&');
+        if(NewCellData?.length>0)
+        {
+          NewCellData.map(e=>
+            {
+              ParamsArray.push({"FieldStr":e.split('=')[0],"FieldVal":e.split('=')[1]});
+            });
+        }
+      }
+      return ParamsArray;
+  }
 }
+
+
+
 
 export enum UserTypes {
   SuperAdmin = 1,

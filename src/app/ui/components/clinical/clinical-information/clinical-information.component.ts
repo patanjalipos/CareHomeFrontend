@@ -14,6 +14,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   @Input() userid: any = null;
   @Input() admissionid: any = null;
   Clinical: any = <any>{};
+  isEditable:boolean=false;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
@@ -23,6 +24,8 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   }
 
   ngOnInit(): void {
+    if (this.userid == null && this.admissionid == null)
+    this.isEditable=true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {  

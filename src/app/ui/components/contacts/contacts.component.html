@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-9">
         <form #myForm="ngForm">
-            <p-accordion [multiple]="true" activeIndex="0,1,2,3,4,5">
+            <p-accordion>
                 <div id="PC" *ngIf="healthcareMode!=''">
                     <app-primary-contact [mode]="healthcareMode" [userid]="selecteduserid"
                     [admissionid]="selectedadmissionid"></app-primary-contact>

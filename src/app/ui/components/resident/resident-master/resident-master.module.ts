@@ -25,6 +25,7 @@ import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { ResidentHealthcareDetailsModule } from '../resident-healthcare-details/resident-healthcare-details.module';
 import { ResidentPreferencesModule } from '../resident-preferences/resident-preferences.module';
 import { ResidentPriorAdmissionModule } from '../resident-prior-admission/resident-prior-admission.module';
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -56,7 +57,8 @@ const ngWizardConfig: NgWizardConfig = {
     NgWizardModule.forRoot(ngWizardConfig),
     ResidentHealthcareDetailsModule,
     ResidentPreferencesModule,
-    ResidentPriorAdmissionModule
+    ResidentPriorAdmissionModule,
+    TieredMenuModule
     
   ]
 })
