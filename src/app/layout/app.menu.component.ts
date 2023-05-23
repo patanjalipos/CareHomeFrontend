@@ -200,14 +200,13 @@ export class AppMenuComponent implements OnInit {
                             },                          
                             {
                                 label: 'User Master', icon: 'fa-solid fa-user',routerLink: ['/master/user-master'],queryParams:[]
-                            },
-                            {
-                                label: 'Resident Master', icon: 'fa-solid fa-user', routerLink: ['/master/resident-master'],queryParams:[]
                             }
                         ]
                     },
-                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/uicare/residentlist'] },
-                    {
+                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident/resident-list'] },
+                    // { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
+                    // { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },
+                       {
                         label: 'Personal Details', icon: 'fa-solid fa-user',
                         items: [
                             {
@@ -227,8 +226,6 @@ export class AppMenuComponent implements OnInit {
                             }
                         ]
                     },
-                    { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
-                    { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },
                     { label: 'Body Map', icon: 'fa-sharp fa-solid fa-file-waveform', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Body Map&seq=2&rId=OMR45345')] },
                     { label: 'Fluid Assessment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assessment&seq=3&rId=OMR45345')] },
                     { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Task Planner&seq=4&rId=OMR45345')] },

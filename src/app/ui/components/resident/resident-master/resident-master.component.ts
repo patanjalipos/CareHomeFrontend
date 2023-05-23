@@ -2,12 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { AdmissionStatus, ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master.service';
 import { ViewportScroller } from '@angular/common';
 import { of } from 'rxjs';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { MasterService } from '../../master/master.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-resident-master',
@@ -22,6 +23,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   UserTypes = UserTypes;
   admissionStatus = AdmissionStatus;
   customDateFormat = CustomDateFormat;
+  items: MenuItem[];
   s_userTypeId: any = localStorage.getItem('userTypeId');
   selecteduserid:any=null;
   selectedadmissionid:any=null;
@@ -148,6 +150,45 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     this.LoadHomeMaster();
     this.LoadCountryList();
     this.LoadResidentList();
+  }
+
+  toggleTieredMenu(menu, event, userid, admissionid) {
+     this.items = [];    
+     this.items = [
+      ...this.items,
+      {
+        label: 'View/Edit',
+        icon: 'pi pi-eye',
+        command: () => {
+          this.LoadResidentDetails(userid, admissionid)
+        }
+      },
+      {
+        label: 'Clinical',
+        icon: 'fa-solid fa-stethoscope',
+        command: () => {
+          var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
+          window.open("#/clinical?q=" + params, "_self");
+                    
+        }
+      },
+      {
+        label: 'Contact',
+        icon: 'fa-solid fa-address-card',
+        command: () => {
+          var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
+          window.open("#/contacts?q=" + params, "_self");                    
+        }
+      },
+    ];
+    
+    
+    
+    
+
+    
+    //console.log('items', this.items);
+    menu.toggle(event);
   }
 
 

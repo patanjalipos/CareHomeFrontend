@@ -16,15 +16,17 @@ export class SecondPowerOfAttorneyComponent extends AppComponentBase implements 
   loginId:any=localStorage.getItem('userId'); 
   Contact:any = <any>{};
   lstAttorneyTypeMaster: any[]=[];
+  isEditable: boolean = false;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
   ) {
     super();
-
   }
 
   ngOnInit(): void {
+    if (this.userid == null && this.admissionid == null)
+    this.isEditable=true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {  

@@ -9,6 +9,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from "primeng/inputtext";
 import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DropdownModule } from 'primeng/dropdown';
     AccordionModule,
     ButtonModule,
     InputTextModule,
-    DropdownModule,    
+    DropdownModule,  
+    InputNumberModule  
   ],
   exports:[SecondaryContactComponent]
 })
