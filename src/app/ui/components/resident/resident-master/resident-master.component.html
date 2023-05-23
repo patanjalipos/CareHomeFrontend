@@ -102,9 +102,13 @@
                     <td>{{admissionStatus[dt.admissionstatus]}}</td>
                     <!-- <td>{{dt.status==true?'Active':'Inactive'}}</td> -->
                     <td>
-                        <a title="View/Edit" (click)="LoadResidentDetails(dt.userid, dt.residentadmissioninfoid)">
+                        <a title="Action" (click)="toggleTieredMenu(menu, $event, dt.userid, dt.residentadmissioninfoid)">
+                            <i class="fas fa-ellipsis-h"></i> </a>
+                       
+                        <p-tieredMenu #menu appendTo="body" [model]="items" [popup]="true"></p-tieredMenu>
+                        <!-- <a title="View/Edit" (click)="LoadResidentDetails(dt.userid, dt.residentadmissioninfoid)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
+                        </a> -->
                     </td>
                 </tr>
             </ng-template>
@@ -413,7 +417,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Payer details - telephone</label>
                                     <p-inputNumber [(ngModel)]="ResidentMaster.payertelephone"
-                                        name="txtTelephone"></p-inputNumber>
+                                        name="txtTelephone" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
                                 </div>
                             </div>
                             <div class="row">

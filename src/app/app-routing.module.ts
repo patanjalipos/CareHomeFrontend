@@ -16,9 +16,10 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     // { path: 'blocks', loadChildren: () => import('./ui/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
                     // { path: 'pages', loadChildren: () => import('./ui/components/pages/pages.module').then(m => m.PagesModule) },
                     { path: 'uicare', loadChildren: () => import('./ui/components/uicare/uicare.module').then(m => m.UicareModule) },
-                    { path: 'clinical', loadChildren: () => import('./ui/components/clinical/clinical.module').then(m => m.ClinicalModule) },
-                    { path: 'contacts', loadChildren: () => import('./ui/components/contacts/contacts.module').then(m => m.ContactsModule) },
                     { path: 'master', loadChildren: () => import('./ui/components/master/master.module').then(m => m.MasterModule) },
+                    { path: 'resident', loadChildren: () => import('./ui/components/resident/resident.module').then(m => m.ResidentModule) },
+                    { path: 'clinical', loadChildren: () => import('./ui/components/clinical/clinical.module').then(m => m.ClinicalModule) },
+                    { path: 'contacts', loadChildren: () => import('./ui/components/contacts/contacts.module').then(m => m.ContactsModule) }
                 ]
             },
             { path: 'auth', loadChildren: () => import('./ui/components/auth/auth.module').then(m => m.AuthModule) },

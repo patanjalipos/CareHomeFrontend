@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { MasterService } from '../../master/master.service';
 
 @Component({
   selector: 'app-resident-preferences',

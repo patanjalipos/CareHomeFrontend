@@ -30,6 +30,7 @@ extraItemRowCounter: number = 0;
 public lstExtraItemDetails: any[] = [];
 public lstExtraItemDetailsFilter: any[] = [];
 isDisabled:boolean=false;
+isEditable:boolean=false;
 constructor(
   private _ConstantServices: ConstantsService,
   private _MasterServices:MasterService,
@@ -62,6 +63,8 @@ constructor(
   // }
 
   ngOnInit(): void {
+    if (this.userid == null && this.admissionid == null)
+    this.isEditable=true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {  

@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from "primeng/inputtext";
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputTextModule,
     DropdownModule,
     CheckboxModule,
+    InputNumberModule
   ],
   exports:[ResponsiblePersonContactComponent]
 })

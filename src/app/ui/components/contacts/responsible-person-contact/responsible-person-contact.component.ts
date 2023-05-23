@@ -16,6 +16,7 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
   loginId:any=localStorage.getItem('userId'); 
   Contact:any = <any>{};
   lstCountryMaster: any[]=[];
+  isEditable: boolean = false;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
@@ -25,6 +26,8 @@ export class ResponsiblePersonContactComponent extends AppComponentBase implemen
   }
 
   ngOnInit(): void {
+    if (this.userid == null && this.admissionid == null)
+    this.isEditable=true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {  

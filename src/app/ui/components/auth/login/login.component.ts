@@ -57,7 +57,7 @@ export class LoginComponent extends AppComponentBase {
                         localStorage.setItem('Gender', tdata.gender);
                         localStorage.setItem('ProfileImage', tdata.profileimage);
                         //this._dymservice.loadMenu();
-                        this.router.navigateByUrl("/uicare");
+                        this.router.navigateByUrl("/resident/resident-list");
                         this._ConstantService.IsLocal = true;
                     }
                     else {

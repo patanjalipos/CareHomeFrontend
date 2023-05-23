@@ -13,27 +13,27 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
   @Input() mode: string = 'view';
   @Input() userid: any = null;
   @Input() admissionid: any = null;
-  loginId:any=localStorage.getItem('userId'); 
-  Contact:any = <any>{};
-  lstCountryMaster: any[]=[];
+  loginId: any = localStorage.getItem('userId');
+  Contact: any = <any>{};
+  lstCountryMaster: any[] = [];
+  isEditable: boolean = false;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
   ) {
     super();
-
   }
 
   ngOnInit(): void {
+    if (this.userid == null && this.admissionid == null)
+      this.isEditable = true;
   }
-
-  ngOnChanges(changes: SimpleChanges): void {  
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.userid != null && this.admissionid != null) {
       this.LoadCountryList();
-      this.GetContactDoctorById(this.admissionid);      
+      this.GetContactDoctorById(this.admissionid);
     }
   }
-
   LoadCountryList() {
     this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
       next: (data) => {
@@ -48,31 +48,29 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
         this._UtilityService.showErrorAlert(e.message);
       },
     });
-  } 
+  }
 
-  edit()
-  {
-    this.mode='edit';
+  edit() {
+    this.mode = 'edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GetContactDoctorById(this.admissionid);      
+      this.GetContactDoctorById(this.admissionid);
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
-      this.mode='view';
+      this.mode = 'view';
     }
-  } 
+  }
   GetContactDoctorById(admissionid) {
     this.Contact.StatementType = "Insert";
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetContactDoctorById(admissionid)  
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetContactDoctorById(admissionid)
       .subscribe({
-        next:(data) => {
-          this._UtilityService.hideSpinner();          
+        next: (data) => {
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.Contact = tdata;       
+            this.Contact = tdata;
             //console.log('this.Contact', this.Contact);     
             this.Contact.StatementType = "Update";
           }
@@ -82,10 +80,9 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }  
-  save()
-  {
-    if (this.userid != null && this.admissionid != null) {      
+  }
+  save() {
+    if (this.userid != null && this.admissionid != null) {
       this.Contact.userid = this.userid;
       this.Contact.residentadmissioninfoid = this.admissionid;
       this.Contact.modifiedby = localStorage.getItem('userId');
@@ -104,14 +101,11 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
           },
         });
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-  close()
-  {
-    this.mode='view'
+  close() {
+    this.mode = 'view'
   }
-
 }

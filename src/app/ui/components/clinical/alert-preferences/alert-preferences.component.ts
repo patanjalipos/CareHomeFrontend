@@ -13,63 +13,57 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
   @Input() mode: string = 'view';
   @Input() userid: any = null;
   @Input() admissionid: any = null;
-  loginId:any=localStorage.getItem('userId');
+  loginId: any = localStorage.getItem('userId');
   Clinical: any = <any>{};
-  lstResidentAlert:any[]=[];
+  lstResidentAlert: any[] = [];
   rowGroupMetadata: any;
+  isEditable: boolean = false;
   constructor(
     private _ConstantServices: ConstantsService,
-    private _MasterServices:MasterService,
-    private _UtilityService: UtilityService) 
-    { 
-    super();    
+    private _MasterServices: MasterService,
+    private _UtilityService: UtilityService) {
+    super();
   }
-
   
   ngOnInit(): void {
-    
+    if (this.userid == null && this.admissionid == null)
+      this.isEditable = true;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {  
+  ngOnChanges(changes: SimpleChanges): void {
     this.GetClinicalAlertPreferencesById(this.admissionid);
   }
 
-  
-  
-  edit()
-  {
-    this.mode='edit';
+  edit() {
+    this.mode = 'edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GetClinicalAlertPreferencesById(this.admissionid);      
+      this.GetClinicalAlertPreferencesById(this.admissionid);
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
-  }  
-  OnEnabled(id)
-  {
-   
-    if(id!=null && id!=undefined)
-    {
-    var Idx = this.lstResidentAlert.findIndex(f => f.clinicalalertpreferencesid == id);
-    if (Idx >= 0) {
-        this.lstResidentAlert[Idx].modifiedby = this.loginId;                
-      }         
+  }
+  OnEnabled(id) {
+
+    if (id != null && id != undefined) {
+      var Idx = this.lstResidentAlert.findIndex(f => f.clinicalalertpreferencesid == id);
+      if (Idx >= 0) {
+        this.lstResidentAlert[Idx].modifiedby = this.loginId;
+      }
     }
   }
-  
+
   GetClinicalAlertPreferencesById(admissionid) {
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalAlertPreferencesById(admissionid)  
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetClinicalAlertPreferencesById(admissionid)
       .subscribe({
-        next:(data) => {
-          this._UtilityService.hideSpinner();          
+        next: (data) => {
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstResidentAlert = tdata;  
-            this.updateRowGroupMetaData();                     
+            this.lstResidentAlert = tdata;
+            this.updateRowGroupMetaData();
           }
         },
         error: (e) => {
@@ -78,7 +72,7 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
           this._UtilityService.showErrorAlert(e.message);
         },
       });
-  }  
+  }
 
   updateRowGroupMetaData() {
     this.rowGroupMetadata = {};
@@ -99,16 +93,15 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
         }
       }
       //console.log("data---", this.rowGroupMetadata)      
-    }    
+    }
   }
-  save()
-  {
-    if (this.userid != null && this.admissionid != null) {      
+  save() {
+    if (this.userid != null && this.admissionid != null) {
       this.Clinical.userid = this.userid;
       this.Clinical.residentadmissioninfoid = this.admissionid;
       this.Clinical.modifiedby = this.loginId;
-      var selectedExtraItemDetails = [];      
-      var result=this.lstResidentAlert.filter(f=>f.isenable==true || f.clinicalalertpreferencesid!=null);
+      var selectedExtraItemDetails = [];
+      var result = this.lstResidentAlert.filter(f => f.isenable == true || f.clinicalalertpreferencesid != null);
       result.forEach(x => {
         var jsonObject = {
           "clinicalalertpreferencesid": x.clinicalalertpreferencesid,
@@ -116,10 +109,10 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
           "isenable": x.isenable,
           "modifiedby": x.modifiedby
         }
-        selectedExtraItemDetails.push(jsonObject);      
-    });
-    //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
-    this.Clinical.alertDTOs = selectedExtraItemDetails;
+        selectedExtraItemDetails.push(jsonObject);
+      });
+      //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
+      this.Clinical.alertDTOs = selectedExtraItemDetails;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateAlertPreferences(this.Clinical)
@@ -136,15 +129,13 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
           },
         });
     }
-    else
-    {
+    else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-  close()
-  {
-    this.mode='view';
-    this.GetClinicalAlertPreferencesById(this.admissionid); 
+  close() {
+    this.mode = 'view';
+    this.GetClinicalAlertPreferencesById(this.admissionid);
   }
 }
 
