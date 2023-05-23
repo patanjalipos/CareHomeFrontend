@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConstantsService } from './constants.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { ConstantsService } from './constants.service';
 export class AuthServiceService {
 
   constructor(
+    private router: Router,
     private httpClient: HttpClient,
     private _ConsService: ConstantsService
     //,
@@ -32,5 +34,12 @@ export class AuthServiceService {
         // var data = "LoginId=" + LoginId + "&Password=" + Password;
         // var data = JSON.stringify(CaptchaModel);
         // return this.httpClient.get(this._ConsService.BaseUri + "api/User/ValidateUser?" + data);
+    }
+
+    logout() {
+      localStorage.clear();
+      this.router.navigate(['/auth/login'], {
+        queryParams: {},
+      });
     }
 }

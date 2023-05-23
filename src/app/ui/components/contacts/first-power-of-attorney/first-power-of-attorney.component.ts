@@ -15,7 +15,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   @Input() admissionid: any = null;
   loginId:any=localStorage.getItem('userId'); 
   Contact:any = <any>{};
-  lstCountryMaster: any[]=[];
+  lstAttorneyTypeMaster: any[]=[];
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
@@ -29,18 +29,18 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
 
   ngOnChanges(changes: SimpleChanges): void {  
     if (this.userid != null && this.admissionid != null) {
-      this.LoadCountryList();
-      this.GetContactSecondaryById(this.admissionid);      
+      this.GetAttorneyTypeMaster();
+      this.GetContactFirstAttorneyById(this.admissionid);      
     }
   }
 
-  LoadCountryList() {
-    this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
+  GetAttorneyTypeMaster() {
+    this.unsubscribe.add = this._MasterServices.GetAttorneyTypeMaster(true).subscribe({
       next: (data) => {
         if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
-          this.lstCountryMaster = tdata;
+          this.lstAttorneyTypeMaster = tdata;
         }
       },
       error: (e) => {
@@ -54,7 +54,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   {
     this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
-      //this.GetContactSecondaryById(this.admissionid);      
+      //this.GetContactFirstAttorneyById(this.admissionid);      
     }
     else
     {
@@ -62,10 +62,10 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
       this.mode='view';
     }
   } 
-  GetContactSecondaryById(admissionid) {
+  GetContactFirstAttorneyById(admissionid) {
     this.Contact.StatementType = "Insert";
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetContactSecondaryById(admissionid)  
+    this.unsubscribe.add = this._MasterServices.GetContactFirstAttorneyById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
@@ -90,7 +90,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
       this.Contact.residentadmissioninfoid = this.admissionid;
       this.Contact.modifiedby = localStorage.getItem('userId');
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactSecondary(this.Contact)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateContactFirstAttorney(this.Contact)
         .subscribe
         ({
           next: (data) => {

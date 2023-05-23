@@ -1,174 +1,85 @@
-<p-accordionTab>
-    <p-header class="w-100">
-        <div class="acc-tab">
-            <span>First power of attorney</span>
-            <div>
-            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
-                (click)="edit()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
-                (click)="$event.stopPropagation();save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
-                (click)="close()"></button>
+<form #myForm="ngForm">
+    <p-accordionTab>
+        <p-header class="w-100">
+            <div class="acc-tab">
+                <span>First power of attorney</span>
+                <div>
+                    <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
+                        (click)="edit()"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
+                        (click)="$event.stopPropagation();save()" [disabled]="!myForm.form.valid"></button>
+                    <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
+                        (click)="close()"></button>
+                </div>
             </div>
-        </div>
-</p-header>
-<div class="row mt25" *ngIf="mode=='view'">
-    <div class="col">
-        <div class="row">
-            <span><b>Contact note</b></span>
-            <div class="col-md-12">
-                {{Contact.contactnote}}
-            </div>
-            <span class="mt-5"><b>Contact name</b></span>
-            <div class="col-md-6">
-                <span style="color: #808080;">First name</span><br>
-                {{Contact.firstname}}
-            </div>
-            <div class="col-md-6">
-                <span style="color: #808080;">Last name</span><br>
-                {{Contact.lastname}}
-            </div>
-            <span class="mt-5"><b>Contact Type</b></span>
-            <div class="col-md-12">
-                <span style="color: #808080;">Relationship to Resident</span><br>
-                {{Contact.relationship}}
-            </div>
-            <span class="mt-5"><b>Contact Details</b></span>
-            <div class="col-md-4">
-                <span style="color: #808080;">Mobile</span><br>
-                {{Contact.mobile}}
-            </div>
-            <div class="col-md-4">
-                <span style="color: #808080;">Home Telephone</span><br>
-                {{Contact.hometelephone}}
-            </div>
-            <div class="col-md-4">
-                <span style="color: #808080;">Work Telephone</span><br>
-                {{Contact.worktelephone}}
-            </div>
-            <div class="col-md-4 mb-2">
-                <span style="color: #808080;">Email Address</span><br>
-                {{Contact.email}}
-            </div>
-            <span class="mt-5"><b>Contact Address</b></span>
-            <div class="col-md-12">
-                <span style="color: #808080;">Address 1</span><br>
-                {{Contact.address1}}
-            </div>
-            <div class="col-md-12 mt-2">
-                <span style="color: #808080;">Address 2</span><br>
-                {{Contact.address2}}
-            </div>
-            <div class="col-md-12 mt-2">
-                <span style="color: #808080;">Address 3</span><br>
-                {{Contact.address3}}
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">Town</span><br>
-                {{Contact.town}}
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">County</span><br>
-                {{Contact.county}}
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">Country</span><br>
-                {{Contact.countryname}}
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">Postcode</span><br>
-                {{Contact.postcode}}
-            </div>
-        </div>
-    </div>
-</div>
+        </p-header>        
+        <div class="row mt25">
+            <div class="row">
+                <h5>Contact note</h5>
+                <div class="col-md-12">
+                    <div *ngIf="mode=='edit'">
+                        <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.contactnote"
+                            [style]="{width: '100%'}" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.contactnote}}</div>
+                </div>
+                <h5 class="mt-5">First power of attorney </h5>
+                <div class="col-md-6">
+                    <label class="form-label"><span class="required">*</span> Power of attorney type</label>
+                    <div *ngIf="mode=='edit'">
+                        <p-dropdown [required]="true" name="ddlAttorneyType" [options]="lstAttorneyTypeMaster" [(ngModel)]="Contact.attorneytypemasterid"
+                        optionLabel="typename" optionValue="attorneytypemasterid"
+                        [filter]="true" placeholder="Select POA Type" [style]="{width: '100%'}" #poaref="ngModel">
+                        </p-dropdown>
+                        <div class="errorMessage pt-2" *ngIf="poaref.errors &&(poaref.touched || poaref.dirty)">
+                            <div>POA type is required.</div>
+                        </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.typename}}</div>
+                </div>
 
+                <div class="col-md-6">
+                    <label class="form-label">Other type</label>
+                    <div *ngIf="mode=='edit'">
+                        <input type="text" name="othertype" pInputText [(ngModel)]="Contact.othertype"
+                            [style]="{width: '100%'}"  />                        
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.othertype}}</div>
+                </div>
+                <h5 class="mt-5">Contact name </h5>
+                <div class="col-md-6">
+                    <label class="form-label"><span class="required">*</span> First name / Organisation name</label>
+                    <div *ngIf="mode=='edit'">
+                        <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.firstname"
+                            [style]="{width: '100%'}" #fNameref="ngModel" />
+                        <div class="errorMessage pt-2" *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
+                            <div>First name is required.</div>
+                        </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.firstname}}</div>
+                </div>
 
-<div class="row mt25" *ngIf="mode=='edit'">
-    <div class="col">
-        <div class="row">
-            <span><b>Contact note</b></span>
-            <div class="col-md-12">
-                <input type="text" name="contactnote" pInputText
-                [(ngModel)]="Contact.contactnote" [style]="{width: '100%'}" />  
-            </div>
-            <span class="mt-5"><b>Contact name</b></span>
-            <div class="col-md-6">
-                <span style="color: #808080;">First name</span><br>
-                <input type="text" name="firstname" pInputText
-                [(ngModel)]="Contact.firstname" [style]="{width: '100%'}" />  
-            </div>
-            <div class="col-md-6">
-                <span style="color: #808080;">Last name</span><br>
-                <input type="text" name="lastname" pInputText
-                [(ngModel)]="Contact.lastname" [style]="{width: '100%'}" />  
-            </div>
-            <span class="mt-5"><b>Contact Type</b></span>
-            <div class="col-md-12">
-                <span style="color: #808080;">Relationship to Resident</span><br>
-                <input type="text" name="relationship" pInputText
-                [(ngModel)]="Contact.relationship" [style]="{width: '100%'}" />  
-            </div>
-            <span class="mt-5"><b>Contact Details</b></span>
-            <div class="col-md-4">
-                <span style="color: #808080;">Mobile</span><br>
-                <input type="text" name="mobile" pInputText
-                [(ngModel)]="Contact.mobile" [style]="{width: '100%'}" /> 
-            </div>
-            <div class="col-md-4">
-                <span style="color: #808080;">Home Telephone</span><br>
-                <input type="text" name="hometelephone" pInputText
-                [(ngModel)]="Contact.hometelephone" [style]="{width: '100%'}" />
-            </div>
-            <div class="col-md-4">
-                <span style="color: #808080;">Work Telephone</span><br>
-                <input type="text" name="worktelephone" pInputText
-                [(ngModel)]="Contact.worktelephone" [style]="{width: '100%'}" />
-            </div>
-            <div class="col-md-4">
-                <span style="color: #808080;">Email Address</span><br>
-                <input type="text" name="email" pInputText
-                [(ngModel)]="Contact.email" [style]="{width: '100%'}" />
-            </div>
-            <span class="mt-5"><b>Contact Address</b></span>
-            <div class="col-md-12">
-                <span style="color: #808080;">Address 1</span><br>
-                <input type="text" name="address1" pInputText
-                [(ngModel)]="Contact.address1" [style]="{width: '100%'}" /> 
-            </div>
-            <div class="col-md-12 mt-2">
-                <span style="color: #808080;">Address 2</span><br>
-                <input type="text" name="address2" pInputText
-                [(ngModel)]="Contact.address2" [style]="{width: '100%'}" /> 
-            </div>
-            <div class="col-md-12 mt-2">
-                <span style="color: #808080;">Address 3</span><br>
-                <input type="text" name="address3" pInputText
-                [(ngModel)]="Contact.address3" [style]="{width: '100%'}" /> 
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">Town</span><br>
-                <input type="text" name="town" pInputText
-                [(ngModel)]="Contact.town" [style]="{width: '100%'}" /> 
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">county</span><br>
-                <input type="text" name="txtResidentIndicators" pInputText
-                [(ngModel)]="Contact.county" [style]="{width: '100%'}" /> 
-            </div>
-            <div class="col-md-6 mt-2">
-                <label class="form-label">Country</label>
-                <p-dropdown name="ddlCountry" [options]="lstCountryMaster" [(ngModel)]="Contact.countryid"
-                optionLabel="name" optionValue="id" [filter]="true" placeholder="Choose country"
-                [style]="{width: '100%'}">
-                </p-dropdown>
-            </div>
-            <div class="col-md-6 mt-2">
-                <span style="color: #808080;">Postcode</span><br>
-                <input type="text" name="postcode" pInputText
-                [(ngModel)]="Contact.postcode" [style]="{width: '100%'}" />
+                <div class="col-md-6">
+                    <label class="form-label"><span class="required">*</span> Last name</label>
+                    <div *ngIf="mode=='edit'">
+                        <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.lastname"
+                            [style]="{width: '100%'}" #lNameref="ngModel" />
+                        <div class="errorMessage pt-2" *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
+                            <div>Last name is required.</div>
+                        </div>
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.lastname}}</div>
+                </div>
+                <h5 class="mt-5">Contact details</h5>                
+                <div class="col-md-4">
+                    <label class="form-label">Telephone</label>
+                    <div *ngIf="mode=='edit'">
+                        <input type="text" name="worktelephone" pInputText [(ngModel)]="Contact.telephone"
+                            [style]="{width: '100%'}" />
+                    </div>
+                    <div class="my-2" *ngIf="mode=='view'">{{Contact.telephone}}</div>
+                </div>                
             </div>
         </div>
-    </div>
-</div>
-</p-accordionTab>
+    </p-accordionTab>
+</form>

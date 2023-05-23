@@ -193,6 +193,9 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Indicator Master', icon: 'fa-solid fa-bars', routerLink: ['/master/indicator-master'],queryParams:[]
                             },
                             {
+                                label: 'Attorney Type Master', icon: 'fa-solid fa-bars', routerLink: ['/master/attorney-type-master'],queryParams:[]
+                            },
+                            {
                                 label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
                             },                          
                             {
@@ -235,7 +238,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },
                     { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
                     { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/auth/logout'] },
                     
                 ]
             },
