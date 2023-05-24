@@ -63,7 +63,7 @@ constructor(
   // }
 
   ngOnInit(): void {
-    if (this.userid == null && this.admissionid == null)
+    if (this.userid == null  || this.admissionid == null)
     this.isEditable=true;
   }
 

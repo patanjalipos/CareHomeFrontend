@@ -11,25 +11,17 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AccordionModule } from 'primeng/accordion';
-import { TreeModule } from 'primeng/tree';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { TreeTableModule } from 'primeng/treetable';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {FileUploadModule} from 'primeng/fileupload';
-import { StepsModule } from 'primeng/steps';
+import { FileUploadModule } from 'primeng/fileupload';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
 import { ResidentHealthcareDetailsModule } from '../resident-healthcare-details/resident-healthcare-details.module';
 import { ResidentPreferencesModule } from '../resident-preferences/resident-preferences.module';
 import { ResidentPriorAdmissionModule } from '../resident-prior-admission/resident-prior-admission.module';
-import { TieredMenuModule } from 'primeng/tieredmenu';
 
-const ngWizardConfig: NgWizardConfig = {
-  theme: THEME.default
-};
+
 @NgModule({
   declarations: [
     ResidentMasterComponent
@@ -45,20 +37,14 @@ const ngWizardConfig: NgWizardConfig = {
     InputTextareaModule,
     InputNumberModule,
     AccordionModule,
-    TreeModule,
-    OverlayPanelModule,
     ButtonModule,   
     CalendarModule,
     MultiSelectModule,
-    TreeTableModule,
     FileUploadModule,
-    StepsModule,
     SelectButtonModule,
-    NgWizardModule.forRoot(ngWizardConfig),
     ResidentHealthcareDetailsModule,
     ResidentPreferencesModule,
-    ResidentPriorAdmissionModule,
-    TieredMenuModule
+    ResidentPriorAdmissionModule,   
     
   ]
 })

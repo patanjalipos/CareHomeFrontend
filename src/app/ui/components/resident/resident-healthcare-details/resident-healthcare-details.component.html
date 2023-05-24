@@ -1,30 +1,18 @@
 
-<p-accordionTab>
+<p-accordionTab [selected]="true">
 <p-header class="w-100">
     <div class="acc-tab">
         <span>Healthcare details</span>
         <div>
-            <button *ngIf="mode=='view'" pButton type="button" label="Edit"
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn-primary"
                 (click)="edit()" [disabled]="(admissionid==null || admissionid==undefined)"></button>
-                <button *ngIf="mode=='edit'" pButton type="button" label="Save"
+                <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn-primary"
                 (click)="$event.stopPropagation();save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary ml-2"
+            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn-secondary ml-2"
                 (click)="close()"></button>
         </div>
     </div>
 </p-header>
-<!-- <div class="row mb-5">
-    <div class="col-md-12">
-        <div class="">
-            <button *ngIf="mode=='view'" pButton type="button" label="Edit" 
-                (click)="edit()" [disabled]="(admissionid==null || admissionid==undefined)"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Save"
-                (click)="$event.stopPropagation();save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary"
-                (click)="close()"></button>
-        </div>
-    </div>
-</div> -->
 <div *ngIf="mode=='view'">
     <div class="row">                    
         <div class="col-md-3">
