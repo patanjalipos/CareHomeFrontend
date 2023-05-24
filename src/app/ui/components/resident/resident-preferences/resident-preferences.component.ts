@@ -37,18 +37,21 @@ export class ResidentPreferencesComponent extends AppComponentBase implements On
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
-    
+    if (this.userid != null && this.admissionid != null) {
+      this.GetResidentPreferencesById(this.admissionid);
+   }
   }
 
   edit()
   {
-    this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
+      this.mode='edit';
       this.GetResidentPreferencesById(this.admissionid);      
     }
     else
     {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
+      this.mode='view';
     }
   }
   GetResidentPreferencesById(admissionid) {
@@ -99,7 +102,7 @@ export class ResidentPreferencesComponent extends AppComponentBase implements On
   }
   close()
   {
-    this.mode='view'
+    this.mode='view';
   }
 
 }

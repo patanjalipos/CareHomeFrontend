@@ -1,12 +1,12 @@
-<p-accordionTab>
+<p-accordionTab [selected]="true">
     <p-header class="w-100">
         <div class="acc-tab">
             <span>Details prior to admission</span>
             <div>
-            <button *ngIf="mode=='view'" pButton type="button" label="Edit" (click)="edit()"
+            <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn-primary" (click)="edit()"
                 [disabled]="(admissionid==null || admissionid==undefined)"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Save" (click)="$event.stopPropagation();save()"></button>
-            <button *ngIf="mode=='edit'" pButton type="button" label="Close" class="p-button-secondary ml-2"
+            <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn-primary" (click)="$event.stopPropagation();save()"></button>
+            <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn-secondary ml-2"
                 (click)="close()"></button>
             </div>
         </div>

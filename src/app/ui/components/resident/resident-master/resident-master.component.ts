@@ -1,14 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Table } from 'primeng/table';
 import { AdmissionStatus, ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { ViewportScroller } from '@angular/common';
-import { of } from 'rxjs';
-import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from '../../master/master.service';
-import { MenuItem } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resident-master',
@@ -17,27 +14,24 @@ import { MenuItem } from 'primeng/api';
 })
 
 export class ResidentMasterComponent extends AppComponentBase implements OnInit {  
-  @ViewChild('myForm') public myForm: NgForm;
-  @ViewChild('dt') public dataTable: Table;
-  @ViewChild('filtr') filtr: ElementRef;
+  @ViewChild('myForm') public myForm: NgForm;  
   UserTypes = UserTypes;
   admissionStatus = AdmissionStatus;
   customDateFormat = CustomDateFormat;
-  items: MenuItem[];
   s_userTypeId: any = localStorage.getItem('userTypeId');
-  selecteduserid:any=null;
-  selectedadmissionid:any=null;
   todayDate = new Date();
   mode: string = null;
+  healthcareMode:string="view";
+  selecteduserid:any=null;
+  selectedadmissionid:any=null;
+  
   lstHomeMaster: any[]=[];
   lstCountryMaster: any[]=[];
   lstDependencyMaster: any[]=[];
-  lstRoomMaster: any[]=[];
-  lstResidentMaster: any[]=[];
+  lstRoomMaster: any[]=[];  
   lstResidentIndicator: any[]=[];
   public ResidentMaster: any = <any>{};
-  selectedUserType: any[]=[];
-  filteredValuesLength:number=0;
+  
   stlsttitle: any[];
   stlstgender: any[];
   stlstmyself: any[];
@@ -48,35 +42,15 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   profileSrc = null;  
   //funding
   stlstfunding: any[];
-  stepStates = {
-    normal: STEP_STATE.normal,
-    disabled: STEP_STATE.disabled,
-    error: STEP_STATE.error,
-    hidden: STEP_STATE.hidden
-  };
-
-  config: NgWizardConfig = {
-    selected: 0,
-    theme: THEME.arrows,
-    toolbarSettings: {
-      toolbarExtraButtons: [
-        { text: 'Finish', class: 'btn btn-info', event: () => { alert("Finished!!!"); } }
-      ],
-    }
-  };
-
-  healthcareMode:string="";
-  profileUrl:string=this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
   constructor(
+    private route: ActivatedRoute,
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,   
-    private viewportScroller: ViewportScroller,
-    private ngWizardService: NgWizardService,
+    private viewportScroller: ViewportScroller,    
   ) 
   {
     super();
-    this._ConstantServices.ActiveMenuName = "Resident Master"; 
     this.stlstadmissionstatus = [
       { name: this.admissionStatus[this.admissionStatus.Active], code: this.admissionStatus.Active },
       { name: this.admissionStatus[this.admissionStatus.Deceased], code: this.admissionStatus.Deceased },
@@ -141,88 +115,32 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'Private/Responsible Local Authority', code: 'Private/Responsible Local Authority' }
     ];    
     this.profileSrc = this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
+    this.unsubscribe.add = this.route.queryParams.subscribe(params => {
+      var ParamsArray=this._ConstantServices.GetParmasVal(params['q']);
+      if(ParamsArray?.length>0)
+      {
+        //console.log('ParamsArray',ParamsArray);
+        this.mode = ParamsArray.find(e=>e.FieldStr=='mode')?.FieldVal || 'view';
+        this.selecteduserid = ParamsArray.find(e=>e.FieldStr=='id')?.FieldVal || null;
+        this.selectedadmissionid = ParamsArray.find(e=>e.FieldStr=='admissionid')?.FieldVal || null;
+      }      
+    });
    }
 
   ngOnInit(): void {
     if (UserTypes.SuperAdmin === this.s_userTypeId) {
       this.LoadHomeMaster();
     }
-    this.LoadHomeMaster();
-    this.LoadCountryList();
-    this.LoadResidentList();
-  }
+    this.LoadCountryList(); 
+    if(this.mode=="add")
+    this.AddResident();
+    else if(this.mode=="edit")
+    {
+      this.LoadResidentDetails(this.selecteduserid);
+    }
 
-  toggleTieredMenu(menu, event, userid, admissionid) {
-     this.items = [];    
-     this.items = [
-      ...this.items,
-      {
-        label: 'View/Edit',
-        icon: 'pi pi-eye',
-        command: () => {
-          this.LoadResidentDetails(userid, admissionid)
-        }
-      },
-      {
-        label: 'Clinical',
-        icon: 'fa-solid fa-stethoscope',
-        command: () => {
-          var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
-          window.open("#/clinical?q=" + params, "_self");
-                    
-        }
-      },
-      {
-        label: 'Contact',
-        icon: 'fa-solid fa-address-card',
-        command: () => {
-          var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
-          window.open("#/contacts?q=" + params, "_self");                    
-        }
-      },
-    ];
-    
-    
-    
-    
-
-    
-    //console.log('items', this.items);
-    menu.toggle(event);
-  }
-
-
-  showPreviousStep(event?: Event) {
-    this.ngWizardService.previous();
-  }
-
-  showNextStep(event?: Event) {
-    this.ngWizardService.next();
-  }
-
-  resetWizard(event?: Event) {
-    this.ngWizardService.reset();
-  }
-
-  setTheme(theme: THEME) {
-    this.ngWizardService.theme(theme);
-  }
-
-  stepChanged(args: StepChangedArgs) {
-    console.log(args.step);
-  }
-
-  isValidTypeBoolean: boolean = true;
-
-  isValidFunctionReturnsBoolean(args: StepValidationArgs) {
-    return true;
-  }
-
-  isValidFunctionReturnsObservable(args: StepValidationArgs) {
-    return of(true);
-  }
-
-
+  }  
+  
   public onClick(elementId: string): void { this.viewportScroller.scrollToAnchor(elementId); }
   LoadHomeMaster() {
     this._UtilityService.showSpinner();
@@ -261,42 +179,9 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
         this._UtilityService.showErrorAlert(e.message);
       },
     });
-  }
-  LoadResidentList() {
-    var HomeMasterId = "";
-    if (this.s_userTypeId != UserTypes.SuperAdmin) {
-      HomeMasterId = localStorage.getItem('HomeMasterId');
-    }
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,false)
-      .subscribe({
-        next:(data) => {
-          this._UtilityService.hideSpinner();          
-          if (data.actionResult.success == true) {
-            var tdata = JSON.parse(data.actionResult.result);
-            tdata = tdata ? tdata : [];
-            this.lstResidentMaster = tdata;
-            if (this.filtr !== undefined) {
-              this.filtr.nativeElement.value = "";
-              this.dataTable.reset();
-              this.filteredValuesLength = this.lstResidentMaster?.length;
-              }            
-          //  console.log(this.lstResidentMaster);
-          }
-          else {
-            this.lstResidentMaster = [];            
-          }
-        },
-        error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
-        },
-      });
-  }
+  }  
   AddResident()
   {
-    this.mode = "add";
-    this.healthcareMode="view";
     this.selecteduserid = null;
     this.selectedadmissionid = null;
     this.SelectedFile = [];
@@ -307,10 +192,9 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       this.ResidentMaster.homemasterid = localStorage.getItem('HomeMasterId');
     } 
   }
-  LoadResidentDetails(id, admissionid)
+  LoadResidentDetails(id)
   {
     this.selecteduserid=id;
-    this.selectedadmissionid=admissionid;
     this.SelectedFile = [];
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetResidentMasterById(id)
@@ -391,48 +275,12 @@ RemoveProfileImage(){
           },
         });
   }
-
-  calculateAge(birthday):number {    
-    if (birthday != undefined) {
-       var curdate = new Date();
-       var dob = new Date(birthday);
-       var ageyear = curdate.getFullYear() - dob.getFullYear();
-       var agemonth = curdate.getMonth() - dob.getMonth();
-       var ageday = curdate.getDate() - dob.getDate();
-       if (agemonth <= 0) {
-         ageyear--;
-         agemonth = (12 + agemonth);
-       }
-       if (curdate.getDate() < dob.getDate()) {
-         agemonth--;
-         ageday = 30 + ageday;
-       } if (agemonth == 12) {
-         ageyear = ageyear + 1;
-         agemonth = 0;
-       }
-       return ageyear;      
-     }
-     else
-     return 0;
-   }
   
-  CloseModal() {
-    this.mode = null;
-    this.healthcareMode="";
-    this.selecteduserid = null;
-    this.selectedadmissionid = null;
-    this.LoadResidentList();
+  close()
+  {
+    this.mode='view';
   }
-  exportToItemExcel() {
-    let importData: any = <any>{};
-    importData.reportname = "residentlist";
-    importData.filename = "residentlist";
-    this._MasterServices.downloadReport(importData);
-  } 
-  //Filter
-  onGlobalFilter(table: Table, event: Event) {
-    table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-  }
+  
 }
 
 

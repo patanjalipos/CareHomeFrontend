@@ -203,7 +203,7 @@ export class AppMenuComponent implements OnInit {
                             }
                         ]
                     },
-                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident/resident-list'] },
+                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident-list'] },
                     // { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
                     // { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },
                        {

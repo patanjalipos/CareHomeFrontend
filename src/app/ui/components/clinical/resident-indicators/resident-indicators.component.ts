@@ -41,7 +41,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   //   console.log('lstResidentIndicators', this.lstResidentIndicators);    
   // }
   ngOnInit(): void {
-    if (this.userid == null && this.admissionid == null)
+    if (this.userid == null  || this.admissionid == null)
     this.isEditable=true;
     this.GetIndicatorGroupMaster();
   }
