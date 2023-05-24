@@ -30,7 +30,9 @@ export class ResidentHealthcareDetailsComponent extends AppComponentBase impleme
   ngOnInit(): void {
   }
   ngOnChanges(changes: SimpleChanges): void {  
-     this.GetResidentHealthCareById(this.admissionid);
+    if (this.userid != null && this.admissionid != null) {
+       this.GetResidentHealthCareById(this.admissionid);
+    }    
   }
 
   edit()
@@ -94,7 +96,7 @@ export class ResidentHealthcareDetailsComponent extends AppComponentBase impleme
   }
   close()
   {
-    this.mode='view'
+    this.mode='view';
   }
 
 }

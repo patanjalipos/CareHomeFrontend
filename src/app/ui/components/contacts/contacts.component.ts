@@ -18,7 +18,7 @@ export class ContactsComponent extends AppComponentBase implements OnInit {
     private _ConstantServices: ConstantsService,
     ) { 
     super();
-    this.unsubscribe.add = this.route.queryParams.subscribe(params => {
+     this.unsubscribe.add = this.route.queryParams.subscribe(params => {
       var ParamsArray=this._ConstantServices.GetParmasVal(params['q']);
       if(ParamsArray?.length>0)
       {

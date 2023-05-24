@@ -24,7 +24,7 @@ export class ClinicalInformationComponent extends AppComponentBase implements On
   }
 
   ngOnInit(): void {
-    if (this.userid == null && this.admissionid == null)
+    if (this.userid == null  || this.admissionid == null)
     this.isEditable=true;
   }
 

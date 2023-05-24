@@ -35,10 +35,12 @@ export class ResidentPriorAdmissionComponent extends AppComponentBase  implement
   }
 
   ngOnInit(): void {
-    this.LoadCountryList();
+    this.LoadCountryList();    
   }
   ngOnChanges(changes: SimpleChanges): void {  
-    
+    if (this.userid != null && this.admissionid != null) {
+      this.GetResidentPriorAdmissionById(this.admissionid);
+   }
   }
 
   LoadCountryList() {
@@ -59,13 +61,14 @@ export class ResidentPriorAdmissionComponent extends AppComponentBase  implement
 
   edit()
   {
-    this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
+      this.mode='edit';
       this.GetResidentPriorAdmissionById(this.admissionid);      
     }
     else
     {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
+      this.mode='view';
     }
   }
   setSelectedAdmittedForm(event)
