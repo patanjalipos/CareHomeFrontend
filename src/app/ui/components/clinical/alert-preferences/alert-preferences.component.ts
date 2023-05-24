@@ -17,7 +17,7 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
   Clinical: any = <any>{};
   lstResidentAlert: any[] = [];
   rowGroupMetadata: any;
-  isEditable: boolean = false;
+  isEditable: boolean = true;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
@@ -26,12 +26,15 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
   }
   
   ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-      this.isEditable = true;
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.GetClinicalAlertPreferencesById(this.admissionid);
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.GetClinicalAlertPreferencesById(this.admissionid);
+    }
   }
 
   edit() {

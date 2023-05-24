@@ -62,14 +62,12 @@ export class LoginComponent extends AppComponentBase {
                     }
                     else {
                         this.invalidLogin = true;
-                        this._UtilityService.showWarningAlert("Invalid credentials.");
-                        //alert("Invalid user");
+                        this._UtilityService.showWarningAlert("Invalid credentials.");                       
                     }
                 },
                 error: (e) => {
                     this._UtilityService.hideSpinner();
-                    this._UtilityService.showErrorAlert(e.message);
-                    //alert(e.message);
+                    this._UtilityService.showErrorAlert(e.message);                    
                 }
             }
             );
