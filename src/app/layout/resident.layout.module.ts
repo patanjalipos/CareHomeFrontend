@@ -16,16 +16,17 @@ import { AppTopBarComponent } from './app.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
-import { AppLayoutComponent } from "./app.layout.component";
+import { ResidentLayoutComponent } from "./resident.layout.component";
+import { AppLayoutModule } from './app.layout.module';
 
 @NgModule({
     declarations: [
-        AppMenuitemComponent,
-        AppTopBarComponent,
-        AppFooterComponent,
-        AppMenuComponent,
-        AppSidebarComponent,
-        AppLayoutComponent,
+        // AppMenuitemComponent,
+        // AppTopBarComponent,
+        // AppFooterComponent,
+        // AppMenuComponent,
+        //AppSidebarComponent,
+        ResidentLayoutComponent,
     ],
     imports: [
         BrowserModule,
@@ -39,8 +40,10 @@ import { AppLayoutComponent } from "./app.layout.component";
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+        AppLayoutModule,
+        
     ],
-    exports: [AppLayoutComponent, AppSidebarComponent,]
+    exports: [ResidentLayoutComponent]
 })
-export class AppLayoutModule { }
+export class ResidentLayoutModule { }

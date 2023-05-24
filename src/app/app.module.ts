@@ -13,6 +13,7 @@ import { IconService } from './ui/service/icon.service';
 import { NodeService } from './ui/service/node.service';
 import { PhotoService } from './ui/service/photo.service';
 import { UtilityModule } from './utility/utility.module';
+import { ResidentLayoutModule } from './layout/resident.layout.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { UtilityModule } from './utility/utility.module';
     imports: [
         AppRoutingModule,
         AppLayoutModule,
+        ResidentLayoutModule,
         UtilityModule
     ],
     providers: [

@@ -17,7 +17,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
   Clinical: any = <any>{};
   lstResidentChart:any[]=[];
   rowGroupMetadata: any;
-  isEditable:boolean=false;
+  isEditable:boolean=true;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -28,13 +28,16 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
 
   
   ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-    this.isEditable=true;
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
     
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
-    this.GetClinicalChartPreferencesById(this.admissionid);
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.GetClinicalChartPreferencesById(this.admissionid);
+    }
   }
 
   

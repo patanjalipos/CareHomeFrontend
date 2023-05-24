@@ -21,7 +21,7 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   lstResidentIndicatorGroups:any[]=[];
   lstResidentIndicators:any[]=[];
   lstResidentIndicatorsFilter:any[]=[];
-  isEditable:boolean=false;
+  isEditable:boolean=true;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -41,14 +41,17 @@ export class ResidentIndicatorsComponent extends AppComponentBase implements OnI
   //   console.log('lstResidentIndicators', this.lstResidentIndicators);    
   // }
   ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-    this.isEditable=true;
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
     this.GetIndicatorGroupMaster();
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
     this.GetIndicatorGroupMaster();
-    this.GetClinicalIndicatorById(this.admissionid);
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.GetClinicalIndicatorById(this.admissionid);
+    }
   }
 
   GetIndicatorGroupMaster() {
