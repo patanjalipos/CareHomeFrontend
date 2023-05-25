@@ -14,10 +14,20 @@
                         <td>{{calculateAge(ResidentMaster.dateofbirth)}}y ({{ResidentMaster.dateofbirth|date:customDateFormat.DEF_DATE}})</td>
                     </tr>
                     <tr>
+                      <td>Gender</td>
+                      <td>:</td>
+                      <td>{{ResidentMaster.gender}}</td>
+                   </tr>
+                    <tr>
                         <td>Room</td>
                         <td>:</td>
                         <td>{{ResidentMaster.roomnumber}}</td>
                     </tr>
+                    <tr>
+                      <td>Status</td>
+                      <td>:</td>
+                      <td>{{admissionStatus[ResidentMaster.admissionstatus]}}</td>
+                  </tr>
                     
                     
                 </table>

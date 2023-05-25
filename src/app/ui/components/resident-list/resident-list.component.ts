@@ -45,7 +45,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
      },
      {
       label: 'Resident',
-      icon: 'pi pi-menu',
+      icon: 'fa-solid fa-users',
       command: () => {
         var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid + "&mode=edit"));
         window.open("#/resident/resident-master?q=" + params, "_self");

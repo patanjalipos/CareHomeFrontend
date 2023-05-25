@@ -816,6 +816,7 @@ i.iconset:hover {
 
 .ColumnFilterTable tr th {position: relative; }
 .ColumnFilterTable .p-datatable-scrollable .p-datatable-thead>tr>th, .ColumnFilterTable .p-datatable-scrollable .p-datatable-tbody>tr>td, .ColumnFilterTable .p-datatable-scrollable .p-datatable-tfoot>tr>td { flex: none !important;}
+.total-txt { position: relative; bottom: 6px;}
 
 .help-btn {margin: 5px 0 15px;}
 .help-btn a { background: #5A6D87; padding: 5px 15px; border-radius: 30px;     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098); margin-left: 20px; color: #fff;}
