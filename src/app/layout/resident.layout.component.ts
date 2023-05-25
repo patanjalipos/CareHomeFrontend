@@ -24,26 +24,30 @@ export class ResidentLayoutComponent implements OnDestroy {
     selecteduserid:any= null; //"3325faff-558d-4067-9c56-02e78dd06b26";
     selectedadmissionid:any= null; //"a24a3830-1b5e-4ce7-a8cd-df6de925ffa9";
     healthcareMode:string="view";
-    params:any;
+    newparams:any;
 
-    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router,private route: ActivatedRoute, public _ConstantServices: ConstantsService) {
+    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private route: ActivatedRoute, public _ConstantServices: ConstantsService) {
         this.route.queryParams.subscribe(params => {
-            var ParamsArray=this._ConstantServices.GetParmasVal(params['q']);
-            if(ParamsArray?.length>0)
-            {
-              //console.log('ParamsArray',ParamsArray);
-              this.healthcareMode = ParamsArray.find(e=>e.FieldStr=='mode')?.FieldVal || 'view';
-              this.selecteduserid = ParamsArray.find(e=>e.FieldStr=='id')?.FieldVal || null;
-              this.selectedadmissionid = ParamsArray.find(e=>e.FieldStr=='admissionid')?.FieldVal || null;
-            }      
-          });
-         this.params=encodeURIComponent(btoa("id=" + this.selecteduserid + "&admissionid=" + this.selectedadmissionid));
-         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
+            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
+            if (ParamsArray?.length > 0) {
+                //console.log('ParamsArray',ParamsArray);
+                this.healthcareMode = ParamsArray.find(e => e.FieldStr == 'mode')?.FieldVal || 'view';
+                this.selecteduserid = ParamsArray.find(e => e.FieldStr == 'id')?.FieldVal || null;
+                this.selectedadmissionid = ParamsArray.find(e => e.FieldStr == 'admissionid')?.FieldVal || null;
+            }
+        });
+        if (this.selecteduserid == null || this.selectedadmissionid == null) {
+             this.newparams = encodeURIComponent(btoa("mode=" + this.healthcareMode));
+        }
+        else {
+            this.newparams = encodeURIComponent(btoa("id=" + this.selecteduserid + "&admissionid=" + this.selectedadmissionid + "&mode=" + this.healthcareMode));
+        }
+        this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
+                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
                         || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
-                    
+
                     if (isOutsideClicked) {
                         this.hideMenu();
                     }
