@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { NgxUiLoaderConfig, NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Injectable({
     providedIn: 'root',
@@ -14,9 +15,13 @@ export class UtilityService {
     castSpinnerText = this.message.asObservable();
     SpinnerText: string = '';
     count:number=0;
+    config: NgxUiLoaderConfig;
     constructor(private messageService: MessageService,
         private confirmationService: ConfirmationService,
-        ) {}
+        private ngxService: NgxUiLoaderService,
+        ) {
+            this.config = this.ngxService.getDefaultConfig();
+        }
     showSpinnerWithMsg(msg: string) {
         this.count++;
         this.isSpinner.next(true);
@@ -24,14 +29,17 @@ export class UtilityService {
     }
     showSpinner() {
         this.count++;
-        this.isSpinner.next(true);
+        this.ngxService.start();
+        //this.isSpinner.next(true);
+        
     }
     hideSpinner() {
         this.count--;
         if (this.count <= 0) {
             this.count = 0;
-            this.isSpinner.next(false);
-            this.message.next('');
+            // this.isSpinner.next(false);
+            // this.message.next('');
+            this.ngxService.stop();
         }
     }
     showAlert(_summary: string, _detail: string, _severity: string) {

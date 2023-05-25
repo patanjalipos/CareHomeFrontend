@@ -12,6 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 @NgModule({
     declarations: [SpinnerComponent, ToastComponent],
@@ -25,6 +26,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
         MessagesModule,
         MessageModule,
         ToastModule,
+        NgxUiLoaderModule,
     ],
     providers: [UtilityService, MessageService, ConfirmationService],
 })
