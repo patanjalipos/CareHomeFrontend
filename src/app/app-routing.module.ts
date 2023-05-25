@@ -27,6 +27,7 @@ import { ResidentLayoutComponent } from './layout/resident.layout.component';
             {
                 path: '', component: ResidentLayoutComponent,
                 children: [
+                    { path: 'profile', loadChildren: () => import('./ui/components/resident-profile/resident-profile.module').then(m => m.ResidentProfileModule) },
                     { path: 'resident', loadChildren: () => import('./ui/components/resident/resident.module').then(m => m.ResidentModule) },
                     { path: 'clinical', loadChildren: () => import('./ui/components/clinical/clinical.module').then(m => m.ClinicalModule) },
                     { path: 'contacts', loadChildren: () => import('./ui/components/contacts/contacts.module').then(m => m.ContactsModule) }
