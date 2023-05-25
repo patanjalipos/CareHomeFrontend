@@ -1,5 +1,5 @@
 <div class="card" *ngIf="mode!=null">
-    <div class="row mt-2">
+    <div class="row">
         <div class="col-md-3">
             <div class="care-cont">
                 <div class="short-cont" (click)="onClick('RI')">
@@ -36,7 +36,7 @@
                         <div>
                             <!-- Resident details -->
                             <h5>Resident name</h5>
-                            <div class="row mt-2" *ngIf="s_userTypeId===UserTypes.SuperAdmin">
+                            <div class="row" *ngIf="s_userTypeId===UserTypes.SuperAdmin">
                                 <div class="col-md-4">
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <label class="form-label">Home <span class="required">*</span></label>
@@ -49,7 +49,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.homename}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <label class="form-label">Title</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -65,7 +65,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.title}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">First Name <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -81,7 +81,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.firstname}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Middle Name</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -91,7 +91,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.middlename}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Last Name <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -107,7 +107,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.lastname}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Preferred Name</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -117,7 +117,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.preferredname}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Status <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -131,7 +131,7 @@
                                         {{ResidentMaster.status==true?'Active':'Inactive'}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2" *ngIf="mode=='add' || mode=='edit'">
+                            <div class="row" *ngIf="mode=='add' || mode=='edit'">
                                 <div class="col-md-12"
                                     *ngIf="(ResidentMaster.profileimage==null || ResidentMaster.profileimage==undefined || ResidentMaster.profileimage=='')">
                                     <label class="form-label">Resident Photo</label>                                    
@@ -143,7 +143,7 @@
                                         </div>                                
                             </div>
                             <div class="row m-0">
-                                <div class="col-md-12 mt-2 border p-2 bdr6"
+                                <div class="col-md-12 border p-2 bdr6"
                                     *ngIf="(ResidentMaster.profileimage!=null && ResidentMaster.profileimage!=undefined && ResidentMaster.profileimage!='')">
                                     <div align="left" class="wd-30">
                                         <img style="height: 99px;" src="{{profileSrc}}{{ResidentMaster.profileimage}}">
@@ -160,7 +160,7 @@
 
                             <!-- Resident demographics -->
                             <h5 class="mt-5">Resident demographics</h5>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Date Of Birth <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -174,7 +174,7 @@
                                         date:customDateFormat.DEF_DATE}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <label class="form-label">Gender / sex <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -184,7 +184,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.gender}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">I describe myself as</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -205,7 +205,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.myselfother}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Country of birth</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -219,7 +219,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.countryname}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Primary language spoken</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -229,7 +229,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.primarylanguage}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Secondary language spoken</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -240,7 +240,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Religion</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -250,7 +250,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.religion}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label" for="">Marital status</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -265,7 +265,7 @@
                             </div>
                             <!-- Admission setails -->
                             <h5 class="mt-5">Admission details</h5>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Status</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -293,7 +293,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.dependencylevel}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Location</label>
                                 </div>
@@ -309,7 +309,7 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.roomnumber}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Last date of admission</label>
 
@@ -326,7 +326,7 @@
                                         date:customDateFormat.DEF_DATE}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Departure Date</label>
 
@@ -342,7 +342,7 @@
                             </div>
                             <!-- Funding -->
                             <h5 class="mt-5">Funding</h5>
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Funding</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
@@ -355,8 +355,8 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.funding}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label class="form-label">Payer details - name</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <input pInputText type="text" class="form-control" name="txtName"
@@ -365,8 +365,8 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.payername}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label class="form-label">Payer details - address</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <input pInputText type="text" class="form-control" name="txtAddress"
@@ -375,8 +375,8 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.payeraddress}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label class="form-label">Payer details - post code</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <input pInputText type="text" class="form-control" name="txtPostcode"
@@ -385,8 +385,8 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.payerpostcode}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label class="form-label">Payer details - telephone</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <p-inputNumber [(ngModel)]="ResidentMaster.payertelephone" name="txtTelephone"
@@ -395,8 +395,8 @@
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.payertelephone}}</div>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <label class="form-label">Payer details - relationship to resident</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
                                         <input pInputText type="text" class="form-control" name="txtrelationship"

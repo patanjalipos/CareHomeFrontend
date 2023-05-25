@@ -228,6 +228,14 @@ body {
 }
 
 /*Btn Start */
+.p-inputtext { height: 38px !important; padding: 0.5rem 0.5rem !important;} 
+.p-fileupload-buttonbar span.p-button { height: 38px !important; 
+    background: #023C40 !important;
+    border-color: #023C40 !important;}
+    .p-fileupload-buttonbar .p-button { height: 38px !important; 
+       
+    background-color: #023C40 !important;
+    border-color: #023C40 !important;}
 .p-datepicker-trigger{ background:#023C40 !important ;}
 .p-button {
     border-color: #023C40 !important; } 
@@ -290,7 +298,15 @@ body {
     border-color: #4447f5;
     color: #fff;
 }
+.p-selectbutton .p-button-label {
+    font-weight: 400 !important; 
+} 
+.p-selectbutton .p-button {
+    border: 1px solid #ced4da !important;}
 
+.removeicon  { 
+    background-color: #657374 !important;
+    border-color: #657374 !important;}    
 /*Btn End */
 .p-radiobutton:not(.p-radiobutton-disabled) .p-radiobutton-box.p-focus, .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
 
@@ -845,5 +861,8 @@ i.iconset:hover {
 .p-selectbutton{ margin-bottom: 10px !important;}
 
 .p-accordion-header button { height: 30px !important;}
+.p-input-icon-left > .p-inputtext {
+    padding-left: 2.5rem !important;
+}
 
   
