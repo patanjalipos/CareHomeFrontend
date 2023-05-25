@@ -18,7 +18,7 @@ export class PrimaryContactComponent extends AppComponentBase implements OnInit 
   loginId: any = localStorage.getItem('userId');
   Contact: any = <any>{};
   lstCountryMaster: any[] = [];
-  isEditable: boolean = false;
+  isEditable: boolean = true;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
@@ -28,8 +28,9 @@ export class PrimaryContactComponent extends AppComponentBase implements OnInit 
   }
 
   ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-      this.isEditable = true;
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

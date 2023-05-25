@@ -16,7 +16,8 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
   loginId: any = localStorage.getItem('userId');
   Contact: any = <any>{};
   lstCountryMaster: any[] = [];
-  isEditable: boolean = false;
+  isEditable: boolean = true;
+  @Input() newuserid: any = null;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
@@ -24,15 +25,16 @@ export class DoctorComponent extends AppComponentBase implements OnInit {
     super();
   }
 
-  ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-      this.isEditable = true;
+  ngOnInit(): void { 
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (this.userid != null && this.admissionid != null) {
       this.LoadCountryList();
       this.GetContactDoctorById(this.admissionid);
-    }
+    }    
   }
   LoadCountryList() {
     this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({

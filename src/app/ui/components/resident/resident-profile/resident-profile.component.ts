@@ -24,14 +24,15 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     private _UtilityService: UtilityService,  
   ) {
     super();
+    this._ConstantServices.ActiveMenuName="User Profile";
     this.unsubscribe.add = this.route.queryParams.subscribe(params => {
       var ParamsArray=this._ConstantServices.GetParmasVal(params['q']);
       if(ParamsArray?.length>0)
       {
         //console.log('ParamsArray',ParamsArray);
         this.healthcareMode = ParamsArray.find(e=>e.FieldStr=='mode')?.FieldVal || 'view';
-        this.selecteduserid = ParamsArray.find(e=>e.FieldStr=='id')?.FieldVal;
-        this.selectedadmissionid = ParamsArray.find(e=>e.FieldStr=='admissionid')?.FieldVal;
+        this.selecteduserid = ParamsArray.find(e=>e.FieldStr=='id')?.FieldVal || null;
+        this.selectedadmissionid = ParamsArray.find(e=>e.FieldStr=='admissionid')?.FieldVal || null;
       }      
     });
    }

@@ -16,7 +16,7 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   loginId: any = localStorage.getItem('userId');
   Contact: any = <any>{};
   lstAttorneyTypeMaster: any[] = [];
-  isEditable: boolean = false;
+  isEditable: boolean = true;
   constructor(private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
     private _UtilityService: UtilityService,
@@ -25,8 +25,9 @@ export class FirstPowerOfAttorneyComponent extends AppComponentBase implements O
   }
 
   ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-      this.isEditable = true;
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -30,7 +30,7 @@ extraItemRowCounter: number = 0;
 public lstExtraItemDetails: any[] = [];
 public lstExtraItemDetailsFilter: any[] = [];
 isDisabled:boolean=false;
-isEditable:boolean=false;
+isEditable:boolean=true;
 constructor(
   private _ConstantServices: ConstantsService,
   private _MasterServices:MasterService,
@@ -63,12 +63,17 @@ constructor(
   // }
 
   ngOnInit(): void {
-    if (this.userid == null  || this.admissionid == null)
-    this.isEditable=true;
+    if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
+      this.isEditable = false;
+    }
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
-    this.GetClinicalAllergiesById(this.admissionid);
+    if (this.userid!=null && this.userid!=undefined && this.admissionid!=null && this.admissionid!=undefined)
+    {
+        this.GetClinicalAllergiesById(this.admissionid);
+    }    
   }
 
   edit()
