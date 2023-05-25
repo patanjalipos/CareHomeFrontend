@@ -5,11 +5,11 @@
                 <span>Second power of attorney</span>
                 <div>
                     <button *ngIf="mode=='view'" pButton type="button" label="Edit" class="btn btn-primary"
-                        (click)="edit()" [disabled]="isEditable"></button>
+                        (click)="$event.stopPropagation();edit()" [disabled]="isEditable"></button>
                     <button *ngIf="mode=='edit'" pButton type="button" label="Save" class="btn btn-primary"
                         (click)="$event.stopPropagation();save()" [disabled]="!myForm.form.valid"></button>
                     <button *ngIf="mode=='edit'" pButton type="button" label="Cancel" class="btn btn-secondary ml-2"
-                        (click)="close()"></button>
+                        (click)="$event.stopPropagation();close()"></button>
                 </div>
             </div>
         </p-header>

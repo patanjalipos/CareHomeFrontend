@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
+import { AdmissionStatus, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
 import { MasterService } from '../../master/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ResidentProfileComponent extends AppComponentBase implements OnInit {
   customDateFormat = CustomDateFormat;
+  admissionStatus = AdmissionStatus;
   selecteduserid:any= null; //"3325faff-558d-4067-9c56-02e78dd06b26";
   selectedadmissionid:any= null; //"a24a3830-1b5e-4ce7-a8cd-df6de925ffa9";
   healthcareMode:string="view";
@@ -39,14 +40,13 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
 
   ngOnInit(): void {
     if(this.selecteduserid!=null)
-    this.LoadResidentDetails(this.selecteduserid);
+    this.LoadResidentDetails(this.selecteduserid, this.selectedadmissionid);
   }
 
-  LoadResidentDetails(id)
+  LoadResidentDetails(userid, admissionid)
   {
-    this.selecteduserid=id;
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetResidentMasterById(id)
+    this.unsubscribe.add = this._MasterServices.GetResidentDetailsById(userid, admissionid)
       .subscribe
       ({
         next:(data) => {
@@ -56,7 +56,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
-            console.log('this.ResidentMaster', this.ResidentMaster);           
+            //console.log('this.ResidentMaster', this.ResidentMaster);           
                    
           }
 
