@@ -42,7 +42,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
        icon: 'pi pi-eye',
        command: () => {
         var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
-        window.open("#/resident/resident-profile?q=" + params, "_self");
+        window.open("#/profile?q=" + params, "_self");
        }
      },
      {

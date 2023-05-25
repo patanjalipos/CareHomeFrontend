@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdmissionStatus, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../../master/master.service';
+import { MasterService } from '../master/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +17,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   selectedadmissionid:any= null; //"a24a3830-1b5e-4ce7-a8cd-df6de925ffa9";
   healthcareMode:string="view";
   public ResidentMaster: any = <any>{};
+  allergies:string="";
   profileUrl:string=this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +26,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
     private _UtilityService: UtilityService,  
   ) {
     super();
-    this._ConstantServices.ActiveMenuName="User Profile";
+    this._ConstantServices.ActiveMenuName="Resident Profile";
     this.unsubscribe.add = this.route.queryParams.subscribe(params => {
       var ParamsArray=this._ConstantServices.GetParmasVal(params['q']);
       if(ParamsArray?.length>0)
@@ -56,6 +57,16 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
+            if(data.actionResult.result2!=null && data.actionResult.result2!=undefined && data.actionResult.result2?.length>0)
+            {
+              var tdata2 = JSON.parse(data.actionResult.result2);
+              this.allergies=tdata2.allergynotes;
+              if(tdata2.allergen)
+              {
+                this.allergies = this.allergies + ', ' + tdata2.allergen;
+              }
+               
+            }
             //console.log('this.ResidentMaster', this.ResidentMaster);           
                    
           }
