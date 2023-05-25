@@ -27,7 +27,9 @@ export class ClinicalComponent extends AppComponentBase implements OnInit {
           this.healthcareMode = ParamsArray.find(e=>e.FieldStr=='mode')?.FieldVal || 'view';
           this.selecteduserid = ParamsArray.find(e=>e.FieldStr=='id')?.FieldVal || null;
           this.selectedadmissionid = ParamsArray.find(e=>e.FieldStr=='admissionid')?.FieldVal || null;
-        }      
+        } 
+        if (this.healthcareMode == 'add')
+        this.healthcareMode = 'view';      
       });
     }
 

@@ -66,13 +66,14 @@ constructor(
     if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
       this.isEditable = false;
     }
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {  
     if (this.userid!=null && this.userid!=undefined && this.admissionid!=null && this.admissionid!=undefined)
     {
-       this.GetClinicalAllergiesById(this.admissionid);
-    }
+        this.GetClinicalAllergiesById(this.admissionid);
+    }    
   }
 
   edit()
