@@ -450,7 +450,7 @@ body {
 .p-dropdown,
 .form-control,
 .p-inputnumber-input {
-    height: 44px;
+    height: 38px;
     border-radius: 6px;
     margin-bottom: 10px;
 }
@@ -486,10 +486,12 @@ p-inputnumber,
 
 .p-calendar {
     width: 100%;
+    height: 38px !important;
+    margin-bottom: 10px !important;
 }
 
 .p-button {
-    height: 44px !important;
+    height: 38px !important;
 }
 
 .p-fileupload-row>div {
@@ -581,7 +583,7 @@ i.iconset:hover {
 
 .short-cont {
     padding: 15px;
-    margin-bottom: 20px !important;
+    margin-bottom: 5px !important;
 }
 
 .short-cont h2 {
@@ -692,7 +694,7 @@ i.iconset:hover {
 }
 
 .form-box {
-    background: #5A6D87;
+    background: #023C40;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -720,17 +722,21 @@ i.iconset:hover {
     height: 50px !important;
 }
 
+.form-box-inner .p-inputtext::placeholder { color: #fff;}
+
 .form-box-inner .p-inputtext:enabled:focus {
     box-shadow: none !important;
 }
 
 .form-box-inner button {
-    background: #F4CC2A !important;
-    color: #5A6D87;
+    background: #1E4F53  !important;
+    color: #fff;
     font-size: 16px !important;
     height: 50px;
     font-weight: 500;
 }
+
+.form-box-inner button:hover { color: #fff;}
 
 .big-menu-bar {
     position: relative;
@@ -820,3 +826,23 @@ i.iconset:hover {
 .help-btn {margin: 5px 0 15px;}
 .help-btn a { background: #5A6D87; padding: 5px 15px; border-radius: 30px;     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098); margin-left: 20px; color: #fff;}
 .help-head h3 { font-size: 20px; color:#023C40 ;}
+
+.total-txt { position: relative; top: -10px;}
+.p-accordion .p-accordion-header .p-accordion-header-link {
+    border: 1px solid #e9ecef ;
+    color: #023c40 ;
+    background: #e9ecef ;
+    height: 42px !important;
+}
+.p-accordion p-accordiontab .p-accordion-tab {
+    margin-bottom: 15px;
+}
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link, .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link  {
+    background: #e9ecef  !important;
+    border-color: #e9ecef  !important;
+    color: #023c40  !important; }
+.p-selectbutton{ margin-bottom: 10px !important;}
+
+.p-accordion-header button { height: 30px !important;}
+
+  

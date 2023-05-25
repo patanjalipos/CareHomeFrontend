@@ -11,6 +11,8 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './resident-list.component.html',
   styleUrls: ['./resident-list.component.scss']
 })
+
+
 export class ResidentListComponent extends AppComponentBase implements OnInit {
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
@@ -45,7 +47,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
      },
      {
       label: 'Resident',
-      icon: 'pi pi-menu',
+      icon: 'pi pi-user',
       command: () => {
         var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid + "&mode=edit"));
         window.open("#/resident/resident-master?q=" + params, "_self");
@@ -148,4 +150,6 @@ calculateAge(birthday):number {
   table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
 }
 
+
 }
+
