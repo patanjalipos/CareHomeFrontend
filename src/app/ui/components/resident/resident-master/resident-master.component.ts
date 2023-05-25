@@ -134,7 +134,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     this.LoadCountryList(); 
     if(this.mode=="add")
     this.AddResident();
-    else if(this.mode=="edit")
+    else
     {
       this.LoadResidentDetails(this.selecteduserid);
     }
