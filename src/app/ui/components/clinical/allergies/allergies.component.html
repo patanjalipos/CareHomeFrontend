@@ -35,7 +35,7 @@
             
         </div>
     </div>
-    <h5 *ngIf="mode=='edit'">Allergy details</h5>    
+    <h5 *ngIf="mode=='edit'" class="m-0 mb-2">Allergy details</h5>    
     <div class="row" *ngIf="mode=='edit'">
         <div class="col-md-6">
             <!-- <label class="form-label">Allergy details</label> -->
@@ -52,16 +52,15 @@
             </p-dropdown>
         </div>
     </div>
-    <div class="row mt-5" *ngIf="!Clinical.isunknownallergies">    
-        <div class="col-auto mt-3">Status</div>
-        <div class="col-auto">          
+    <div class="row" *ngIf="!Clinical.isunknownallergies">    
+        <div class="col-auto mt-2">Status</div>
+        <div class="col-md-4">          
             <p-dropdown name="ddlStatus" [options]="stlstStatus" [(ngModel)]="status" optionLabel="name"
             (onChange)="onChangeFilterStatus()" optionValue="code" [filter]="true" [style]="{width: '100%'}">
             </p-dropdown>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-auto">Show Column for:</div>
-        <div class="col-md-4">            
+        <div class="col-auto mt-2">Show Column for:</div>
+        <div class="col-md-4 mt-2">            
             <div class="field-radiobutton">                                
                 <p-radioButton name="rbMode" value="Created" [(ngModel)]="showcolumn"
                     >
@@ -74,7 +73,7 @@
             </div>
         </div>
         <div class="col-md-12">    
-            <table class="table table-bordered" style="width:100%;">
+            <table class="table table-bordered mb-0" style="width:100%;">
                 <thead>
                     <tr>
                         <th>ALLERGEN</th>
