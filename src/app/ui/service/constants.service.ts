@@ -10,15 +10,15 @@ export class ConstantsService {
   public IsShowNavBar: boolean = true;
   public ActiveMenuName: string = "";
 
-  public readonly BaseURIFileServer: string = "https://hmstest.patanjaliwellness.com:31003/";
-  public readonly BaseUriUser: string = 'https://hmstest.patanjaliwellness.com:31008/user/';
-  public readonly BaseUriAdmin: string = 'https://hmstest.patanjaliwellness.com:31009/admin/';
-  public readonly BaseUriHome: string = 'https://hmstest.patanjaliwellness.com:31001/home/';
+  // public readonly BaseURIFileServer: string = "https://hmstest.patanjaliwellness.com:31003/";
+  // public readonly BaseUriUser: string = 'https://hmstest.patanjaliwellness.com:31008/user/';
+  // public readonly BaseUriAdmin: string = 'https://hmstest.patanjaliwellness.com:31009/admin/';
+  // public readonly BaseUriHome: string = 'https://hmstest.patanjaliwellness.com:31001/home/';
   
-  // public readonly BaseURIFileServer: string = "http://localhost:8080/";
-  // public readonly BaseUriUser: string = 'http://localhost:34435/';
-  // public readonly BaseUriAdmin: string = 'http://localhost:36099/';
-  // public readonly BaseUriHome: string = 'http://localhost:18157/';
+  public readonly BaseURIFileServer: string = "http://localhost:8080/";
+  public readonly BaseUriUser: string = 'http://localhost:34435/';
+  public readonly BaseUriAdmin: string = 'http://localhost:36099/';
+  public readonly BaseUriHome: string = 'http://localhost:18157/';
 
   GetParmasVal(paramsstr)
   {

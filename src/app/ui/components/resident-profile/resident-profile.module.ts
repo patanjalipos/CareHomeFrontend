@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ResidentProfileRoutingModule } from './resident-profile-routing.module';
 import { ResidentProfileComponent } from './resident-profile.component';
+import { ProfileModule } from './profile/profile.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ResidentProfileComponent } from './resident-profile.component';
   ],
   imports: [
     CommonModule,
-    ResidentProfileRoutingModule
+    ResidentProfileRoutingModule,
+    ProfileModule
   ],
   exports:[ResidentProfileComponent]
 })
