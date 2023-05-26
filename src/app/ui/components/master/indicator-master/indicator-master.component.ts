@@ -28,7 +28,7 @@ export class IndicatorMasterComponent extends AppComponentBase implements OnInit
   ) 
   { 
     super();
-    this._ConstantServices.ActiveMenuName = "Indicator Group Master"; 
+    this._ConstantServices.ActiveMenuName = "Indicator Master"; 
     this.stlststatus = [
       { name: 'Active', code: true },
       { name: 'Inactive', code: false }

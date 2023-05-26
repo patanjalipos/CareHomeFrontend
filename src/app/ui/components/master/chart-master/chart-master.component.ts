@@ -28,7 +28,7 @@ export class ChartMasterComponent extends AppComponentBase implements OnInit {
   ) 
   { 
     super();
-    this._ConstantServices.ActiveMenuName = "Chart Head Master"; 
+    this._ConstantServices.ActiveMenuName = "Chart Master"; 
     this.stlststatus = [
       { name: 'Active', code: true },
       { name: 'Inactive', code: false }

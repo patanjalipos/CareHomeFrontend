@@ -28,7 +28,7 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   ) 
   { 
     super();
-    this._ConstantServices.ActiveMenuName = "Alert Head Master"; 
+    this._ConstantServices.ActiveMenuName = "Alert Master"; 
     this.stlststatus = [
       { name: 'Active', code: true },
       { name: 'Inactive', code: false }
