@@ -24,18 +24,18 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-i="rowIndex">
-                <tr *ngIf="rowGroupMetadata[item.alertheadname].index == i">
-                    <td colSpan="2" style="font-weight:bold;font-size: 20px;">
+                <tr style="border-top:1px solid #e3e3e3" *ngIf="rowGroupMetadata[item.alertheadname].index == i">
+                    <td colSpan="2" style="font-weight:bold;font-size: 20px; width: 100%;">
                         <span>{{item.alertheadname}}</span>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:30px;">
+                    <td style="width:5%;">
                         <span *ngIf="mode=='edit'">
                             <p-checkbox (onChange)="OnEnabled(item.clinicalalertpreferencesid)" name="ChkEnable_{{i}}"
                                 [(ngModel)]="item.isenable" [binary]="true" inputId="binary"></p-checkbox></span>
                     </td>
-                    <td style="width: 300px;">
+                    <td style="width: 95%;">
                         <span *ngIf="mode=='edit'">Enable <b>{{item.alertname}}</b> alert for this resident
                             {{item.isenable?'':' - alert disabled for this facility'}}</span>
                         <span *ngIf="mode=='view'">{{item.alertname}} is <span

@@ -11,7 +11,7 @@ export class SpinnerComponent implements OnInit {
     isSpinnerText: string = '';
     constructor(public utiltity: UtilityService) {
 
-        this.utiltity.config.bgsColor= 'blue',
+        this.utiltity.config.bgsColor= "#023C40",
         this.utiltity.config.bgsOpacity= 0.5,
         this.utiltity.config.bgsPosition= 'bottom-right',
         this.utiltity.config.bgsSize= 60,
@@ -19,7 +19,7 @@ export class SpinnerComponent implements OnInit {
         this.utiltity.config.blur= 5,
         this.utiltity.config.delay= 0,
         this.utiltity.config.fastFadeOut= true,
-        this.utiltity.config.fgsColor= 'red',
+        this.utiltity.config.fgsColor= '#023c40',
         this.utiltity.config.fgsPosition= 'center-center',
         this.utiltity.config.fgsSize= 60,
         this.utiltity.config.fgsType= 'three-strings',

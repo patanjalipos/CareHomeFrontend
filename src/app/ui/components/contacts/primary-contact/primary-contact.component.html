@@ -15,7 +15,7 @@
         </p-header>
         <div class="row mt25">
             <div class="row">
-                <h5>Contact note</h5>
+                <h5 class="m-0 mb-2">Contact note</h5>
                 <div class="col-md-12">
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.contactnote"
@@ -23,7 +23,7 @@
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.contactnote}}</div>
                 </div>
-                <h5 class="mt-5">Contact name</h5>
+                <h5 class="mt-2 mb-0">Contact name</h5>
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> First name</label>
                     <div *ngIf="mode=='edit'">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.lastname}}</div>
                 </div>
-                <h5 class="mt-5">Contact Type</h5>
+                <h5 class="mt-2 mb-0">Contact Type</h5>
                 <div class="col-md-12">
                     <label class="form-label">Relationship to Resident</label>
                     <div *ngIf="mode=='edit'">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.relationship}}</div>
                 </div>
-                <h5 class="mt-5">Contact Details</h5>
+                <h5 class="mt-2 mb-0">Contact Details</h5>
                 <div class="col-md-4">
                     <label class="form-label">Mobile</label>
                     <div *ngIf="mode=='edit'">
@@ -93,12 +93,12 @@
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.email}}</div>
                 </div>
-                <h5 class="mt-5">Contact Address</h5>
+                <h5 class="mt-2 mb-0">Contact Address</h5>
                 <div class="col-md-12">
                     <label class="form-label"><span class="required">*</span> Address 1</label>
                     <div *ngIf="mode=='edit'">
                         <input required type="text" name="address1" pInputText [(ngModel)]="Contact.address1"
-                            [style]="{width: '100%'}" #addressref="ngModel" />
+                            [style]="{width: '100%'}" #addressref="ngModel" class="mb-2" />
                         <div class="errorMessage pt-2"
                             *ngIf="addressref.errors &&(addressref.touched || addressref.dirty)">
                             Address 1 is required.
@@ -106,35 +106,35 @@
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.address1}}</div>
                 </div>
-                <div class="col-md-12 mt-2">
+                <div class="col-md-12 ">
                     <label class="form-label">Address 2</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="address2" pInputText [(ngModel)]="Contact.address2"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.address2}}</div>
                 </div>
-                <div class="col-md-12 mt-2">
+                <div class="col-md-12 ">
                     <label class="form-label">Address 3</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="address3" pInputText [(ngModel)]="Contact.address3"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.address3}}</div>
                 </div>
-                <div class="col-md-6 mt-2">
+                <div class="col-md-6 ">
                     <label class="form-label">Town</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="town" pInputText [(ngModel)]="Contact.town"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.town}}</div>
                 </div>
-                <div class="col-md-6 mt-2">
+                <div class="col-md-6 ">
                     <label class="form-label">County</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="txtResidentIndicators" pInputText [(ngModel)]="Contact.county"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.county}}</div>
                 </div>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.countryname}}</div>
                 </div>
-                <div class="col-md-6 mt-2">
+                <div class="col-md-6 mt-2 ">
                     <label class="form-label">Postcode</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="postcode" pInputText [(ngModel)]="Contact.postcode"
