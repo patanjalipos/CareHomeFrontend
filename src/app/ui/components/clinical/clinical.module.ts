@@ -9,6 +9,7 @@ import { ClinicalInformationModule } from './clinical-information/clinical-infor
 import { BaselineHealthInformationModule } from './baseline-health-information/baseline-health-information.module';
 import { AlertPreferencesModule } from './alert-preferences/alert-preferences.module';
 import { ChartPreferencesModule } from './chart-preferences/chart-preferences.module';
+import { DailyVitalModule } from './daily-vital/daily-vital.module';
 import { AccordionModule } from 'primeng/accordion';
 
 
@@ -26,6 +27,7 @@ import { AccordionModule } from 'primeng/accordion';
     BaselineHealthInformationModule,
     AlertPreferencesModule,
     ChartPreferencesModule,
+    DailyVitalModule,
     AccordionModule
   ]
 })

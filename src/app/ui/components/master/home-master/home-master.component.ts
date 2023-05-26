@@ -42,9 +42,11 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
    this.GetHomeMaster();        
   }
   LoadCountryList() {
+    this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
       next: (data) => {
-        if (data.actionResult.success == true) {
+        this._UtilityService.hideSpinner();      
+          if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
           this.lstCountryMaster = tdata;
