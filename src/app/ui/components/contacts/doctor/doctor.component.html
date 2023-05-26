@@ -15,20 +15,20 @@
         </p-header>
         <div class="row mt25">
             <div class="row">
-                <h5>Contact note</h5>
+                <h5 class="m-0">Contact note</h5>
                 <div class="col-md-12">
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="contactnote" pInputText [(ngModel)]="Contact.contactnote1"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.contactnote}}</div>
                 </div>
-                <h5 class="mt-5">Surgery details</h5>
+                <h5 class="m-0">Surgery details</h5>
                 <div class="col-md-12">
                     <label class="form-label"> Doctor Surgery Name</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="surgeryname" pInputText [(ngModel)]="Contact.surgeryname"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.surgeryname}}</div>
                 </div>
@@ -36,7 +36,7 @@
                     <label class="form-label"> Address 1</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="address1" pInputText [(ngModel)]="Contact.address1"
-                            [style]="{width: '100%'}" #addressref="ngModel" />
+                            [style]="{width: '100%'}" #addressref="ngModel" class="mb-2" />
                         <!-- <div class="errorMessage pt-2"
                             *ngIf="addressref.errors &&(addressref.touched || addressref.dirty)">
                             Address 1 is required.
@@ -114,27 +114,27 @@
                     <label class="form-label">Doctor's Surgery Email</label>
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="surgeryemail" pInputText [(ngModel)]="Contact.surgeryemail" [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
-                         #emailref="ngModel" />
+                         #emailref="ngModel" class="mb-2" />
                         <div class="errorMessage pt-2" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
                             <div>Please enter valid email id.</div>
                         </div>
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.surgeryemail}}</div>
                 </div>
-                <h5>Contact note</h5>
+                <h5 class="m-0">Contact note</h5>
                 <div class="col-md-12">
                     <div *ngIf="mode=='edit'">
                         <input type="text" name="contactnote2" pInputText [(ngModel)]="Contact.contactnote2"
-                            [style]="{width: '100%'}" />
+                            [style]="{width: '100%'}" class="mb-2" />
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.contactnote}}</div>
                 </div>
-                <h5 class="mt-5">Contact name</h5>
+                <h5 class="m-0">Contact name</h5>
                 <div class="col-md-6">
                     <label class="form-label"><span class="required">*</span> Doctor's first name</label>
                     <div *ngIf="mode=='edit'">
                         <input required type="text" name="firstname" pInputText [(ngModel)]="Contact.firstname"
-                            [style]="{width: '100%'}" #fNameref="ngModel" />
+                            [style]="{width: '100%'}" #fNameref="ngModel" class="mb-2" />
                         <div class="errorMessage pt-2" *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
                             <div>First name is required.</div>
                         </div>
@@ -146,14 +146,14 @@
                     <label class="form-label"><span class="required">*</span> Doctor's last name</label>
                     <div *ngIf="mode=='edit'">
                         <input required type="text" name="lastname" pInputText [(ngModel)]="Contact.lastname"
-                            [style]="{width: '100%'}" #lNameref="ngModel" />
+                            [style]="{width: '100%'}" #lNameref="ngModel" class="mb-2" />
                         <div class="errorMessage pt-2" *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
                             <div>Last name is required.</div>
                         </div>
                     </div>
                     <div class="my-2" *ngIf="mode=='view'">{{Contact.lastname}}</div>
                 </div>
-                <h5 class="mt-5">Contact Details</h5>
+                <h5 class="m-0">Contact Details</h5>
                 <div class="col-md-4">
                     <label class="form-label">Doctor's phone</label>
                     <div *ngIf="mode=='edit'">
