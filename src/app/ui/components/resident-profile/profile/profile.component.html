@@ -2,10 +2,10 @@
     <div class="col-md-6">
         <div class="card p-0">
             <div class="card-header">Resident Indicators</div>
-            <div class="card-body">
+            <div class="card-body box-height box-height2">
                 <p-table class="ColumnFilterTable" #dt [value]="lstResidentIndicators" datakey="groupname"
                     [rowHover]="true" [globalFilterFields]="['indicatorname']" [scrollable]="true"
-                    scrollHeight="calc(100vh - 400px)" responsiveLayout="scroll">
+                    scrollHeight="calc(100vh - 10px)" responsiveLayout="scroll">
                     <ng-template pTemplate="emptymessage" let-columns>
                         <tr>
                             <td [attr.colspan]="columns?.length">
@@ -14,13 +14,13 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-item let-i="rowIndex">
-                        <tr *ngIf="rowGroupMetadata[item.groupname].index == i">
-                            <td style="font-weight:bold;font-size: 20px;">
+                        <tr style="border-top: 1px solid #e3e3e3;" *ngIf="rowGroupMetadata[item.groupname].index == i">
+                            <td style="font-weight:bold;font-size: 16px; width: 100%;">
                                 <span>{{item.groupname}}</span>
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 270px;">
+                            <td style="width: 100%;">
                                 {{item.indicatorname}}
                             </td>
                         </tr>
@@ -33,7 +33,7 @@
         <div class="card p-0">
             <div class="card-header">Like, Dislikes and Hobbies</div>
             <div class="card-body">
-                <div>
+             
                     <div class="row">
                         <div class="col-md-12">
                             <label class="form-label">Like</label>
@@ -65,7 +65,7 @@
                         </div>
 
                     </div>
-                </div>
+               
 
             </div>
             <div class="card-footer">
