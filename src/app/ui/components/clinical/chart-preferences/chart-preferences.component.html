@@ -25,18 +25,18 @@
     </ng-template>    
     <ng-template pTemplate="body" let-item let-i="rowIndex">
         <tr style="border-top: 1px solid #e3e3e3;" *ngIf="rowGroupMetadata[item.chartheadname].index == i">
-            <td colSpan="2" style="font-weight:bold;font-size: 20px; width: 100%;">
+            <td [colSpan]="mode=='edit'?2:1" style="font-weight:bold;font-size: 20px; width: 100%;">
                 <span>{{item.chartheadname}}</span>
             </td>
         </tr>
         <tr>                      
-            <td style="width:5%;">                
-                <span *ngIf="mode=='edit'">
+            <td style="width:5%;" *ngIf="mode=='edit'">                
+                <span>
                     <p-checkbox (onChange)="OnEnabled(item.clinicalchartpreferencesid)"
                         name="ChkEnable_{{i}}" [(ngModel)]="item.isenable" [binary]="true"
                         inputId="binary"></p-checkbox></span>
             </td>
-            <td style="width:95%;">
+            <td [ngStyle]="{'width':mode=='edit'? '95%' : '100%'}">
                 <span *ngIf="mode=='edit'">Enable <b>{{item.chartname}}</b> chart for this resident {{item.isenable?'':' - chart disabled for this facility'}}</span>
                 <span *ngIf="mode=='view'">{{item.chartname}} is <span [ngStyle]="{'font-weight':item.isenable? 'bold' : 'normal'}">{{item.isenable?'Enabled':'Disabled'}}</span> for this resident</span>
             </td>

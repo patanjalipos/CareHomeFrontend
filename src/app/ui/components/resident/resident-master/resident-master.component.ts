@@ -51,6 +51,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
   ) 
   {
     super();
+    this._ConstantServices.ActiveMenuName="Resident";
     this.stlstadmissionstatus = [
       { name: this.admissionStatus[this.admissionStatus.Active], code: this.admissionStatus.Active },
       { name: this.admissionStatus[this.admissionStatus.Deceased], code: this.admissionStatus.Deceased },

@@ -28,6 +28,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,   ) { 
       super();
+      this._ConstantServices.ActiveMenuName="Resident List";
     }
 
   ngOnInit(): void {

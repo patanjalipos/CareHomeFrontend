@@ -37,12 +37,13 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   slectedHomeMasterId:string=null;
 
   constructor(
-    private _ConstServices: ConstantsService,
+    private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,
     ) 
     { 
       super();
+      this._ConstantServices.ActiveMenuName="User Master";
       this.stlsttitle = [
         { name: 'Mr.', code: 'Mr.' },
         { name: 'Mrs.', code: 'Mrs.' },
