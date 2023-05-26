@@ -445,18 +445,6 @@ GetResidentMasterById(id: any): Observable<any> {
     params = params.append('id', id);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentMasterById", { "headers": reqHeader, "params": params });
 }
-GetResidentDetailsById(userid: any,admissionid:any): Observable<any> {
-    let reqHeader = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
-        //'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-    let params = new HttpParams();
-    params = params.append('userid', userid);
-    if(admissionid!=null && admissionid!=undefined)
-    params = params.append('admissionid', admissionid);
-    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentDetailsById", { "headers": reqHeader, "params": params });
-}
 
 AddInsertUpdateResidentMaster(obj: FormData): Observable<any> {
     let reqHeader = new HttpHeaders({
@@ -532,6 +520,33 @@ AddInsertUpdateResidentPriorAdmission(obj: any): Observable<any> {
 
 //#endregion
 
+//#region  Resident Profile
+
+GetResidentDetailsById(userid: any,admissionid:any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('userid', userid);
+    if(admissionid!=null && admissionid!=undefined)
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentDetailsById", { "headers": reqHeader, "params": params });
+}
+
+UpdateResidentAdmissionProfile(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/UpdateResidentAdmissionProfile", data, { "headers": reqHeader, "params": params });
+} 
+//#endregion
+
 //#region  Clinical
 
 GetClinicalAllergiesById(admissionid: string): Observable<any> {
@@ -555,7 +570,7 @@ AddInsertUpdateClinicalAllergies(obj: any): Observable<any> {
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateClinicalAllergies", data, { "headers": reqHeader, "params": params });
 } 
 
-GetClinicalIndicatorById(admissionid: string): Observable<any> {
+GetClinicalIndicatorById(admissionid: any, status: any = false): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
@@ -563,6 +578,7 @@ GetClinicalIndicatorById(admissionid: string): Observable<any> {
     });
     let params = new HttpParams();
     params = params.append('admissionid', admissionid);
+    params = params.append('status', status);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetClinicalIndicatorById", { "headers": reqHeader, "params": params });
 }
 AddInsertUpdateClinicalIndicator(obj: any): Observable<any> {
@@ -660,6 +676,28 @@ AddInsertUpdateChartPreferences(obj: any): Observable<any> {
     var data = JSON.stringify(obj).toString();
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateChartPreferences", data, { "headers": reqHeader, "params": params });
 } 
+
+GetClinicalDailyVitalById(admissionid: any, date:any=null): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    params = params.append('date', date);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetClinicalDailyVitalById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateDailyVital(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateDailyVital", data, { "headers": reqHeader, "params": params });
+}
 
 //#endregion
 

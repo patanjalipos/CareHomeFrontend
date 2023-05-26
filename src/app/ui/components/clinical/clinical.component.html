@@ -20,6 +20,9 @@
                 <div class="short-cont" (click)="onClick('CP')">
                     <h2>Chart preferences</h2>
                 </div>
+                <div class="short-cont" (click)="onClick('DV')">
+                    <h2>Daily Vital</h2>
+                </div>
             </div>
         </div>
         <div class="col-md-9">
@@ -48,6 +51,10 @@
                     <div id="CP" *ngIf="healthcareMode!=''">
                         <app-chart-preferences [mode]="healthcareMode" [userid]="selecteduserid"
                             [admissionid]="selectedadmissionid"></app-chart-preferences>
+                    </div>
+                    <div id="DV" *ngIf="healthcareMode!=''">
+                        <app-daily-vital [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-daily-vital>
                     </div>
                 </p-accordion>
             </form>

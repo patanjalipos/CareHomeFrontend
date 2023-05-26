@@ -68,7 +68,8 @@
                  
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  <app-profile></app-profile>
+                  <app-profile [userid]="selecteduserid"
+                  [admissionid]="selectedadmissionid" [residentadmissiondetails]="ResidentMaster"></app-profile>
                 </div>
                 <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">...</div>
                 <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">...</div>
