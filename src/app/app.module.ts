@@ -1,6 +1,6 @@
 import { CareService } from './ui/service/CareServices';
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -27,6 +27,7 @@ import { ResidentLayoutModule } from './layout/resident.layout.module';
         UtilityModule
     ],
     providers: [
+        DatePipe,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService,CareService

@@ -2,7 +2,6 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { lastValueFrom } from 'rxjs';
 import { MasterService } from '../../master/master.service';
 import { CareService } from 'src/app/ui/service/CareServices';
 import { ConfirmationService } from 'primeng/api';
