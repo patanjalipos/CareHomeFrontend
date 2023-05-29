@@ -68,6 +68,12 @@ export enum AdmissionStatus {
   Unallocated = 7,
 }
 
+export enum TaskPlannerStatus {
+  Open = 1,
+  InProgress = 2,
+  Done = 3,
+}
+
 export enum CustomDateFormat {
   DEF_DATE = "dd-MM-yyyy",
   DEF_DATE_TIME = "dd-MM-yyyy HH:mm",

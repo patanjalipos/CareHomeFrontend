@@ -1,4 +1,3 @@
-import { BodyMapModule } from './../body-map/body-map.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -33,7 +32,6 @@ import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-asse
     FluidAssessmentModule,
     DietPlannerModule,
     FallRiskAssessmentModule,
-    BodyMapModule,
     FormsModule,
     AutoCompleteModule,
 		CalendarModule,

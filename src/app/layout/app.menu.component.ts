@@ -204,6 +204,8 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident-list'] },
+                    { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/task-planner'] },
+                   
                     // { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
                     // { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },
                        {
@@ -226,9 +228,7 @@ export class AppMenuComponent implements OnInit {
                             }
                         ]
                     },
-                    { label: 'Body Map', icon: 'fa-sharp fa-solid fa-file-waveform', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Body Map&seq=2&rId=OMR45345')] },
                     { label: 'Fluid Assessment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assessment&seq=3&rId=OMR45345')] },
-                    { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Task Planner&seq=4&rId=OMR45345')] },
                     { label: 'Pain Assessment', icon: 'fa-solid fa-notes-medical', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Pain Assessment&seq=5&rId=OMR45345')] },
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
                     { label: 'Fall Risk Assessment', icon: 'fa-solid fa-person-falling-burst', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fall Risk Assessment&seq=7&rId=OMR45345')] },

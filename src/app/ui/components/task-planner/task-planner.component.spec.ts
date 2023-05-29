@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BodyMapComponent } from './body-map.component';
+import { TaskPlannerComponent } from './task-planner.component';
 
-describe('BodyMapComponent', () => {
-  let component: BodyMapComponent;
-  let fixture: ComponentFixture<BodyMapComponent>;
+describe('TaskPlannerComponent', () => {
+  let component: TaskPlannerComponent;
+  let fixture: ComponentFixture<TaskPlannerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BodyMapComponent ]
+      declarations: [ TaskPlannerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BodyMapComponent);
+    fixture = TestBed.createComponent(TaskPlannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
