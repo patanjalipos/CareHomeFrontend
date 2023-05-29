@@ -24,11 +24,14 @@ export class UtilityService {
         }
     showSpinnerWithMsg(msg: string) {
         this.count++;
-        this.isSpinner.next(true);
-        this.message.next(msg);
+        // this.isSpinner.next(true);
+        // this.message.next(msg);
+        this.config.text=msg;
+        this.ngxService.start();
     }
     showSpinner() {
         this.count++;
+        this.config.text="";
         this.ngxService.start();
         //this.isSpinner.next(true);
         
