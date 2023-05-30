@@ -59,13 +59,13 @@ export enum UserTypes {
 }
 
 export enum AdmissionStatus {
+  Unallocated = 0,
   Active = 1,
   Deceased = 2,
   Discharged = 3,
   Transferred = 4,
   WaitListed = 5,
-  Suspended = 6,
-  Unallocated = 7,
+  Suspended = 6, 
 }
 
 export enum TaskPlannerStatus {

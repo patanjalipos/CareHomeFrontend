@@ -20,6 +20,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ResidentHealthcareDetailsModule } from '../resident-healthcare-details/resident-healthcare-details.module';
 import { ResidentPreferencesModule } from '../resident-preferences/resident-preferences.module';
 import { ResidentPriorAdmissionModule } from '../resident-prior-admission/resident-prior-admission.module';
+import { OccupancyDetailsModule } from '../occupancy-details/occupancy-details.module';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ResidentPriorAdmissionModule } from '../resident-prior-admission/reside
     SelectButtonModule,
     ResidentHealthcareDetailsModule,
     ResidentPreferencesModule,
-    ResidentPriorAdmissionModule,   
+    ResidentPriorAdmissionModule,  
+    OccupancyDetailsModule 
     
   ]
 })
