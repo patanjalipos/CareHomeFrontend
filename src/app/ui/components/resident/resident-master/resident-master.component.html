@@ -14,6 +14,9 @@
                 <div class="short-cont" (click)="onClick('RPA')">
                     <h2>Details Prior to Admission</h2>
                 </div>
+                <div class="short-cont" (click)="onClick('OD')">
+                    <h2>Occupancy</h2>
+                </div>
             </div>
         </div>
         <div class="col-md-9">
@@ -267,19 +270,12 @@
                             <h5 class="mt-5">Admission details</h5>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label class="form-label">Status</label>
-                                    <div *ngIf="mode=='add' || mode=='edit'">
-                                        <p-dropdown [required]="true" name="ddlAdmissionStatus"
-                                            [options]="stlstadmissionstatus"
-                                            [(ngModel)]="ResidentMaster.admissionstatus" optionLabel="name"
-                                            optionValue="code" [filter]="true" placeholder="Choose status"
-                                            [style]="{width: '100%'}">
-                                        </p-dropdown>
-                                    </div>
+                                    <label class="form-label">Status</label>                                    
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{admissionStatus[ResidentMaster.admissionstatus]}}</div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Residency</label>
+                                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.residency}}</div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Dependency level</label>
@@ -296,6 +292,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Location</label>
+                                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.locationname}}</div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Room </label>
@@ -312,6 +309,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Last date of admission</label>
+                                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.lastadmissiondate |
+                                        date:customDateFormat.DEF_DATE}}</div>
 
                                 </div>
                                 <div class="col-md-4">
@@ -329,14 +328,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label class="form-label">Departure Date</label>
+                                    <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.departuredate |
+                                        date:customDateFormat.DEF_DATE}}</div>
 
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label">Departure Reason</label>
-                                    <div *ngIf="mode=='add' || mode=='edit'">
-                                        <input pInputText type="text" class="form-control" name="txtDepartureReason"
-                                            [(ngModel)]="ResidentMaster.departurereason" />
-                                    </div>
+                                    <label class="form-label">Departure Reason</label>                                    
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.departurereason}}</div>
                                 </div>
                             </div>
@@ -419,6 +416,10 @@
                     <div id="RPA" *ngIf="healthcareMode!=''">
                         <app-resident-prior-admission [mode]="healthcareMode" [userid]="selecteduserid"
                             [admissionid]="selectedadmissionid"></app-resident-prior-admission>
+                    </div>
+                    <div id="OD" *ngIf="healthcareMode!=''">
+                        <app-occupancy-details [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-occupancy-details>
                     </div>
                 </p-accordion>
             </form>

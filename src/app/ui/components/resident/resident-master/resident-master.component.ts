@@ -187,7 +187,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     this.selectedadmissionid = null;
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
-    this.ResidentMaster.admissionstatus = this.admissionStatus.Active;   
+    this.ResidentMaster.admissionstatus = this.admissionStatus.Unallocated;   
     this.ResidentMaster.status = true;  
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
       this.ResidentMaster.homemasterid = localStorage.getItem('HomeMasterId');

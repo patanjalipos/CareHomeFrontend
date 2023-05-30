@@ -7,7 +7,7 @@
                     [rowHover]="true" [globalFilterFields]="['indicatorname']" [scrollable]="true"
                     scrollHeight="calc(100vh - 10px)" responsiveLayout="scroll">
                     <ng-template pTemplate="emptymessage" let-columns>
-                        <tr>
+                        <tr style="border-top: 1px solid #e3e3e3;">
                             <td [attr.colspan]="columns?.length">
                                 No records found
                             </td>
@@ -32,7 +32,7 @@
     <div class="col-md-6">
         <div class="card p-0">
             <div class="card-header">Like, Dislikes and Hobbies</div>
-            <div class="card-body">
+            <div class="card-body h250">
              
                     <div class="row">
                         <div class="col-md-12">
