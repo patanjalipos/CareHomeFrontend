@@ -166,8 +166,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Care Home',
                 items: [
                     
-                    { label: 'Menu', icon: 'fa-solid fa-dashboard'},
-                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare']},
+                    { label: 'Dashboard', icon: 'fa-solid fa-dashboard', routerLink: ['/uicare']},
                     {
                         label: 'Master', icon: 'fa-solid fa-key',
                         items: [
@@ -197,6 +196,9 @@ export class AppMenuComponent implements OnInit {
                             },
                             {
                                 label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
+                            }, 
+                            {
+                                label: 'Location Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/location-master'],queryParams:[]
                             },                          
                             {
                                 label: 'User Master', icon: 'fa-solid fa-user',routerLink: ['/master/user-master'],queryParams:[]
@@ -229,7 +231,6 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     { label: 'Fluid Assessment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assessment&seq=3&rId=OMR45345')] },
-                    { label: 'Pain Assessment', icon: 'fa-solid fa-notes-medical', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Pain Assessment&seq=5&rId=OMR45345')] },
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
                     { label: 'Fall Risk Assessment', icon: 'fa-solid fa-person-falling-burst', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fall Risk Assessment&seq=7&rId=OMR45345')] },
                     { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },

@@ -57,16 +57,7 @@
 <div *ngIf="mode!=null">
     <form #myForm="ngForm">
         <div class="card">
-            <div class="row">
-                <div class="col-md-3">
-                    <label class="form-label">Country <span class="required">*</span></label>
-                    <p-dropdown name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.countryid"
-                        optionLabel="name" optionValue="id"
-                        [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
-                    </p-dropdown>
-
-
-                </div>
+            <div class="row">                
                 <div class="col-md-3">
                     <label class="form-label">Home Code <span class="required">*</span></label>
                     <input pInputText type="text" required name="homecode" [(ngModel)]="master.homecode"
@@ -79,6 +70,50 @@
                         class="form-control" #homename="ngModel" />
 
                 </div>
+                <div class="col-md-3">
+                    <label class="form-label">Contact No</label>
+                         <p-inputNumber name="contactnumber" [(ngModel)]="master.contactnumber"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>  
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Other Contact No</label>                  
+                        <p-inputNumber name="othercontactnumber" [(ngModel)]="master.othercontactnumber"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Email Address</label>                    
+                        <input type="text" name="email" pInputText [(ngModel)]="master.emailid"
+                            [style]="{width: '100%'}" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
+                            #emailref="ngModel" />
+                           <div class="errorMessage pt-2" *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)">
+                               <div>Please enter valid email id.</div>
+                           </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Fax</label>                   
+                        <p-inputNumber name="faxnumber" [(ngModel)]="master.faxnumber"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                    
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Country <span class="required">*</span></label>
+                    <p-dropdown [required]="true" name="ddlHeadName" [options]="lstCountryMaster" [(ngModel)]="master.countryid"
+                        optionLabel="name" optionValue="id"
+                        [filter]="true" placeholder="Choose country" [style]="{width: '100%'}">
+                    </p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">State</label>
+                    <input pInputText type="text" name="state" [(ngModel)]="master.state"
+                        class="form-control" #statename="ngModel" />
+
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Address</label>
+                    <input pInputText type="text" name="address" [(ngModel)]="master.address"
+                        class="form-control" #address="ngModel" />
+
+                </div>
+                
                 <div class="col-md-3">
                     <label class="form-label">Order No. <span class="required">*</span></label>
                     <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno"
@@ -96,8 +131,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="flex flex-wrap gap-2">
-                        <!-- <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
-                            [disabled]="!myForm.form.valid"></button> -->
+                        <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
+                            [disabled]="!myForm.form.valid"></button>
                         <button pButton type="button" label="Close" class="btn-secondary"
                             (click)="Close()"></button>
                     </div>

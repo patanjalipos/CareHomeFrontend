@@ -30,7 +30,7 @@ export class SpinnerComponent implements OnInit {
         this.utiltity.config.masterLoaderId= 'master',
         this.utiltity.config.overlayBorderRadius= '0',
         this.utiltity.config.overlayColor= 'rgba(40, 40, 40, 0.8)',
-        this.utiltity.config.pbColor= 'red',
+        this.utiltity.config.pbColor= '#023c40',
         this.utiltity.config.pbDirection= 'ltr',
         this.utiltity.config.pbThickness= 3,
         this.utiltity.config.hasProgressBar= true,
