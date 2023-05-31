@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'indicator-master', loadChildren: () => import('./indicator-master/indicator-master.module').then(m => m.IndicatorMasterModule) },
   { path: 'attorney-type-master', loadChildren: () => import('./attorney-type-master/attorney-type-master.module').then(m => m.AttorneyTypeMasterModule) },
   { path: 'home-master', loadChildren: () => import('./home-master/home-master.module').then(m => m.HomeMasterModule) },
+  { path: 'location-master', loadChildren: () => import('./location-master/location-master.module').then(m => m.LocationMasterModule) },
   { path: 'user-master', loadChildren: () => import('./user-master/user-master.module').then(m => m.UserMasterModule) },
   { path: '**', redirectTo: '/notfound' }
 ];

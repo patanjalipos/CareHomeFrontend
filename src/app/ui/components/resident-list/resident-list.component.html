@@ -44,7 +44,7 @@
                 <td><img [src]="profileUrl+ (dt.profileimage==''? 'no-picture.png': dt.profileimage)"
                         class="table-image mr-2"> {{dt.firstname}} {{dt.lastname}} {{dt.preferredname==''? '': '('+
                     dt.preferredname+')'}}
-                    <br />{{dt.dateofbirth|date:customDateFormat.DEF_DATE}} (Age {{calculateAge(dt.dateofbirth)}})
+                    <!-- <br />{{dt.dateofbirth|date:customDateFormat.DEF_DATE}} (Age {{calculateAge(dt.dateofbirth)}}) -->
                     <br /> {{dt.isdnar==true?'DNAR/DNACPR':''}}
                 </td>
                 <td>{{dt.roomnumber}}</td>

@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { AccordionModule } from 'primeng/accordion';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -18,11 +21,15 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CommonModule,
     PainAssessmentRoutingModule,
     NgxSliderModule,
-    TableModule,
     FormsModule,
+    TableModule,
+    ButtonModule,
     DropdownModule,
     InputTextModule,
+    CalendarModule,
+    DropdownModule,
     InputTextareaModule,
+    AccordionModule,
   ],
   exports:[PainAssessmentComponent]
 })

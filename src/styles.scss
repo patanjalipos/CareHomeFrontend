@@ -878,4 +878,13 @@ i.iconset:hover {
     color: #023c40 !important;
 }
 .h250 { height: 250px;}
+
+.ColumnFilterTable .p-datatable-scrollable .p-datatable-thead>tr>th,
+.ColumnFilterTable .p-datatable-scrollable .p-datatable-tbody>tr>td,
+.ColumnFilterTable .p-datatable-scrollable .p-datatable-tfoot>tr>td {
+    flex: none !important;
+}
+.ColumnFilterTable tr th {
+    position: relative;
+}
   

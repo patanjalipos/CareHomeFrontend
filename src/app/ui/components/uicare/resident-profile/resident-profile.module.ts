@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
 import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.module';
 import { PersonalDetailsModule } from '../personal-details/personal-details.module';
 import { TodoListModule } from '../todo-list/todo-list.module';
-import { PainAssessmentModule } from '../pain-assessment/pain-assessment.module';
 import { DietPlannerModule } from '../diet-planner/diet-planner.module';
 import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-assessment.module';
 
@@ -44,7 +43,6 @@ import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-asse
 		InputTextareaModule,
 		InputTextModule,
     TodoListModule,
-    PainAssessmentModule
   ]
 })
 export class ResidentProfileModule { }

@@ -4,13 +4,15 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { MasterService } from '../../master/master.service';
 import { DatePipe } from '@angular/common';
+import { Options } from '@angular-slider/ngx-slider';
+import { Table } from 'primeng/table';
 
 @Component({
-  selector: 'app-daily-vital',
-  templateUrl: './daily-vital.component.html',
-  styleUrls: ['./daily-vital.component.scss']
+  selector: 'app-pain-assessment',
+  templateUrl: './pain-assessment.component.html',
+  styleUrls: ['./pain-assessment.component.scss']
 })
-export class DailyVitalComponent extends AppComponentBase implements OnInit {
+export class PainAssessmentComponent extends AppComponentBase implements OnInit {
   @Input() mode: string = 'view';
   @Input() userid: any = null;
   @Input() admissionid: any = null;
@@ -19,15 +21,40 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
   currentDate = new Date();
   selecteddate:Date = null;
   public Clinical: any = <any>{};
-  lstClinicalVital: any[] = [];
+  public lstClinicalPainAssesment: any[] = [];
   isEditable: boolean = true;
+  value: number = 5;
+  options: Options = {
+    showTicksValues: true,
+    stepsArray: [
+      { value: 0, legend: "Pain Free" },
+      { value: 1, legend: "Very Mild" },
+      { value: 2, legend: "Discomforting" },
+      { value: 3, legend: "Tolerable" },
+      { value: 4, legend: "Distressing" },
+      { value: 5, legend: "Very Distressing" },
+      { value: 6, legend: "Intense" },
+      { value: 7, legend: "Very Intense" },
+      { value: 8, legend: "Horrible" },
+      { value: 9, legend: "Excruciating Unbearable" },
+      { value: 10, legend: "Unbearable" }
+    ],
+    getTickColor: function (value) {
+
+      if (value <= 1) return 'green';
+      if (value >= 2 && value <= 3) return 'yellow';
+      if (value >= 4 && value <= 5) return 'blue';
+      if (value >= 6 && value <= 8) return 'orange';
+      if (value >= 9) return 'red';
+      return '#2AE02A';
+    },
+  };
   constructor(
     private datepipe: DatePipe,
     private _ConstantServices: ConstantsService,
     private _MasterServices: MasterService,
-    private _UtilityService: UtilityService,
-  ) {
-    super();
+    private _UtilityService: UtilityService,) {
+    super();    
   }
 
   ngOnInit(): void {
@@ -39,44 +66,54 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
-      this.GetClinicalDailyVitalById(this.admissionid);
+      this.GetClinicalPainAssesmentById(this.admissionid);
     }
   }
-
+  AddPainData() {
+    //var ObjectID = require("bson-objectid");
+   var jsonObject = {
+      'clinicalpainassesmentid':null,
+      'rating': this.Clinical.rating,
+      'createdon': new Date(),
+      'isfromserver': false
+    };
+     this.lstClinicalPainAssesment = this.lstClinicalPainAssesment.filter(x => x.isfromserver == true);
+    this.lstClinicalPainAssesment.push(jsonObject);
+  }
   edit() {
     this.Clinical= <any>{};
     this.mode = 'edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GetClinicalDailyVitalById(this.admissionid);
+      this.GetClinicalPainAssesmentById(this.admissionid);
     }
     else {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-
   dateRangeChange()
   {
-    this.GetClinicalDailyVitalById(this.admissionid)
+    this.GetClinicalPainAssesmentById(this.admissionid);
   }
   resetDate()
   {
     this.selecteddate=null;
-    this.GetClinicalDailyVitalById(this.admissionid);
+    this.GetClinicalPainAssesmentById(this.admissionid);
   }
 
-  GetClinicalDailyVitalById(admissionid) {
+
+  GetClinicalPainAssesmentById(admissionid) {
     var startdate: any = null;
     if (this.selecteddate != null && this.selecteddate != undefined)
       startdate = this.datepipe.transform(this.selecteddate, 'yyyy-MM-dd');
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.GetClinicalDailyVitalById(admissionid, startdate)
+    this.unsubscribe.add = this._MasterServices.GetClinicalPainAssesmentById(admissionid, startdate)
       .subscribe({
         next: (data) => {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstClinicalVital = tdata;
+            this.lstClinicalPainAssesment = tdata;
           }
         },
         error: (e) => {
@@ -85,14 +122,10 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
         },
       });
   }
-
   save() {
     if (this.userid != null && this.admissionid != null) {
-      if (this.Clinical.bp === undefined && this.Clinical.pr === undefined
-        && this.Clinical.respiration === undefined && this.Clinical.temprature === undefined
-        && this.Clinical.fbs === undefined && this.Clinical.ppbs === undefined
-        && this.Clinical.rbs === undefined) {
-        this._UtilityService.showWarningAlert("Please fill atleast one record");
+      if (this.lstClinicalPainAssesment.filter(x => x.isfromserver == false)?.length==0) {
+        this._UtilityService.showWarningAlert("Please add new pain assessment");
         return;
       }     
       this.Clinical.userid = this.userid;
@@ -100,7 +133,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
       this.Clinical.modifiedby = this.loginId;     
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdatePainAssesment(this.Clinical)
         .subscribe
         ({
           next: (data) => {
@@ -118,14 +151,20 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
       this._UtilityService.showWarningAlert("Resident admission details are missing.");
     }
   }
-  deleteVitalData(id) {
+  deletePainData(id) {
+    if(id==null)
+    {
+      this.lstClinicalPainAssesment = this.lstClinicalPainAssesment.filter(e => e.isfromserver !== false);
+      this._UtilityService.showSuccessAlert("Clinical pain assesment details deleted successfully");
+      return;
+    }
     this.Clinical.StatementType = "delete";
     this.Clinical.userid = this.userid;
     this.Clinical.residentadmissioninfoid = this.admissionid;
-    this.Clinical.clinicaldailyvitalid = id;
+    this.Clinical.clinicalpainassesmentid = id;
     this.Clinical.modifiedby = this.loginId;
     this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateDailyVital(this.Clinical)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdatePainAssesment(this.Clinical)
         .subscribe
         ({
           next: (data) => {
@@ -138,10 +177,11 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
             this._UtilityService.showErrorAlert(e.message);
           },
         });    
-  }
+  }  
   close() {
+    this.Clinical.rating=null;
     this.mode = 'view';
-    this.GetClinicalDailyVitalById(this.admissionid);
-  }
+    this.GetClinicalPainAssesmentById(this.admissionid);
+  }  
 
 }

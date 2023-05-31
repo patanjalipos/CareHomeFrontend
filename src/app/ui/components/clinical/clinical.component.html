@@ -23,6 +23,9 @@
                 <div class="short-cont" (click)="onClick('DV')">
                     <h2>Daily Vital</h2>
                 </div>
+                <div class="short-cont" (click)="onClick('PA')">
+                    <h2>Pain Assesment</h2>
+                </div>
             </div>
         </div>
         <div class="col-md-9">
@@ -55,6 +58,10 @@
                     <div id="DV" *ngIf="healthcareMode!=''">
                         <app-daily-vital [mode]="healthcareMode" [userid]="selecteduserid"
                             [admissionid]="selectedadmissionid"></app-daily-vital>
+                    </div>
+                    <div id="PA" *ngIf="healthcareMode!=''">
+                        <app-pain-assessment [mode]="healthcareMode" [userid]="selecteduserid"
+                            [admissionid]="selectedadmissionid"></app-pain-assessment>
                     </div>
                 </p-accordion>
             </form>
