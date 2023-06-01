@@ -195,6 +195,9 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Attorney Type Master', icon: 'fa-solid fa-bars', routerLink: ['/master/attorney-type-master'],queryParams:[]
                             },
                             {
+                                label: 'Fall Risk Master', icon: 'fa-solid fa-bars', routerLink: ['/master/fall-risk-master'],queryParams:[]
+                            },
+                            {
                                 label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
                             }, 
                             {
@@ -232,10 +235,16 @@ export class AppMenuComponent implements OnInit {
                     },
                     { label: 'Fluid Assessment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assessment&seq=3&rId=OMR45345')] },
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
-                    { label: 'Fall Risk Assessment', icon: 'fa-solid fa-person-falling-burst', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fall Risk Assessment&seq=7&rId=OMR45345')] },
-                    { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    {
+                        label: 'Report', icon: 'fa-solid fa-key',
+                        items: [
+                            {
+                                label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/report/fallriskassessmentreport'] 
+                            },                            
+                        ]
+                    },
+                    // { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    // { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
                     { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/auth/logout'] },
                     
                 ]

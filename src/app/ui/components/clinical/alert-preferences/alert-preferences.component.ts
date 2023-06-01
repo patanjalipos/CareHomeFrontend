@@ -114,6 +114,10 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
         }
         selectedExtraItemDetails.push(jsonObject);
       });
+      if (selectedExtraItemDetails?.length==0) {
+        this._UtilityService.showWarningAlert("Please select atleast one record");
+        return;
+      } 
       //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
       this.Clinical.alertDTOs = selectedExtraItemDetails;
       //console.log('Clinical', this.Clinical);
@@ -123,7 +127,10 @@ export class AlertPreferencesComponent extends AppComponentBase implements OnIni
         ({
           next: (data) => {
             this._UtilityService.hideSpinner();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            if (data.actionResult.success == true)
+              this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            else
+              this._UtilityService.showWarningAlert(data.actionResult.errMsg);
             this.mode = 'view'
           },
           error: (e) => {

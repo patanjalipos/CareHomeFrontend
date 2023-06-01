@@ -22,6 +22,7 @@
                         <th style="width:100px">Pulse Rate</th>
                         <th style="width:140px">Respiration</th>
                         <th style="width:120px">Temperature</th>
+                        <th style="width:100px">Weight</th>
                         <th style="width:100px">FBS</th>
                         <th style="width:100px">PPBS</th>
                         <th style="width:100px">RBS</th>
@@ -46,6 +47,11 @@
                     <td style="width:120px">
                         <input type="text" name="txt_temp" autocomplete="off" onpaste="return false" maxlength="6"
                             [(ngModel)]="Clinical.temprature" placeholder="°F" [value]="" class="form-control"
+                            (keypress)="validateFloat($event)">
+                    </td>
+                    <td style="width:100px">
+                        <input type="text" name="txt_weight" autocomplete="off" onpaste="return false" maxlength="3"
+                            [(ngModel)]="Clinical.weight" placeholder="Weight (kg.)" [value]="" class="form-control"
                             (keypress)="validateFloat($event)">
                     </td>
                     <td style="width:100px">
@@ -99,6 +105,7 @@
                         <th style="width:80px">Pulse Rate</th>
                         <th style="width:100px">Respiration</th>
                         <th style="width:100px">Temperature</th>
+                        <th style="width:70px">Weight</th>
                         <th style="width:70px">FBS</th>
                         <th style="width:70px">PPBS</th>
                         <th style="width:70px">RBS</th>
@@ -113,6 +120,7 @@
                         <td style="width:80px">{{dt.pr}}</td>
                         <td style="width:100px">{{dt.respiration}}</td>
                         <td style="width:100px">{{dt.temprature}}</td>
+                        <td style="width:70px">{{dt.weight}}</td>
                         <td style="width:70px">{{dt.FBS}}</td>
                         <td style="width:70px">{{dt.PPBS}}</td>
                         <td style="width:70px">{{dt.RBS}}</td>

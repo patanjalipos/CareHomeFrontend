@@ -18,7 +18,6 @@ import { FluidAssessmentModule } from '../fluid-assessment/fluid-assessment.modu
 import { PersonalDetailsModule } from '../personal-details/personal-details.module';
 import { TodoListModule } from '../todo-list/todo-list.module';
 import { DietPlannerModule } from '../diet-planner/diet-planner.module';
-import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-assessment.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { FallRiskAssessmentModule } from '../fall-risk-assessment/fall-risk-asse
     PersonalDetailsModule,
     FluidAssessmentModule,
     DietPlannerModule,
-    FallRiskAssessmentModule,
     FormsModule,
     AutoCompleteModule,
 		CalendarModule,

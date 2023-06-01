@@ -377,6 +377,42 @@ AddInsertUpdateAttorneyType(obj: any): Observable<any> {
 
 //#end region
 
+//#region FallRisk Master
+
+GetFallRiskMaster(status: any = true): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('status', status);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetFallRiskMaster", { "headers": reqHeader, "params": params });
+}    
+GetFallRiskMasterById(id): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    })
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetFallRiskMasterById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateFallRisk(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateFallRisk", data, { "headers": reqHeader, "params": params });  
+}
+
+//#end region
+
+
 // #region UserTypeMaster
 
 GetUserTypeMaster(moduleId: string = ""): Observable<any> {
@@ -783,6 +819,27 @@ AddInsertUpdatePainAssesment(obj: any): Observable<any> {
     let params = new HttpParams();
     var data = JSON.stringify(obj).toString();
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdatePainAssesment", data, { "headers": reqHeader, "params": params });
+}
+
+GetClinicalFallRiskAssessmentById(admissionid: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);    
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetClinicalFallRiskAssessmentById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateFallRiskAssessment(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateFallRiskAssessment", data, { "headers": reqHeader, "params": params });
 }
 
 //#endregion
