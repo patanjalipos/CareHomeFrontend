@@ -5,19 +5,20 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 
 @Component({
-  selector: 'app-chart-preferences',
-  templateUrl: './chart-preferences.component.html',
-  styleUrls: ['./chart-preferences.component.scss']
+  selector: 'app-fall-risk-assessment',
+  templateUrl: './fall-risk-assessment.component.html',
+  styleUrls: ['./fall-risk-assessment.component.scss']
 })
-export class ChartPreferencesComponent extends AppComponentBase implements OnInit {
+export class FallRiskAssessmentComponent extends AppComponentBase implements OnInit {
   @Input() mode: string = 'view';
   @Input() userid: any = null;
   @Input() admissionid: any = null;
   loginId:any=localStorage.getItem('userId');
   Clinical: any = <any>{};
-  lstResidentChart:any[]=[];
+  lstFallRiskAssessment:any[]=[];
   rowGroupMetadata: any;
   isEditable:boolean=true;
+  isrisk:boolean=true;
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -36,7 +37,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
 
   ngOnChanges(changes: SimpleChanges): void {  
     if (this.userid != null && this.userid != undefined && this.admissionid != null && this.admissionid != undefined) {
-      this.GetClinicalChartPreferencesById(this.admissionid);
+      this.GetClinicalFallRiskAssessmentById(this.admissionid);
     }
   }
 
@@ -46,7 +47,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
   {
     this.mode='edit';
     if (this.userid != null && this.admissionid != null) {
-      this.GetClinicalChartPreferencesById(this.admissionid);      
+      this.GetClinicalFallRiskAssessmentById(this.admissionid);      
     }
     else
     {
@@ -58,24 +59,23 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
    
     if(id!=null && id!=undefined)
     {
-    var Idx = this.lstResidentChart.findIndex(f => f.clinicalchartpreferencesid == id);
+    var Idx = this.lstFallRiskAssessment.findIndex(f => f.clinicalfallriskassessmentid == id);
     if (Idx >= 0) {
-        this.lstResidentChart[Idx].modifiedby = this.loginId;                
+        this.lstFallRiskAssessment[Idx].modifiedby = this.loginId;                
       }         
     }
   }
   
-  GetClinicalChartPreferencesById(admissionid) {
+  GetClinicalFallRiskAssessmentById(admissionid) {
     this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetClinicalChartPreferencesById(admissionid)  
+    this.unsubscribe.add = this._MasterServices.GetClinicalFallRiskAssessmentById(admissionid)  
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();          
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstResidentChart = tdata;  
-            this.updateRowGroupMetaData();                     
+            this.lstFallRiskAssessment = tdata;                                 
           }
         },
         error: (e) => {
@@ -85,28 +85,7 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
         },
       });
   }  
-
-  updateRowGroupMetaData() {
-    this.rowGroupMetadata = {};
-    if (this.lstResidentChart) {
-      for (let i = 0; i < this.lstResidentChart.length; i++) {
-        let rowData = this.lstResidentChart[i];
-        let chartheadname = rowData.chartheadname;
-        if (i == 0) {
-          this.rowGroupMetadata[chartheadname] = { index: 0, size: 1 };
-        }
-        else {
-          let previousRowData = this.lstResidentChart[i - 1];
-          let previousRowGroup = previousRowData.chartheadname;
-          if (chartheadname === previousRowGroup)
-            this.rowGroupMetadata[chartheadname].size++;
-          else
-            this.rowGroupMetadata[chartheadname] = { index: i, size: 1 };
-        }
-      }
-      //console.log("data---", this.rowGroupMetadata)      
-    }    
-  }
+  
   save()
   {
     if (this.userid != null && this.admissionid != null) {      
@@ -114,11 +93,13 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
       this.Clinical.residentadmissioninfoid = this.admissionid;
       this.Clinical.modifiedby = this.loginId;
       var selectedExtraItemDetails = [];      
-      var result=this.lstResidentChart.filter(f=>f.isenable==true || f.clinicalchartpreferencesid!=null);
+      var result=this.lstFallRiskAssessment.filter(f=>f.isenable==true || f.clinicalfallriskassessmentid!=null);
+      console.log('lstFallRiskAssessment', this.lstFallRiskAssessment); 
+      console.log('result', result); 
       result.forEach(x => {
         var jsonObject = {
-          "clinicalchartpreferencesid": x.clinicalchartpreferencesid,
-          "chartmasterid": x.chartmasterid,
+          "clinicalfallriskassessmentid": x.clinicalfallriskassessmentid,
+          "fallriskmasterid": x.fallriskmasterid,
           "isenable": x.isenable,
           "modifiedby": x.modifiedby
         }
@@ -127,12 +108,12 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
     if (selectedExtraItemDetails?.length==0) {
       this._UtilityService.showWarningAlert("Please select atleast one record");
       return;
-    } 
+    }    
     //console.log('selectedExtraItemDetails', selectedExtraItemDetails);    
-    this.Clinical.chartDTOs = selectedExtraItemDetails;
+    this.Clinical.fallriskDTOs = selectedExtraItemDetails;
       //console.log('Clinical', this.Clinical);
       this._UtilityService.showSpinner();
-      this.unsubscribe.add = this._MasterServices.AddInsertUpdateChartPreferences(this.Clinical)
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateFallRiskAssessment(this.Clinical)
         .subscribe
         ({
           next: (data) => {
@@ -157,6 +138,6 @@ export class ChartPreferencesComponent extends AppComponentBase implements OnIni
   close()
   {
     this.mode='view';
-    this.GetClinicalChartPreferencesById(this.admissionid); 
+    this.GetClinicalFallRiskAssessmentById(this.admissionid); 
   }
 }

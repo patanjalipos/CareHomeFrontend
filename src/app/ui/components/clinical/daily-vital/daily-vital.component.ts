@@ -90,7 +90,7 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
     if (this.userid != null && this.admissionid != null) {
       if (this.Clinical.bp === undefined && this.Clinical.pr === undefined
         && this.Clinical.respiration === undefined && this.Clinical.temprature === undefined
-        && this.Clinical.fbs === undefined && this.Clinical.ppbs === undefined
+        && this.Clinical.weight === undefined && this.Clinical.fbs === undefined && this.Clinical.ppbs === undefined
         && this.Clinical.rbs === undefined) {
         this._UtilityService.showWarningAlert("Please fill atleast one record");
         return;
@@ -105,7 +105,10 @@ export class DailyVitalComponent extends AppComponentBase implements OnInit {
         ({
           next: (data) => {
             this._UtilityService.hideSpinner();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            if (data.actionResult.success == true)
+              this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            else
+              this._UtilityService.showWarningAlert(data.actionResult.errMsg);
             this.close();
           },
           error: (e) => {

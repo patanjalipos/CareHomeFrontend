@@ -263,7 +263,10 @@ constructor(
         ({
           next: (data) => {
             this._UtilityService.hideSpinner();
-            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            if (data.actionResult.success == true)
+              this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            else
+              this._UtilityService.showWarningAlert(data.actionResult.errMsg);
             this.mode = 'view'
           },
           error: (e) => {

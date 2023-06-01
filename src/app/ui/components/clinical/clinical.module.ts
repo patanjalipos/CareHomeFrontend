@@ -12,6 +12,7 @@ import { ChartPreferencesModule } from './chart-preferences/chart-preferences.mo
 import { DailyVitalModule } from './daily-vital/daily-vital.module';
 import { PainAssessmentModule } from './pain-assessment/pain-assessment.module';
 import { AccordionModule } from 'primeng/accordion';
+import { FallRiskAssessmentModule } from './fall-risk-assessment/fall-risk-assessment.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AccordionModule } from 'primeng/accordion';
     ChartPreferencesModule,
     DailyVitalModule,
     PainAssessmentModule,
+    FallRiskAssessmentModule,
     AccordionModule
   ]
 })
