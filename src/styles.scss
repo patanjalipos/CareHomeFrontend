@@ -920,3 +920,14 @@ i.iconset:hover {
 p.date-box { width: 80px !important; font-weight: 600;     border-right: 2px solid #617c7e;}
 
 .bg-change { background: #fff; width: 40px; height:40px;}
+
+
+.ColumnFilterTable .p-datatable-scrollable .p-datatable-thead>tr>th,
+.ColumnFilterTable .p-datatable-scrollable .p-datatable-tbody>tr>td,
+.ColumnFilterTable .p-datatable-scrollable .p-datatable-tfoot>tr>td {
+    flex: none !important;
+}
+.ColumnFilterTable tr th {
+    position: relative;
+}
+  

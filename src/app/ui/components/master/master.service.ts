@@ -84,21 +84,62 @@ GetHomeMasterEnabledBooking(): Observable<any> {
     let params = new HttpParams();
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetHomeMasterEnabledBooking", { "headers": reqHeader, "params": params });
 }
-AddUpdateHomeMaster(HomeMaster: any): Observable<any> {
+AddInsertUpdateHomeMaster(HomeMaster: any): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
     var data = JSON.stringify(HomeMaster).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateHomeMaster", data, { "headers": reqHeader, "params": params });
+    
+}
 
-    if (HomeMaster.HomeMasterId != null && HomeMaster.HomeMasterId != "") {
-        return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/EditHomeMaster", data, { "headers": reqHeader, "params": params });
-    }
-    else {
-        return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddHomeMaster", data, { "headers": reqHeader, "params": params });
-    }
+// #endregion
+
+//  #region LocationMaster
+  
+GetLocationMaster(status: any = true): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin
+    });
+    let params = new HttpParams();
+    params = params.append('status', status);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetLocationMaster", { "headers": reqHeader, "params": params });
+}
+GetLocationMasterByHomeId(homeMasterId: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('homeMasterId', homeMasterId);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetLocationMasterByHomeId", { "headers": reqHeader, "params": params });
+}
+GetLocationMasterById(id: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetLocationMasterById", { "headers": reqHeader, "params": params });
+}
+
+AddInsertUpdateLocationMaster(LocationMaster: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(LocationMaster).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateLocationMaster", data, { "headers": reqHeader, "params": params });
+    
 }
 
 // #endregion
@@ -456,6 +497,29 @@ AddInsertUpdateResidentMaster(obj: FormData): Observable<any> {
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateResidentMaster", data, { "headers": reqHeader, "params": params });
 } 
 
+GetResidentOccupancyById(admissionid: string): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetResidentOccupancyById", { "headers": reqHeader, "params": params });
+}
+
+AddUpdateResidentOccupancyData(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddUpdateResidentOccupancyData", data, { "headers": reqHeader, "params": params });
+    
+}
+
 GetResidentHealthCareById(admissionid: string): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -697,6 +761,28 @@ AddInsertUpdateDailyVital(obj: any): Observable<any> {
     let params = new HttpParams();
     var data = JSON.stringify(obj).toString();
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateDailyVital", data, { "headers": reqHeader, "params": params });
+}
+
+GetClinicalPainAssesmentById(admissionid: any, date:any=null): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('admissionid', admissionid);
+    params = params.append('date', date);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetClinicalPainAssesmentById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdatePainAssesment(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+         'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+         //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdatePainAssesment", data, { "headers": reqHeader, "params": params });
 }
 
 //#endregion

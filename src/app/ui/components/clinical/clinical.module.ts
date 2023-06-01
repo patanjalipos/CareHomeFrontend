@@ -10,6 +10,7 @@ import { BaselineHealthInformationModule } from './baseline-health-information/b
 import { AlertPreferencesModule } from './alert-preferences/alert-preferences.module';
 import { ChartPreferencesModule } from './chart-preferences/chart-preferences.module';
 import { DailyVitalModule } from './daily-vital/daily-vital.module';
+import { PainAssessmentModule } from './pain-assessment/pain-assessment.module';
 import { AccordionModule } from 'primeng/accordion';
 
 
@@ -28,6 +29,7 @@ import { AccordionModule } from 'primeng/accordion';
     AlertPreferencesModule,
     ChartPreferencesModule,
     DailyVitalModule,
+    PainAssessmentModule,
     AccordionModule
   ]
 })
