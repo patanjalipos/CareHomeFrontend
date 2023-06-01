@@ -1,5 +1,5 @@
 <div class="p-fluid">
-   <div class="field row">
+   <!-- <div class="field row">
       <div class="col-12 md:col-4 mb-2">
          <div class="doc-dash mb10">
             <h2 class="dash-head">Today's Occupancy</h2>
@@ -336,21 +336,10 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> -->
 
-   <div class="row mb-4">
-      <div class="col-md-12">
-         <!-- <div class="row">
-            <div class="col-md-3">
-               <div class="doc-dash">
-                  <div class="box-head">
-                     <i class="fa-regular fa-money-bill-1"></i>
-                     <h2 class="dash-head">Total Revenue</h2>
-                  </div>
-               </div>
-            </div>
-         </div> -->
-
+  
+<!-- 
 <div class="grid p-fluid">
    <div class="col-12 lg:col-6">
       <div class="card flex flex-column align-items-center">
@@ -370,11 +359,203 @@
          <p-chart type="bar" [data]="barData2" [options]="barOptions" height="300px"></p-chart>
       </div>
    </div>
-</div>
-
-</div>
+</div> -->
 
 
-<!-- <div class="col-md-2">
-   </div> -->
+<div class="row mb-4">
+   <div class="col-md-9">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="doc-dash">
+               <div class="row">
+                  <div class="col-md-3">
+                     <div class="top-box">
+                        <div class="top-box-img">
+                           <img src="../../../../../assets/Images/icon-1.svg" width="25px">
+                        </div>
+                        <div class="top-box-cont">
+                           <h2>Total Residents</h2>
+                           <h3>2040</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="top-box">
+                        <div class="top-box-img">
+                           <img src="../../../../../assets/Images/icon-4.svg" width="25px">
+                        </div>
+                        <div class="top-box-cont">
+                           <h2>Critical Residents</h2>
+                           <h3>120</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="top-box">
+                        <div class="top-box-img">
+                           <img src="../../../../../assets/Images/icon-2.svg" width="25px">
+                        </div>
+                        <div class="top-box-cont">
+                           <h2>Available Staff</h2>
+                           <h3>2040</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="top-box">
+                        <div class="top-box-img">
+                           <img src="../../../../../assets/Images/icon-3.svg" width="25px" >
+                        </div>
+                        <div class="top-box-cont">
+                           <h2>Revenue (monthly)</h2>
+                           <h3>4800</h3>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="row mt-5">
+         <div class="col-md-3">
+            <div class="health-box">
+               <div class="health-box-top">
+
+                  <div class="top-box-img bg-change">
+                     <img src="../../../../../assets/Images/icon-5.svg" width="25px">
+                  </div>                  <h1>ADL Deniel</h1>
+               </div>
+               <h2>1863</h2>
+               <h4>Today's</h4>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="health-box bg2">
+               <div class="health-box-top">
+
+                  <div class="top-box-img bg-change">
+                     <img src="../../../../../assets/Images/icon-6.svg" width="25px">
+                  </div>                  <h1>Bad Mood Count</h1>
+               </div>
+               <h2>1863</h2>
+               <h4>Last 7 days</h4>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="health-box bg3">
+               <div class="health-box-top">
+
+                  <div class="top-box-img bg-change">
+                     <img src="../../../../../assets/Images/icon-8.svg" width="25px">
+                  </div>                  <h1>Weight loss>5%</h1>
+               </div>
+               <h2>1863</h2>
+               <h4>Last 30 days</h4>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="health-box bg4">
+               <div class="health-box-top">
+
+                  <div class="top-box-img bg-change">
+                     <img src="../../../../../assets/Images/icon-7.svg" width="25px">
+                  </div>                  <h1>Resident in pain</h1>
+               </div>
+               <h2>1863</h2>
+               <h4>Last 24 hours</h4>
+            </div>
+         </div>
+      </div>
+
+    
+      <div class="doc-dash mt-5">  
+      <div class="row">
+         <div class="col-md-7">
+               
+      
+         
+            <h5>Revenue Summary</h5>
+            <p-chart type="bar" [data]="barData" [options]="barOptions" height="200px"></p-chart>
+            </div>
+            
+         <div class="col-md-5">
+            <div class="row m-0 mt-5 pt-5">
+               <div class="col-md-6">
+                  <div class="card revenu">
+                     <div class="top-box-img">
+                     <img src="../../../../../assets/Images/month.svg" width="25px">
+                     </div>
+                        <h2><small>This Month</small><br>1863</h2>
+                        <p><i class="fas fa-minus"></i>3.1% <i class="fa-solid fa-arrow-trend-down"></i></p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="card revenu">
+                     
+                     <div class="top-box-img">
+                     <img src="../../../../../assets/Images/year.svg" width="25px">
+                     </div>
+                     <h2><small>This Year</small><br>1863</h2>
+                     <p class="red"><i class="fas fa-plus"></i>10.1% <i class="fa-solid fa-arrow-trend-up"></i></p>
+                  </div>
+               </div>
+            </div>
+         </div> 
+         </div>
+         
+      </div>
+         </div>  
+      
+
+   <div class="col-md-3">
+      <div class="card recent">
+         <h2>Recent Activity</h2>
+         <hr class="m-0 my-2" >
+         <div class="recent-box">
+            <p class="date-box">03 June</p>
+            <p>Meditation Session<br><small>
+            <i class="fas fa-clock"></i>  Wellbeing Session
+            </small></p>
+         </div>
+         <hr class="m-0" >
+         <div class="recent-box">
+            <p class="date-box">03 June</p>
+            <p>Meditation Session<br><small>
+            <i class="fas fa-clock"></i>  Wellbeing Session
+            </small></p>
+         </div>
+         <hr class="m-0" >
+         <div class="recent-box">
+            <p class="date-box">03 June</p>
+            <p>Meditation Session<br><small>
+            <i class="fas fa-clock"></i>  Wellbeing Session
+            </small></p>
+         </div>
+    
+      </div>
+      <div class="card recent mt-5 task">
+         <h2>Upcoming task</h2>
+         <hr class="m-0 my-2" >
+         
+         <p>Meditation Session<br><small>
+          <i class="fas fa-clock"></i>  28th Jun 23 at 6:30 pm
+         </small><br>
+         <span>Assign to - <b> Neha Singh</b></span>
+      </p>
+         <hr class="m-0" >
+         <p>Live Music<br><small>
+            <i class="fas fa-clock"></i>   28th Jun 23 at 6:30 pm
+         </small></p>
+         <hr class="m-0" >
+         <p>Wellbeing Session By Dr Billy White<br><small>
+            <i class="fas fa-clock"></i>  1st Jul 23
+         </small></p>
+         <hr class="m-0" >
+         <p>Live Music<br><small>
+            <i class="fas fa-clock"></i>   28th Jun 23 at 6:30 pm
+         </small></p>
+      </div>
+   </div>
 </div> 
+</div>

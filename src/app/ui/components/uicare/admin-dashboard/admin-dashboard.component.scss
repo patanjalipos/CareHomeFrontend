@@ -4,6 +4,7 @@
      border-radius: 10px;
      overflow: hidden;
      position: relative;
+     padding: 10px;
 }
  .im-box {
      height: 60px;
@@ -30,30 +31,17 @@
      border-radius: 8px;
      margin: 0;
 }
- .box-head {
-     display: flex;
-     color: #000;
-     text-align: center;
-     padding: 15px;
-}
- .box-head h3 {
+
+.dash-head h3 {
      font-size: 13px;
      line-height: 16px;
-     padding-top: 15px;
 }
- .box-head h3 span{
-     height: 28px;
+.dash-head h2 {
+     font-size: 28px;
      display: block;
      color: #848484;
 }
- .box-head h3 small {
-     font-size: 20px;
-     font-weight: 600;
-     color:#444444 ;
-}
- .box-head h3 small a{
-     color: #000;
-}
+
  .dchart {
      text-align: center;
      padding-bottom: 15px;
