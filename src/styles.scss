@@ -327,7 +327,7 @@ body {
     top: 0 !important;
     transition: none !important;
     padding: 1rem;
-    background: #023C40;
+    background: #fff;
     color: #fff;
     padding-left: 0 !important;
 }
@@ -376,13 +376,13 @@ body {
 }
 
 .layout-menu ul a {
-    color: #fff;
+    color: #023C40;
     width: 227px;
 }
 
 .layout-menu ul a:hover {
     border-radius: 2px;
-    background: #1E4F53 !important;
+    background: #617C7E!important;
 }
 
 .layout-topbar .layout-topbar-logo {
@@ -887,16 +887,16 @@ i.iconset:hover {
   .top-box-cont h2 {  font-size: 14px; margin-bottom: 0; color: #617C7E; }
   .top-box-cont h3 {  font-size: 20px; font-weight: 600; padding: 0;  margin: 0;}
 
-  .health-box { background: #d3edd6; border-radius: 20px; padding: 15px;}
+  .health-box { background: #c4fdcb; border-radius: 20px; padding: 15px;}
   .health-box-top { display: flex; align-items: center;}
   .health-box-top h1, .revenu h2 { font-size: 15px;  margin-left: 5px;}
 
   .health-box h2 { margin: 0; font-size: 24px; font-weight: 600;padding: 10px 0 15px;}
   .health-box h4 { margin: 0; font-size: 14px; }
 
-  .bg2 { background: #e7e1fb;}
-  .bg3 { background: #cbedf1;}
-  .bg4 { background: #ffe8d1;}
+  .bg2 { background: #d6caff;}
+  .bg3 { background: #bae9ef;}
+  .bg4 { background: #fbdfc3;}
 
 
   .revenu { display: block !important;}
