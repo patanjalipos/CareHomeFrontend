@@ -31,23 +31,31 @@ export class FallRiskAssessmentReportComponent extends AppComponentBase implemen
   async ngOnInit(): Promise<void> {
     this._UtilityService.showSpinner();
     const categories$ = this._ReportService.GetFallRiskAssessmentReport(this.homemasterid);
-    var data = await lastValueFrom(categories$);
-    this._UtilityService.hideSpinner();
-    if (data.actionResult.success == true) {
-      var tdata = JSON.parse(data.actionResult.result);
-      tdata = tdata ? tdata : [];
-      this.lstReport = tdata;
-      if (this.filtr !== undefined) {
-        this.filtr.nativeElement.value = "";
-        this.dataTable.reset();
-        this.filteredValuesLength = this.lstReport?.length;
-        } 
-    }
-    else {
-      this.lstReport = [];            
-    }    
+    await lastValueFrom(categories$).then((data) => {
+      this._UtilityService.hideSpinner();
+      if (data.actionResult.success == true) {
+        var tdata = JSON.parse(data.actionResult.result);
+        tdata = tdata ? tdata : [];
+        this.lstReport = tdata;
+        if (this.filtr !== undefined) {
+          this.filtr.nativeElement.value = "";
+          this.dataTable.reset();
+          this.filteredValuesLength = this.lstReport?.length;
+          } 
+      }
+      else {
+        this.lstReport = [];            
+      } 
+    }).catch((e) => {
+      this._UtilityService.hideSpinner();
+      this._UtilityService.showErrorAlert(e.message);
+    });
    this.getTickColor();
   }
+  // ngOnInit(): void {
+  //   this.GetFallRiskAssessmentReport();
+  //   this.getTickColor();
+  // }
 
   getTickColor() {
     for (let i = 0; i < this.lstReport?.length; i++) {
@@ -59,7 +67,7 @@ export class FallRiskAssessmentReportComponent extends AppComponentBase implemen
         this.statusColor[i] = 'yellow';
       else 
         this.statusColor[i] = 'red';
-      console.log(this.statusColor[i]);
+      //console.log(this.statusColor[i]);
     }       
   }
   GetFallRiskAssessmentReport() {
