@@ -1,47 +1,60 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Subscription } from 'rxjs';
 import { Product } from 'src/app/ui/api/product';
 import { ProductService } from 'src/app/ui/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { AppComponentBase } from 'src/app/app-component-base';
+import { ConstantsService, CustomDateFormat, TaskPlannerStatus } from '../../service/constants.service';
+import { MasterService } from '../master/master.service';
+import { UtilityService } from 'src/app/utility/utility.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-admin-dashboard',
     templateUrl: './admin-dashboard.component.html',
     styleUrls: ['./admin-dashboard.component.scss']
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent extends AppComponentBase implements OnInit {
+    customDateFormat = CustomDateFormat;
+    taskPlannerStatus = TaskPlannerStatus;
     pieData: any;
     pieOptions: any;
-
     barData: any;
     barData2: any;
     barOptions: any;
-
     items!: MenuItem[];
-
     products!: Product[];
-
     chartData: any;
-
-    chartOptions: any;
-
-    subscription!: Subscription;
-
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(() => {
+    chartOptions: any; 
+    currentDate = new Date();
+    public lstTaskPlanner: any[]=[];  
+    public lstActivity: any[]=[];   
+    constructor(
+        private datepipe: DatePipe,
+        private productService: ProductService,
+        public layoutService: LayoutService,
+        private _ConstantServices: ConstantsService,
+        private _MasterServices: MasterService,
+        private _UtilityService: UtilityService,
+    ) 
+    {
+        super();
+        this._ConstantServices.ActiveMenuName="Dashboard";
+        this.unsubscribe.add = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
+        this.items = [
+            { label: 'Add New', icon: 'pi pi-fw pi-plus' },
+            { label: 'Remove', icon: 'pi pi-fw pi-minus' }
+        ];
     }
 
     ngOnInit() {
         this.initChart();
         this.productService.getProductsSmall().then(data => this.products = data);
-
-        this.items = [
-            { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-            { label: 'Remove', icon: 'pi pi-fw pi-minus' }
-        ];
+        this.GetTaskPlanner();
+        this.GetActivity();
+        
     }
 
     initChart() {
@@ -216,10 +229,54 @@ export class AdminDashboardComponent implements OnInit {
         };
     }
 
-    ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
-    }
+    GetActivity() {
+        var startdate: any = null;
+        if (this.currentDate != null && this.currentDate != undefined)
+            startdate = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
+        this._UtilityService.showSpinner();   
+        this.unsubscribe.add = this._MasterServices.GetActivity(true, startdate)
+          .subscribe({
+            next:(data) => {
+              this._UtilityService.hideSpinner();          
+              if (data.actionResult.success == true) {
+                var tdata = JSON.parse(data.actionResult.result);
+                tdata = tdata ? tdata : [];
+                this.lstActivity = tdata;                
+              }
+              else {
+                this.lstActivity = [];            
+              }
+            },
+            error: (e) => {
+              this._UtilityService.hideSpinner();
+              this._UtilityService.showErrorAlert(e.message);
+            },
+          });
+      }  
 
+    GetTaskPlanner() {
+        var startdate: any = null;
+        if (this.currentDate != null && this.currentDate != undefined)
+            startdate = this.datepipe.transform(this.currentDate, 'yyyy-MM-dd');
+        this._UtilityService.showSpinner();   
+        this.unsubscribe.add = this._MasterServices.GetTaskPlanner(0, startdate)
+          .subscribe({
+            next:(data) => {
+              this._UtilityService.hideSpinner();          
+              if (data.actionResult.success == true) {
+                var tdata = JSON.parse(data.actionResult.result);
+                tdata = tdata ? tdata : [];
+                this.lstTaskPlanner = tdata;                         
+              //  console.log(this.lstTaskPlanner);
+              }
+              else {
+                this.lstTaskPlanner = [];            
+              }
+            },
+            error: (e) => {
+              this._UtilityService.hideSpinner();
+              this._UtilityService.showErrorAlert(e.message);
+            },
+          });
+      }  
 }

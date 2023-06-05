@@ -166,7 +166,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Care Home',
                 items: [
                     
-                    { label: 'Dashboard', icon: 'fa-solid fa-dashboard', routerLink: ['/uicare']},
+                    { label: 'Dashboard', icon: 'fa-solid fa-dashboard', routerLink: ['']},
                     {
                         label: 'Master', icon: 'fa-solid fa-key',
                         items: [
@@ -210,6 +210,7 @@ export class AppMenuComponent implements OnInit {
                     },
                     { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident-list'] },
                     { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/task-planner'] },
+                    { label: 'Activity', icon: 'fa-solid fa-list-check', routerLink: ['/activity'] },
                    
                     // { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
                     // { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },

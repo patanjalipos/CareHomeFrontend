@@ -977,13 +977,27 @@ AddInsertUpdateContactDoctor(obj: any): Observable<any> {
 
 //#region  Task Planner
 
-GetTaskPlanner(): Observable<any> {
+GetAllUserList(homeMasterId, name): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
         //'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     let params = new HttpParams();
+    params = params.append('homeMasterId', homeMasterId);
+    params = params.append('name', name);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetAllUserList", { "headers": reqHeader, "params": params });
+}
+
+GetTaskPlanner(status=0, date=null): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('status', status==undefined?0:status);
+    params = params.append('date', date==undefined?null:date);
     return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetTaskPlanner", { "headers": reqHeader, "params": params });
 }    
 GetTaskPlannerById(id): Observable<any> {
@@ -1005,6 +1019,38 @@ AddInsertUpdateTaskPlanner(obj: any): Observable<any> {
     let params = new HttpParams();
     var data = JSON.stringify(obj).toString();
     return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateTaskPlanner", data, { "headers": reqHeader, "params": params });  
+}
+
+GetActivity(status=false, date=null): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('status', status==undefined?false:status);
+    params = params.append('date', date==undefined?null:date);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetActivity", { "headers": reqHeader, "params": params });
+}    
+GetActivityById(id): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    })
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this._httpclient.get<any>(this._ConstService.BaseUriAdmin + "api/Admin/GetActivityById", { "headers": reqHeader, "params": params });
+}
+AddInsertUpdateActivity(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': this._ConstService.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(this._ConstService.BaseUriAdmin + "api/Admin/AddInsertUpdateActivity", data, { "headers": reqHeader, "params": params });  
 }
 
 //#end region
