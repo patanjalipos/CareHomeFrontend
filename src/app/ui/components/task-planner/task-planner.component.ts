@@ -213,7 +213,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
 
   DeleteTaskPlanner(id) {
     this.master.StatementType = "Delete";
-    this.master.activityid = id;
+    this.master.taskplannerid = id;
     this._UtilityService.showSpinner();
       this.unsubscribe.add = this._MasterServices.AddInsertUpdateTaskPlanner(this.master)
         .subscribe
