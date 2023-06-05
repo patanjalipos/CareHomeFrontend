@@ -29,6 +29,7 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   stlststatus: any[]=[];  
   results: any[]=[];
   disabled:boolean=false;
+  selectedUser: any = <any>{};
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -164,8 +165,8 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
       this.master.statementtype = "Insert";
     else
       this.master.statementtype = "Update";
-    
-    this.master.modifiedby = localStorage.getItem('userId');;  
+    this.master.assignedto =  this.selectedUser.userid;
+    this.master.modifiedby = localStorage.getItem('userId');
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateTaskPlanner(this.master)
       .subscribe({

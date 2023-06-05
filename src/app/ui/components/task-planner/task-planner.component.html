@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Assigned to<span class="required">*</span></label>
-                    <p-autoComplete appendTo="body" [(ngModel)]="master.assignedto" [ngModelOptions]="{standalone: true}" [suggestions]="results" (completeMethod)="SearchUser($event)" field="detailname" [minLength]="3" [forceSelection]="true"></p-autoComplete>
+                    <p-autoComplete appendTo="body" [(ngModel)]="selectedUser" [ngModelOptions]="{standalone: true}" [suggestions]="results" (completeMethod)="SearchUser($event)" field="detailname" [minLength]="3" [forceSelection]="true"></p-autoComplete>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Status<span class="required">*</span></label>
