@@ -24,7 +24,8 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
   lstResidentMaster: any[]=[];
   filteredValuesLength:number=0;
   profileUrl:string=this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
-  constructor( private _ConstantServices: ConstantsService,
+  constructor( 
+    private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,   ) { 
       super();
