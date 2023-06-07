@@ -4,8 +4,7 @@ import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { MasterService } from '../master/master.service';
-
+import { MasterService } from '../../service/master.service';
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',
