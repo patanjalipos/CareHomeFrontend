@@ -5,7 +5,7 @@ import { ProductService } from 'src/app/ui/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService, CustomDateFormat, TaskPlannerStatus } from '../../service/constants.service';
-import { MasterService } from '../master/master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { DatePipe } from '@angular/common';
 

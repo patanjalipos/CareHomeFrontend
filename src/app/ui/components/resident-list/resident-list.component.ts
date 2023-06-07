@@ -3,8 +3,9 @@ import { Table } from 'primeng/table';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { AdmissionStatus, ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { MasterService } from '../master/master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { MenuItem } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-resident-list',
@@ -23,7 +24,7 @@ export class ResidentListComponent extends AppComponentBase implements OnInit {
   s_userTypeId: any = localStorage.getItem('userTypeId');
   lstResidentMaster: any[]=[];
   filteredValuesLength:number=0;
-  profileUrl:string=this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
+  profileUrl:string= environment.BaseURIFileServer + 'ProfileImage/';
   constructor( 
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,

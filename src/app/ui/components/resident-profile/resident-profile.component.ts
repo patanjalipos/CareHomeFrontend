@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AdmissionStatus, ConstantsService, CustomDateFormat } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master/master.service';
-import { UtilityService } from 'src/app/utility/utility.service';
+import { MasterService } from '../../service/master.service';import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-resident-profile',
@@ -18,7 +18,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
   healthcareMode:string="view";
   public ResidentMaster: any = <any>{};
   allergies:string="";
-  profileUrl:string=this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
+  profileUrl:string=environment.BaseURIFileServer + 'ProfileImage/';
   constructor(
     private route: ActivatedRoute,
     private _ConstantServices: ConstantsService,
