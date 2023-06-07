@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { AdmissionStatus, ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { MasterService } from '../../master/master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 
 @Component({
   selector: 'app-occupancy-details',

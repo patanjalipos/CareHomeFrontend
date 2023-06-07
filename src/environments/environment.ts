@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  EncryptKey:'1203199320052021',
+  EncryptIV:'1203199320052021',
+  BaseURIFileServer:"http://localhost:8080/",
+  BaseUriUser:'http://localhost:34435/',
+  BaseUriAdmin:'http://localhost:36099/',
+  BaseUriHome:'http://localhost:18157/'
 };
 
 /*

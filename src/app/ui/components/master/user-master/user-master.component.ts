@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, UserTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
+import { EncryptDecryptService } from 'src/app/ui/service/encrypt-decrypt.service';
 
 @Component({
   selector: 'app-user-master',
@@ -40,6 +41,7 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,
+    private _EncryptDecryptService: EncryptDecryptService,
     ) 
     { 
       super();
@@ -156,8 +158,8 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
   AddUserDetails()
   {
     this.mode = "add";
-    this.RegistrationMainModel.StatementType ="Insert";
     this.RegistrationMainModel = <any>{};
+    this.RegistrationMainModel.StatementType ="Insert";
     this.RegistrationMainModel.dateofbirth = new Date("01/01/2001 00:00:00");
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
       this.RegistrationMainModel.homemasterid = localStorage.getItem('HomeMasterId');
@@ -170,10 +172,9 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.RegistrationMainModel=<any>{};
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.GetUserMasterById(userId)
-      .subscribe
-      ({
-        next:(data) => {
-          this._UtilityService.hideSpinner();
+    .subscribe({
+      next:(data) => {
+        this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) 
           {
             var tdata = JSON.parse(data.actionResult.result);
@@ -186,9 +187,15 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
             }
             this.RegistrationMainModel.dateofbirth = new Date(this.RegistrationMainModel.dateofbirth);           
             this.mode = "update"; 
+            this.RegistrationMainModel.password = this._EncryptDecryptService.decryptUsingAES256(this.RegistrationMainModel.password);
+            // var encrypt=this._EncryptDecryptService.encryptUsingAES256('12345');
+            // console.log('encrypt', encrypt);
+            // var decrypt=this._EncryptDecryptService.decryptUsingAES256(encrypt);
+            // console.log('decrypt', decrypt);
+            //console.log(this.RegistrationMainModel.password);
             this.RegistrationMainModel.StatementType ="Update";   
             
-            if(data.actionResult.result2!=null)
+            if(data.actionResult.result2?.length>0)
             {
               var tdata1 = JSON.parse(data.actionResult.result2);
               tdata1 = tdata1 ? tdata1 : [];
@@ -198,17 +205,17 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
                 this.lstFacilityResident=[];
             }
           }
-
-        },
-        error: (e) => {
-          this._UtilityService.hideSpinner();
-          this._UtilityService.showErrorAlert(e.message);
-        },
-      });
+      },
+      error: (e) => {
+        this._UtilityService.hideSpinner();
+        this._UtilityService.showErrorAlert(e.message);
+      },
+    });      
   }
   Submit()
   {
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
+    this.RegistrationMainModel.password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.password);
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
       .subscribe

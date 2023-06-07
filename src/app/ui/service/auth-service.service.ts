@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConstantsService } from './constants.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +21,16 @@ export class AuthServiceService {
     {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': this._ConsService.BaseUriUser
+            'Access-Control-Allow-Origin': environment.BaseUriUser
         });
         let params = new HttpParams();
-
+        console.log(environment.BaseUriUser);
         var UserMasterNew:any=<any>{};
         UserMasterNew.loginid=LoginId;
         UserMasterNew.password=Password;
 
         var data = JSON.stringify(UserMasterNew);
-        return this.httpClient.post<any>(this._ConsService.BaseUriUser + "api/User/ValidateUser", data, { "headers": reqHeader, "params": params });
+        return this.httpClient.post<any>(environment.BaseUriUser + "api/User/ValidateUser", data, { "headers": reqHeader, "params": params });
 
         // var data = "LoginId=" + LoginId + "&Password=" + Password;
         // var data = JSON.stringify(CaptchaModel);

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
 

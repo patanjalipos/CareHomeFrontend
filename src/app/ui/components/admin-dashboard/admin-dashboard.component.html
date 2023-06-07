@@ -512,7 +512,16 @@
       <div class="card recent">
          <h2>Recent Activity</h2>
          <hr class="m-0 my-2" >
-         <div class="recent-box">
+         <div *ngFor="let item of lstActivity">
+            <div class="recent-box">
+               <p class="date-box">{{item.activitytime | date: 'dd MMM'}}</p>
+               <p>{{item.activityname}}<br><small>
+                     <i class="fas fa-clock"></i> {{item.activitydescription}}
+                  </small></p>
+            </div>
+            <hr class="m-0">
+         </div>
+         <!-- <div class="recent-box">
             <p class="date-box">03 June</p>
             <p>Meditation Session<br><small>
             <i class="fas fa-clock"></i>  Wellbeing Session
@@ -531,30 +540,38 @@
             <p>Meditation Session<br><small>
             <i class="fas fa-clock"></i>  Wellbeing Session
             </small></p>
-         </div>
+         </div> -->
     
       </div>
       <div class="card recent mt-5 task">
          <h2>Upcoming task</h2>
          <hr class="m-0 my-2" >
+         <div *ngFor="let item of lstTaskPlanner">
+            <p>{{item.taskname}}<br><small>
+               <i class="fas fa-clock"></i> {{item.starttime | date: 'dd MMM yy HH:mm a'}}
+            </small><br>
+            <span>Assign to - <b> {{item.assignedtoname}}</b></span>
+            </p>
+            <hr class="m-0">         
+         </div>
          
-         <p>Meditation Session<br><small>
-          <i class="fas fa-clock"></i>  28th Jun 23 at 6:30 pm
-         </small><br>
-         <span>Assign to - <b> Neha Singh</b></span>
-      </p>
-         <hr class="m-0" >
+         <!-- <p>Meditation Session<br><small>
+               <i class="fas fa-clock"></i> 28th Jun 23 at 6:30 pm
+            </small><br>
+            <span>Assign to - <b> Neha Singh</b></span>
+         </p>
+         <hr class="m-0">
          <p>Live Music<br><small>
-            <i class="fas fa-clock"></i>   28th Jun 23 at 6:30 pm
-         </small></p>
-         <hr class="m-0" >
+               <i class="fas fa-clock"></i> 28th Jun 23 at 6:30 pm
+            </small></p>
+         <hr class="m-0">
          <p>Wellbeing Session By Dr Billy White<br><small>
-            <i class="fas fa-clock"></i>  1st Jul 23
-         </small></p>
-         <hr class="m-0" >
+               <i class="fas fa-clock"></i> 1st Jul 23
+            </small></p>
+         <hr class="m-0">
          <p>Live Music<br><small>
-            <i class="fas fa-clock"></i>   28th Jun 23 at 6:30 pm
-         </small></p>
+               <i class="fas fa-clock"></i> 28th Jun 23 at 6:30 pm
+            </small></p> -->
       </div>
    </div>
 </div> 

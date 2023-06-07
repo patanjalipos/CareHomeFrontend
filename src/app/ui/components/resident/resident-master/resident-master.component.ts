@@ -4,8 +4,10 @@ import { AdmissionStatus, ConstantsService, CustomDateFormat, UserTypes } from '
 import { ViewportScroller } from '@angular/common';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { MasterService } from '../../master/master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { EncryptDecryptService } from 'src/app/ui/service/encrypt-decrypt.service';
 
 @Component({
   selector: 'app-resident-master',
@@ -47,7 +49,8 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,   
-    private viewportScroller: ViewportScroller,    
+    private viewportScroller: ViewportScroller,
+    private _EncryptDecryptService:EncryptDecryptService    
   ) 
   {
     super();
@@ -115,7 +118,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'Responsible Local Authority', code: 'Responsible Local Authority' },
       { name: 'Private/Responsible Local Authority', code: 'Private/Responsible Local Authority' }
     ];    
-    this.profileSrc = this._ConstantServices.BaseURIFileServer + 'ProfileImage/';
+    this.profileSrc = environment.BaseURIFileServer + 'ProfileImage/';
     this.unsubscribe.add = this.route.queryParams.subscribe(params => {
       var ParamsArray=this._ConstantServices.GetParmasVal(params['q']);
       if(ParamsArray?.length>0)
@@ -246,11 +249,14 @@ RemoveProfileImage(){
   
   Submit()
   {
+    if (this.ResidentMaster.password != null && this.ResidentMaster.password != undefined && this.ResidentMaster.password != '') {
+      this.ResidentMaster.password = this._EncryptDecryptService.encryptUsingAES256(this.ResidentMaster.password);
+    }
     this.ResidentMaster.userid=this.selecteduserid;
     this.ResidentMaster.residentadmissioninfoid=this.selectedadmissionid;          
     this.ResidentMaster.usertypeid=this.UserTypes.Resident;
     this.ResidentMaster.modifiedby = localStorage.getItem('userId');  
-    console.log('ResidentMaster',this.ResidentMaster);
+    //console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
     if(this.SelectedFile?.length > 0){

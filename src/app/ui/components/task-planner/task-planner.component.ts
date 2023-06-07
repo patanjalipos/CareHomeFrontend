@@ -4,7 +4,7 @@ import { Table } from 'primeng/table';
 import { ConstantsService, CustomDateFormat, TaskPlannerStatus, UserTypes } from 'src/app/ui/service/constants.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
-import { MasterService } from '../master/master.service';
+import { MasterService } from '../../service/master.service';
 
 
 @Component({
@@ -22,13 +22,14 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   s_userTypeId: any = localStorage.getItem('userTypeId');
   today:Date=new Date();
   mode: string = null;
-  lstHeadMaster: any[]=[];
+  lstHomeMaster: any[]=[];
   public lstMaster: any[]=[];
   public master: any = <any>{};
   filteredValuesLength:number=0;
-  stlststatus: any[]=[];
-  lstResidentMaster: any[]=[];
+  stlststatus: any[]=[];  
+  results: any[]=[];
   disabled:boolean=false;
+  selectedUser: any = <any>{};
   constructor(
     private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
@@ -43,28 +44,26 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
       { name: this.taskPlannerStatus[this.taskPlannerStatus.Done], code: this.taskPlannerStatus.Done, disabled: true }
     ];    
   } 
-  ngOnInit(): void {
-   this.LoadResidentList();
+  ngOnInit(): void {   
+    if (UserTypes.SuperAdmin === this.s_userTypeId) {
+      this.LoadHomeMaster();
+    }
    this.GetTaskPlanner();        
   }
-  LoadResidentList() {
-    var HomeMasterId = "";
-    if (this.s_userTypeId != UserTypes.SuperAdmin) {
-      HomeMasterId = localStorage.getItem('HomeMasterId');
-    }
-    this._UtilityService.showSpinner();   
-    this.unsubscribe.add = this._MasterServices.GetResidentMaster(HomeMasterId,true)
-      .subscribe({
+  LoadHomeMaster() {
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetHomeMaster(true)
+      .subscribe
+      ({
         next:(data) => {
-          this._UtilityService.hideSpinner();          
+          this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             var tdata = JSON.parse(data.actionResult.result);
             tdata = tdata ? tdata : [];
-            this.lstResidentMaster = tdata;            
-          //  console.log(this.lstResidentMaster);
+            this.lstHomeMaster = tdata;  
           }
           else {
-            this.lstResidentMaster = [];            
+            this.lstHomeMaster = [];            
           }
         },
         error: (e) => {
@@ -72,7 +71,31 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
           this._UtilityService.showErrorAlert(e.message);
         },
       });
+  }  
+
+  SearchUser(event) {
+    let query = event.query;
+    var HomeMasterId = "";
+    if (this.s_userTypeId != UserTypes.SuperAdmin) {
+      HomeMasterId = localStorage.getItem('HomeMasterId');
+    }
+    //this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.GetAllUserList(HomeMasterId, query)
+      .subscribe(
+        data => {
+          //this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : [];
+            this.results = tdata;
+          }
+          else {
+            this.results = [];
+          }
+        }
+      );
   }
+  
   GetTaskPlanner() {
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetTaskPlanner()
@@ -142,8 +165,8 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
       this.master.statementtype = "Insert";
     else
       this.master.statementtype = "Update";
-    
-    this.master.modifiedby = localStorage.getItem('userId');;  
+    this.master.assignedto =  this.selectedUser.userid;
+    this.master.modifiedby = localStorage.getItem('userId');
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateTaskPlanner(this.master)
       .subscribe({
@@ -171,6 +194,9 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   }
   ResetModel() {
     this.master = <any>{};
+    if (UserTypes.SuperAdmin !== this.s_userTypeId) {
+      this.master.homemasterid = localStorage.getItem('HomeMasterId');
+    } 
     this.master.status = this.taskPlannerStatus.Open;
     this.stlststatus.forEach(e => {
       var exist = this.stlststatus.find(f => f.code == e.code && e.code==this.taskPlannerStatus.Open);
@@ -184,6 +210,26 @@ export class TaskPlannerComponent extends AppComponentBase implements OnInit {
   }
   Close() {
     this.mode = null;
+  }
+
+  DeleteTaskPlanner(id) {
+    this.master.StatementType = "Delete";
+    this.master.taskplannerid = id;
+    this._UtilityService.showSpinner();
+      this.unsubscribe.add = this._MasterServices.AddInsertUpdateTaskPlanner(this.master)
+        .subscribe
+        ({
+          next: (data) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            this.GetTaskPlanner();
+            this.Close();
+          },
+          error: (e) => {
+            this._UtilityService.hideSpinner();
+            this._UtilityService.showErrorAlert(e.message);
+          },
+        });    
   }
   
   //Filter
