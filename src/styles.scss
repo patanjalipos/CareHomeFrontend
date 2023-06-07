@@ -381,9 +381,16 @@ body {
 }
 
 .layout-menu ul a:hover {
-    border-radius: 2px;
+    border-radius: 2px !important;
     background: #617C7E!important;
 }
+.layout-menu ul a, .layout-menu ul ul {
+    border-radius: 2px !important; }
+    .layout-menu ul a.active {
+        color: #023c40 !important;
+    }
+    .layout-menu ul a:hover { 
+        color: #fff !important;}
 
 .layout-topbar .layout-topbar-logo {
     width: 70px;
@@ -930,4 +937,23 @@ p.date-box { width: 80px !important; font-weight: 600;     border-right: 2px sol
 .ColumnFilterTable tr th {
     position: relative;
 }
+
+
+
+
+// Media Query
+@media screen and (max-width: 768px) {
+
+.layout-wrapper.layout-static .layout-main-container, .layout-topbar { margin-left: auto;}
+.layout-topbar {width: 100%; padding: 0 !important;}
+.layout-topbar-menu-button { display: none !important;}
+.health-box { margin-bottom: 20px;}
+.layout-wrapper .layout-main-container { padding-right:1rem !important ; padding-left: 1rem !important;}
+
+}
+
+@media screen and (max-width: 768px) {
+    
+}
+
   
