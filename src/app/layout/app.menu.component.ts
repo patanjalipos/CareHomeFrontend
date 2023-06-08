@@ -166,8 +166,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Care Home',
                 items: [
                     
-                    { label: 'Menu', icon: 'fa-solid fa-dashboard'},
-                    { label: 'Dashboard', icon: 'fa-solid fa-house', routerLink: ['/uicare']},
+                    { label: 'Dashboard', icon: 'fa-solid fa-dashboard', routerLink: ['']},
                     {
                         label: 'Master', icon: 'fa-solid fa-key',
                         items: [
@@ -193,18 +192,29 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Indicator Master', icon: 'fa-solid fa-bars', routerLink: ['/master/indicator-master'],queryParams:[]
                             },
                             {
+                                label: 'Attorney Type Master', icon: 'fa-solid fa-bars', routerLink: ['/master/attorney-type-master'],queryParams:[]
+                            },
+                            {
+                                label: 'Fall Risk Master', icon: 'fa-solid fa-bars', routerLink: ['/master/fall-risk-master'],queryParams:[]
+                            },
+                            {
                                 label: 'Home Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/home-master'],queryParams:[]
+                            }, 
+                            {
+                                label: 'Location Master', icon: 'fa-solid fa-bars',class:'big-menu', routerLink: ['/master/location-master'],queryParams:[]
                             },                          
                             {
                                 label: 'User Master', icon: 'fa-solid fa-user',routerLink: ['/master/user-master'],queryParams:[]
-                            },
-                            {
-                                label: 'Resident Master', icon: 'fa-solid fa-user', routerLink: ['/master/resident-master'],queryParams:[]
                             }
                         ]
                     },
-                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/uicare/residentlist'] },
-                    {
+                    { label: 'Resident List', icon: 'fa-solid fa-list', routerLink: ['/resident-list'] },
+                    { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/task-planner'] },
+                    { label: 'Activity', icon: 'fa-solid fa-list-check', routerLink: ['/activity'] },
+                   
+                    // { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
+                    // { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },
+                       {
                         label: 'Personal Details', icon: 'fa-solid fa-user',
                         items: [
                             {
@@ -224,18 +234,19 @@ export class AppMenuComponent implements OnInit {
                             }
                         ]
                     },
-                    { label: 'Clinical', icon: 'fa-solid fa-stethoscope', routerLink: ['/clinical'] },
-                    { label: 'Contacts', icon: 'fa-solid fa-address-card', routerLink: ['/contacts'] },
-                    { label: 'Body Map', icon: 'fa-sharp fa-solid fa-file-waveform', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Body Map&seq=2&rId=OMR45345')] },
                     { label: 'Fluid Assessment', icon: 'fa-solid fa-glass-water', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fluid Assessment&seq=3&rId=OMR45345')] },
-                    { label: 'Task Planner', icon: 'fa-solid fa-list-check', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Task Planner&seq=4&rId=OMR45345')] },
-                    { label: 'Pain Assessment', icon: 'fa-solid fa-notes-medical', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Pain Assessment&seq=5&rId=OMR45345')] },
                     { label: 'Diet Planner', icon: 'fa-solid fa-bowl-rice', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Diet Planner&seq=6&rId=OMR45345')] },
-                    { label: 'Fall Risk Assessment', icon: 'fa-solid fa-person-falling-burst', routerLink: ['/uicare/residentprofile'],queryParams:[encodeURIComponent('&title=Fall Risk Assessment&seq=7&rId=OMR45345')] },
-                    { label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
-                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    {
+                        label: 'Report', icon: 'fa-solid fa-key',
+                        items: [
+                            {
+                                label: 'Fall Risk Report', icon: 'fa-solid fa-list', routerLink: ['/report/fallriskassessmentreport'] 
+                            },                            
+                        ]
+                    },
+                    // { label: 'Edit', icon: 'pi pi-user-edit',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    // { label: 'Setting', icon: 'pi pi-cog',  routerLink: ['/uicare/fallriskassessmentreport'] },
+                    { label: 'Logout', icon: 'pi pi-unlock',  routerLink: ['/auth/logout'] },
                     
                 ]
             },

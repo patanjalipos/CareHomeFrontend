@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { AuthServiceService } from 'src/app/ui/service/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConstantsService } from 'src/app/ui/service/constants.service';
-import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
+import { UtilityService } from 'src/app/utility/utility.service';
+import { AuthServiceService } from 'src/app/ui/service/auth-service.service';
+import { EncryptDecryptService } from 'src/app/ui/service/encrypt-decrypt.service';
 
 @Component({
     selector: 'app-login',
@@ -24,19 +23,28 @@ export class LoginComponent extends AppComponentBase {
     Password: string;
     invalidLogin: Boolean = false;
     constructor(
-        public layoutService: LayoutService,
         public _AuthServices: AuthServiceService,
-        private route: ActivatedRoute,
         private router: Router,
-        private _ConstantService: ConstantsService,
-        private _UtilityService: UtilityService, 
+         private _UtilityService: UtilityService, 
+        private _EncryptDecryptService:EncryptDecryptService
     ) { 
         super();
     }
 
 
     ValidateLogin() {
+        if (this.UserName == null || this.UserName == undefined || this.UserName?.trim() == '')
+        {
+            this._UtilityService.showWarningAlert("please enter login id");
+            return;
+        }
+        if (this.Password == null || this.Password == undefined || this.Password?.trim() == '')
+        {
+            this._UtilityService.showWarningAlert("please enter password"); 
+            return;
+        }
         //this.router.navigateByUrl("/uicare");
+        this.Password=this._EncryptDecryptService.encryptUsingAES256(this.Password);
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._AuthServices.Login(this.UserName, this.Password)
             .subscribe({
@@ -57,19 +65,16 @@ export class LoginComponent extends AppComponentBase {
                         localStorage.setItem('Gender', tdata.gender);
                         localStorage.setItem('ProfileImage', tdata.profileimage);
                         //this._dymservice.loadMenu();
-                        this.router.navigateByUrl("/uicare");
-                        this._ConstantService.IsLocal = true;
+                        this.router.navigateByUrl("/resident-list");
                     }
                     else {
                         this.invalidLogin = true;
-                        this._UtilityService.showWarningAlert("Invalid credentials.");
-                        //alert("Invalid user");
+                        this._UtilityService.showWarningAlert("Invalid credentials.");                       
                     }
                 },
                 error: (e) => {
                     this._UtilityService.hideSpinner();
-                    this._UtilityService.showErrorAlert(e.message);
-                    //alert(e.message);
+                    this._UtilityService.showErrorAlert(e.message);                    
                 }
             }
             );

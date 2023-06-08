@@ -68,7 +68,7 @@
             <p-accordionTab header="Personal Details">
                 <div class="row">
                     <div class="col-md-3">
-                        <label class="form-label">Home<span class="danger">*</span></label>
+                        <label class="form-label">Home<span class="required">*</span></label>
                         <!-- <p-multiSelect name="ddlHome" [style]="{width: '100%'}" [options]="lstHomeMaster" 
                             [(ngModel)]="RegistrationMainModel.Homes" optionLabel="HomeName" optionValue="HomeMasterId"
                             placeholder="Please select Home" #homeref="ngModel" (onChange)="SetFacility()">
@@ -86,7 +86,7 @@
                     
                     
                     <div class="col-md-3">
-                        <label class="form-label">First Name<span class="danger">*</span></label>
+                        <label class="form-label">First Name<span class="required">*</span></label>
                         <input pInputText type="text" required class="form-control" name="txtFName"
                         [(ngModel)]="RegistrationMainModel.firstname" placeholder=""
                         (keypress)="validateText($event)">                                
@@ -117,7 +117,7 @@
                         </p-dropdown>
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Gender<span class="danger">*</span> </label>
+                        <label class="form-label">Gender<span class="required">*</span> </label>
                         <p-dropdown [required]="true" name="ddlGender" [options]="stlstgender"
                             [(ngModel)]="RegistrationMainModel.Gender" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="--select--" [style]="{width: '100%'}"
@@ -141,7 +141,7 @@
                             [(ngModel)]="RegistrationMainModel.password">
                     </div>                    
                     <div class="col-md-3">
-                        <label class="form-label">Status <span class="danger">*</span></label>
+                        <label class="form-label">Status <span class="required">*</span></label>
                         <p-dropdown [required]="true" name="ddlStatus" [options]="stlststatus"
                             [(ngModel)]="RegistrationMainModel.status" optionLabel="name" optionValue="code"
                             [filter]="true" placeholder="Please Select Status" [style]="{width: '100%'}">
@@ -183,7 +183,7 @@
             <p-accordionTab header="Role">
                 <div class="row">
                     <div class="col-md-3">
-                        <label class="form-label">User Type<span class="danger">*</span></label>
+                        <label class="form-label">User Type<span class="required">*</span></label>
                         <p-dropdown [required]="true"
                             name="ddlUserType" [options]="lstUserType"
                             [(ngModel)]="RegistrationMainModel.usertypeid" optionLabel="UserTypeName"
@@ -239,7 +239,7 @@
                                         inputId="binary"></p-checkbox>
                                     </td>
                                     <td>
-                                        <p-button *ngIf="col.EnableFacility==true" class="print-prew" (click)="$event.stopPropagation();ShowResidentDetails(col.HomeMasterId)">
+                                        <p-button *ngIf="col.EnableFacility==true" class="print-prew" (click)="ShowResidentDetails(col.HomeMasterId)">
                                             Assign Residents</p-button>
                                     </td>
                                 </tr>
@@ -268,8 +268,8 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Fax (area - local)</label>
-                        <input type="text" pInputText class="form-control" placeholder=""
-                            name="Fax" [(ngModel)]="RegistrationMainModel.fax">
+                        <p-inputNumber name="fax" [(ngModel)]="RegistrationMainModel.fax"
+                        mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Pager (area - local)</label>
@@ -337,23 +337,21 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Telephone</label>
-                        <input type="text" pInputText class="form-control"
-                            placeholder="" name="txtEmergencyContactTelephone"
-                            [(ngModel)]="RegistrationMainModel.emergencycontacttelephone">
+                        <p-inputNumber [(ngModel)]="RegistrationMainModel.emergencycontacttelephone"
+                                        name="txtEmergencyContactTelephone" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Mobile</label>
-                        <input type="text" pInputText class="form-control"
-                            placeholder="" name="txtEmergencyContactMobile"
-                            [(ngModel)]="RegistrationMainModel.emergencycontactmobile">
+                        <p-inputNumber [(ngModel)]="RegistrationMainModel.emergencycontactmobile"
+                                        name="txtEmergencyContactMobile" mode="decimal" [useGrouping]="false" [maxlength]="20"></p-inputNumber>                        
                     </div>
                 </div>
             </p-accordionTab>           
         </p-accordion>                
             <div class="flex flex-wrap gap-2">
-                <button pButton type="button" label="Submit" (click)="Submit()"
+                <button pButton type="button" label="Submit" (click)="Submit()" class="btn-primary"
                     [disabled]="!myForm.form.valid"></button>
-                <button pButton type="button" label="Close" class="p-button-secondary"
+                <button pButton type="button" label="Close" class="btn-secondary"
                     (click)="CloseModal()"></button>
             </div>                
     </form>

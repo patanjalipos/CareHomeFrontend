@@ -10,6 +10,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from "primeng/inputtext";
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
+import { AccordionModule } from 'primeng/accordion';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 @NgModule({
   declarations: [
     AllergiesComponent
@@ -22,7 +25,9 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     InputTextModule,
     CheckboxModule,
-    DropdownModule
+    DropdownModule,
+    AccordionModule,
+    RadioButtonModule
   ],
   exports:[AllergiesComponent]
 })

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
 
@@ -22,13 +22,14 @@ export class AlertMasterComponent extends AppComponentBase implements OnInit {
   filteredValuesLength:number=0;
   stlststatus: any[]=[];
   
-  constructor(private _ConstantServices: ConstantsService,
+  constructor(
+    private _ConstantServices: ConstantsService,
     private _MasterServices:MasterService,
     private _UtilityService: UtilityService,    
   ) 
   { 
     super();
-    this._ConstantServices.ActiveMenuName = "Alert Head Master"; 
+    this._ConstantServices.ActiveMenuName = "Alert Master"; 
     this.stlststatus = [
       { name: 'Active', code: true },
       { name: 'Inactive', code: false }

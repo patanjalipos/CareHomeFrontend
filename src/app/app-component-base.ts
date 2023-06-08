@@ -64,6 +64,28 @@ validateTextNumeric(event) {
         event.preventDefault();
     }
 }
+
+validateBP(event) {
+    var charCode = event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 47)
+      return false;
+    else {
+      var len = event.target.value.length;
+      var index = event.target.value.indexOf('/');
+      if (charCode == 47 && (len < 2 || len > 3))
+        return false;
+      if (index > 0 && charCode == 47) {
+        return false;
+      }
+      if (index > 0) {
+        var CharAfterdot = (len + 1) - index;
+        if (CharAfterdot > 4) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
   // Validate Function End
 
 }

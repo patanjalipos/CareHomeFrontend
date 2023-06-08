@@ -65,7 +65,7 @@
                     </div>                                         
                     <div class="col-md-3"> 
                             <label class="form-label">Order No. <span class="required">*</span></label>
-                            <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno" mode="decimal"></p-inputNumber>
+                            <p-inputNumber [required]="true" name="txtOrder" [(ngModel)]="master.orderno" mode="decimal" [useGrouping]="false" [maxlength]="2"></p-inputNumber>
                                                    
                     </div>
                     <div class="col-md-3">
@@ -79,9 +79,9 @@
                 <div class="row">
                 <div class="col-12">
                     <div class="flex flex-wrap gap-2">
-                        <button pButton type="button" label="Submit" (click)="Save()"
+                        <button pButton type="button" label="Submit" (click)="Save()" class="btn-primary"
                             [disabled]="!myForm.form.valid"></button>
-                        <button pButton type="button" label="Close" class="p-button-secondary"
+                        <button pButton type="button" label="Close" class="btn-secondary"
                             (click)="Close()"></button>
                         </div>
                     </div>

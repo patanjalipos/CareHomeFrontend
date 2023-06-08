@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { ConstantsService, UserTypes } from 'src/app/ui/service/constants.service';
-import { MasterService } from '../master.service';
+import { MasterService } from 'src/app/ui/service/master.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { UtilityService } from 'src/app/utility/utility.service';
 
@@ -42,9 +42,11 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
    this.GetHomeMaster();        
   }
   LoadCountryList() {
+    this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetCountryMaster().subscribe({
       next: (data) => {
-        if (data.actionResult.success == true) {
+        this._UtilityService.hideSpinner();      
+          if (data.actionResult.success == true) {
           var tdata = JSON.parse(data.actionResult.result);
           tdata = tdata ? tdata : [];
           this.lstCountryMaster = tdata;
@@ -111,7 +113,7 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
     
     this.master.modifiedby = localStorage.getItem('userId');;  
     this._UtilityService.showSpinner();
-    this.unsubscribe.add = this._MasterServices.AddInsertUpdateAlert(this.master)
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateHomeMaster(this.master)
       .subscribe({
         next:(data) => {
           this._UtilityService.hideSpinner();
