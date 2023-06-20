@@ -333,8 +333,8 @@ body {
 }
 
 .layout-topbar {
-    width: 81%;
     right: 0 !important;
+    width: 81%;
     left: auto;
     background: none;
     box-shadow: none;
@@ -879,7 +879,7 @@ i.iconset:hover {
 .card-header { background: #617C7E !important; color: #fff !important; font-weight: 500; height: 38px;}
 .box-height { min-height: 250px !important;}
 .box-height2 { height: 303px;}
-.layout-topbar { display:block !important}
+.layout-topbar { display:block !important; }
 
 
 .pi-eye, .pi-eye-slash {
@@ -954,16 +954,40 @@ border-radius: 50%; position: absolute; right: 10px;
 
 .wth-70 { width: 70%;}
 .wth-30 { width: 30%;}
+.layout-wrapper.layout-static .layout-main-container {
+    margin-left: 221px !important;
+}
+
 
 // Media Query
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
+ 
+    .layout-wrapper.layout-static.layout-static-inactive .layout-topbar {
+        width: 90%;}
+    .layout-topbar-menu-button { display: none !important;}
+.layout-topbar { width: 75%; margin-left: 245px;}
+.revenu h2 small { font-size: 12px;} 
+.card { padding: .5rem;}
+.health-box  { padding: 10px;}
+.health-box-top h1, .revenu h2 {font-size: 13px; }
+p.date-box {width: 48px !important;}
+.health-box h2 { padding: 5px 0 10px;}
+.box-hgt { height: 200px;}
+}
 
-.layout-wrapper.layout-static .layout-main-container, .layout-topbar { margin-left: auto;}
-.layout-topbar {width: 100%; padding: 0 !important;}
-.layout-topbar-menu-button { display: none !important;}
+@media screen and (max-width: 991px){
+
+    .layout-wrapper.layout-static .layout-main-container {
+        margin-left: 0px !important;
+    }
+
+}
+@media screen and (max-width: 768px){
+
+.layout-topbar {width: 98%; padding: 0 !important; margin-left: 0 !important;}
 .health-box { margin-bottom: 20px;}
 .layout-wrapper .layout-main-container { padding-right:1rem !important ; padding-left: 1rem !important;}
-.recent { margin-top: 15px;}
+.recent, .doc-dash { margin-bottom: 15px;}
 .help-head h3 {padding-left: 40px; font-size: 15px;}
 .p-datatable-header { display: flex !important; justify-content: center;}
 .p-datatable-header .p-input-icon-left { margin-top: 15px;  }
@@ -973,12 +997,21 @@ border-radius: 50%; position: absolute; right: 10px;
 .wth-70 { width: 100%;}
 
 }
+@media screen and (min-width:769px) {
+    .layout-wrapper.layout-static .layout-main-container { margin-left: auto;}
+    .health-box-top h1, .revenu h2 { font-size: 11px;}
+    .revenu h2 small { font-size: 11px; }
+}
 
 @media screen and (max-width: 414px) {
     .wd-30 {
         width: 35% !important;}
         .mandatory { position:absolute; top: 41px;} 
     
+}
+@media screen and (max-width: 280px) {
+.help-btn a {
+    padding: 5px 10px;}
 }
 
   
