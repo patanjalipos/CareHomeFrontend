@@ -25,10 +25,10 @@
     </ng-template>    
     <ng-template pTemplate="body" let-item let-i="rowIndex">        
         <tr>
-            <td style="width:70%">                
+            <td class="wth-70">                
                 {{item.fallriskname}} 
             </td>                      
-            <td style="width:30%">
+            <td class="wth-30"> 
                 <div class="grid formgrid">
                     <div class="field-radiobutton">
                         <p-radioButton name="rdNo_{{i}}" [value]="isrisk" [(ngModel)]="item.isenable" id="rdEnable_{{i}}" [disabled]="mode=='edit'?false:true"></p-radioButton>

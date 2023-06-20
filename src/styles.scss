@@ -853,7 +853,7 @@ i.iconset:hover {
 .help-btn a { background: #617C7E; padding: 5px 15px; border-radius: 30px;     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098); margin-left: 20px; color: #fff;}
 .help-head h3 { font-size: 20px; color:#023C40; line-height: 45px;}
 
-.total-txt { position: relative; top: -10px;}
+
 .p-accordion .p-accordion-header .p-accordion-header-link {
     border: 1px solid #e9ecef ;
     color: #023c40 ;
@@ -913,17 +913,18 @@ i.iconset:hover {
   .revenu p { font-size: 12px; margin-top: 10px; color:green;}
   .revenu p.red { color: red;}
 
-   .recent { padding: 0; min-height: 275px;}
+   .recent { padding: 0;  position: relative;}
   .recent h2 { margin: 0; padding: 0; font-size: 18px;  padding: 15px 0 5px 10px;}
   .recent p { padding: 15px 10px; font-size: 15px; line-height: 16px; margin-bottom: 0;} 
   .recent hr { margin-bottom: 0 !important; border-color: #c7c7c7; }
   .recent p small { font-size: 13px; color: #9b9b9b;}
 
-  .task {  background: #fff; box-shadow: none;}
-  .task hr {border-top:1pps#fff}
+  .task {  background: #fff;}
+  .task hr {border-top:1px solid #c7c7c7}
   .task p span { margin-top: 5px; display: block;} 
   .task p span b { font-weight: 600; text-align: right;}
   .recent-box { display: flex; align-items: center; justify-content: start;}
+  .box-hgt{ overflow-y: scroll; height: 225px;}
 
 p.date-box { width: 80px !important; font-weight: 600;     border-right: 2px solid #617c7e;}
 
@@ -939,8 +940,20 @@ p.date-box { width: 80px !important; font-weight: 600;     border-right: 2px sol
     position: relative;
 }
 
+.acti-add{ background: #617c7e;
+color: #fff;
+padding: 5px 7px;
+font-size: 12px;
+border-radius: 50%; position: absolute; right: 10px;
+}
+.acti-add:hover { color: #fff;}
 
 
+.fordesk { display:block ;}
+.formobile { display: none;}
+
+.wth-70 { width: 70%;}
+.wth-30 { width: 30%;}
 
 // Media Query
 @media screen and (max-width: 768px) {
@@ -950,10 +963,21 @@ p.date-box { width: 80px !important; font-weight: 600;     border-right: 2px sol
 .layout-topbar-menu-button { display: none !important;}
 .health-box { margin-bottom: 20px;}
 .layout-wrapper .layout-main-container { padding-right:1rem !important ; padding-left: 1rem !important;}
+.recent { margin-top: 15px;}
+.help-head h3 {padding-left: 40px; font-size: 15px;}
+.p-datatable-header { display: flex !important; justify-content: center;}
+.p-datatable-header .p-input-icon-left { margin-top: 15px;  }
+.fordesk { display:none ;}
+.formobile { display: block;}
+.care-cont { display: none;}
+.wth-70 { width: 100%;}
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 414px) {
+    .wd-30 {
+        width: 35% !important;}
+        .mandatory { position:absolute; top: 41px;} 
     
 }
 

@@ -2,7 +2,7 @@
     <div class="card">
         <p-table #dt [value]="lstUserMaster" styleClass="p-datatable-striped" [rowHover]="true"
             [globalFilterFields]="['HomeCode','HomeName','UserTypeName','LoginId','FullName']"
-            [scrollable]="true" scrollHeight="calc(100vh - 180px)" (onFilter)="onFilter($event, dt)">
+            [scrollable]="true" scrollHeight="calc(100vh - 155px)" (onFilter)="onFilter($event, dt)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">

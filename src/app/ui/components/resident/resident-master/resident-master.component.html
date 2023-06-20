@@ -56,9 +56,16 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Title</label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
+                                        <div class="fordesk">
                                         <p-selectButton [options]="stlsttitle" [(ngModel)]="ResidentMaster.title"
                                             optionLabel="name" optionValue="code" name="Title"
                                             #titleref="ngModel"></p-selectButton>
+                                        </div>
+                                        <div class="formobile">
+                                        <p-dropdown [options]="stlsttitle" [(ngModel)]="ResidentMaster.title"
+                                            optionLabel="name" optionValue="code" name="Title"
+                                            #titleref="ngModel"></p-dropdown>
+                                        </div>
 
                                         <div class="col-md-auto errorMessage pt-6"
                                             *ngIf="titleref.errors &&(titleref.touched || titleref.dirty)">
@@ -181,8 +188,15 @@
                                 <div class="col-md-12">
                                     <label class="form-label">Gender / sex <span class="required">*</span></label>
                                     <div *ngIf="mode=='add' || mode=='edit'">
-                                        <p-selectButton [options]="stlstgender" [(ngModel)]="ResidentMaster.gender"
-                                            optionLabel="name" optionValue="code" name="gender"></p-selectButton>
+                                        
+                                        <div class="fordesk">
+                                            <p-selectButton [options]="stlstgender" [(ngModel)]="ResidentMaster.gender"
+                                                optionLabel="name" optionValue="code" name="gender"></p-selectButton>
+                                        </div>
+                                        <div class="formobile">
+                                        <p-dropdown [options]="stlstgender" [(ngModel)]="ResidentMaster.gender"
+                                            optionLabel="name" optionValue="code" name="gender"></p-dropdown>
+                                    </div>
                                     </div>
                                     <div class="my-2 bold" *ngIf="mode=='view'">{{ResidentMaster.gender}}</div>
                                 </div>
