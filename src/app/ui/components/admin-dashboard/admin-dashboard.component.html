@@ -510,8 +510,9 @@
 
    <div class="col-md-3">
       <div class="card recent mb-3">
-         <h2>Recent Activity</h2>
+         <h2>Recent Activity<a class="acti-add" href=""><i class="fas fa-plus"></i></a></h2>
          <hr class="m-0 my-2" >
+         <div class="box-hgt">
          <div *ngFor="let item of lstActivity">
             <div class="recent-box">
                <p class="date-box">{{item.activitytime | date: 'dd MMM'}}</p>
@@ -521,6 +522,7 @@
             </div>
             <hr class="m-0">
          </div>
+      </div>
          <!-- <div class="recent-box">
             <p class="date-box">03 June</p>
             <p>Meditation Session<br><small>
@@ -546,6 +548,7 @@
       <div class="card recent task">
          <h2>Upcoming task</h2>
          <hr class="m-0 my-2" >
+         <div class="box-hgt">
          <div *ngFor="let item of lstTaskPlanner">
             <p>{{item.taskname}}<br><small>
                <i class="fas fa-clock"></i> {{item.starttime | date: 'dd MMM yy HH:mm a'}}
@@ -554,7 +557,7 @@
             </p>
             <hr class="m-0">         
          </div>
-         
+         </div>
          <!-- <p>Meditation Session<br><small>
                <i class="fas fa-clock"></i> 28th Jun 23 at 6:30 pm
             </small><br>

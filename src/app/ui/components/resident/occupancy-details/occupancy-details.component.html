@@ -55,9 +55,15 @@
                 <div class="col-md-12">
                     <label class="form-label"><span class="required">*</span> Residency</label>
                     <div *ngIf="mode=='add' || mode=='edit'">
+                        <div class="fordesk">
                         <p-selectButton [required]="true"  [options]="stlstresidency" [(ngModel)]="ResidentMaster.residency"
                             optionLabel="name" optionValue="code" name="Residency" #residencyref="ngModel"></p-selectButton>
-                        <div class="col-md-auto errorMessage pt-2"
+                        </div>
+                        <div class="formobile">
+                        <p-dropdown [required]="true"  [options]="stlstresidency" [(ngModel)]="ResidentMaster.residency"
+                            optionLabel="name" optionValue="code" name="Residency" #residencyref="ngModel"></p-dropdown>
+                        </div>
+                            <div class="col-md-auto errorMessage pt-2"
                             *ngIf="residencyref.errors &&(residencyref.touched || residencyref.dirty)">
                             <div>Residency is required.</div>
                         </div>
