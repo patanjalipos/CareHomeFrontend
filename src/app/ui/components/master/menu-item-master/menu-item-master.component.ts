@@ -148,6 +148,8 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
       this.MenuItemMaster.StatementType = "Insert";
     else
       this.MenuItemMaster.StatementType = "Update";
+      if (this.MenuItemMaster.submenu == false)
+      this.MenuItemMaster.parentmenuid = null;
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddUpdateMenuItemMaster(this.MenuItemMaster)
       .subscribe({
