@@ -323,7 +323,7 @@ body {
 
 .layout-sidebar {
     left: 0 !important;
-    width: 232px;
+    width: 227px;
     top: 0 !important;
     transition: none !important;
     padding: 1rem;
@@ -381,11 +381,11 @@ body {
 }
 
 .layout-menu ul a:hover {
-    border-radius: 2px !important;
+    border-radius: 0px !important;
     background: #617C7E!important;
 }
 .layout-menu ul a, .layout-menu ul ul {
-    border-radius: 2px !important; }
+    border-radius: 0px !important; }
     .layout-menu ul a.active {
         color: #023c40 !important;
     }
@@ -803,7 +803,10 @@ i.iconset:hover {
 }
 
 .layout-menu ul a.active-route {
-    color: #617C7E !important;
+    color: #fff !important;
+    background: #023c40 !important;
+    font-weight: normal !important;
+    border-radius: 0 !important;
 }
 
 .layout-menu ul a:hover {
@@ -926,7 +929,7 @@ i.iconset:hover {
   .recent-box { display: flex; align-items: center; justify-content: start;}
   .box-hgt{ overflow-y: scroll; height: 225px;}
 
-p.date-box { width: 80px !important; font-weight: 600;     border-right: 2px solid #617c7e;}
+p.date-box { font-weight: 600;     border-right: 2px solid #617c7e;}
 
 .bg-change { background: #fff; width: 40px; height:40px;}
 
@@ -957,7 +960,7 @@ border-radius: 50%; position: absolute; right: 10px;
 .layout-wrapper.layout-static .layout-main-container {
     margin-left: 221px !important;
 }
-
+.total-txt2 { top: 10px;}
 
 // Media Query
 @media screen and (max-width: 1024px) {
