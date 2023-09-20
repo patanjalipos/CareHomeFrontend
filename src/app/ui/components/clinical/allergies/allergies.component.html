@@ -35,13 +35,13 @@
             
         </div>
     </div>
-    <h5 *ngIf="mode=='edit'" class="m-0 mb-2">Allergy details</h5>    
+    <h5 *ngIf="mode=='edit'" class="m-0 mb-3">Allergy details</h5>    
     <div class="row" *ngIf="mode=='edit'">
         <div class="col-md-6">
             <!-- <label class="form-label">Allergy details</label> -->
             <div class="field-checkbox">
                 <p-checkbox [disabled]="isDisabled" [(ngModel)]="Clinical.isunknownallergies" [binary]="true" name="DNAR" inputId="binary"></p-checkbox>
-                <label for="binary"><b>The resident has no known allergies</b></label>
+                <label for="binary">The resident has no known allergies</label>
             </div>
         </div>
     </div>
@@ -77,13 +77,13 @@
             <table class="table table-bordered mb-0" style="width:100%;">
                 <thead>
                     <tr>
-                        <th>ALLERGEN</th>
-                        <th>REACTION</th>
-                        <th>STATUS</th>
-                        <th *ngIf="showcolumn=='Created'">CREATED BY</th>
-                        <th *ngIf="showcolumn=='Created'">CREATED DATE</th>
-                        <th *ngIf="showcolumn=='Closed'">CLOSED BY</th>
-                        <th *ngIf="showcolumn=='Closed'">CLOSED DATE</th>
+                        <th>Allergen</th>
+                        <th>Reaction</th>
+                        <th>Status</th>
+                        <th *ngIf="showcolumn=='Created'">Created By</th>
+                        <th *ngIf="showcolumn=='Created'">Created Date</th>
+                        <th *ngIf="showcolumn=='Closed'">Closed By</th>
+                        <th *ngIf="showcolumn=='Closed'">Closed Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@
                                    
                         </td>
                         <td>
-                            <a class="add-btn mr-2" *ngIf="lstExtraItemDetails[i].mode=='add'" href="javascript: void(0);"
+                            <a class="btn btn-secondary" *ngIf="lstExtraItemDetails[i].mode=='add'" href="javascript: void(0);"
                                 (click)="RemoveExtraItemDetails(lstExtraItemDetails[i].sequence)">
                                 Delete
                             </a>
