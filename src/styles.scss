@@ -39,6 +39,8 @@ body,
     border-style: solid !important;
 }
 
+h5 { font-size: 1rem; color: #023c40 ;}
+
 .login-bg {
     background: url(../src/assets/Images/login-bg.jpg);
     background-repeat: no-repeat;
@@ -852,7 +854,7 @@ i.iconset:hover {
 .ColumnFilterTable .p-datatable-scrollable .p-datatable-thead>tr>th, .ColumnFilterTable .p-datatable-scrollable .p-datatable-tbody>tr>td, .ColumnFilterTable .p-datatable-scrollable .p-datatable-tfoot>tr>td { flex: none !important;}
 .total-txt { position: relative; bottom: 6px;}
 
-.help-btn {margin: 5px 0 15px;}
+.help-btn {margin: 5px 0 0px;}
 .help-btn a { background: #617C7E; padding: 5px 15px; border-radius: 30px;     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.0862745098); margin-left: 20px; color: #fff;}
 .help-head h3 { font-size: 20px; color:#023C40; line-height: 45px;}
 
@@ -961,6 +963,22 @@ border-radius: 50%; position: absolute; right: 10px;
     margin-left: 221px !important;
 }
 .total-txt2 { top: 10px;}
+.backbutton-cvr button.btn { padding: 5px 15px !important;}
+.dropdown-item:active {
+    background-color: #617C7E;}
+    .p-inputtext:enabled:focus {
+        box-shadow: none !important }
+
+
+.p-inputtext:enabled:focus {
+    border-color: #023c40 !important;}
+    .p-inputtext:enabled:hover {
+        border-color: #023c40 !important;
+    }
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+        color: #023c40;
+        background: #e9ecef  !important;
+    }       
 
 // Media Query
 @media screen and (max-width: 1024px) {
