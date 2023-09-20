@@ -108,8 +108,20 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'End of life', code: 'End of life' }
     ];
     this.lstRoomMaster = [
+      { name: '101', code: '101' },
+      { name: '102', code: '102' },
+      { name: '103', code: '103' },
+      { name: '104', code: '104' },
+      { name: '105', code: '105' },
+      { name: '201', code: '201' },
+      { name: '202', code: '202' },
+      { name: '203', code: '203' },
+      { name: '204', code: '204' },
+      { name: '205', code: '205' },
+      { name: '301', code: '301' },
       { name: '302', code: '302' },
       { name: '303', code: '303' },
+      { name: '304', code: '304' },
       { name: '305', code: '305' },
     ];
     this.stlstfunding = [

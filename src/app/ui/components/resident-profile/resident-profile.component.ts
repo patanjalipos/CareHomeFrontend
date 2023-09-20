@@ -63,7 +63,7 @@ export class ResidentProfileComponent extends AppComponentBase implements OnInit
               this.allergies=tdata2.allergynotes;
               if(tdata2.allergen)
               {
-                this.allergies = this.allergies + ', ' + tdata2.allergen;
+                this.allergies = ((this.allergies!='' && this.allergies!=null && this.allergies!=undefined)? (this.allergies + ', ') : this.allergies) + tdata2.allergen;
               }
                
             }

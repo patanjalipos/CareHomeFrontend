@@ -118,7 +118,7 @@
                         </td>
                         <td *ngIf="showcolumn=='Created'">
                             <span *ngIf="lstExtraItemDetails[i].mode!='add'">
-                                {{item.createdbyname}}
+                                {{item.createdname}}
                             </span>
                         </td>
                         <td *ngIf="showcolumn=='Created'"><span *ngIf="lstExtraItemDetails[i].mode!='add'">{{item.createdon | date:customDateFormat.DEF_DATE_TIME}}</span></td>
