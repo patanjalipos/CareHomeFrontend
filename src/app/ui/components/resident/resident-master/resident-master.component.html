@@ -67,7 +67,7 @@
                                             #titleref="ngModel"></p-dropdown>
                                         </div>
 
-                                        <div class="col-md-auto errorMessage pt-6"
+                                        <div class="col-md-auto errorMessage "
                                             *ngIf="titleref.errors &&(titleref.touched || titleref.dirty)">
                                             <div>Title is required.</div>
                                         </div>
@@ -83,7 +83,7 @@
                                             [(ngModel)]="ResidentMaster.firstname" (keypress)="validateText($event)"
                                             #fNameref="ngModel">
 
-                                        <div class="col-md-auto errorMessage pt-6"
+                                        <div class="col-md-auto errorMessage "
                                             *ngIf="fNameref.errors &&(fNameref.touched || fNameref.dirty)">
                                             <div>First Name is required.</div>
                                         </div>
@@ -109,7 +109,7 @@
                                             name="txtLname" [(ngModel)]="ResidentMaster.lastname"
                                             (keypress)="validateText($event)" #lNameref="ngModel">
 
-                                        <div class="col-md-auto errorMessage pt-6"
+                                        <div class="col-md-auto errorMessage "
                                             *ngIf="lNameref.errors &&(lNameref.touched || lNameref.dirty)">
                                             <div>Last Name is required.</div>
                                         </div>
