@@ -515,10 +515,14 @@
          <div class="box-hgt">
          <div *ngFor="let item of lstActivity">
             <div class="recent-box">
+               <div class="col-3 p-0">
                <p class="date-box">{{item.activitytime | date: 'dd MMM'}}</p>
+            </div>
+            <div class="col-9 p-0">
                <p>{{item.activityname}}<br><small>
                      <i class="fas fa-clock"></i> {{item.activitydescription}}
                   </small></p>
+                  </div>
             </div>
             <hr class="m-0">
          </div>
