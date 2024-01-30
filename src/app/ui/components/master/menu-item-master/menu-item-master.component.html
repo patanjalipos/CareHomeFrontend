@@ -46,8 +46,8 @@
                             <td>{{dt.menuitemname}}</td>
                             <td>{{dt.menuitemurl}}</td>
                             <td>{{dt.parentmenuname}}</td>
-                            <td>{{dt.orderno}}</td>
-                            <td>{{dt.status==true?'Active':'Inactive'}}</td>
+                            <td>{{dt.OrderNo}}</td>
+                            <td>{{dt.Status==1?'Active':'Inactive'}}</td>
                              <td>
                                 <a title="View/Edit" (click)="LoadMenuItemMasterById(dt.menuitemmasterid)">
                                     <i class="fa fa-eye" aria-hidden="true"></i>

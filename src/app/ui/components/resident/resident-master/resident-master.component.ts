@@ -96,8 +96,8 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
       { name: 'Separated', code: 'Separated' },
     ]
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];
     this.lstDependencyMaster = [
       { name: 'Residenttial indenpendent', code: 'Residenttial indenpendent' },

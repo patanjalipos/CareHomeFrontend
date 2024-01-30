@@ -38,8 +38,8 @@ export class MenuItemMasterComponent extends AppComponentBase implements OnInit{
     super();
     this._ConstantServices.ActiveMenuName = "Menu Master"; 
     this.stlststatus = [
-      { name: 'Active', code: true },
-      { name: 'Inactive', code: false }
+      { name: 'Active', code: 1 },
+      { name: 'Inactive', code: 0 }
     ];
     this.stlstsubmenu = [
       { name: 'Yes', code: true},

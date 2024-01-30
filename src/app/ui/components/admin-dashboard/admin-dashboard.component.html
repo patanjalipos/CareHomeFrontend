@@ -516,11 +516,11 @@
          <div *ngFor="let item of lstActivity">
             <div class="recent-box">
                <div class="col-3 p-0">
-               <p class="date-box">{{item.activitytime | date: 'dd MMM'}}</p>
+               <p class="date-box">{{item.ActivityTime | date: 'dd MMM'}}</p>
             </div>
             <div class="col-9 p-0">
-               <p>{{item.activityname}}<br><small>
-                     <i class="fas fa-clock"></i> {{item.activitydescription}}
+               <p>{{item.ActivityName}}<br><small>
+                     <i class="fas fa-clock"></i> {{item.ActivityDescription}}
                   </small></p>
                   </div>
             </div>
@@ -554,10 +554,10 @@
          <hr class="m-0 my-2" >
          <div class="box-hgt">
          <div *ngFor="let item of lstTaskPlanner">
-            <p>{{item.taskname}}<br><small>
-               <i class="fas fa-clock"></i> {{item.starttime | date: 'dd MMM yy HH:mm a'}}
+            <p>{{item.TaskName}}<br><small>
+               <i class="fas fa-clock"></i> {{item.StartTime | date: 'dd MMM yy HH:mm a'}}
             </small><br>
-            <span>Assign to - <b> {{item.assignedtoname}}</b></span>
+            <span>Assign to - <b> {{item.AssignedToName}}</b></span>
             </p>
             <hr class="m-0">         
          </div>

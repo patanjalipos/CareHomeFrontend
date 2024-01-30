@@ -33,9 +33,9 @@ export class ConstantsService {
 
 
 export enum UserTypes {
-  SuperAdmin = 1,
-  Admin = 2,
-  Resident = 3
+  SuperAdmin = "611b6d811003138c9d40a8b7",
+  Admin = "607546c500f6f4c43c5d54a0",
+  Resident = "6075474600f6f4c43c5d54a1"
   // Doctor = "6075479300f6f4c43c5d54a2",
   // Therapist = "60e5582069bec5646f115686",
   // Meditation = "60ed26557f6bda738e03c049",

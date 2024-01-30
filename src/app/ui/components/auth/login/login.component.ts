@@ -44,7 +44,7 @@ export class LoginComponent extends AppComponentBase {
             return;
         }
         //this.router.navigateByUrl("/uicare");
-        this.Password=this._EncryptDecryptService.encryptUsingAES256(this.Password);
+        //this.Password=this._EncryptDecryptService.encryptUsingAES256(this.Password);
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._AuthServices.Login(this.UserName, this.Password)
             .subscribe({
@@ -58,14 +58,14 @@ export class LoginComponent extends AppComponentBase {
 
                         localStorage.setItem('token', data.actionResult.AuthenticationToken);
                         localStorage.setItem('userTypeId', data.actionResult.userTypeId);
-                        localStorage.setItem('userId', data.actionResult.userId);
-                        localStorage.setItem('HomeMasterId', tdata.homemasterid);
-                        localStorage.setItem('FirstName', tdata.firstname == null ? '' : tdata.firstname);
-                        localStorage.setItem('LastName', tdata.lastname == null ? '' : tdata.lastname);
-                        localStorage.setItem('Gender', tdata.gender);
-                        localStorage.setItem('ProfileImage', tdata.profileimage);
+                        localStorage.setItem('userId', data.actionResult.UserId);
+                        localStorage.setItem('HomeMasterId', tdata.HomeMasterId);
+                        localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
+                        localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
+                        localStorage.setItem('Gender', tdata.Gender);
+                        localStorage.setItem('ProfileImage', tdata.ProfileImage);
                         //this._dymservice.loadMenu();
-                        this.router.navigateByUrl("/resident-list");
+                        this.router.navigateByUrl("/");
                     }
                     else {
                         this.invalidLogin = true;
