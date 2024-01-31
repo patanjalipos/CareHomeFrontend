@@ -203,7 +203,7 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
     this.SelectedFile = [];
     this.ResidentMaster = <any>{};    
     this.ResidentMaster.admissionstatus = this.admissionStatus.Unallocated;   
-    this.ResidentMaster.status = true;  
+    this.ResidentMaster.Status = 1;  
     if (UserTypes.SuperAdmin !== this.s_userTypeId) {
       this.ResidentMaster.homemasterid = localStorage.getItem('HomeMasterId');
     } 
@@ -224,9 +224,9 @@ export class ResidentMasterComponent extends AppComponentBase implements OnInit 
             tdata = tdata ? tdata : [];
             this.ResidentMaster = tdata;
             //console.log('this.ResidentMaster', this.ResidentMaster)
-            if(this.ResidentMaster?.dateofbirth!=null && this.ResidentMaster?.dateofbirth!=undefined)
+            if(this.ResidentMaster?.DateOfBirth!=null && this.ResidentMaster?.DateOfBirth!=undefined)
             {
-              this.ResidentMaster.dateofbirth = new Date(this.ResidentMaster.dateofbirth);
+              this.ResidentMaster.DateOfBirth = new Date(this.ResidentMaster.DateOfBirth);
             }
             this.mode = "edit";   
             this.healthcareMode="view";         
@@ -261,13 +261,13 @@ RemoveProfileImage(){
   
   Submit()
   {
-    if (this.ResidentMaster.password != null && this.ResidentMaster.password != undefined && this.ResidentMaster.password != '') {
-      this.ResidentMaster.password = this._EncryptDecryptService.encryptUsingAES256(this.ResidentMaster.password);
+    if (this.ResidentMaster.Password != null && this.ResidentMaster.Password != undefined && this.ResidentMaster.Password != '') {
+      this.ResidentMaster.Password = this._EncryptDecryptService.encryptUsingAES256(this.ResidentMaster.Password);
     }
-    this.ResidentMaster.userid=this.selecteduserid;
-    this.ResidentMaster.residentadmissioninfoid=this.selectedadmissionid;          
-    this.ResidentMaster.usertypeid=this.UserTypes.Resident;
-    this.ResidentMaster.modifiedby = localStorage.getItem('userId');  
+    this.ResidentMaster.UserId=this.selecteduserid;
+    this.ResidentMaster.ResidentAdmissionInfoId=this.selectedadmissionid;          
+    this.ResidentMaster.UserTypeId=this.UserTypes.Resident;
+    this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
     //console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));
