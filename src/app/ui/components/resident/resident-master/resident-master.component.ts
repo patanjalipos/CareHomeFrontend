@@ -268,6 +268,8 @@ RemoveProfileImage(){
     this.ResidentMaster.ResidentAdmissionInfoId=this.selectedadmissionid;          
     this.ResidentMaster.UserTypeId=this.UserTypes.Resident;
     this.ResidentMaster.ModifiedBy = localStorage.getItem('userId');  
+    this.ResidentMaster.PayerTelephone = this.ResidentMaster.PayerTelephone?.toString() || null;
+    
     //console.log('ResidentMaster',this.ResidentMaster);
     const formData = new FormData();
     formData.append('data', JSON.stringify(this.ResidentMaster));

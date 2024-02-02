@@ -217,6 +217,9 @@ export class UserMasterComponent extends AppComponentBase implements OnInit {
     this.RegistrationMainModel.lstFacilityMapping=this.lstFacilityResident;
     if(this.RegistrationMainModel.Password!=null && this.RegistrationMainModel.Password!=undefined && this.RegistrationMainModel.Password!="")
     this.RegistrationMainModel.Password = this._EncryptDecryptService.encryptUsingAES256(this.RegistrationMainModel.Password);
+    this.RegistrationMainModel.Fax = this.RegistrationMainModel.Fax?.toString() || null;
+    this.RegistrationMainModel.EmergencyContactTelephone = this.RegistrationMainModel.EmergencyContactTelephone?.toString() || null;
+    this.RegistrationMainModel.EmergencyContactMobile = this.RegistrationMainModel.EmergencyContactMobile?.toString() || null;
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateUserMaster(this.RegistrationMainModel)
       .subscribe

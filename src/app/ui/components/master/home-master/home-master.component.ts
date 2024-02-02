@@ -111,7 +111,11 @@ export class HomeMasterComponent extends AppComponentBase implements OnInit {
     else
       this.master.statementtype = "Update";
     
-    this.master.ModifiedBy = localStorage.getItem('userId');;  
+    this.master.ModifiedBy = localStorage.getItem('userId');
+    this.master.ContactNumber = this.master.ContactNumber?.toString() || null;
+    this.master.OtherContactNumber = this.master.OtherContactNumber?.toString() || null;
+    this.master.FaxNumber = this.master.FaxNumber?.toString() || null;
+   
     this._UtilityService.showSpinner();
     this.unsubscribe.add = this._MasterServices.AddInsertUpdateHomeMaster(this.master)
       .subscribe({

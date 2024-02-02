@@ -58,7 +58,7 @@ export class LoginComponent extends AppComponentBase {
 
                         localStorage.setItem('token', data.actionResult.AuthenticationToken);
                         localStorage.setItem('userTypeId', data.actionResult.userTypeId);
-                        localStorage.setItem('userId', data.actionResult.UserId);
+                        localStorage.setItem('userId', data.actionResult.userId);
                         localStorage.setItem('HomeMasterId', tdata.HomeMasterId);
                         localStorage.setItem('FirstName', tdata.FirstName == null ? '' : tdata.FirstName);
                         localStorage.setItem('LastName', tdata.LastName == null ? '' : tdata.LastName);
