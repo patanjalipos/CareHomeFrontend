@@ -44,7 +44,7 @@ export class LoginComponent extends AppComponentBase {
             return;
         }
         //this.router.navigateByUrl("/uicare");
-        //this.Password=this._EncryptDecryptService.encryptUsingAES256(this.Password);
+        this.Password=this._EncryptDecryptService.encryptUsingAES256(this.Password);
         this._UtilityService.showSpinner();
         this.unsubscribe.add = this._AuthServices.Login(this.UserName, this.Password)
             .subscribe({
