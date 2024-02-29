@@ -3,30 +3,30 @@
         <div class="card">
             <div class="profile-box">
                 <div class="profile-img">
-                    <img [src]="profileUrl+ (ResidentMaster.profileimage==''? 'no-picture.png': ResidentMaster.profileimage)" class="w-6 shadow-2 my-1 mx-0">
+                    <img [src]="profileUrl+ (ResidentMaster.ProfileImage==''? 'no-picture.png': ResidentMaster.ProfileImage)" class="w-6 shadow-2 my-1 mx-0">
                 </div>
-                <h1>{{ResidentMaster.firstname}} {{ResidentMaster.lastname}}</h1>
+                <h1>{{ResidentMaster.FullName}}</h1>
                 <div class="detail-table">
                 <table class="table">
                     <tr>
                         <td>Age</td>
                         <td>:</td>
-                        <td>{{calculateAge(ResidentMaster.dateofbirth)}}y ({{ResidentMaster.dateofbirth|date:customDateFormat.DEF_DATE}})</td>
+                        <td>{{calculateAge(ResidentMaster.DateOfBirth)}}y ({{ResidentMaster.DateOfBirth|date:customDateFormat.DEF_DATE}})</td>
                     </tr>
                     <tr>
                       <td>Gender</td>
                       <td>:</td>
-                      <td>{{ResidentMaster.gender}}</td>
+                      <td>{{ResidentMaster.Gender}}</td>
                    </tr>
                     <tr>
                         <td>Room</td>
                         <td>:</td>
-                        <td>{{ResidentMaster.roomnumber}}</td>
+                        <td>{{ResidentMaster.RoomNumber}}</td>
                     </tr>
                     <tr>
                       <td>Status</td>
                       <td>:</td>
-                      <td>{{admissionStatus[ResidentMaster.admissionstatus]}}</td>
+                      <td>{{admissionStatus[ResidentMaster.AdmissionStatus]}}</td>
                   </tr>
                     
                     
