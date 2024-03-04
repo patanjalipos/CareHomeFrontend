@@ -1,24 +1,23 @@
 <div *ngIf="mode==null">
     <div class="card">
         <p-table #dt [value]="lstMaster" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['formCode','formName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
+            [globalFilterFields]="['formId','formName']" [scrollable]="true" scrollHeight="calc(100vh - 155px)">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-ml-left">
                        <button pButton title="New" label="Add New" class="p-button-outlined mr-2" icon="pi pi-plus"
                             (click)="AddNewItem()"></button> 
                          <span class="total-txt">
-                            {{lstMaster?.length>0?'Total Records:
-                            '+filteredValuesLength:''}} 
+                            {{lstMaster?.length>0?'Total Records:'+filteredValuesLength:''}} 
                             </span> 
                         </span>
                     <span class="p-ml-auto">
-                        <!-- <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
+                        <button pButton title="Export Data" label=" " class="p-button-outlined mr-2"
                             icon="pi pi-download" (click)="exportToItemExcel();"></button>
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input #filtr pInputText type="text" (input)="onGlobalFilter(dt, $event)"
-                                placeholder="Search..." /></span> -->
+                                placeholder="Search..." /></span>
                     </span>
                 </div>
             </ng-template>
@@ -33,21 +32,21 @@
                 <tr>
                     <th>Form Code</th>
                     <th>Form Name</th>
-                    <th>Order No.</th>
+                    <th>Sequence</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">
                 <tr>
-                    <td>{{dt.formCode}}</td>
+                    <td>{{dt.formId}}</td>
                     <td>{{dt.formName}}</td>
-                    <td>{{dt.orderNo}}</td>
+                    <td>{{dt.sequence}}</td>
                     <td>{{dt.status==1?'Active':'Inactive'}}</td>
                     <td>
-                        <!-- <a title="View/Edit" (click)="GetformMasterById(dt.formMasterId)">
+                        <a title="View/Edit" (click)="GetformMasterById(dt.formId)">
                             <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a> -->
+                        </a>
                     </td>
                 </tr>
             </ng-template>

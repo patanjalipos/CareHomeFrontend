@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Table } from 'primeng/table';
+import { AppComponentBase } from 'src/app/app-component-base';
 import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
@@ -11,7 +12,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
   templateUrl: './form-master.component.html',
   styleUrls: ['./form-master.component.scss']
 })
-export class FormMasterComponent implements OnInit {
+export class FormMasterComponent extends AppComponentBase implements OnInit {
 
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
@@ -30,7 +31,7 @@ export class FormMasterComponent implements OnInit {
     private _UtilityService: UtilityService,    
   ) 
   {
-    //super();
+    super();
     this._ConstantServices.ActiveMenuName = "Form Master"; 
     this.stlststatus = [
       { name: 'Active', code: 1 },
@@ -39,11 +40,65 @@ export class FormMasterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.GetformMasterGroup()
   }
 
-  GetformMasterById(){}
+  GetformMasterGroup(){
+    this._UtilityService.showSpinner();   
+    this.unsubscribe.add = this._MasterServices.GetFormMaster(true)
+      .subscribe({
+        next:(data) => {
+          this._UtilityService.hideSpinner();          
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            //console.log(tdata);
+            tdata = tdata ? tdata : [];
+            this.lstHeadMaster = tdata;
+          }
+          else {
+            this.lstHeadMaster = [];            
+          }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
 
-  GetHomeMasterById(id) {}
+  GetformMasterById(id) {}
+
+  Save() {   
+    if (this.mode == "Add")
+      this.master.statementtype = "Insert";
+    else
+      this.master.statementtype = "Update";
+    
+    this.master.ModifiedBy = localStorage.getItem('userId');
+    this.master.ContactNumber = this.master.ContactNumber?.toString() || null;
+    this.master.OtherContactNumber = this.master.OtherContactNumber?.toString() || null;
+    this.master.FaxNumber = this.master.FaxNumber?.toString() || null;
+   
+    this._UtilityService.showSpinner();
+    this.unsubscribe.add = this._MasterServices.AddInsertUpdateFormMaster(this.master)
+      .subscribe({
+        next:(data) => {
+          this._UtilityService.hideSpinner();
+          if (data.actionResult.success == true) {
+            this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
+            this.GetformMasterGroup();
+            this.mode = null;
+          }
+          else {
+            this._UtilityService.showWarningAlert(data.actionResult.errMsg);
+          }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
 
   AddNewItem() {
     this.ResetModel();
