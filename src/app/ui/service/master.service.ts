@@ -289,6 +289,17 @@ GetFormMaster(status: any = true): Observable<any> {
     return this._httpclient.get<any>(environment.BaseUriAdmin + "api/Admin/GetFormMaster", { "headers": reqHeader, "params": params });
 }    
 
+GetFormMasterById(id): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    })
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this._httpclient.get<any>(environment.BaseUriAdmin + "api/Admin/GetFormMasterById", { "headers": reqHeader, "params": params });
+}
+
 AddInsertUpdateFormMaster(obj: any): Observable<any> {
     let reqHeader = new HttpHeaders({
         'Content-Type': 'application/json',

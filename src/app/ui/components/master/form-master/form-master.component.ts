@@ -6,18 +6,15 @@ import { ConstantsService } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 
-
 @Component({
   selector: 'app-form-master',
   templateUrl: './form-master.component.html',
   styleUrls: ['./form-master.component.scss']
 })
 export class FormMasterComponent extends AppComponentBase implements OnInit {
-
   @ViewChild('myForm') public myForm: NgForm;
   @ViewChild('dt') public dataTable: Table;
   @ViewChild('filtr') filtr: ElementRef;
-  
   mode: string = null;
   lstHeadMaster: any[]=[];
   public lstMaster: any[]=[];
@@ -40,10 +37,10 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GetformMasterGroup()
+    this.GetformMaster()
   }
 
-  GetformMasterGroup(){
+  GetformMaster(){
     this._UtilityService.showSpinner();   
     this.unsubscribe.add = this._MasterServices.GetFormMaster(true)
       .subscribe({
@@ -53,10 +50,10 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
             var tdata = JSON.parse(data.actionResult.result);
             //console.log(tdata);
             tdata = tdata ? tdata : [];
-            this.lstHeadMaster = tdata;
+            this.lstMaster = tdata;
           }
           else {
-            this.lstHeadMaster = [];            
+            this.lstMaster = [];            
           }
         },
         error: (e) => {
@@ -66,8 +63,26 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
       });
   }
 
-  GetformMasterById(id) {}
-
+  GetformMasterById(id) {
+    this._UtilityService.showSpinner();
+    this.ResetModel();
+    this.mode = "Edit";
+    this.unsubscribe.add = this._MasterServices.GetFormMasterById(id)  
+      .subscribe({
+        next:(data) => {
+          this._UtilityService.hideSpinner();          
+          if (data.actionResult.success == true) {
+            var tdata = JSON.parse(data.actionResult.result);
+            tdata = tdata ? tdata : [];
+            this.master = tdata;
+            }
+        },
+        error: (e) => {
+          this._UtilityService.hideSpinner();
+          this._UtilityService.showErrorAlert(e.message);
+        },
+      });
+  }
   Save() {   
     if (this.mode == "Add")
       this.master.statementtype = "Insert";
@@ -86,7 +101,7 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
           this._UtilityService.hideSpinner();
           if (data.actionResult.success == true) {
             this._UtilityService.showSuccessAlert(data.actionResult.errMsg);
-            this.GetformMasterGroup();
+            this.GetformMaster();
             this.mode = null;
           }
           else {
