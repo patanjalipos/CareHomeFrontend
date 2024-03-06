@@ -1,1 +1,85 @@
-<p>forms-dashboard works!</p>
+<div class="card">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <h5 _ngcontent-olo-c133="">Search Assessment Form</h5>
+        </div>
+
+        <div class="form-group pos-rel col-md-4">
+            <p-dropdown name="ddlRelativeType" placeholder="All assessment form" [style]="{width: '100%'}">
+            </p-dropdown>
+        </div>
+        <div class="form-group pos-rel col-md-4">
+            <p-dropdown name="ddlRelativeType" placeholder="Choose assessment form" [style]="{width: '100%'}">
+            </p-dropdown>
+        </div>
+
+        <div class="form-group pos-rel col-md-4 mt-2">
+            <div class="input-group date">
+                <label class="form-label label-line mr-4">Form </label>
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" placeholder="From"
+                    class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""
+                    style="width: 82%"></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+        <div class="form-group pos-rel col-md-4 mt-2">
+            <div class="input-group date ">
+                <label class="form-label label-line mr-4">To </label>
+                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" placeholder="To"
+                    class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""
+                    style="width: 88%"></p-calendar>
+                <div *ngIf="" class="alert alert-danger">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group pos-rel col-md-4 mt-2">
+            <p-dropdown name="ddlRelativeType" placeholder="Create assessment form" [style]="{width: '100%'}">
+                </p-dropdown>
+           
+        </div>
+        <div class=" mt-2 justify-content-end d-flex">
+            <span class="p-ml-left ">
+                <button pButton title="New" label="Search"></button>
+            </span>
+        </div>
+
+
+        <p-table  class="mt-4" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
+            [globalFilterFields]="['MenuItemName','MenuItemURL','ParentMenuName','ModuleName']"
+            scrollHeight="calc(100vh - 155px)">
+ 
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns?.length">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Assessment Form </th>
+                    <th>Updated By</th>
+                    <th>Designation</th>
+                    <th>Status</th>
+                    <th>Last Update</th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-dt let-i="rowIndex">
+                <tr>
+                    <td>{{dt.ModuleName}}</td>
+                    <td>{{dt.MenuItemName}}</td>
+                    <td>{{dt.MenuItemURL}}</td>
+                    <td>{{dt.ParentMenuName}}</td>
+                    <td>{{dt.OrderNo}}</td>
+                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
+                    <td>
+                        <a title="View/Edit">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
