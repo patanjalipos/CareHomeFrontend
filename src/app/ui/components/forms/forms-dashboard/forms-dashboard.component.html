@@ -1,1 +1,48 @@
+<!-- Create form Card -->
+<div class="card">
+    <div class="row">
+        <p-toolbar>
+            <div class="col-md-3">
+                <!-- <label class="form-label">Status: </label> -->
+                <p-dropdown [options]="stlststatus" [(ngModel)]="status" optionLabel="status" [showClear]="true" placeholder="Select Status"></p-dropdown>
+            </div>
+            <div class="col-md-5">
+                <!-- <label class="form-label">Assessment form: </label> -->
+                <p-dropdown [options]="stlststatus" [(ngModel)]="status" optionLabel="status" [showClear]="true" placeholder="Select Assessment form"></p-dropdown>
+            </div>
+            <div class="col-md-4">
+                    <button pButton type="button" class="btn-primary" label="Create Assessment form  >"></button>
+                    <!-- (click)="Save()" [disabled]="!myForm.form.valid" -->
+            </div>
+        </p-toolbar>
+    </div> 
+</div>
+
+<!-- Search Filter Card -->
+<div class="card">
+    <p-toolbar class="row">
+        <div class="p-toolbar-group-start">
+            <label for="search" class="font-bold block mb-1">Search Assessment forms</label>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText placeholder="Search Forms" />
+            </span>
+        </div>
+        <div class="p-toolbar-group-center">
+            <div class="form-group">
+                <label for="fromDate" class="font-bold block mb-1">From Date</label>
+                <p-calendar [(ngModel)]="date1" [showIcon]="true" inputId="fromDate"></p-calendar>
+            </div>
+            <div class="form-group">
+                <label for="toDate" class="font-bold block mb-1">To Date</label>
+                <p-calendar [(ngModel)]="date2" [showIcon]="true" inputId="toDate"></p-calendar>
+            </div>
+        </div>
+        <div class="p-toolbar-group-end">
+            <button pButton type="button" class="btn-primary" label="Search"></button>
+            <!-- (click)="Save()" [disabled]="!myForm.form.valid" -->
+        </div>
+    </p-toolbar>
+</div>
+
 <p>forms-dashboard works!</p>
