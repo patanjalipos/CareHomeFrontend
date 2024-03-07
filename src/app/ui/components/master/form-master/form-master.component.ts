@@ -51,6 +51,11 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
             //console.log(tdata);
             tdata = tdata ? tdata : [];
             this.lstMaster = tdata;
+            if (this.filtr !== undefined) {
+              this.filtr.nativeElement.value = "";
+              this.dataTable.reset();
+              this.filteredValuesLength = this.lstMaster?.length;
+              }            
           }
           else {
             this.lstMaster = [];            
