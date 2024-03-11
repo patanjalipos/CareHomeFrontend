@@ -276,6 +276,43 @@ AddInsertUpdateChart(obj: any): Observable<any> {
 
 //#end region
 
+//#region Form Master
+
+GetFormMaster(status: any = true): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    params = params.append('status', status);
+    return this._httpclient.get<any>(environment.BaseUriAdmin + "api/Admin/GetFormMaster", { "headers": reqHeader, "params": params });
+}    
+
+GetFormMasterById(id): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    })
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this._httpclient.get<any>(environment.BaseUriAdmin + "api/Admin/GetFormMasterById", { "headers": reqHeader, "params": params });
+}
+
+AddInsertUpdateFormMaster(obj: any): Observable<any> {
+    let reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+        //'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    let params = new HttpParams();
+    var data = JSON.stringify(obj).toString();
+    return this._httpclient.post<any>(environment.BaseUriAdmin + "api/Admin/AddInsertUpdateFormMaster", data, { "headers": reqHeader, "params": params });  
+}
+
+//#end region 
+
 //#region Indicator Master
 
 GetIndicatorGroupMaster(status: any = true): Observable<any> {
