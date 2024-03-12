@@ -12,6 +12,8 @@ import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
 
+
+
 @NgModule({
   declarations: [
     
@@ -28,6 +30,8 @@ import { CalendarModule } from "primeng/calendar";
     InputTextModule,
     InputNumberModule,
     CalendarModule,
+   
+ 
 
   ],
 
