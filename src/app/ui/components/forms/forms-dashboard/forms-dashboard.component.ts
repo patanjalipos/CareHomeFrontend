@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ConstantsService } from 'src/app/ui/service/constants.service';
+import { MasterService } from 'src/app/ui/service/master.service';
+import { UtilityService } from 'src/app/utility/utility.service';
+import { AppComponentBase } from 'src/app/app-component-base';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,20 +10,50 @@ import { NgForm } from '@angular/forms';
     templateUrl: './forms-dashboard.component.html',
     styleUrls: ['./forms-dashboard.component.scss'],
 })
-export class FormsDashboardComponent implements OnInit {
-    //Tab 1 Data
+export class FormsDashboardComponent extends AppComponentBase implements OnInit {
+
     stlststatus: any[] = [];
-    status: number;
-    //Tab 2 Data
-    date1: Date | undefined;
-    date2: Date | undefined;
+    public lstMaster: any[]=[];
+    rangeDates: Date[] | undefined;
 
-    constructor() {
+    selectedStatus: number;
+    selectedFormType:string;
+    
+    constructor(private _ConstantServices: ConstantsService,
+        private _MasterServices:MasterService,
+        private _UtilityService: UtilityService,    
+      ) 
+      {
+        super();
+        this._ConstantServices.ActiveMenuName = "Form Master"; 
         this.stlststatus = [
-            { name: 'Active', code: 1 },
-            { name: 'Inactive', code: 0 },
-        ];
-    }
+          { name: 'Active', code: 1 },
+          { name: 'Inactive', code: 0 }
+        ];    
+      }
 
-    ngOnInit() {}
+    ngOnInit() { this.GetformMaster()}
+
+    GetformMaster(){
+        this._UtilityService.showSpinner();   
+        this.unsubscribe.add = this._MasterServices.GetFormMaster(true)
+          .subscribe({
+            next:(data) => {
+              this._UtilityService.hideSpinner();          
+              if (data.actionResult.success == true) {
+                var tdata = JSON.parse(data.actionResult.result);
+                //console.log(tdata);
+                tdata = tdata ? tdata : [];
+                this.lstMaster = tdata;
+              }
+              else {
+                this.lstMaster = [];            
+              }
+            },
+            error: (e) => {
+              this._UtilityService.hideSpinner();
+              this._UtilityService.showErrorAlert(e.message);
+            },
+          });
+      }
 }
