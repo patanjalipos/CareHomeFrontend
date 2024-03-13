@@ -142,5 +142,9 @@ export class FormMasterComponent extends AppComponentBase implements OnInit {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
+  onFilter(event, dt) {
+    this.filteredValuesLength = event.filteredValue.length; // count of displayed rows     
+  }
+
   
 }
