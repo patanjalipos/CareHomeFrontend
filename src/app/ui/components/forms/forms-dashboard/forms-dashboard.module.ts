@@ -13,25 +13,37 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
 
 
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+
+
 
 @NgModule({
   declarations: [
-    
     FormsDashboardComponent
   ],
   imports: [
     CommonModule,
     FormsDashboardRoutingModule,
+    ToolbarModule,
+    InputTextModule,
+    CalendarModule,
+    FormsModule,
+    DropdownModule
     TableModule,
     ButtonModule,
     RippleModule,
     MultiSelectModule,
     DropdownModule,
-    InputTextModule,
     InputNumberModule,
     CalendarModule,
    
  
+
 
   ],
 
@@ -39,4 +51,5 @@ import { CalendarModule } from "primeng/calendar";
     FormsDashboardComponent,
   ]
 })
+
 export class FormsDashboardModule { }

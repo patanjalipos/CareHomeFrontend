@@ -1,88 +1,47 @@
+<!-- Search Filter Card -->
 <div class="card">
-<div class="row mt-2">
-    <div class="form-group pos-rel col-md-4">
-        <label _ngcontent-gvp-c133="" class="form-label">Choose From <span _ngcontent-gvp-c133="" class="required">*</span></label>
-        <p-dropdown name="ddlRelativeType" placeholder="Choose assessment form" [style]="{width: '100%'}">
-        </p-dropdown>
-    </div>
-    <div class="col-md-4  mt-3 align-items-center  justify-content-start d-flex ">
-        <span class="p-ml-left ">
-            <button pButton title="New" label="Create Form"></button>
-        </span>
-    </div>
-</div>
-</div>
-<div class="card">
-    <div class="row mt-2">
-        
-        <div class="col-md-12">
-            <h5>Search Assessment Form</h5>
-        </div>
-        <div class="form-group pos-rel col-md-4">
-            <label _ngcontent-gvp-c133="" class="form-label">All assessment forms <span _ngcontent-gvp-c133="" class="required">*</span></label>
-            <p-dropdown name="ddlRelativeType" placeholder="All assessment forms" [style]="{width: '100%'}">
-            </p-dropdown>
-        </div>
-        <div class="form-group pos-rel col-md-3" style="width: 24%;">
-            <div class="input-group date">
-                <label _ngcontent-gvp-c133="" class="form-label"> From <span _ngcontent-gvp-c133="" class="required">*</span></label>
-                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" placeholder="From"
-                    class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
-                <div *ngIf="" class="alert alert-danger">
+    <div class="row">
+        <p-toolbar>
+            <div class="col-md-3">
+                <label for="search" class="font-bold block mb-1">Search Assessment forms</label>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText placeholder="Search Forms" />
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="dateRange" class="font-bold block mb-1">Select Dates</label>
+                    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" placeholder="Date Range"></p-calendar>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group pos-rel col-md-3" style="width: 24%;">
-            <div class="input-group date ">
-                <label _ngcontent-gvp-c133="" class="form-label">To <span _ngcontent-gvp-c133="" class="required">*</span></label>
-                <p-calendar name="DateOfBirth" [showIcon]="true" inputId="icon" [dateFormat]="" placeholder="To"
-                    class="iconcal" [readonlyInput]="true" appendTo="body" [maxDate]="" #dobref=""></p-calendar>
-                <div *ngIf="" class="alert alert-danger">
-                </div>
+            <div class="col-md-3">
+                <button pButton type="button" class="btn-primary" label="Search"></button>
+                <!-- (click)="Search()" [disabled]="!myForm.form.valid" -->
             </div>
-        </div>
-        <div class="col-md-2  mt-3 align-items-center justify-content-start d-flex">
-            <span class="p-ml-left ">
-                <button pButton title="New" label="Search"></button>
-            </span>
-        </div>
+        </p-toolbar>
+    </div>
+</div>
 
+<!-- Create form Card -->
+<div class="card">
+    <div class="row">
+        <p-toolbar>
+            
+            <div class="col-md-3">
+                <!-- <label class="form-label">Status: </label> -->
+                <p-dropdown [required]="true" [options]="stlststatus" [(ngModel)]="selectedStatus" optionLabel="name" [showClear]="true" placeholder="Select Status"></p-dropdown>
+            </div>
+            <div class="col-md-5">
+                <!-- <label class="form-label">Assessment form: </label> -->
+                <p-dropdown [required]="true" [options]="lstMaster" [(ngModel)]="selectedFormType" optionLabel="FormName" [showClear]="true" placeholder="Select Assessment form"></p-dropdown>
+            </div>
+            <div class="col-md-4">
+                    <button pButton type="button" class="btn-primary" label="Create Assessment form  >"></button>
+                    <!-- (click)="Save()" [disabled]="!myForm.form.valid" -->
+            </div>
+            
+        </p-toolbar>
+    </div> 
+</div>
 
-        <p-table class="mt-4" responsiveLayout="scroll" styleClass="p-datatable-striped" [rowHover]="true"
-            [globalFilterFields]="['MenuItemName','MenuItemURL','ParentMenuName','ModuleName']"
-            scrollHeight="calc(100vh - 155px)">
-
-            <ng-template pTemplate="emptymessage" let-columns>
-                <tr>
-                    <td [attr.colspan]="columns?.length">
-                        No records found
-                    </td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Assessment Form </th>
-                    <th>Updated By</th>
-                    <th>Designation</th>
-                    <th>Status</th>
-                    <th>Last Update</th>
-
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-dt let-i="rowIndex">
-                <tr>
-                    <td>{{dt.ModuleName}}</td>
-                    <td>{{dt.MenuItemName}}</td>
-                    <td>{{dt.MenuItemURL}}</td>
-                    <td>{{dt.ParentMenuName}}</td>
-                    <td>{{dt.OrderNo}}</td>
-                    <td>{{dt.Status==1?'Active':'Inactive'}}</td>
-                    <td>
-                        <a title="View/Edit">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
