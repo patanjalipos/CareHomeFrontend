@@ -6,7 +6,6 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import {MultiSelectModule} from 'primeng/multiselect';
-import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
@@ -31,7 +30,7 @@ import { FormsModule } from '@angular/forms';
     MultiSelectModule,
     DropdownModule,
     InputNumberModule,
-    CalendarModule
+
   ],
 
   exports:[
