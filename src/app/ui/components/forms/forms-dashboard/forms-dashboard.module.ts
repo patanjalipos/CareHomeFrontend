@@ -11,10 +11,6 @@ import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
 import { ToolbarModule } from 'primeng/toolbar';
 import { FormsModule } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
-import { PreAdmissionAssessmentFormsModule } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.module';
-
-
 
 @NgModule({
   declarations: [
@@ -34,11 +30,6 @@ import { PreAdmissionAssessmentFormsModule } from '../pre-admission-assessment-f
     MultiSelectModule,
     DropdownModule,
     InputNumberModule,
-    CalendarModule,
-    PreAdmissionAssessmentFormsModule,
-   
- 
-
 
   ],
 
