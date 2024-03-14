@@ -1,24 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsDashboardRoutingModule } from './forms-dashboard-routing.module';
 import { FormsDashboardComponent } from './forms-dashboard.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import {MultiSelectModule} from 'primeng/multiselect';
-import { DropdownModule } from "primeng/dropdown";
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
 import { CalendarModule } from "primeng/calendar";
-
-
 import { ToolbarModule } from 'primeng/toolbar';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { PreAdmissionAssessmentFormsModule } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.module';
 
 
 
@@ -33,7 +27,7 @@ import { DropdownModule } from 'primeng/dropdown';
     InputTextModule,
     CalendarModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
     TableModule,
     ButtonModule,
     RippleModule,
@@ -41,6 +35,7 @@ import { DropdownModule } from 'primeng/dropdown';
     DropdownModule,
     InputNumberModule,
     CalendarModule,
+    PreAdmissionAssessmentFormsModule,
    
  
 
