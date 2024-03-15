@@ -1,9 +1,8 @@
 import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { ConstantsService } from 'src/app/ui/service/constants.service';
+import { ConstantsService, FormTypes } from 'src/app/ui/service/constants.service';
 import { MasterService } from 'src/app/ui/service/master.service';
 import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
-import { Forms } from './forms.enum';
 import { PreAdmissionAssessmentFormsComponent } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.component';
 import { NotfoundComponent } from '../../notfound/notfound.component';
 
@@ -67,17 +66,17 @@ export class FormsDashboardComponent extends AppComponentBase implements OnInit 
       // Determine which component to load based on selectedForm
       let componentType: any;
       switch (selectedFormId) {
-        case Forms.PreAdmsnForm:
+        case FormTypes.PreAdmsnForm:
           componentType = PreAdmissionAssessmentFormsComponent;
           break;
-        case Forms.MedicalForm:
+        case FormTypes.MedicalForm:
           componentType = NotfoundComponent;
           break;
-        case Forms.Fitness:
+        case FormTypes.Fitness:
           componentType = NotfoundComponent;
           break;
         default:
-          // Handle default case or error
+          componentType = NotfoundComponent;
       }
   
       // Load the component dynamically
