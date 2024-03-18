@@ -6,6 +6,7 @@ import { PreAdmissionAssessmentFormsComponent } from './pre-admission-assessment
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from "primeng/calendar";
 import { DropdownModule } from 'primeng/dropdown';
+
 @NgModule({
   declarations: [
     PreAdmissionAssessmentFormsComponent
@@ -15,9 +16,7 @@ import { DropdownModule } from 'primeng/dropdown';
     PreAdmissionAssessmentFormsRoutingModule,
     ButtonModule,
     CalendarModule,
-    DropdownModule
-
-  
+    DropdownModule  
   ],
   exports:[PreAdmissionAssessmentFormsComponent]
 })

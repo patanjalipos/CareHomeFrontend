@@ -50,13 +50,12 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="personCapacityOptions" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
             <p>If person lacks capacity what powers are they being moved under Section 13ZA, POA, Guardianship</p>
         </div>
         <div class="col-md-1 form-icon mt-4">
             <i class="fa-solid fa-info"></i>
-
         </div>
 
         <div class="col-md-4">
@@ -65,7 +64,7 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="professionalDocObtainedOptions" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
             <p>If not obtained or in place, AWI certificate and corresponding treatment plan, copy of Power of Attorney
                 or Guardianship order, copy of Community Treatment Order.</p>
@@ -79,7 +78,7 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="residentMovingOptions" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
         </div>
         <div class="col-md-1  form-icon mt-4">
@@ -92,7 +91,7 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="paymentOptionsn" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
             <p>Update resident admission details</p>
         </div>
@@ -106,7 +105,7 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="peronsCurrentAbilities" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
             <p>Focus in this section on the persona abilities not their disabilities - positively report that they can
                 recognise the need to attend the toilet however requires support to attend the toilet</p>
@@ -120,7 +119,7 @@
             </div>
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown  [options]="advancedCarePlanningOptions" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -134,7 +133,7 @@
 
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="medicalHistoryConditionOptions" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
             <p>Include any pacemakers, please at the point of pre admission please request a GP summary print out from
                 their own GP which will detail all Medical history.</p>
@@ -164,7 +163,7 @@
 
         </div>
         <div class="col-md-7 mb-4">
-            <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+            <p-dropdown [options]="connectingAndCommunicatingOptions" placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
             <p>Include all the applicable options below and expand if required using the Other option</p>
         </div>
@@ -179,7 +178,7 @@
         </div>
      
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="personalSafetyOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p>Please review in a risk aware manner how can we safely consider the resident enablement while
                     considering safety is there any electronic devises we can use to promote safety.</p>
@@ -208,7 +207,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="residentExpAnyMHConditionsOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p>If yes, has this been diagnosed by a GP (state condition) and is medication prescribed</p>
             </div>
@@ -221,7 +220,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="speechSightHearingOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
             </div>
             <div class="col-md-1 form-icon mt-4">
@@ -259,7 +258,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="fallsAndMobilityOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
             </div>
             <div class="col-md-1 form-icon mt-4">
@@ -284,7 +283,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="painStatusOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
 
             </div>
@@ -311,7 +310,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="skinAssessmentOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p>Include any medical conditions that affect skin or could increase risk of skin damage, and medication
                 </p>
@@ -337,7 +336,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="eatingDrinkingAssessmentOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
 
             </div>
@@ -365,7 +364,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="promotionOfContinenceOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p></p>
             </div>
@@ -392,7 +391,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="feelingFreshAndCleanOptions"  placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
 
             </div>
@@ -421,7 +420,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="sleepingAndRestiingOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
 
             </div>
@@ -448,7 +447,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="expressingSexualityOptions"  placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
 
             </div>
@@ -488,7 +487,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="EpilepsySeizureManagementOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p></p>
             </div>
@@ -515,7 +514,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="infectionStatusOptions"  placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p></p>
             </div>
@@ -568,7 +567,7 @@
                 </div>
             </div>
             <div class="col-md-7 mb-4">
-                <p-dropdown optionLabel="name" optionValue="code" placeholder="Select" [style]="{width: '100%'}">
+                <p-dropdown [options]="firstAidEpilepticSeizureOptions" placeholder="Select" [style]="{width: '100%'}">
                 </p-dropdown>
                 <p>Choose all statements below</p>
 
