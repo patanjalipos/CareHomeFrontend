@@ -14,52 +14,9 @@ export class PreAdmissionAssessmentFormsComponent
     extends AppComponentBase
     implements OnInit
 {
+    PreAdmissionAssessmentFormsData: any = <any>{};
     userId: any;
     residentAdmissionInfoId: any = null;
-
-    chartheadname: string;
-    personCapacity: string;
-    professionalDocObtained: string;
-    residentMovingFrom: string;
-    payment: string;
-    peronsCurrentAbilities: string;
-    advancedCarePlanning: string;
-    medicalHistoryCondition: string;
-    socialActivitiesInterests: string;
-    connectingAndCommunicating: string;
-    personalSafety: string;
-    leavingHomeUnescorted: string;
-    residentExpAnyMHConditions: string;
-    speechSightHearing: string;
-    speechSightHearingDetails: string;
-    breathingCirculation: string;
-    breathingCirculationDetails: string;
-    fallsAndMobility: string;
-    fallsAndMobilityDetails: string;
-    painStatus: string;
-    painManagementDetails: string;
-    skinAssessment: string;
-    skinDetails: string;
-    eatingDrinkingAssessment: string;
-    eatingDrinkingDetails: string;
-    promotionOfContinence: string;
-    promotionOfContinenceDetails: string;
-    feelingFreshAndClean: string;
-    feelingFreshAndCleanDetails: string;
-    sleepingAndResting: string;
-    sleepingAndRestingDetails: string;
-    expressingSexuality: string;
-    expressingSexualityDetails: string;
-    engagementEmpowerment: string;
-    epilepsySeizureManagement: string;
-    rescueMedications: string;
-    infectionStatus: string;
-    infectionDetails: string;
-    medication: string;
-    medicationDetails: string;
-    firstAidEpilepticSeizure: string;
-    overallGoal: string;
-    isFormCompleted: boolean = false;
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -69,7 +26,8 @@ export class PreAdmissionAssessmentFormsComponent
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
-        this.userId = localStorage.getItem('userId');
+
+        //this.loginId = localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -89,38 +47,72 @@ export class PreAdmissionAssessmentFormsComponent
     ngOnInit(): void {}
 
     saveAsUnfinished() {
-        // Save the form data to the database
         console.log('Data saved as unfinished');
+        this.PreAdmissionAssessmentFormsData.isFormCompleted = false;
+        this.Save();
     }
 
     completeForm() {
-        // Save the form data to the database )
         console.log('Form completed and data saved');
-        this.isFormCompleted = true;
+        this.PreAdmissionAssessmentFormsData.isFormCompleted = true;
+        this.Save();
     }
 
     Save() {
+        //console.log(this.userId + ' ' + this.residentAdmissionInfoId);
         if (this.userId != null && this.residentAdmissionInfoId != null) {
+            this.PreAdmissionAssessmentFormsData.userId = this.userId;
+            this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId =
+                this.residentAdmissionInfoId;
+
+               console.log(JSON.stringify(this.PreAdmissionAssessmentFormsData).toString());
+            this._UtilityService.showSpinner();
+            this.unsubscribe.add = this._MasterServices
+                .AddInsertUpdatePreAdmissionAssessmentForm(this.PreAdmissionAssessmentFormsData)
+                .subscribe({
+                    next: (data) => {
+                        this._UtilityService.hideSpinner();
+                        if (data.actionResult.success == true)
+                            this._UtilityService.showSuccessAlert(
+                                data.actionResult.errMsg
+                            );
+                        else
+                            this._UtilityService.showWarningAlert(
+                                data.actionResult.errMsg
+                            );
+                        //this.mode = 'view';
+                    },
+                    error: (e) => {
+                        this._UtilityService.hideSpinner();
+                        this._UtilityService.showErrorAlert(e.message);
+                    },
+                });
+        } else {
+            this._UtilityService.showWarningAlert(
+                'Resident admission details are missing.'
+            );
         }
     }
 
     personCapacityOptions: string[] = [
-        'The Resisdent is assumed to have capacity to consent to care and accommodation',
-        'The Resident does not have capacity to consent to care and accommodation',
-        'The Resident has a welfare Power of Attorney or welfare Guardian who is making the decision with regards to thier care and accommodation',
-        'The Resident is being moved under Adults with Inactivity Act Section 13ZA',
-        'The Resident does not have mental capacity however has been consulted in relation to their future care accommation and their response has been taken into account',
+        'The resident is assumed to have capacity to consent to care and accommodation',
+        'The resident does not have capacity to consent to care and accommodation',
+        'The resident has a welfare Power of Attorney or Welfare Guardian who is making the decision for them due to their lack of mental capacity to make decisions with regards to their care and accommodation',
+        'The resident is being moved under Adults with Incapacity Act Section 13ZA',
+        'The resident does not have mental capacity however has been consulted in relation to their future care and accommodation and their response has been taken into account',
+        'Other',
     ];
 
     professionalDocObtainedOptions: string[] = [
         'No professional documentation has been obtained for the resident',
-        'The Resident has an AWI already completed and a copy has been obtained',
-        'The Resident has an AWI Already completed but a copy has not been obtained',
-        'The Resident has appointed a power of Attorney and a copy has been obtained',
-        'The Resident has appointed a power of Attorney and a copy has not been obtained',
-        'The Resident has legal Guardian and a copy has been obtained',
-        'The Resident has legal Guardian and a copy has not been obtained',
-        'The Resident is being Admitted under a community treatment order and a copy has been obtained',
+        'The resident has an AWI already completed and a copy has been obtained',
+        'The resident has an AWI already completed but a copy has not been obtained',
+        'The resident has appointed a Power of Attorney, and a copy has been obtained',
+        'The resident has appointed a Power of Attorney, and a copy has not been obtained',
+        'The resident has a Legal Guardian and a copy has been obtained',
+        'The resident has a Legal Guardian and a copy has not been obtained',
+        'The resident is being admitted under a community Treatment order and a copy has been obtained',
+        'Other',
     ];
 
     residentMovingOptions: string[] = [
@@ -137,11 +129,11 @@ export class PreAdmissionAssessmentFormsComponent
     ];
 
     peronsCurrentAbilitiesOptions: string[] = [
-        'The Resident is able bodied and continues to use these abilities in their everyday life',
+        'The resident is able-bodied and continues to use these abilities in their everyday life',
         'The resident is able to complete simple physical tasks and should be encouraged and enabled to continue to develop these further',
         'The resident has rehabilitation potential and as such should have a rehab program in place to promote abilities',
-        'The resident has limited physical abilities but has capacity to be as involved in their lives as possible',
-        'The resident has limited physical abilities and does not have mental capacity to make informed choices and/or decisions however will be enabled to be included in every aspect of their lives',
+        'The resident has limited physical abilities but has the capacity to be as involved in their lives as possible',
+        'The resident has limited physical abilities and does not have the mental capacity to make informed choices and/or decisions however will be enabled to be included in every aspect of their lives',
         'Other',
     ];
 

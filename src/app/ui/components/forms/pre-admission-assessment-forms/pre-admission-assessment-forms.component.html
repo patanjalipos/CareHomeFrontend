@@ -41,7 +41,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="chartheadname"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.chartheadname"
             />
             <p>include relationship to the resident & contact details</p>
         </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="personCapacity"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.personCapacity"
                 [options]="personCapacityOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -83,7 +83,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="professionalDocObtained"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.professionalDocObtained"
                 [options]="professionalDocObtainedOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -105,7 +105,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="residentMovingFrom"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.residentMovingFrom"
                 [options]="residentMovingOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -122,7 +122,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="payment"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.payment"
                 [options]="paymentOptionsn"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -143,7 +143,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="peronsCurrentAbilities"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.peronsCurrentAbilities"
                 [options]="peronsCurrentAbilitiesOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -166,7 +166,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="advancedCarePlanning"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.advancedCarePlanning"
                 [options]="advancedCarePlanningOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -183,7 +183,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="medicalHistoryCondition"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.medicalHistoryCondition"
                 [options]="medicalHistoryConditionOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -210,7 +210,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="socialActivitiesInterests"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.socialActivitiesInterests"
             />
             <p>
                 Include hobbies previous and current, whos imoprtant in their
@@ -228,7 +228,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="connectingAndCommunicating"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.connectingAndCommunicating"
                 [options]="connectingAndCommunicatingOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -253,7 +253,7 @@
 
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="personalSafety"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.personalSafety"
                 [options]="personalSafetyOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -280,7 +280,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="leavingHomeUnescorted"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.leavingHomeUnescorted"
             />
             <p>
                 Please complete fully the Herbert protocol and request
@@ -298,7 +298,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="residentExpAnyMHConditions"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.residentExpAnyMHConditions"
                 [options]="residentExpAnyMHConditionsOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -319,7 +319,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="speechSightHearing"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.speechSightHearing"
                 [options]="speechSightHearingOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -341,7 +341,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="speechSightHearingDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.speechSightHearingDetails"
             />
             <p>
                 Include any diagnosed conditions, aids used and treatment /
@@ -363,7 +363,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="breathingCirculationDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.breathingCirculationDetails"
             />
             <p>
                 Include all health conditions affecting breathing (COPD, asthma,
@@ -382,7 +382,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="fallsAndMobility"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.fallsAndMobility"
                 [options]="fallsAndMobilityOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -404,7 +404,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="fallsAndMobilityDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.fallsAndMobilityDetails"
             />
             <p>
                 Include mobility level, aids, recent falls (including causes)
@@ -421,7 +421,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="painStatus"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.painStatus"
                 [options]="painStatusOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -443,7 +443,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="painManagementDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.painManagementDetails"
             />
             <p>
                 How would we recognise the resident is experiencing pain how is
@@ -463,7 +463,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="skinAssessment"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.skinAssessment"
                 [options]="skinAssessmentOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -502,7 +502,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="eatingDrinkingAssessment"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.eatingDrinkingAssessment"
                 [options]="eatingDrinkingAssessmentOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -524,7 +524,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="eatingDrinkingDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.eatingDrinkingDetails"
             />
             <p>
                 Include likes and dislikes, what makes a meal enjoyable, what
@@ -544,7 +544,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="promotionOfContinence"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.promotionOfContinence"
                 [options]="promotionOfContinenceOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -567,7 +567,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="promotionOfContinenceDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.promotionOfContinenceDetails"
             />
             <p>
                 Include specific aids used, current continence regimes in place
@@ -586,7 +586,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="feelingFreshAndClean"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.feelingFreshAndClean"
                 [options]="feelingFreshAndCleanOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -609,7 +609,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="feelingFreshAndCleanDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.feelingFreshAndCleanDetails"
             />
             <p>
                 What they do prefer baths, showers and how often. What words do
@@ -629,7 +629,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="sleepingAndResting"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.sleepingAndResting"
                 [options]="sleepingAndRestiingOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -651,7 +651,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="sleepingAndRestingDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.sleepingAndRestingDetails"
             />
             <p>
                 what makes a good night for the resident. Describe sleeping and
@@ -670,7 +670,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="expressingSexuality"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.expressingSexuality"
                 [options]="expressingSexualityOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -692,7 +692,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="expressingSexualityDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.expressingSexualityDetails"
             />
             <p>
                 Additional information (how can you support the resident with
@@ -721,7 +721,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="engagementEmpowerment"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.engagementEmpowerment"
             />
         </div>
         <div class="col-md-1 form-icon mt-4">
@@ -737,7 +737,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="epilepsySeizureManagement"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.epilepsySeizureManagement"
                 [options]="EpilepsySeizureManagementOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -763,7 +763,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="rescueMedications"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.rescueMedications"
             />
             <p>
                 Please detail these below alongside when they are to be
@@ -780,7 +780,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="infectionStatus"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.infectionStatus"
                 [options]="infectionStatusOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -803,7 +803,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="infectionDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.infectionDetails"
             />
             <p>
                 Detail how the person presents when they have an infection, what
@@ -821,7 +821,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="medication"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.medication"
                 [options]="medicationOption"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -844,7 +844,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="medicationDetails"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.medicationDetails"
             />
             <p>
                 refer reader to the MARs sheets for the resident most up to date
@@ -864,7 +864,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
-                [(ngModel)]="firstAidEpilepticSeizure"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.firstAidEpilepticSeizure"
                 [options]="firstAidEpilepticSeizureOptions"
                 placeholder="Select"
                 [style]="{ width: '100%' }"
@@ -890,7 +890,7 @@
                 required
                 name="chartheadname"
                 class="form-control"
-                [(ngModel)]="overallGoal"
+                [(ngModel)]="PreAdmissionAssessmentFormsData.overallGoal"
             />
             <p>
                 For example to be safe, to minimise loneliness, to strive and
@@ -919,7 +919,7 @@
                         title="New"
                         label="Complete"
                         (click)="completeForm()"
-                        [disabled]="isFormCompleted"
+                        [disabled]="PreAdmissionAssessmentFormsData.isFormCompleted"
                     ></button>
                     <span class="total-txt"></span>
                 </span>
