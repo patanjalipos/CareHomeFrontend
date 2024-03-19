@@ -20,7 +20,6 @@ export class FormsDashboardComponent extends AppComponentBase implements OnInit 
     public lstMaster: any[]=[];
     rangeDates: Date[] | undefined;
 
-    selectedStatus: number;
     selectedFormType:string;
     
     constructor(private _ConstantServices: ConstantsService,
