@@ -14,6 +14,7 @@
                 placeholder="Select" [style]="{width: '100%'}">
             </p-dropdown>
         </div>
+        
         <div class=" col-md-6 d-flex mt-3">
             <span class="p-ml-left mr-4">
                 <button pButton title="New" label="Create Form"  (click)="showForm(selectedFormType)" ></button>
@@ -52,8 +53,8 @@
                     <th pSortableColumn="FullName">Updated By</th>
                     <th pSortableColumn="RoomNumber">Designation </th>
                     <th>Status</th>
-                    <!-- <th>Status</th> -->
                     <th>Last Update </th>
+                    <th>Actions</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-dt let-i="rowIndex">

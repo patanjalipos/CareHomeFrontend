@@ -5,6 +5,7 @@ import { UtilityService } from 'src/app/utility/utility.service';
 import { AppComponentBase } from 'src/app/app-component-base';
 import { PreAdmissionAssessmentFormsComponent } from '../pre-admission-assessment-forms/pre-admission-assessment-forms.component';
 import { NotfoundComponent } from '../../notfound/notfound.component';
+import { MenuItem } from 'primeng/api';
 
 @Component({
     selector: 'app-forms-dashboard',
@@ -18,6 +19,8 @@ export class FormsDashboardComponent extends AppComponentBase implements OnInit 
     componentRef: ComponentRef<any>;
 
     public lstMaster: any[]=[];
+    items: MenuItem[];
+
     rangeDates: Date[] | undefined;
 
     selectedFormType:string;
@@ -32,6 +35,25 @@ export class FormsDashboardComponent extends AppComponentBase implements OnInit 
       }
 
     ngOnInit() { this.GetformMaster()}
+
+    toggleTieredMenu(menu, event, userid, admissionid) {
+      this.items = [];    
+      this.items = [
+       ...this.items,
+       {
+         label: 'View/Edit',
+         icon: 'pi pi-eye',
+         command: () => {
+          //fetch the form that user wants to edit or view 
+          
+          // var params=encodeURIComponent(btoa("id=" + userid + "&admissionid=" + admissionid));
+          // window.open("#/profile?q=" + params, "_self");
+         }
+       }
+     ];
+     //console.log('items', this.items);
+     menu.toggle(event);
+   }
 
     GetformMaster(){
         this._UtilityService.showSpinner();   
