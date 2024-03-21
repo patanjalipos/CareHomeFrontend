@@ -15,8 +15,12 @@ export class PreAdmissionAssessmentFormsComponent
     implements OnInit
 {
     PreAdmissionAssessmentFormsData: any = <any>{};
+
+    //Patient Details
     userId: any;
-    residentAdmissionInfoId: any = null;
+    residentAdmissionInfoId: any;
+    //CreatedBy or ModifiedBy
+    loginId: any;
 
     constructor(
         private _ConstantServices: ConstantsService,
@@ -27,7 +31,7 @@ export class PreAdmissionAssessmentFormsComponent
         super();
         this._ConstantServices.ActiveMenuName = 'Pre Assessment Admission Form';
 
-        //this.loginId = localStorage.getItem('userId');
+        this.loginId = localStorage.getItem('userId');
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
             var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
@@ -44,7 +48,33 @@ export class PreAdmissionAssessmentFormsComponent
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.GetPreAdmissionFormDetails();
+        //console.log(this.PreAdmissionAssessmentFormsData);
+    }
+
+    GetPreAdmissionFormDetails() {
+        this._UtilityService.showSpinner();
+        this.unsubscribe.add = this._MasterServices
+            .GetPreAdmissionFormDetails(this.userId)
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        tdata = tdata ? tdata : {};
+                        this.PreAdmissionAssessmentFormsData = tdata;
+                        //console.log(this.PreAdmissionAssessmentFormsData);
+                    } else {
+                        this.PreAdmissionAssessmentFormsData = {};
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
+    }
 
     saveAsUnfinished() {
         console.log('Data saved as unfinished');
@@ -59,16 +89,16 @@ export class PreAdmissionAssessmentFormsComponent
     }
 
     Save() {
-        //console.log(this.userId + ' ' + this.residentAdmissionInfoId);
         if (this.userId != null && this.residentAdmissionInfoId != null) {
             this.PreAdmissionAssessmentFormsData.userId = this.userId;
             this.PreAdmissionAssessmentFormsData.residentAdmissionInfoId =
                 this.residentAdmissionInfoId;
 
-               console.log(JSON.stringify(this.PreAdmissionAssessmentFormsData).toString());
             this._UtilityService.showSpinner();
             this.unsubscribe.add = this._MasterServices
-                .AddInsertUpdatePreAdmissionAssessmentForm(this.PreAdmissionAssessmentFormsData)
+                .AddInsertUpdatePreAdmissionAssessmentForm(
+                    this.PreAdmissionAssessmentFormsData
+                )
                 .subscribe({
                     next: (data) => {
                         this._UtilityService.hideSpinner();
@@ -80,7 +110,6 @@ export class PreAdmissionAssessmentFormsComponent
                             this._UtilityService.showWarningAlert(
                                 data.actionResult.errMsg
                             );
-                        //this.mode = 'view';
                     },
                     error: (e) => {
                         this._UtilityService.hideSpinner();

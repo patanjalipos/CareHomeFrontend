@@ -39,7 +39,7 @@
                 pInputText
                 type="text"
                 required
-                name="chartheadname"
+                name="PreAdmissionAssessmentFormsData.chartheadname"
                 class="form-control"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.chartheadname"
             />
@@ -58,6 +58,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
+                name="PreAdmissionAssessmentFormsData.personCapacity"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.personCapacity"
                 [options]="personCapacityOptions"
                 placeholder="Select"
@@ -83,6 +84,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
+                name="PreAdmissionAssessmentFormsData.professionalDocObtained"
                 [(ngModel)]="
                     PreAdmissionAssessmentFormsData.professionalDocObtained
                 "
@@ -107,6 +109,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
+                name="PreAdmissionAssessmentFormsData.residentMovingFrom"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.residentMovingFrom"
                 [options]="residentMovingOptions"
                 placeholder="Select"
@@ -124,6 +127,7 @@
         </div>
         <div class="col-md-7 mb-4">
             <p-dropdown
+                name="PreAdmissionAssessmentFormsData.payment"
                 [(ngModel)]="PreAdmissionAssessmentFormsData.payment"
                 [options]="paymentOptionsn"
                 placeholder="Select"
