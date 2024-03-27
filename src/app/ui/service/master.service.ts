@@ -22,6 +22,29 @@ export class MasterService {
         );
     }
 
+    //#region Form Dashboard
+
+    GetFormDasboardList(residentAdmissionInfoId: string, formMasterId:string , fromDate:any = null , toDate:any = null): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('residentAdmissionInfoId', residentAdmissionInfoId);
+        params = params.append('formMasterId', formMasterId);
+        params = params.append('fromDate', fromDate);
+        params = params.append('toDate', toDate);
+
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetFormDashboardList',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    //#endregion
+
+
     //#region PreAdmissionAssessmentForm
 
     GetPreAdmissionFormDetails(userId: any) {
@@ -55,6 +78,53 @@ export class MasterService {
     }
 
     //#endregion
+
+    //#region Form Master
+
+    GetFormMaster(status: any = true): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('status', status);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetFormMaster',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    GetFormMasterById(id): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        params = params.append('id', id);
+        return this._httpclient.get<any>(
+            environment.BaseUriAdmin + 'api/Admin/GetFormMasterById',
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    AddInsertUpdateFormMaster(obj: any): Observable<any> {
+        let reqHeader = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
+            //'Authorization': 'Bearer ' + localStorage.getItem('token')
+        });
+        let params = new HttpParams();
+        var data = JSON.stringify(obj).toString();
+        return this._httpclient.post<any>(
+            environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateFormMaster',
+            data,
+            { headers: reqHeader, params: params }
+        );
+    }
+
+    //#end region
 
     //#region MenuItem Master
 
@@ -389,52 +459,7 @@ export class MasterService {
 
     //#end region
 
-    //#region Form Master
-
-    GetFormMaster(status: any = true): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('status', status);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetFormMaster',
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    GetFormMasterById(id): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        params = params.append('id', id);
-        return this._httpclient.get<any>(
-            environment.BaseUriAdmin + 'api/Admin/GetFormMasterById',
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    AddInsertUpdateFormMaster(obj: any): Observable<any> {
-        let reqHeader = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': environment.BaseUriAdmin,
-            //'Authorization': 'Bearer ' + localStorage.getItem('token')
-        });
-        let params = new HttpParams();
-        var data = JSON.stringify(obj).toString();
-        return this._httpclient.post<any>(
-            environment.BaseUriAdmin + 'api/Admin/AddInsertUpdateFormMaster',
-            data,
-            { headers: reqHeader, params: params }
-        );
-    }
-
-    //#end region
+    
 
     //#region Indicator Master
 
