@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root',
 })
 export class MasterService {
-   
     constructor(private _httpclient: HttpClient) {}
 
     GetCountryMaster(): Observable<any> {
@@ -24,17 +23,30 @@ export class MasterService {
 
     //#region Form Dashboard
 
-    GetFormDasboardList(residentAdmissionInfoId: string, formMasterId:string , fromDate:any = null , toDate:any = null): Observable<any> {
+    GetFormDasboardList(
+        residentAdmissionInfoId: string,
+        formMasterId: string,
+        fromDate: any = null,
+        toDate: any = null
+    ): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
             //'Authorization': 'Bearer ' + localStorage.getItem('token')
         });
         let params = new HttpParams();
-        params = params.append('residentAdmissionInfoId', residentAdmissionInfoId);
+        params = params.append(
+            'residentAdmissionInfoId',
+            residentAdmissionInfoId
+        );
         params = params.append('formMasterId', formMasterId);
-        params = params.append('fromDate', fromDate);
-        params = params.append('toDate', toDate);
+        // Convert fromDate and toDate to strings before appending them
+        if (fromDate !== null) {
+            params = params.append('fromDate', fromDate.toString());
+        }
+        if (toDate !== null) {
+            params = params.append('toDate', toDate.toString());
+        }
 
         return this._httpclient.get<any>(
             environment.BaseUriAdmin + 'api/Admin/GetFormDashboardList',
@@ -43,7 +55,6 @@ export class MasterService {
     }
 
     //#endregion
-
 
     //#region PreAdmissionAssessmentForm
 
@@ -60,8 +71,10 @@ export class MasterService {
             { headers: reqHeader, params: params }
         );
     }
-    
-    AddInsertUpdatePreAdmissionAssessmentForm(PreAdmissionAssessmentFormsData: any): Observable<any> {
+
+    AddInsertUpdatePreAdmissionAssessmentForm(
+        PreAdmissionAssessmentFormsData: any
+    ): Observable<any> {
         let reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': environment.BaseUriAdmin,
@@ -71,7 +84,8 @@ export class MasterService {
         var data = JSON.stringify(PreAdmissionAssessmentFormsData).toString();
         console.log(data);
         return this._httpclient.post<any>(
-            environment.BaseUriAdmin + 'api/Admin/AddInsertUpdatePreAdmissionForm',
+            environment.BaseUriAdmin +
+                'api/Admin/AddInsertUpdatePreAdmissionForm',
             data,
             { headers: reqHeader, params: params }
         );
@@ -458,8 +472,6 @@ export class MasterService {
     }
 
     //#end region
-
-    
 
     //#region Indicator Master
 

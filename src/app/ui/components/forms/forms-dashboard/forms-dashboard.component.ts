@@ -42,22 +42,21 @@ export class FormsDashboardComponent
         private _ConstantServices: ConstantsService,
         private _MasterServices: MasterService,
         private _UtilityService: UtilityService,
-        private route: ActivatedRoute,
-
+        private route: ActivatedRoute
     ) {
         super();
         this._ConstantServices.ActiveMenuName = 'Form Dashboard';
 
         this.unsubscribe.add = this.route.queryParams.subscribe((params) => {
-          var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
+            var ParamsArray = this._ConstantServices.GetParmasVal(params['q']);
 
-          if (ParamsArray?.length > 0) {
-              //console.log('ParamsArray',ParamsArray);
-              this.residentAdmissionInfoId =
-                  ParamsArray.find((e) => e.FieldStr == 'admissionid')
-                      ?.FieldVal || null;
-          }
-      });
+            if (ParamsArray?.length > 0) {
+                //console.log('ParamsArray',ParamsArray);
+                this.residentAdmissionInfoId =
+                    ParamsArray.find((e) => e.FieldStr == 'admissionid')
+                        ?.FieldVal || null;
+            }
+        });
     }
 
     ngOnInit() {
@@ -113,30 +112,46 @@ export class FormsDashboardComponent
         const residentAdmissionInfoId = this.residentAdmissionInfoId;
         const formMasterId = selectedFormId;
 
-        // Assuming rangeDates[0] is the fromDate and rangeDates[1] is the toDate
-        const fromDate = rangeDates[0];
-        const toDate = rangeDates[1];
+        let fromDate: Date | null = null;
+        let toDate: Date | null = null;
+
+        if (rangeDates && rangeDates.length >= 2) {
+            fromDate = rangeDates[0];
+            toDate = rangeDates[1];
+        }
 
         // Call the API
-        this._MasterServices.GetFormDasboardList(residentAdmissionInfoId,formMasterId,fromDate,toDate
-        ).subscribe({
-          next: (data) => {
-              this._UtilityService.hideSpinner();
-              if (data.actionResult.success == true) {
-                  var tdata = JSON.parse(data.actionResult.result);
-                  console.log(tdata);
-                  tdata = tdata ? tdata : [];
-                  this.formDashboardList = tdata;
-                  console.log(this.formDashboardList);
-              } else {
-                  this.formDashboardList = [];
-              }
-          },
-          error: (e) => {
-              this._UtilityService.hideSpinner();
-              this._UtilityService.showErrorAlert(e.message);
-          },
-      });
+        this._MasterServices
+            .GetFormDasboardList(
+                residentAdmissionInfoId,
+                formMasterId,
+                fromDate,
+                toDate
+            )
+            .subscribe({
+                next: (data) => {
+                    this._UtilityService.hideSpinner();
+
+                    console.log(residentAdmissionInfoId,
+                        formMasterId,
+                        fromDate,
+                        toDate);
+
+                    if (data.actionResult.success == true) {
+                        var tdata = JSON.parse(data.actionResult.result);
+                        console.log(tdata);
+                        tdata = tdata ? tdata : [];
+                        this.formDashboardList = tdata;
+                        console.log(this.formDashboardList);
+                    } else {
+                        this.formDashboardList = [];
+                    }
+                },
+                error: (e) => {
+                    this._UtilityService.hideSpinner();
+                    this._UtilityService.showErrorAlert(e.message);
+                },
+            });
     }
 
     showForm(selectedFormId: string) {
